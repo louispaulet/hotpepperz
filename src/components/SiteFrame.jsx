@@ -3,38 +3,49 @@ import { Link, NavLink } from 'react-router-dom'
 function SiteFrame({ children }) {
   const navClass = ({ isActive }) =>
     [
-      'rounded-full px-4 py-2 text-sm uppercase tracking-[0.24em] transition',
+      'rounded-full px-4 py-2.5 text-xs font-semibold uppercase tracking-[0.24em] transition',
       isActive
-        ? 'bg-amber-200 text-stone-900'
-        : 'text-amber-100/80 hover:bg-white/8 hover:text-white',
+        ? 'bg-[var(--color-cream)] text-[var(--color-ink)] shadow-[0_10px_24px_rgba(242,228,199,0.18)]'
+        : 'text-[var(--color-text-soft)] hover:bg-white/8 hover:text-[var(--color-text)]',
     ].join(' ')
 
   return (
     <>
       <header className="sticky top-4 z-30 mb-8">
-        <div className="panel flex items-center justify-between gap-4 rounded-full px-4 py-3 sm:px-6">
-          <Link to="/" className="flex items-center gap-3">
-            <div className="flex h-11 w-11 items-center justify-center rounded-full border border-amber-200/30 bg-white/8 text-xl font-black text-amber-200">
-              HZ
-            </div>
-            <div>
-              <p className="display-font text-2xl uppercase tracking-[0.18em] text-amber-100">
-                HotPepperz
-              </p>
-              <p className="text-xs uppercase tracking-[0.22em] text-amber-50/55">
-                Small-batch inferno studio
-              </p>
-            </div>
-          </Link>
+        <div className="panel rounded-[1.8rem] px-4 py-4 sm:px-6">
+          <div className="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
+            <Link to="/" className="flex items-center gap-4">
+              <div className="flex h-12 w-12 items-center justify-center rounded-[1rem] border border-white/12 bg-[linear-gradient(160deg,rgba(255,188,104,0.18),rgba(255,92,46,0.14))] text-lg font-black text-[var(--color-cream)]">
+                HZ
+              </div>
+              <div>
+                <p className="display-font text-[1.9rem] uppercase leading-none text-[var(--color-cream)]">
+                  HotPepperz
+                </p>
+                <p className="mt-1 text-xs uppercase tracking-[0.28em] text-[var(--color-text-muted)]">
+                  Sauce design atelier
+                </p>
+              </div>
+            </Link>
 
-          <nav className="flex items-center gap-2">
-            <NavLink to="/" className={navClass} end>
-              Home
-            </NavLink>
-            <NavLink to="/lab" className={navClass}>
-              Sauce Lab
-            </NavLink>
-          </nav>
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+              <nav className="flex flex-wrap gap-2">
+                <NavLink to="/" className={navClass} end>
+                  Home
+                </NavLink>
+                <NavLink to="/lab" className={navClass}>
+                  Hot Sauce Lab
+                </NavLink>
+                <NavLink to="/wiki" className={navClass}>
+                  Pepper Wiki
+                </NavLink>
+              </nav>
+
+              <Link to="/lab" className="primary-button">
+                Start a Blend
+              </Link>
+            </div>
+          </div>
         </div>
       </header>
 

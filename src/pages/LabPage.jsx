@@ -1,28 +1,48 @@
 import Footer from '../components/Footer'
 import SauceStudio from '../components/SauceStudio'
+import { labSteps, pairingRules } from '../data/catalog'
 
 function LabPage() {
   return (
-    <div className="space-y-10">
-      <section className="panel overflow-hidden rounded-[2rem] p-8 sm:p-10">
-        <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-          <div className="max-w-2xl space-y-4">
-            <p className="eyebrow">Full-screen builder</p>
-            <h1 className="display-font text-5xl uppercase leading-none text-amber-50 sm:text-7xl">
-              Compose the bottle before the burn does the talking.
-            </h1>
-            <p className="max-w-xl text-lg text-amber-50/72">
-              Tune the peppers, push the heat, then let the AI naming and label pass turn your
-              blend into a dramatic one-off release.
-            </p>
+    <div className="space-y-8 lg:space-y-10">
+      <section className="grid gap-6 xl:grid-cols-[1.08fr_0.92fr]">
+        <article className="panel rounded-[2rem] p-7 sm:p-10">
+          <p className="section-kicker">Hot sauce lab</p>
+          <h1 className="display-font mt-4 text-5xl uppercase leading-[0.9] text-[var(--color-cream)] sm:text-7xl">
+            Formulate the bottle before you brand the bottle.
+          </h1>
+          <p className="mt-5 max-w-2xl text-lg leading-8 text-[var(--color-text-soft)]">
+            The lab is now organized around the actual user job: choose a heat structure, balance
+            the sauce, then generate a compelling concept without losing the recipe logic.
+          </p>
+        </article>
+
+        <article className="panel rounded-[2rem] p-7 sm:p-8">
+          <p className="section-kicker">Review before generating</p>
+          <div className="mt-5 space-y-4">
+            {pairingRules.slice(0, 3).map((rule) => (
+              <div key={rule} className="rounded-[1.4rem] border border-white/10 bg-black/15 p-4">
+                <p className="text-sm leading-7 text-[var(--color-text-soft)]">{rule}</p>
+              </div>
+            ))}
           </div>
-          <div className="rounded-[1.5rem] border border-amber-200/18 bg-black/20 p-4 text-sm text-amber-50/70">
-            Demo mode: frontend-only, Groq key exposed at build time, suitable for a design flex
-            and static GitHub Pages hosting.
-          </div>
-        </div>
+        </article>
       </section>
+
       <SauceStudio />
+
+      <section className="grid gap-4 lg:grid-cols-3">
+        {labSteps.map((step, index) => (
+          <article key={step.title} className="panel rounded-[1.8rem] p-6">
+            <p className="mono-font text-xs uppercase tracking-[0.28em] text-[var(--color-text-muted)]">
+              Lab note 0{index + 1}
+            </p>
+            <h2 className="mt-4 text-2xl font-semibold text-[var(--color-cream)]">{step.title}</h2>
+            <p className="mt-4 text-sm leading-7 text-[var(--color-text-soft)]">{step.copy}</p>
+          </article>
+        ))}
+      </section>
+
       <Footer />
     </div>
   )

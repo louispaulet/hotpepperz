@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom'
 import Footer from '../components/Footer'
-import SauceStudio from '../components/SauceStudio'
-import { featuredBlends, peppers, processSteps } from '../data/catalog'
+import { houseSauces, labSteps, peppers, sauceFamilies } from '../data/catalog'
 
 const numberFormatter = new Intl.NumberFormat('en-US')
 
@@ -11,13 +10,12 @@ function formatShu(value) {
 
 function HomePage() {
   return (
-    <div className="space-y-10">
+    <div className="space-y-8 lg:space-y-10">
       <HeroSection />
-      <HeatLadder />
-      <section className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
-        <SauceStudio compact />
-        <FeaturedBlends />
-      </section>
+      <ExperienceStrip />
+      <SignatureShelf />
+      <PepperAtlasPreview />
+      <SauceFamiliesSection />
       <ProcessSection />
       <Footer />
     </div>
@@ -26,67 +24,77 @@ function HomePage() {
 
 function HeroSection() {
   return (
-    <section className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
-      <div className="panel overflow-hidden rounded-[2rem] p-8 sm:p-10 lg:p-12">
-        <div className="space-y-6">
-          <div className="inline-flex rounded-full border border-amber-200/20 bg-amber-100/10 px-4 py-2 text-xs uppercase tracking-[0.26em] text-amber-100/85">
-            Build-your-own craft hot sauce
-          </div>
-          <div className="space-y-4">
-            <h1 className="display-font max-w-4xl text-5xl uppercase leading-[0.92] text-amber-50 sm:text-7xl lg:text-8xl">
-              Bottle your own fire, from porch glow to full cathedral heat.
-            </h1>
-            <p className="max-w-2xl text-lg text-amber-50/74 sm:text-xl">
-              HotPepperz is a fictional studio for designing small-batch sauces with layered
-              peppers, calibrated Scoville climbs, and AI-generated labels that feel printed by
-              candlelight.
-            </p>
-          </div>
-          <div className="flex flex-wrap gap-3">
-            <Link to="/lab" className="fire-button">
-              Enter the Sauce Lab
-            </Link>
-            <a
-              href="https://github.com/louispaulet/hotpepperz"
-              target="_blank"
-              rel="noreferrer"
-              className="ghost-button"
-            >
-              View the Repo
-            </a>
-          </div>
-          <dl className="grid gap-4 pt-6 sm:grid-cols-3">
-            <StatCard value="9" label="Pepper tiers" />
-            <StatCard value="8" label="Flavor accents" />
-            <StatCard value="AI" label="Name + label pass" />
-          </dl>
+    <section className="grid gap-6 xl:grid-cols-[1.15fr_0.85fr]">
+      <div className="panel overflow-hidden rounded-[2rem] p-7 sm:p-10 lg:p-12">
+        <div className="inline-flex rounded-full border border-white/12 bg-white/6 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-text-muted)]">
+          Trend-led packaging, smarter flavor UX
         </div>
+
+        <div className="mt-7 max-w-4xl space-y-5">
+          <h1 className="display-font text-5xl uppercase leading-[0.9] text-[var(--color-cream)] sm:text-7xl lg:text-[6.5rem]">
+            Design sauces with more taste logic, more shelf presence, and less generic fire.
+          </h1>
+          <p className="max-w-2xl text-lg leading-8 text-[var(--color-text-soft)] sm:text-xl">
+            HotPepperz now behaves like a real specialty sauce brand: editorial storefront,
+            ingredient education, and a clearer lab for building bottles people would actually
+            want to open.
+          </p>
+        </div>
+
+        <div className="mt-8 flex flex-wrap gap-3">
+          <Link to="/lab" className="primary-button">
+            Build in the Lab
+          </Link>
+          <Link to="/wiki" className="secondary-button">
+            Browse the Wiki
+          </Link>
+        </div>
+
+        <dl className="mt-10 grid gap-4 md:grid-cols-3">
+          <StatCard value="9" label="Pepper references" />
+          <StatCard value="4" label="Sauce families" />
+          <StatCard value="AI" label="Naming + label direction" />
+        </dl>
       </div>
 
-      <div className="panel relative overflow-hidden rounded-[2rem] p-8">
-        <div className="absolute inset-x-6 top-6 flex justify-between text-xs uppercase tracking-[0.24em] text-amber-50/55">
-          <span>Signature flight</span>
-          <span>Edition 2026</span>
-        </div>
+      <div className="grid gap-6">
+        <article className="panel rounded-[2rem] p-7">
+          <p className="section-kicker">Inside the redesigned experience</p>
+          <div className="mt-4 grid gap-4">
+            <SignalLine label="Better flow" copy="Home, lab, and wiki now each have a clear job." />
+            <SignalLine
+              label="Better education"
+              copy="Pepper heat, pairings, and sauce families are explained instead of implied."
+            />
+            <SignalLine
+              label="Better lab UX"
+              copy="The builder now reads like a formulation workspace, not a raw control panel."
+            />
+          </div>
+        </article>
 
-        <div className="mt-12 grid gap-4">
-          {featuredBlends.map((blend, index) => (
-            <article
-              key={blend.name}
-              className="rounded-[1.75rem] border border-amber-200/12 bg-black/22 p-5 shadow-[0_24px_80px_rgba(0,0,0,0.24)]"
-              style={{ transform: `translateX(${index * 12}px)` }}
-            >
-              <p className="text-xs uppercase tracking-[0.22em] text-amber-100/55">
-                Featured release {index + 1}
-              </p>
-              <h2 className="mt-2 text-2xl font-semibold text-amber-50">{blend.name}</h2>
-              <p className="mt-3 text-sm uppercase tracking-[0.12em] text-amber-100/65">
-                {blend.profile}
-              </p>
-              <p className="mt-4 text-sm text-amber-50/72">{blend.vibe}</p>
-            </article>
-          ))}
-        </div>
+        <article className="panel rounded-[2rem] p-7">
+          <div className="flex items-start justify-between gap-4">
+            <div>
+              <p className="section-kicker">Shelf highlight</p>
+              <h2 className="mt-3 text-3xl font-semibold text-[var(--color-cream)]">
+                {houseSauces[1].name}
+              </h2>
+            </div>
+            <span className="rounded-full border border-white/12 px-3 py-1 text-xs uppercase tracking-[0.24em] text-[var(--color-text-muted)]">
+              {houseSauces[1].heat}
+            </span>
+          </div>
+          <p className="mt-4 text-sm uppercase tracking-[0.16em] text-[var(--color-text-muted)]">
+            {houseSauces[1].profile}
+          </p>
+          <p className="mt-4 text-base leading-7 text-[var(--color-text-soft)]">
+            {houseSauces[1].story}
+          </p>
+          <p className="mt-5 text-sm text-[var(--color-text-soft)]">
+            Best on: {houseSauces[1].bestOn}
+          </p>
+        </article>
       </div>
     </section>
   )
@@ -94,65 +102,100 @@ function HeroSection() {
 
 function StatCard({ value, label }) {
   return (
-    <div className="rounded-[1.5rem] border border-amber-200/12 bg-black/18 px-5 py-4 text-left">
-      <dt className="text-3xl font-semibold text-amber-50">{value}</dt>
-      <dd className="mt-2 text-xs uppercase tracking-[0.22em] text-amber-100/62">{label}</dd>
+    <div className="rounded-[1.5rem] border border-white/10 bg-black/18 px-5 py-5">
+      <dt className="text-3xl font-semibold text-[var(--color-cream)]">{value}</dt>
+      <dd className="mt-2 text-xs uppercase tracking-[0.24em] text-[var(--color-text-muted)]">
+        {label}
+      </dd>
     </div>
   )
 }
 
-function HeatLadder() {
+function SignalLine({ label, copy }) {
   return (
-    <section className="panel rounded-[2rem] p-8 sm:p-10">
-      <div className="mb-8 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-        <div className="space-y-3">
-          <p className="eyebrow">Heat ladder</p>
-          <h2 className="display-font text-4xl uppercase leading-none text-amber-50 sm:text-6xl">
-            Every recipe starts with a decision about how brave you feel.
+    <div className="rounded-[1.4rem] border border-white/8 bg-black/15 p-4">
+      <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[var(--color-text-muted)]">
+        {label}
+      </p>
+      <p className="mt-2 text-sm leading-7 text-[var(--color-text-soft)]">{copy}</p>
+    </div>
+  )
+}
+
+function ExperienceStrip() {
+  const cards = [
+    {
+      title: 'Guided formulation lab',
+      copy: 'Choose peppers by role, balance the body, then generate a concept only when the recipe makes sense.',
+      link: '/lab',
+      cta: 'Open the lab',
+    },
+    {
+      title: 'Pepper + sauce wiki',
+      copy: 'Browse quick education on heat bands, pairings, and where each sauce family fits.',
+      link: '/wiki',
+      cta: 'Read the guide',
+    },
+    {
+      title: 'Shelf-ready brand direction',
+      copy: 'The whole site now feels like a premium sauce label system instead of a themed demo page.',
+      link: '/',
+      cta: 'View the overview',
+    },
+  ]
+
+  return (
+    <section className="grid gap-4 lg:grid-cols-3">
+      {cards.map((card) => (
+        <article key={card.title} className="panel rounded-[1.8rem] p-6">
+          <p className="section-kicker">Experience</p>
+          <h2 className="mt-4 text-2xl font-semibold text-[var(--color-cream)]">{card.title}</h2>
+          <p className="mt-4 text-sm leading-7 text-[var(--color-text-soft)]">{card.copy}</p>
+          <Link to={card.link} className="mt-6 inline-flex text-sm font-semibold text-[var(--color-saffron)]">
+            {card.cta}
+          </Link>
+        </article>
+      ))}
+    </section>
+  )
+}
+
+function SignatureShelf() {
+  return (
+    <section className="panel rounded-[2rem] p-7 sm:p-9">
+      <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+        <div>
+          <p className="section-kicker">Signature shelf</p>
+          <h2 className="display-font mt-3 text-4xl uppercase leading-none text-[var(--color-cream)] sm:text-6xl">
+            Reference bottles with distinct jobs.
           </h2>
         </div>
-        <p className="max-w-xl text-base text-amber-50/70">
-          Build with crisp green peppers, lantern-fruit heat, or the apex cultivars that turn a
-          sauce into a warning label.
+        <p className="max-w-xl text-sm leading-7 text-[var(--color-text-soft)] sm:text-base">
+          A better sauce catalog helps users understand range: daily-use bottles, fruit-led heat,
+          dark smoke builds, and collector-grade superhot releases.
         </p>
       </div>
 
-      <div className="grid gap-4 lg:grid-cols-3">
-        {peppers.map((pepper) => (
+      <div className="mt-8 grid gap-4 xl:grid-cols-4">
+        {houseSauces.map((sauce) => (
           <article
-            key={pepper.id}
-            className="rounded-[1.5rem] border border-white/8 bg-black/18 p-5"
+            key={sauce.name}
+            className="rounded-[1.6rem] border border-white/10 bg-black/16 p-5"
             style={{
-              backgroundImage: `linear-gradient(135deg, ${pepper.tone}20, rgba(0,0,0,0.12))`,
+              backgroundImage: `linear-gradient(160deg, ${sauce.tone}22, rgba(12, 12, 12, 0.06))`,
             }}
           >
-            <div className="flex items-start justify-between gap-4">
-              <div>
-                <h3 className="text-xl font-semibold text-amber-50">{pepper.name}</h3>
-                <p className="mt-2 text-xs uppercase tracking-[0.2em] text-amber-100/58">
-                  {pepper.notes.join(' · ')}
-                </p>
-              </div>
-              <span
-                className="h-3 w-3 rounded-full shadow-[0_0_24px_rgba(255,255,255,0.18)]"
-                style={{ backgroundColor: pepper.tone }}
-              />
+            <div className="flex items-center justify-between gap-3">
+              <h3 className="text-2xl font-semibold text-[var(--color-cream)]">{sauce.name}</h3>
+              <span className="rounded-full border border-white/10 px-3 py-1 text-[0.65rem] uppercase tracking-[0.24em] text-[var(--color-text-muted)]">
+                {sauce.heat}
+              </span>
             </div>
-            <div className="mt-4">
-              <div className="heat-track">
-                <div
-                  className="heat-fill"
-                  style={{
-                    width: `${Math.max(8, Math.min(100, Math.log10(pepper.shuMax) * 12.2))}%`,
-                    background: `linear-gradient(90deg, ${pepper.tone}, rgba(255,246,217,0.95))`,
-                  }}
-                />
-              </div>
-              <p className="mt-3 text-sm font-medium text-amber-50/80">
-                {formatShu(pepper.shuMin)} to {formatShu(pepper.shuMax)}
-              </p>
-            </div>
-            <p className="mt-4 text-sm text-amber-50/70">{pepper.story}</p>
+            <p className="mt-4 text-xs uppercase tracking-[0.18em] text-[var(--color-text-muted)]">
+              {sauce.profile}
+            </p>
+            <p className="mt-4 text-sm leading-7 text-[var(--color-text-soft)]">{sauce.story}</p>
+            <p className="mt-5 text-sm text-[var(--color-text)]">Best on: {sauce.bestOn}</p>
           </article>
         ))}
       </div>
@@ -160,38 +203,73 @@ function HeatLadder() {
   )
 }
 
-function FeaturedBlends() {
+function PepperAtlasPreview() {
   return (
-    <section className="panel rounded-[2rem] p-8 sm:p-10">
-      <div className="space-y-3">
-        <p className="eyebrow">House signatures</p>
-        <h2 className="display-font text-4xl uppercase leading-none text-amber-50 sm:text-6xl">
-          Reference the catalog, then break every rule.
-        </h2>
-        <p className="max-w-2xl text-base text-amber-50/70">
-          The house blends show how fruit, smoke, and apex peppers can stay balanced when the
-          recipe is deliberate.
-        </p>
+    <section className="panel rounded-[2rem] p-7 sm:p-9">
+      <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+        <div>
+          <p className="section-kicker">Pepper atlas</p>
+          <h2 className="display-font mt-3 text-4xl uppercase leading-none text-[var(--color-cream)] sm:text-6xl">
+            Heat data only matters when the flavor story is visible too.
+          </h2>
+        </div>
+        <Link to="/wiki" className="secondary-button w-full sm:w-auto">
+          Open the full wiki
+        </Link>
       </div>
 
-      <div className="mt-8 space-y-4">
-        {featuredBlends.map((blend) => (
+      <div className="mt-8 grid gap-4 lg:grid-cols-3">
+        {peppers.map((pepper) => (
           <article
-            key={blend.name}
-            className="rounded-[1.5rem] border border-amber-200/12 bg-black/18 p-5"
+            key={pepper.id}
+            className="rounded-[1.6rem] border border-white/10 bg-black/16 p-5"
+            style={{
+              backgroundImage: `linear-gradient(135deg, ${pepper.tone}24, rgba(10, 10, 10, 0.06))`,
+            }}
           >
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+            <div className="flex items-start justify-between gap-4">
               <div>
-                <h3 className="text-2xl font-semibold text-amber-50">{blend.name}</h3>
-                <p className="mt-2 text-xs uppercase tracking-[0.2em] text-amber-100/55">
-                  {blend.profile}
+                <h3 className="text-2xl font-semibold text-[var(--color-cream)]">{pepper.name}</h3>
+                <p className="mt-2 text-xs uppercase tracking-[0.22em] text-[var(--color-text-muted)]">
+                  {pepper.heatBand}
                 </p>
               </div>
-              <span className="rounded-full border border-amber-200/16 px-3 py-1 text-xs uppercase tracking-[0.22em] text-amber-100/60">
-                Signature
-              </span>
+              <span className="mt-1 h-3 w-3 rounded-full" style={{ backgroundColor: pepper.tone }} />
             </div>
-            <p className="mt-4 text-sm text-amber-50/72">{blend.vibe}</p>
+            <p className="mt-4 text-sm text-[var(--color-text)]">
+              {formatShu(pepper.shuMin)} to {formatShu(pepper.shuMax)}
+            </p>
+            <p className="mt-4 text-sm leading-7 text-[var(--color-text-soft)]">{pepper.story}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+function SauceFamiliesSection() {
+  return (
+    <section className="grid gap-4 xl:grid-cols-[0.9fr_1.1fr]">
+      <article className="panel rounded-[2rem] p-7 sm:p-9">
+        <p className="section-kicker">Sauce families</p>
+        <h2 className="display-font mt-3 text-4xl uppercase leading-none text-[var(--color-cream)] sm:text-6xl">
+          Better IA starts by naming the patterns.
+        </h2>
+        <p className="mt-5 text-sm leading-7 text-[var(--color-text-soft)] sm:text-base">
+          Users browse faster when the site explains recognizable sauce directions instead of
+          treating every bottle as random chaos.
+        </p>
+      </article>
+
+      <div className="grid gap-4 md:grid-cols-2">
+        {sauceFamilies.map((family) => (
+          <article key={family.name} className="panel rounded-[1.8rem] p-6">
+            <h3 className="text-2xl font-semibold text-[var(--color-cream)]">{family.name}</h3>
+            <p className="mt-4 text-sm leading-7 text-[var(--color-text-soft)]">
+              {family.description}
+            </p>
+            <p className="mt-4 text-sm text-[var(--color-text)]">Best for: {family.bestFor}</p>
+            <p className="mt-3 text-sm text-[var(--color-text-soft)]">{family.buildCue}</p>
           </article>
         ))}
       </div>
@@ -201,25 +279,24 @@ function FeaturedBlends() {
 
 function ProcessSection() {
   return (
-    <section className="panel rounded-[2rem] p-8 sm:p-10">
-      <div className="space-y-3">
-        <p className="eyebrow">How it works</p>
-        <h2 className="display-font text-4xl uppercase leading-none text-amber-50 sm:text-6xl">
-          A fictional studio with a very real respect for the climb.
-        </h2>
+    <section className="panel rounded-[2rem] p-7 sm:p-9">
+      <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+        <div>
+          <p className="section-kicker">Lab flow</p>
+          <h2 className="display-font mt-3 text-4xl uppercase leading-none text-[var(--color-cream)] sm:text-6xl">
+            The builder now works like a recipe review, not a guessing game.
+          </h2>
+        </div>
       </div>
 
       <div className="mt-8 grid gap-4 lg:grid-cols-3">
-        {processSteps.map((step, index) => (
-          <article
-            key={step.title}
-            className="rounded-[1.75rem] border border-amber-200/12 bg-black/18 p-6"
-          >
-            <p className="mono-font text-xs uppercase tracking-[0.22em] text-amber-100/48">
+        {labSteps.map((step, index) => (
+          <article key={step.title} className="rounded-[1.8rem] border border-white/10 bg-black/16 p-6">
+            <p className="mono-font text-xs uppercase tracking-[0.28em] text-[var(--color-text-muted)]">
               Step 0{index + 1}
             </p>
-            <h3 className="mt-4 text-2xl font-semibold text-amber-50">{step.title}</h3>
-            <p className="mt-4 text-sm text-amber-50/72">{step.copy}</p>
+            <h3 className="mt-4 text-2xl font-semibold text-[var(--color-cream)]">{step.title}</h3>
+            <p className="mt-4 text-sm leading-7 text-[var(--color-text-soft)]">{step.copy}</p>
           </article>
         ))}
       </div>
