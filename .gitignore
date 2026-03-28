@@ -25,3 +25,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Local browser review screenshots
+*-after*.png
+*-mobile.png
+search-*.png
