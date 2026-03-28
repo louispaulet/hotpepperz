@@ -9,6 +9,10 @@ function formatShu(value) {
   return `${numberFormatter.format(value)} SHU`
 }
 
+function resolveImageSrc(image) {
+  return image.startsWith('http') ? image : `${baseUrl}${image}`
+}
+
 function HomePage() {
   return (
     <div className="space-y-8 lg:space-y-10">
@@ -65,7 +69,7 @@ function HeroSection() {
               alt="Close-up red chili pepper used as a hero illustration"
               className="h-64 w-full object-cover"
             />
-            <div className="p-7">
+              <div className="p-7">
               <p className="section-kicker">📸 Editorial mood</p>
               <div className="mt-4 grid gap-4">
                 <SignalLine label="Better flow" copy="Home, lab, and wiki now each have a clear job." />
@@ -83,9 +87,9 @@ function HeroSection() {
 
           <article className="panel overflow-hidden rounded-[2rem]">
             <img
-              src={`${baseUrl}images/hot-sauce-still-life.jpg`}
-              alt="Hot sauce bottle still-life illustration"
-              className="h-56 w-full object-cover object-left"
+              src={`${baseUrl}images/fermented-hot-sauce.jpg`}
+              alt="Premium hot sauce fermentation still life"
+              className="h-56 w-full object-cover object-center"
             />
             <div className="p-7">
             <div className="flex items-start justify-between gap-4">
@@ -144,8 +148,8 @@ function ExperienceStrip() {
       copy: 'Choose peppers by role, balance the body, then generate a concept only when the recipe makes sense.',
       link: '/lab',
       cta: 'Open the lab',
-      image: `${baseUrl}images/hot-sauce-still-life.jpg`,
-      alt: 'Hot sauce still life',
+      image: `${baseUrl}images/fermented-hot-sauce.jpg`,
+      alt: 'Premium hot sauce fermentation still life',
     },
     {
       title: 'Pepper + sauce wiki',
@@ -171,7 +175,7 @@ function ExperienceStrip() {
         <article key={card.title} className="panel overflow-hidden rounded-[1.8rem]">
           <img src={card.image} alt={card.alt} className="h-44 w-full object-cover" />
           <div className="p-6">
-          <p className="section-kicker">✨ Experience</p>
+            <p className="section-kicker">✨ Experience</p>
           <h2 className="mt-4 text-2xl font-semibold text-[var(--color-cream)]">{card.title}</h2>
           <p className="mt-4 text-sm leading-7 text-[var(--color-text-soft)]">{card.copy}</p>
           <Link to={card.link} className="mt-6 inline-flex text-sm font-semibold text-[var(--color-saffron)]">
@@ -198,30 +202,6 @@ function SignatureShelf() {
           A better sauce catalog helps users understand range: daily-use bottles, fruit-led heat,
           dark smoke builds, and collector-grade superhot releases.
         </p>
-      </div>
-
-      <div className="mt-8 grid gap-4 lg:grid-cols-3">
-        <article className="overflow-hidden rounded-[1.6rem] border border-white/10 bg-black/16">
-          <img
-            src={`${baseUrl}images/serrano-peppers.jpg`}
-            alt="Serrano peppers"
-            className="h-48 w-full object-cover"
-          />
-        </article>
-        <article className="overflow-hidden rounded-[1.6rem] border border-white/10 bg-black/16">
-          <img
-            src={`${baseUrl}images/jalapeno-peppers.jpg`}
-            alt="Jalapeno peppers"
-            className="h-48 w-full object-cover"
-          />
-        </article>
-        <article className="overflow-hidden rounded-[1.6rem] border border-white/10 bg-black/16">
-          <img
-            src={`${baseUrl}images/hot-sauce-still-life.jpg`}
-            alt="Hot sauce bottle still life"
-            className="h-48 w-full object-cover object-left"
-          />
-        </article>
       </div>
 
       <div className="mt-8 grid gap-4 xl:grid-cols-4">
@@ -266,33 +246,21 @@ function PepperAtlasPreview() {
         </Link>
       </div>
 
-      <div className="mt-8 grid gap-4 xl:grid-cols-[0.9fr_1.1fr]">
-        <div className="grid gap-4">
-          <article className="overflow-hidden rounded-[1.8rem] border border-white/10 bg-black/16">
-            <img
-              src={`${baseUrl}images/wiki-habanero.jpg`}
-              alt="Habanero pepper close-up used in the pepper atlas section"
-              className="h-56 w-full object-cover"
-            />
-          </article>
-          <article className="overflow-hidden rounded-[1.8rem] border border-white/10 bg-black/16">
-            <img
-              src={`${baseUrl}images/market-peppers.jpg`}
-              alt="Assorted market peppers"
-              className="h-56 w-full object-cover"
-            />
-          </article>
-        </div>
-
-        <div className="grid gap-4 lg:grid-cols-2">
+      <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
         {peppers.map((pepper) => (
           <article
             key={pepper.id}
-            className="rounded-[1.6rem] border border-white/10 bg-black/16 p-5"
+            className="overflow-hidden rounded-[1.6rem] border border-white/10 bg-black/16"
             style={{
               backgroundImage: `linear-gradient(135deg, ${pepper.tone}24, rgba(10, 10, 10, 0.06))`,
             }}
           >
+            <img
+              src={resolveImageSrc(pepper.image)}
+              alt={pepper.name}
+              className="h-40 w-full object-cover"
+            />
+            <div className="p-5">
             <div className="flex items-start justify-between gap-4">
               <div>
                 <h3 className="text-2xl font-semibold text-[var(--color-cream)]">{pepper.name}</h3>
@@ -306,9 +274,9 @@ function PepperAtlasPreview() {
               {formatShu(pepper.shuMin)} to {formatShu(pepper.shuMax)}
             </p>
             <p className="mt-4 text-sm leading-7 text-[var(--color-text-soft)]">{pepper.story}</p>
+            </div>
           </article>
         ))}
-        </div>
       </div>
     </section>
   )

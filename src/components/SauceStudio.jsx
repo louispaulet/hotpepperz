@@ -7,6 +7,7 @@ import {
 } from '../lib/ai'
 
 const numberFormatter = new Intl.NumberFormat('en-US')
+const baseUrl = import.meta.env.BASE_URL
 
 const defaultRecipe = {
   pepperIds: ['serrano', 'habanero'],
@@ -40,6 +41,10 @@ const accentSignals = {
 
 function formatShu(value) {
   return `${numberFormatter.format(value)} SHU`
+}
+
+function resolveImageSrc(image) {
+  return image.startsWith('http') ? image : `${baseUrl}${image}`
 }
 
 function clamp(value, min, max) {
@@ -505,6 +510,11 @@ function SauceStudio() {
                         : undefined,
                     }}
                   >
+                    <img
+                      src={resolveImageSrc(pepper.image)}
+                      alt={pepper.name}
+                      className="mb-4 h-32 w-full rounded-[1rem] object-cover"
+                    />
                     <div className="flex items-start justify-between gap-4">
                       <div>
                         <p className="text-lg font-semibold text-[var(--color-cream)]">{pepper.name}</p>

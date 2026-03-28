@@ -10,6 +10,7 @@ export const peppers = [
     pairings: ['lime', 'roasted garlic', 'herbs'],
     bestFor: 'Breakfast sauces, taco drizzles, bright green ferments.',
     tone: '#7db84d',
+    image: 'images/jalapeno-peppers.jpg',
     story: 'A crisp garden pepper that gives body and freshness without turning the bottle into a dare.',
   },
   {
@@ -23,6 +24,7 @@ export const peppers = [
     pairings: ['lime zest', 'cucumber', 'tomatillo'],
     bestFor: 'Daily-driver sauces that need lift, bite, and quick brightness.',
     tone: '#67b646',
+    image: 'images/serrano-peppers.jpg',
     story: 'Lean, focused heat with a citrusy edge that keeps blends sharp and agile.',
   },
   {
@@ -36,6 +38,7 @@ export const peppers = [
     pairings: ['garlic', 'vinegar', 'paprika'],
     bestFor: 'Straight-ahead table sauces and wings-focused bottles.',
     tone: '#db5c30',
+    image: 'images/cayenne.jpg',
     story: 'The familiar backbone of old-school hot sauce, reliable when you want bite without theatrics.',
   },
   {
@@ -49,6 +52,7 @@ export const peppers = [
     pairings: ['mango', 'pineapple', 'ginger'],
     bestFor: 'Bright yellow sauces with fruit depth and a polished finish.',
     tone: '#f4a61b',
+    image: 'images/aji-amarillo.jpg',
     story: 'A golden-fruit pepper that makes a sauce feel layered, cheerful, and surprisingly elegant.',
   },
   {
@@ -62,6 +66,7 @@ export const peppers = [
     pairings: ['mango', 'carrot', 'orange zest'],
     bestFor: 'Tropical sauces, glossy glazes, and fruit-led high-heat blends.',
     tone: '#ff8f3f',
+    image: 'images/habanero.jpg',
     story: 'Sweet blaze with immediate presence. It announces itself fast and lingers with confidence.',
   },
   {
@@ -75,6 +80,7 @@ export const peppers = [
     pairings: ['pineapple', 'allspice', 'brown sugar'],
     bestFor: 'Island-inspired sauces with fragrance and rounded sweetness.',
     tone: '#ffbb59',
+    image: 'https://commons.wikimedia.org/wiki/Special:Redirect/file/20200826%20Scotch%20Bonnet%20Pflanze%2001.jpg',
     story: 'Caribbean swagger in pepper form. Floral, rich, and velvety right before the hit lands.',
   },
   {
@@ -88,6 +94,7 @@ export const peppers = [
     pairings: ['cacao', 'smoke', 'tamarind'],
     bestFor: 'Dark, delayed-burn bottles with real drama.',
     tone: '#cd4a33',
+    image: 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Bhoot%20Jolokia%20%28%20Ghost%20Chili%20pepper%20%29.jpg',
     story: 'The heat arrives late and keeps climbing. Useful when the sauce should feel cinematic, not merely hot.',
   },
   {
@@ -101,6 +108,7 @@ export const peppers = [
     pairings: ['citrus', 'fermented garlic', 'honey'],
     bestFor: 'Laser-cut heat spikes in otherwise balanced blends.',
     tone: '#b72c14',
+    image: 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Trinidad%20scorpion%20moruga%20yellow.jpg',
     story: 'Fast, pointed intensity. It makes a recipe feel technically dangerous rather than broadly smoky.',
   },
   {
@@ -114,6 +122,7 @@ export const peppers = [
     pairings: ['cacao', 'berry', 'molasses'],
     bestFor: 'Collector bottles, challenge sauces, and tiny controlled additions.',
     tone: '#7e130a',
+    image: 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Carolina%20Reaper%20pepper%20pods.jpg',
     story: 'The final-boss pepper. A little creates tension. Too much becomes the entire story.',
   },
 ]

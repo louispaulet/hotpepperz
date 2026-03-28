@@ -21,9 +21,9 @@ function LabPage() {
 
         <article className="panel overflow-hidden rounded-[2rem]">
           <img
-            src={`${baseUrl}images/hot-sauce-still-life.jpg`}
-            alt="Hot sauce still-life used as lab illustration"
-            className="h-56 w-full object-cover object-left"
+            src={`${baseUrl}images/fermented-hot-sauce.jpg`}
+            alt="Premium hot sauce fermentation still life used as lab illustration"
+            className="h-56 w-full object-cover object-center"
           />
           <div className="p-7 sm:p-8">
           <p className="section-kicker">🔥 Review before generating</p>
@@ -43,20 +43,20 @@ function LabPage() {
       <section className="grid gap-4 lg:grid-cols-3">
         {[
           {
+            image: `${baseUrl}images/aji-amarillo.jpg`,
+            alt: 'Aji amarillo peppers',
+            title: 'Fruit-forward references',
+            copy: 'Use brighter, cleaner produce photography when the sauce story is polished instead of chaotic.',
+          },
+          {
             image: `${baseUrl}images/serrano-peppers.jpg`,
             alt: 'Serrano peppers',
             title: 'Green heat references',
             copy: 'Use fresher peppers when you want speed, lift, and a more agile sauce profile.',
           },
           {
-            image: `${baseUrl}images/market-peppers.jpg`,
-            alt: 'Mixed market peppers',
-            title: 'Blend-thinking references',
-            copy: 'Color, size, and texture differences help sell the idea that each pepper plays a different role.',
-          },
-          {
-            image: `${baseUrl}images/hot-sauce-still-life.jpg`,
-            alt: 'Hot sauce still life',
+            image: `${baseUrl}images/fermented-hot-sauce.jpg`,
+            alt: 'Premium hot sauce fermentation still life',
             title: 'Packaging references',
             copy: 'The bottle needs to feel like the natural outcome of the recipe, not an afterthought.',
           },

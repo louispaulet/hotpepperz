@@ -9,6 +9,10 @@ function formatShu(value) {
   return `${numberFormatter.format(value)} SHU`
 }
 
+function resolveImageSrc(image) {
+  return image.startsWith('http') ? image : `${baseUrl}${image}`
+}
+
 function WikiPage() {
   return (
     <div className="space-y-8 lg:space-y-10">
@@ -70,39 +74,21 @@ function WikiPage() {
           </p>
         </div>
 
-        <div className="mt-8 grid gap-4 lg:grid-cols-3">
-          <article className="overflow-hidden rounded-[1.7rem] border border-white/10 bg-black/16">
-            <img
-              src={`${baseUrl}images/serrano-peppers.jpg`}
-              alt="Serrano pepper reference image"
-              className="h-48 w-full object-cover"
-            />
-          </article>
-          <article className="overflow-hidden rounded-[1.7rem] border border-white/10 bg-black/16">
-            <img
-              src={`${baseUrl}images/jalapeno-peppers.jpg`}
-              alt="Jalapeno pepper reference image"
-              className="h-48 w-full object-cover"
-            />
-          </article>
-          <article className="overflow-hidden rounded-[1.7rem] border border-white/10 bg-black/16">
-            <img
-              src={`${baseUrl}images/market-peppers.jpg`}
-              alt="Mixed peppers at a market"
-              className="h-48 w-full object-cover"
-            />
-          </article>
-        </div>
-
         <div className="mt-8 grid gap-4 lg:grid-cols-2">
           {peppers.map((pepper) => (
             <article
               key={pepper.id}
-              className="rounded-[1.7rem] border border-white/10 bg-black/16 p-5"
+              className="overflow-hidden rounded-[1.7rem] border border-white/10 bg-black/16"
               style={{
                 backgroundImage: `linear-gradient(135deg, ${pepper.tone}24, rgba(10, 10, 10, 0.06))`,
               }}
             >
+              <img
+                src={resolveImageSrc(pepper.image)}
+                alt={pepper.name}
+                className="h-56 w-full object-cover"
+              />
+              <div className="p-5">
               <div className="flex items-start justify-between gap-4">
                 <div>
                   <h3 className="text-2xl font-semibold text-[var(--color-cream)]">{pepper.name}</h3>
@@ -120,6 +106,7 @@ function WikiPage() {
               <p className="mt-3 text-sm text-[var(--color-text-soft)]">
                 Pair with: {pepper.pairings.join(', ')}
               </p>
+              </div>
             </article>
           ))}
         </div>
@@ -137,9 +124,9 @@ function WikiPage() {
           </p>
           <div className="mt-6 overflow-hidden rounded-[1.6rem] border border-white/10 bg-black/16">
             <img
-              src={`${baseUrl}images/hot-sauce-still-life.jpg`}
-              alt="Hot sauce still life illustrating sauce families"
-              className="h-56 w-full object-cover object-left"
+              src={`${baseUrl}images/fermented-hot-sauce.jpg`}
+              alt="Premium hot sauce fermentation still life illustrating sauce families"
+              className="h-56 w-full object-cover object-center"
             />
           </div>
         </article>
@@ -244,14 +231,14 @@ function WikiPage() {
             Wikimedia Commons, public domain
           </a>
           <a
-            href="https://commons.wikimedia.org/wiki/File:Hot_sauce.jpg"
+            href="https://commons.wikimedia.org/wiki/File:Fermented_hot_sauce.jpg"
             target="_blank"
             rel="noreferrer"
             className="rounded-[1.4rem] border border-white/10 bg-black/15 p-4 text-sm leading-7 text-[var(--color-text-soft)]"
           >
-            Hot sauce still life
+            Fermented hot sauce
             <br />
-            DracoEssentialis, CC BY 3.0
+            Wikimedia Commons source
           </a>
           <a
             href="https://commons.wikimedia.org/wiki/File:Serrano_peppers.jpg"
@@ -270,6 +257,76 @@ function WikiPage() {
             className="rounded-[1.4rem] border border-white/10 bg-black/15 p-4 text-sm leading-7 text-[var(--color-text-soft)]"
           >
             Jalapeno peppers
+            <br />
+            Wikimedia Commons source
+          </a>
+          <a
+            href="https://commons.wikimedia.org/wiki/File:Cayenne_pepper_2.JPG"
+            target="_blank"
+            rel="noreferrer"
+            className="rounded-[1.4rem] border border-white/10 bg-black/15 p-4 text-sm leading-7 text-[var(--color-text-soft)]"
+          >
+            Cayenne pepper
+            <br />
+            Wikimedia Commons source
+          </a>
+          <a
+            href="https://commons.wikimedia.org/wiki/File:Aji_Amarillo_pepper.jpg"
+            target="_blank"
+            rel="noreferrer"
+            className="rounded-[1.4rem] border border-white/10 bg-black/15 p-4 text-sm leading-7 text-[var(--color-text-soft)]"
+          >
+            Aji amarillo
+            <br />
+            Wikimedia Commons source
+          </a>
+          <a
+            href="https://commons.wikimedia.org/wiki/File:ARS-habanero.jpg"
+            target="_blank"
+            rel="noreferrer"
+            className="rounded-[1.4rem] border border-white/10 bg-black/15 p-4 text-sm leading-7 text-[var(--color-text-soft)]"
+          >
+            Habanero
+            <br />
+            Wikimedia Commons source
+          </a>
+          <a
+            href="https://commons.wikimedia.org/wiki/File:20200826_Scotch_Bonnet_Pflanze_01.jpg"
+            target="_blank"
+            rel="noreferrer"
+            className="rounded-[1.4rem] border border-white/10 bg-black/15 p-4 text-sm leading-7 text-[var(--color-text-soft)]"
+          >
+            Scotch bonnet
+            <br />
+            Wikimedia Commons source
+          </a>
+          <a
+            href="https://commons.wikimedia.org/wiki/File:Bhoot_Jolokia_(Ghost_Chili_pepper).jpg"
+            target="_blank"
+            rel="noreferrer"
+            className="rounded-[1.4rem] border border-white/10 bg-black/15 p-4 text-sm leading-7 text-[var(--color-text-soft)]"
+          >
+            Ghost pepper
+            <br />
+            Wikimedia Commons source
+          </a>
+          <a
+            href="https://commons.wikimedia.org/wiki/File:Trinidad_scorpion_moruga_yellow.jpg"
+            target="_blank"
+            rel="noreferrer"
+            className="rounded-[1.4rem] border border-white/10 bg-black/15 p-4 text-sm leading-7 text-[var(--color-text-soft)]"
+          >
+            Trinidad scorpion
+            <br />
+            Wikimedia Commons source
+          </a>
+          <a
+            href="https://commons.wikimedia.org/wiki/File:Carolina_Reaper_pepper_pods.jpg"
+            target="_blank"
+            rel="noreferrer"
+            className="rounded-[1.4rem] border border-white/10 bg-black/15 p-4 text-sm leading-7 text-[var(--color-text-soft)]"
+          >
+            Carolina reaper
             <br />
             Wikimedia Commons source
           </a>
