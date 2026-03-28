@@ -1,16 +1,84 @@
 import { Link } from 'react-router-dom'
 import Footer from '../components/Footer'
 import { houseSauces, labSteps, peppers, sauceFamilies } from '../data/catalog'
+import { editorialImages, resolveImageSrc } from '../lib/media'
 
 const numberFormatter = new Intl.NumberFormat('en-US')
 const baseUrl = import.meta.env.BASE_URL
 
-function formatShu(value) {
-  return `${numberFormatter.format(value)} SHU`
+const heroGallery = [
+  {
+    image: editorialImages.bottleLineup.image,
+    alt: editorialImages.bottleLineup.alt,
+    label: 'Bottle lineup',
+  },
+  {
+    image: editorialImages.habaneroMacro.image,
+    alt: editorialImages.habaneroMacro.alt,
+    label: 'Habanero macro',
+  },
+  {
+    image: editorialImages.pepperStillLife.image,
+    alt: editorialImages.pepperStillLife.alt,
+    label: 'Dark texture',
+  },
+]
+
+const houseSauceVisuals = {
+  'Market Ember No. 3': {
+    image: 'images/serrano-peppers.jpg',
+    alt: 'Fresh serrano peppers for Market Ember No. 3',
+  },
+  'Lantern Choir': {
+    image: editorialImages.habaneroMacro.image,
+    alt: editorialImages.habaneroMacro.alt,
+  },
+  'After Midnight': {
+    image: editorialImages.pepperStillLife.image,
+    alt: editorialImages.pepperStillLife.alt,
+  },
+  'Signal Bloom': {
+    image: 'images/aji-amarillo.jpg',
+    alt: 'Aji amarillo peppers for Signal Bloom',
+  },
 }
 
-function resolveImageSrc(image) {
-  return image.startsWith('http') ? image : `${baseUrl}${image}`
+const familyVisuals = {
+  'Bright Citrus': {
+    image: 'images/jalapeno-peppers.jpg',
+    alt: 'Jalapeno peppers representing bright citrus sauces',
+  },
+  'Tropical Heat': {
+    image: editorialImages.habaneroMacro.image,
+    alt: editorialImages.habaneroMacro.alt,
+  },
+  'Dark Smoke': {
+    image: editorialImages.pepperStillLife.image,
+    alt: editorialImages.pepperStillLife.alt,
+  },
+  'Collector Superhots': {
+    image: editorialImages.nagaCluster.image,
+    alt: editorialImages.nagaCluster.alt,
+  },
+}
+
+const processVisuals = [
+  {
+    image: editorialImages.pepperStillLife.image,
+    alt: editorialImages.pepperStillLife.alt,
+  },
+  {
+    image: editorialImages.habaneroMacro.image,
+    alt: editorialImages.habaneroMacro.alt,
+  },
+  {
+    image: editorialImages.bottleLineup.image,
+    alt: editorialImages.bottleLineup.alt,
+  },
+]
+
+function formatShu(value) {
+  return `${numberFormatter.format(value)} SHU`
 }
 
 function HomePage() {
@@ -31,77 +99,118 @@ function HeroSection() {
   return (
     <section className="grid gap-6 xl:grid-cols-[1.15fr_0.85fr]">
       <div className="panel overflow-hidden rounded-[2rem] p-7 sm:p-10 lg:p-12">
-        <div className="inline-flex rounded-full border border-white/12 bg-white/6 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-text-muted)]">
-          🌶️ Trend-led packaging, smarter flavor UX
-        </div>
+        <div
+          className="pointer-events-none absolute inset-y-0 right-0 hidden w-[42%] opacity-20 lg:block"
+          style={{
+            backgroundImage: `linear-gradient(90deg, rgba(13, 10, 8, 0) 0%, rgba(13, 10, 8, 0.86) 88%), url(${baseUrl}${editorialImages.bottleLineup.image})`,
+            backgroundPosition: 'center',
+            backgroundSize: 'cover',
+          }}
+        />
 
-        <div className="mt-7 max-w-4xl space-y-5">
-          <h1 className="display-font text-5xl uppercase leading-[0.9] text-[var(--color-cream)] sm:text-7xl lg:text-[6.5rem]">
-            Design sauces with more taste logic, more shelf presence, and less generic fire.
-          </h1>
-          <p className="max-w-2xl text-lg leading-8 text-[var(--color-text-soft)] sm:text-xl">
-            HotPepperz now behaves like a real specialty sauce brand: editorial storefront,
-            ingredient education, and a clearer lab for building bottles people would actually
-            want to open.
-          </p>
-        </div>
+        <div className="relative">
+          <div className="inline-flex rounded-full border border-white/12 bg-white/6 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-text-muted)]">
+            Trend-led packaging, smarter flavor UX
+          </div>
 
-        <div className="mt-8 flex flex-wrap gap-3">
-          <Link to="/lab" className="primary-button">
-            Build in the Lab
-          </Link>
-          <Link to="/wiki" className="secondary-button">
-            Browse the Wiki
-          </Link>
-        </div>
+          <div className="mt-7 max-w-4xl space-y-5">
+            <h1 className="display-font text-5xl uppercase leading-[0.9] text-[var(--color-cream)] sm:text-7xl lg:text-[6.5rem]">
+              Design sauces with more taste logic, more shelf presence, and less generic fire.
+            </h1>
+            <p className="max-w-2xl text-lg leading-8 text-[var(--color-text-soft)] sm:text-xl">
+              HotPepperz now behaves like a real specialty sauce brand: editorial storefront,
+              ingredient education, and a clearer lab for building bottles people would actually
+              want to open.
+            </p>
+          </div>
 
-        <dl className="mt-10 grid gap-4 md:grid-cols-3">
-          <StatCard value="9" label="Pepper references" />
-          <StatCard value="4" label="Sauce families" />
-          <StatCard value="AI" label="Naming + label direction" />
-        </dl>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link to="/lab" className="primary-button">
+              Build in the Lab
+            </Link>
+            <Link to="/wiki" className="secondary-button">
+              Browse the Wiki
+            </Link>
+          </div>
+
+          <div className="mt-8 grid gap-3 sm:grid-cols-3">
+            {heroGallery.map((item) => (
+              <figure
+                key={item.label}
+                className="overflow-hidden rounded-[1.4rem] border border-white/10 bg-black/18"
+              >
+                <img
+                  src={resolveImageSrc(baseUrl, item.image)}
+                  alt={item.alt}
+                  className="h-28 w-full object-cover"
+                />
+                <figcaption className="px-4 py-3 text-xs uppercase tracking-[0.24em] text-[var(--color-text-muted)]">
+                  {item.label}
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+
+          <dl className="mt-10 grid gap-4 md:grid-cols-3">
+            <StatCard value="9" label="Pepper references" />
+            <StatCard value="4" label="Sauce families" />
+            <StatCard value="AI" label="Naming + label direction" />
+          </dl>
+        </div>
       </div>
 
-        <div className="grid gap-6">
-          <article className="panel overflow-hidden rounded-[2rem]">
+      <div className="grid gap-6">
+        <article className="panel overflow-hidden rounded-[2rem]">
+          <div className="grid gap-3 p-4 sm:grid-cols-[1.12fr_0.88fr]">
             <img
-              src={`${baseUrl}images/hero-red-chili.jpg`}
-              alt="Close-up red chili pepper used as a hero illustration"
-              className="h-64 w-full object-cover"
+              src={resolveImageSrc(baseUrl, heroGallery[0].image)}
+              alt={heroGallery[0].alt}
+              className="h-64 w-full rounded-[1.5rem] object-cover sm:h-full sm:min-h-[18rem]"
             />
-              <div className="p-7">
-              <p className="section-kicker">📸 Editorial mood</p>
-              <div className="mt-4 grid gap-4">
-                <SignalLine label="Better flow" copy="Home, lab, and wiki now each have a clear job." />
-                <SignalLine
-                  label="Better education"
-                  copy="Pepper heat, pairings, and sauce families are explained instead of implied."
+            <div className="grid gap-3">
+              {heroGallery.slice(1).map((item) => (
+                <img
+                  key={item.label}
+                  src={resolveImageSrc(baseUrl, item.image)}
+                  alt={item.alt}
+                  className="h-[8.7rem] w-full rounded-[1.5rem] object-cover"
                 />
-                <SignalLine
-                  label="Better lab UX"
-                  copy="The builder now reads like a formulation workspace, not a raw control panel."
-                />
-              </div>
+              ))}
             </div>
-          </article>
+          </div>
+          <div className="p-7">
+            <p className="section-kicker">Editorial mood</p>
+            <div className="mt-4 grid gap-4">
+              <SignalLine label="Better flow" copy="Home, lab, and wiki now each have a clear job." />
+              <SignalLine
+                label="Better education"
+                copy="Pepper heat, pairings, and sauce families are explained instead of implied."
+              />
+              <SignalLine
+                label="Better lab UX"
+                copy="The builder now reads like a formulation workspace, not a raw control panel."
+              />
+            </div>
+          </div>
+        </article>
 
-          <article className="panel overflow-hidden rounded-[2rem]">
-            <img
-              src={`${baseUrl}images/fermented-hot-sauce.jpg`}
-              alt="Premium hot sauce fermentation still life"
-              className="h-56 w-full object-cover object-center"
-            />
-            <div className="p-7">
+        <article className="panel overflow-hidden rounded-[2rem]">
+          <img
+            src={resolveImageSrc(baseUrl, editorialImages.bottleLineup.image)}
+            alt={editorialImages.bottleLineup.alt}
+            className="h-56 w-full object-cover object-center"
+          />
+          <div className="p-7">
             <div className="flex items-start justify-between gap-4">
               <div>
-                <p className="section-kicker">🔥 Shelf highlight</p>
-              <h2 className="mt-3 text-3xl font-semibold text-[var(--color-cream)]">
-                {houseSauces[1].name}
-              </h2>
+                <p className="section-kicker">Shelf highlight</p>
+                <h2 className="mt-3 text-3xl font-semibold text-[var(--color-cream)]">
+                  {houseSauces[1].name}
+                </h2>
               </div>
-            <span className="rounded-full border border-white/12 px-3 py-1 text-xs uppercase tracking-[0.24em] text-[var(--color-text-muted)]">
-              {houseSauces[1].heat}
-            </span>
+              <span className="rounded-full border border-white/12 px-3 py-1 text-xs uppercase tracking-[0.24em] text-[var(--color-text-muted)]">
+                {houseSauces[1].heat}
+              </span>
             </div>
             <p className="mt-4 text-sm uppercase tracking-[0.16em] text-[var(--color-text-muted)]">
               {houseSauces[1].profile}
@@ -112,8 +221,20 @@ function HeroSection() {
             <p className="mt-5 text-sm text-[var(--color-text-soft)]">
               Best on: {houseSauces[1].bestOn}
             </p>
+            <div className="mt-6 grid gap-3 sm:grid-cols-2">
+              <img
+                src={resolveImageSrc(baseUrl, editorialImages.habaneroMacro.image)}
+                alt={editorialImages.habaneroMacro.alt}
+                className="h-28 w-full rounded-[1.3rem] object-cover"
+              />
+              <img
+                src={resolveImageSrc(baseUrl, editorialImages.pepperStillLife.image)}
+                alt={editorialImages.pepperStillLife.alt}
+                className="h-28 w-full rounded-[1.3rem] object-cover"
+              />
             </div>
-          </article>
+          </div>
+        </article>
       </div>
     </section>
   )
@@ -148,24 +269,24 @@ function ExperienceStrip() {
       copy: 'Choose peppers by role, balance the body, then generate a concept only when the recipe makes sense.',
       link: '/lab',
       cta: 'Open the lab',
-      image: `${baseUrl}images/fermented-hot-sauce.jpg`,
-      alt: 'Premium hot sauce fermentation still life',
+      image: resolveImageSrc(baseUrl, editorialImages.bottleLineup.image),
+      alt: editorialImages.bottleLineup.alt,
     },
     {
       title: 'Pepper + sauce wiki',
       copy: 'Browse quick education on heat bands, pairings, and where each sauce family fits.',
       link: '/wiki',
       cta: 'Read the guide',
-      image: `${baseUrl}images/wiki-habanero.jpg`,
-      alt: 'Habanero pepper',
+      image: resolveImageSrc(baseUrl, editorialImages.habaneroMacro.image),
+      alt: editorialImages.habaneroMacro.alt,
     },
     {
       title: 'Shelf-ready brand direction',
       copy: 'The whole site now feels like a premium sauce label system instead of a themed demo page.',
       link: '/',
       cta: 'View the overview',
-      image: `${baseUrl}images/market-peppers.jpg`,
-      alt: 'Market peppers',
+      image: resolveImageSrc(baseUrl, editorialImages.pepperStillLife.image),
+      alt: editorialImages.pepperStillLife.alt,
     },
   ]
 
@@ -175,12 +296,15 @@ function ExperienceStrip() {
         <article key={card.title} className="panel overflow-hidden rounded-[1.8rem]">
           <img src={card.image} alt={card.alt} className="h-44 w-full object-cover" />
           <div className="p-6">
-            <p className="section-kicker">✨ Experience</p>
-          <h2 className="mt-4 text-2xl font-semibold text-[var(--color-cream)]">{card.title}</h2>
-          <p className="mt-4 text-sm leading-7 text-[var(--color-text-soft)]">{card.copy}</p>
-          <Link to={card.link} className="mt-6 inline-flex text-sm font-semibold text-[var(--color-saffron)]">
-            {card.cta}
-          </Link>
+            <p className="section-kicker">Experience</p>
+            <h2 className="mt-4 text-2xl font-semibold text-[var(--color-cream)]">{card.title}</h2>
+            <p className="mt-4 text-sm leading-7 text-[var(--color-text-soft)]">{card.copy}</p>
+            <Link
+              to={card.link}
+              className="mt-6 inline-flex text-sm font-semibold text-[var(--color-saffron)]"
+            >
+              {card.cta}
+            </Link>
           </div>
         </article>
       ))}
@@ -193,7 +317,7 @@ function SignatureShelf() {
     <section className="panel rounded-[2rem] p-7 sm:p-9">
       <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
         <div>
-          <p className="section-kicker">🫙 Signature shelf</p>
+          <p className="section-kicker">Signature shelf</p>
           <h2 className="display-font mt-3 text-4xl uppercase leading-none text-[var(--color-cream)] sm:text-6xl">
             Reference bottles with distinct jobs.
           </h2>
@@ -205,27 +329,38 @@ function SignatureShelf() {
       </div>
 
       <div className="mt-8 grid gap-4 xl:grid-cols-4">
-        {houseSauces.map((sauce) => (
-          <article
-            key={sauce.name}
-            className="rounded-[1.6rem] border border-white/10 bg-black/16 p-5"
-            style={{
-              backgroundImage: `linear-gradient(160deg, ${sauce.tone}22, rgba(12, 12, 12, 0.06))`,
-            }}
-          >
-            <div className="flex items-center justify-between gap-3">
-              <h3 className="text-2xl font-semibold text-[var(--color-cream)]">{sauce.name}</h3>
-              <span className="rounded-full border border-white/10 px-3 py-1 text-[0.65rem] uppercase tracking-[0.24em] text-[var(--color-text-muted)]">
-                {sauce.heat}
-              </span>
-            </div>
-            <p className="mt-4 text-xs uppercase tracking-[0.18em] text-[var(--color-text-muted)]">
-              {sauce.profile}
-            </p>
-            <p className="mt-4 text-sm leading-7 text-[var(--color-text-soft)]">{sauce.story}</p>
-            <p className="mt-5 text-sm text-[var(--color-text)]">Best on: {sauce.bestOn}</p>
-          </article>
-        ))}
+        {houseSauces.map((sauce) => {
+          const visual = houseSauceVisuals[sauce.name]
+
+          return (
+            <article
+              key={sauce.name}
+              className="overflow-hidden rounded-[1.6rem] border border-white/10 bg-black/16"
+              style={{
+                backgroundImage: `linear-gradient(160deg, ${sauce.tone}22, rgba(12, 12, 12, 0.06))`,
+              }}
+            >
+              <img
+                src={resolveImageSrc(baseUrl, visual.image)}
+                alt={visual.alt}
+                className="h-36 w-full object-cover"
+              />
+              <div className="p-5">
+                <div className="flex items-center justify-between gap-3">
+                  <h3 className="text-2xl font-semibold text-[var(--color-cream)]">{sauce.name}</h3>
+                  <span className="rounded-full border border-white/10 px-3 py-1 text-[0.65rem] uppercase tracking-[0.24em] text-[var(--color-text-muted)]">
+                    {sauce.heat}
+                  </span>
+                </div>
+                <p className="mt-4 text-xs uppercase tracking-[0.18em] text-[var(--color-text-muted)]">
+                  {sauce.profile}
+                </p>
+                <p className="mt-4 text-sm leading-7 text-[var(--color-text-soft)]">{sauce.story}</p>
+                <p className="mt-5 text-sm text-[var(--color-text)]">Best on: {sauce.bestOn}</p>
+              </div>
+            </article>
+          )
+        })}
       </div>
     </section>
   )
@@ -236,7 +371,7 @@ function PepperAtlasPreview() {
     <section className="panel rounded-[2rem] p-7 sm:p-9">
       <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
         <div>
-          <p className="section-kicker">📚 Pepper atlas</p>
+          <p className="section-kicker">Pepper atlas</p>
           <h2 className="display-font mt-3 text-4xl uppercase leading-none text-[var(--color-cream)] sm:text-6xl">
             Heat data only matters when the flavor story is visible too.
           </h2>
@@ -256,24 +391,24 @@ function PepperAtlasPreview() {
             }}
           >
             <img
-              src={resolveImageSrc(pepper.image)}
+              src={resolveImageSrc(baseUrl, pepper.image)}
               alt={pepper.name}
               className="h-40 w-full object-cover"
             />
             <div className="p-5">
-            <div className="flex items-start justify-between gap-4">
-              <div>
-                <h3 className="text-2xl font-semibold text-[var(--color-cream)]">{pepper.name}</h3>
-                <p className="mt-2 text-xs uppercase tracking-[0.22em] text-[var(--color-text-muted)]">
-                  {pepper.heatBand}
-                </p>
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <h3 className="text-2xl font-semibold text-[var(--color-cream)]">{pepper.name}</h3>
+                  <p className="mt-2 text-xs uppercase tracking-[0.22em] text-[var(--color-text-muted)]">
+                    {pepper.heatBand}
+                  </p>
+                </div>
+                <span className="mt-1 h-3 w-3 rounded-full" style={{ backgroundColor: pepper.tone }} />
               </div>
-              <span className="mt-1 h-3 w-3 rounded-full" style={{ backgroundColor: pepper.tone }} />
-            </div>
-            <p className="mt-4 text-sm text-[var(--color-text)]">
-              {formatShu(pepper.shuMin)} to {formatShu(pepper.shuMax)}
-            </p>
-            <p className="mt-4 text-sm leading-7 text-[var(--color-text-soft)]">{pepper.story}</p>
+              <p className="mt-4 text-sm text-[var(--color-text)]">
+                {formatShu(pepper.shuMin)} to {formatShu(pepper.shuMax)}
+              </p>
+              <p className="mt-4 text-sm leading-7 text-[var(--color-text-soft)]">{pepper.story}</p>
             </div>
           </article>
         ))}
@@ -286,7 +421,7 @@ function SauceFamiliesSection() {
   return (
     <section className="grid gap-4 xl:grid-cols-[0.9fr_1.1fr]">
       <article className="panel rounded-[2rem] p-7 sm:p-9">
-        <p className="section-kicker">🍽️ Sauce families</p>
+        <p className="section-kicker">Sauce families</p>
         <h2 className="display-font mt-3 text-4xl uppercase leading-none text-[var(--color-cream)] sm:text-6xl">
           Better IA starts by naming the patterns.
         </h2>
@@ -294,19 +429,42 @@ function SauceFamiliesSection() {
           Users browse faster when the site explains recognizable sauce directions instead of
           treating every bottle as random chaos.
         </p>
+        <div className="mt-6 grid gap-3 sm:grid-cols-2">
+          <img
+            src={resolveImageSrc(baseUrl, editorialImages.pepperStillLife.image)}
+            alt={editorialImages.pepperStillLife.alt}
+            className="h-36 w-full rounded-[1.5rem] object-cover"
+          />
+          <img
+            src={resolveImageSrc(baseUrl, editorialImages.bottleLineup.image)}
+            alt={editorialImages.bottleLineup.alt}
+            className="h-36 w-full rounded-[1.5rem] object-cover"
+          />
+        </div>
       </article>
 
       <div className="grid gap-4 md:grid-cols-2">
-        {sauceFamilies.map((family) => (
-          <article key={family.name} className="panel rounded-[1.8rem] p-6">
-            <h3 className="text-2xl font-semibold text-[var(--color-cream)]">{family.name}</h3>
-            <p className="mt-4 text-sm leading-7 text-[var(--color-text-soft)]">
-              {family.description}
-            </p>
-            <p className="mt-4 text-sm text-[var(--color-text)]">Best for: {family.bestFor}</p>
-            <p className="mt-3 text-sm text-[var(--color-text-soft)]">{family.buildCue}</p>
-          </article>
-        ))}
+        {sauceFamilies.map((family) => {
+          const visual = familyVisuals[family.name]
+
+          return (
+            <article key={family.name} className="panel overflow-hidden rounded-[1.8rem]">
+              <img
+                src={resolveImageSrc(baseUrl, visual.image)}
+                alt={visual.alt}
+                className="h-32 w-full object-cover"
+              />
+              <div className="p-6">
+                <h3 className="text-2xl font-semibold text-[var(--color-cream)]">{family.name}</h3>
+                <p className="mt-4 text-sm leading-7 text-[var(--color-text-soft)]">
+                  {family.description}
+                </p>
+                <p className="mt-4 text-sm text-[var(--color-text)]">Best for: {family.bestFor}</p>
+                <p className="mt-3 text-sm text-[var(--color-text-soft)]">{family.buildCue}</p>
+              </div>
+            </article>
+          )
+        })}
       </div>
     </section>
   )
@@ -317,7 +475,7 @@ function ProcessSection() {
     <section className="panel rounded-[2rem] p-7 sm:p-9">
       <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
         <div>
-          <p className="section-kicker">🧪 Lab flow</p>
+          <p className="section-kicker">Lab flow</p>
           <h2 className="display-font mt-3 text-4xl uppercase leading-none text-[var(--color-cream)] sm:text-6xl">
             The builder now works like a recipe review, not a guessing game.
           </h2>
@@ -326,12 +484,22 @@ function ProcessSection() {
 
       <div className="mt-8 grid gap-4 lg:grid-cols-3">
         {labSteps.map((step, index) => (
-          <article key={step.title} className="rounded-[1.8rem] border border-white/10 bg-black/16 p-6">
-            <p className="mono-font text-xs uppercase tracking-[0.28em] text-[var(--color-text-muted)]">
-              Step 0{index + 1}
-            </p>
-            <h3 className="mt-4 text-2xl font-semibold text-[var(--color-cream)]">{step.title}</h3>
-            <p className="mt-4 text-sm leading-7 text-[var(--color-text-soft)]">{step.copy}</p>
+          <article
+            key={step.title}
+            className="overflow-hidden rounded-[1.8rem] border border-white/10 bg-black/16"
+          >
+            <img
+              src={resolveImageSrc(baseUrl, processVisuals[index].image)}
+              alt={processVisuals[index].alt}
+              className="h-36 w-full object-cover"
+            />
+            <div className="p-6">
+              <p className="mono-font text-xs uppercase tracking-[0.28em] text-[var(--color-text-muted)]">
+                Step 0{index + 1}
+              </p>
+              <h3 className="mt-4 text-2xl font-semibold text-[var(--color-cream)]">{step.title}</h3>
+              <p className="mt-4 text-sm leading-7 text-[var(--color-text-soft)]">{step.copy}</p>
+            </div>
           </article>
         ))}
       </div>

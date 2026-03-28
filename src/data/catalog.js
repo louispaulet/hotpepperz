@@ -1,3 +1,5 @@
+import { editorialImages } from '../lib/media'
+
 export const peppers = [
   {
     id: 'jalapeno',
@@ -66,7 +68,7 @@ export const peppers = [
     pairings: ['mango', 'carrot', 'orange zest'],
     bestFor: 'Tropical sauces, glossy glazes, and fruit-led high-heat blends.',
     tone: '#ff8f3f',
-    image: 'images/habanero.jpg',
+    image: editorialImages.habaneroMacro.image,
     story: 'Sweet blaze with immediate presence. It announces itself fast and lingers with confidence.',
   },
   {
@@ -94,7 +96,7 @@ export const peppers = [
     pairings: ['cacao', 'smoke', 'tamarind'],
     bestFor: 'Dark, delayed-burn bottles with real drama.',
     tone: '#cd4a33',
-    image: 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Bhoot%20Jolokia%20%28%20Ghost%20Chili%20pepper%20%29.jpg',
+    image: editorialImages.nagaCluster.image,
     story: 'The heat arrives late and keeps climbing. Useful when the sauce should feel cinematic, not merely hot.',
   },
   {

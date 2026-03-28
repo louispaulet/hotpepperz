@@ -5,6 +5,7 @@ import {
   buildLabelImageUrl,
   generateSauceConcept,
 } from '../lib/ai'
+import { editorialImages, resolveImageSrc } from '../lib/media'
 
 const numberFormatter = new Intl.NumberFormat('en-US')
 const baseUrl = import.meta.env.BASE_URL
@@ -41,10 +42,6 @@ const accentSignals = {
 
 function formatShu(value) {
   return `${numberFormatter.format(value)} SHU`
-}
-
-function resolveImageSrc(image) {
-  return image.startsWith('http') ? image : `${baseUrl}${image}`
 }
 
 function clamp(value, min, max) {
@@ -279,6 +276,21 @@ function SauceStudio() {
     recipeSignals,
   )
   const hasRecipe = deferredPeppers.length > 0
+  const dossierPeppers = hasRecipe ? deferredPeppers.slice(0, 3) : peppers.slice(0, 3)
+  const bottleReferences = [
+    ...dossierPeppers.map((pepper) => ({
+      key: pepper.id,
+      src: resolveImageSrc(baseUrl, pepper.image),
+      alt: pepper.name,
+      label: pepper.name,
+    })),
+    {
+      key: 'packaging',
+      src: resolveImageSrc(baseUrl, editorialImages.bottleLineup.image),
+      alt: editorialImages.bottleLineup.alt,
+      label: 'Packaging',
+    },
+  ].slice(0, 4)
 
   function hydrateFallbackPreview(nextPepperIds, nextAccentIds, nextHeatBias, nextStyleId, nextStatus) {
     const nextPeppers = peppers.filter((pepper) => nextPepperIds.includes(pepper.id))
@@ -511,7 +523,7 @@ function SauceStudio() {
                     }}
                   >
                     <img
-                      src={resolveImageSrc(pepper.image)}
+                      src={resolveImageSrc(baseUrl, pepper.image)}
                       alt={pepper.name}
                       className="mb-4 h-32 w-full rounded-[1rem] object-cover"
                     />
@@ -661,6 +673,24 @@ function SauceStudio() {
               {recipeArchetype}
             </p>
 
+            <div className="mt-5 grid gap-3 sm:grid-cols-3">
+              {dossierPeppers.map((pepper) => (
+                <figure
+                  key={pepper.id}
+                  className="overflow-hidden rounded-[1.2rem] border border-white/8 bg-black/18"
+                >
+                  <img
+                    src={resolveImageSrc(baseUrl, pepper.image)}
+                    alt={pepper.name}
+                    className="h-24 w-full object-cover"
+                  />
+                  <figcaption className="px-3 py-2 text-[0.68rem] uppercase tracking-[0.22em] text-[var(--color-text-muted)]">
+                    {pepper.name}
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+
             <div className="mt-5 flex flex-wrap gap-2">
               {selectedPeppers.map((pepper) => (
                 <span
@@ -748,6 +778,20 @@ function SauceStudio() {
               <p className="mono-font text-xs uppercase tracking-[0.18em] text-[var(--color-text-muted)]">
                 Seed {labelSeed}
               </p>
+            </div>
+
+            <div className="mb-5 grid gap-3 grid-cols-2">
+              {bottleReferences.map((item) => (
+                <figure
+                  key={item.key}
+                  className="overflow-hidden rounded-[1.2rem] border border-white/8 bg-black/18"
+                >
+                  <img src={item.src} alt={item.alt} className="h-24 w-full object-cover" />
+                  <figcaption className="px-3 py-2 text-[0.68rem] uppercase tracking-[0.22em] text-[var(--color-text-muted)]">
+                    {item.label}
+                  </figcaption>
+                </figure>
+              ))}
             </div>
 
             <div className="bottle-shell mx-auto">

@@ -3,14 +3,29 @@ import HomePage from './pages/HomePage'
 import LabPage from './pages/LabPage'
 import WikiPage from './pages/WikiPage'
 import SiteFrame from './components/SiteFrame'
+import { editorialImages } from './lib/media'
 
 function App() {
+  const baseUrl = import.meta.env.BASE_URL
+
   return (
     <div className="site-shell text-stone-100">
       <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
         <div className="hero-glow hero-glow-left" />
         <div className="hero-glow hero-glow-right" />
         <div className="hero-glow hero-glow-bottom" />
+        <div
+          className="ambient-photo ambient-photo-left"
+          style={{
+            backgroundImage: `linear-gradient(180deg, rgba(9, 8, 7, 0.28), rgba(9, 8, 7, 0.96)), url(${baseUrl}${editorialImages.pepperStillLife.image})`,
+          }}
+        />
+        <div
+          className="ambient-photo ambient-photo-right"
+          style={{
+            backgroundImage: `linear-gradient(180deg, rgba(11, 8, 7, 0.18), rgba(11, 8, 7, 0.94)), url(${baseUrl}${editorialImages.bottleLineup.image})`,
+          }}
+        />
         <div className="site-grid" />
       </div>
 
