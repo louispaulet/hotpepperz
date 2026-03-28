@@ -41,6 +41,38 @@ function LabPage() {
       <SauceStudio />
 
       <section className="grid gap-4 lg:grid-cols-3">
+        {[
+          {
+            image: `${baseUrl}images/serrano-peppers.jpg`,
+            alt: 'Serrano peppers',
+            title: 'Green heat references',
+            copy: 'Use fresher peppers when you want speed, lift, and a more agile sauce profile.',
+          },
+          {
+            image: `${baseUrl}images/market-peppers.jpg`,
+            alt: 'Mixed market peppers',
+            title: 'Blend-thinking references',
+            copy: 'Color, size, and texture differences help sell the idea that each pepper plays a different role.',
+          },
+          {
+            image: `${baseUrl}images/hot-sauce-still-life.jpg`,
+            alt: 'Hot sauce still life',
+            title: 'Packaging references',
+            copy: 'The bottle needs to feel like the natural outcome of the recipe, not an afterthought.',
+          },
+        ].map((item) => (
+          <article key={item.title} className="panel overflow-hidden rounded-[1.8rem]">
+            <img src={item.image} alt={item.alt} className="h-52 w-full object-cover object-left" />
+            <div className="p-6">
+              <p className="section-kicker">📷 Reference image</p>
+              <h2 className="mt-4 text-2xl font-semibold text-[var(--color-cream)]">{item.title}</h2>
+              <p className="mt-4 text-sm leading-7 text-[var(--color-text-soft)]">{item.copy}</p>
+            </div>
+          </article>
+        ))}
+      </section>
+
+      <section className="grid gap-4 lg:grid-cols-3">
         {labSteps.map((step, index) => (
           <article key={step.title} className="panel rounded-[1.8rem] p-6">
             <p className="mono-font text-xs uppercase tracking-[0.28em] text-[var(--color-text-muted)]">

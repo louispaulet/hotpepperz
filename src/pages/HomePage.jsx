@@ -144,31 +144,40 @@ function ExperienceStrip() {
       copy: 'Choose peppers by role, balance the body, then generate a concept only when the recipe makes sense.',
       link: '/lab',
       cta: 'Open the lab',
+      image: `${baseUrl}images/hot-sauce-still-life.jpg`,
+      alt: 'Hot sauce still life',
     },
     {
       title: 'Pepper + sauce wiki',
       copy: 'Browse quick education on heat bands, pairings, and where each sauce family fits.',
       link: '/wiki',
       cta: 'Read the guide',
+      image: `${baseUrl}images/wiki-habanero.jpg`,
+      alt: 'Habanero pepper',
     },
     {
       title: 'Shelf-ready brand direction',
       copy: 'The whole site now feels like a premium sauce label system instead of a themed demo page.',
       link: '/',
       cta: 'View the overview',
+      image: `${baseUrl}images/market-peppers.jpg`,
+      alt: 'Market peppers',
     },
   ]
 
   return (
     <section className="grid gap-4 lg:grid-cols-3">
       {cards.map((card) => (
-        <article key={card.title} className="panel rounded-[1.8rem] p-6">
+        <article key={card.title} className="panel overflow-hidden rounded-[1.8rem]">
+          <img src={card.image} alt={card.alt} className="h-44 w-full object-cover" />
+          <div className="p-6">
           <p className="section-kicker">✨ Experience</p>
           <h2 className="mt-4 text-2xl font-semibold text-[var(--color-cream)]">{card.title}</h2>
           <p className="mt-4 text-sm leading-7 text-[var(--color-text-soft)]">{card.copy}</p>
           <Link to={card.link} className="mt-6 inline-flex text-sm font-semibold text-[var(--color-saffron)]">
             {card.cta}
           </Link>
+          </div>
         </article>
       ))}
     </section>
@@ -189,6 +198,30 @@ function SignatureShelf() {
           A better sauce catalog helps users understand range: daily-use bottles, fruit-led heat,
           dark smoke builds, and collector-grade superhot releases.
         </p>
+      </div>
+
+      <div className="mt-8 grid gap-4 lg:grid-cols-3">
+        <article className="overflow-hidden rounded-[1.6rem] border border-white/10 bg-black/16">
+          <img
+            src={`${baseUrl}images/serrano-peppers.jpg`}
+            alt="Serrano peppers"
+            className="h-48 w-full object-cover"
+          />
+        </article>
+        <article className="overflow-hidden rounded-[1.6rem] border border-white/10 bg-black/16">
+          <img
+            src={`${baseUrl}images/jalapeno-peppers.jpg`}
+            alt="Jalapeno peppers"
+            className="h-48 w-full object-cover"
+          />
+        </article>
+        <article className="overflow-hidden rounded-[1.6rem] border border-white/10 bg-black/16">
+          <img
+            src={`${baseUrl}images/hot-sauce-still-life.jpg`}
+            alt="Hot sauce bottle still life"
+            className="h-48 w-full object-cover object-left"
+          />
+        </article>
       </div>
 
       <div className="mt-8 grid gap-4 xl:grid-cols-4">
@@ -234,13 +267,22 @@ function PepperAtlasPreview() {
       </div>
 
       <div className="mt-8 grid gap-4 xl:grid-cols-[0.9fr_1.1fr]">
-        <article className="overflow-hidden rounded-[1.8rem] border border-white/10 bg-black/16">
-          <img
-            src={`${baseUrl}images/wiki-habanero.jpg`}
-            alt="Habanero pepper close-up used in the pepper atlas section"
-            className="h-full min-h-80 w-full object-cover"
-          />
-        </article>
+        <div className="grid gap-4">
+          <article className="overflow-hidden rounded-[1.8rem] border border-white/10 bg-black/16">
+            <img
+              src={`${baseUrl}images/wiki-habanero.jpg`}
+              alt="Habanero pepper close-up used in the pepper atlas section"
+              className="h-56 w-full object-cover"
+            />
+          </article>
+          <article className="overflow-hidden rounded-[1.8rem] border border-white/10 bg-black/16">
+            <img
+              src={`${baseUrl}images/market-peppers.jpg`}
+              alt="Assorted market peppers"
+              className="h-56 w-full object-cover"
+            />
+          </article>
+        </div>
 
         <div className="grid gap-4 lg:grid-cols-2">
         {peppers.map((pepper) => (

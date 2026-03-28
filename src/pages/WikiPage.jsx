@@ -70,6 +70,30 @@ function WikiPage() {
           </p>
         </div>
 
+        <div className="mt-8 grid gap-4 lg:grid-cols-3">
+          <article className="overflow-hidden rounded-[1.7rem] border border-white/10 bg-black/16">
+            <img
+              src={`${baseUrl}images/serrano-peppers.jpg`}
+              alt="Serrano pepper reference image"
+              className="h-48 w-full object-cover"
+            />
+          </article>
+          <article className="overflow-hidden rounded-[1.7rem] border border-white/10 bg-black/16">
+            <img
+              src={`${baseUrl}images/jalapeno-peppers.jpg`}
+              alt="Jalapeno pepper reference image"
+              className="h-48 w-full object-cover"
+            />
+          </article>
+          <article className="overflow-hidden rounded-[1.7rem] border border-white/10 bg-black/16">
+            <img
+              src={`${baseUrl}images/market-peppers.jpg`}
+              alt="Mixed peppers at a market"
+              className="h-48 w-full object-cover"
+            />
+          </article>
+        </div>
+
         <div className="mt-8 grid gap-4 lg:grid-cols-2">
           {peppers.map((pepper) => (
             <article
@@ -111,6 +135,13 @@ function WikiPage() {
             Naming the patterns helps users browse with intent: bright green, fruit-led, dark
             smoke, or collector-grade superhot.
           </p>
+          <div className="mt-6 overflow-hidden rounded-[1.6rem] border border-white/10 bg-black/16">
+            <img
+              src={`${baseUrl}images/hot-sauce-still-life.jpg`}
+              alt="Hot sauce still life illustrating sauce families"
+              className="h-56 w-full object-cover object-left"
+            />
+          </div>
         </article>
 
         <div className="grid gap-4 md:grid-cols-2">
@@ -221,6 +252,36 @@ function WikiPage() {
             Hot sauce still life
             <br />
             DracoEssentialis, CC BY 3.0
+          </a>
+          <a
+            href="https://commons.wikimedia.org/wiki/File:Serrano_peppers.jpg"
+            target="_blank"
+            rel="noreferrer"
+            className="rounded-[1.4rem] border border-white/10 bg-black/15 p-4 text-sm leading-7 text-[var(--color-text-soft)]"
+          >
+            Serrano peppers
+            <br />
+            Wikimedia Commons source
+          </a>
+          <a
+            href="https://commons.wikimedia.org/wiki/File:JalapenoPeppers.JPG"
+            target="_blank"
+            rel="noreferrer"
+            className="rounded-[1.4rem] border border-white/10 bg-black/15 p-4 text-sm leading-7 text-[var(--color-text-soft)]"
+          >
+            Jalapeno peppers
+            <br />
+            Wikimedia Commons source
+          </a>
+          <a
+            href="https://commons.wikimedia.org/wiki/File:HotPeppersinMarket.jpg"
+            target="_blank"
+            rel="noreferrer"
+            className="rounded-[1.4rem] border border-white/10 bg-black/15 p-4 text-sm leading-7 text-[var(--color-text-soft)]"
+          >
+            Market peppers
+            <br />
+            Wikimedia Commons source
           </a>
         </div>
       </section>
