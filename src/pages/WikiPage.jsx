@@ -3,6 +3,7 @@ import Footer from '../components/Footer'
 import { houseSauces, pairingRules, peppers, safetyChecklist, sauceFamilies } from '../data/catalog'
 
 const numberFormatter = new Intl.NumberFormat('en-US')
+const baseUrl = import.meta.env.BASE_URL
 
 function formatShu(value) {
   return `${numberFormatter.format(value)} SHU`
@@ -14,7 +15,7 @@ function WikiPage() {
       <section className="panel rounded-[2rem] p-7 sm:p-10">
         <div className="flex flex-col gap-6 xl:flex-row xl:items-end xl:justify-between">
           <div className="max-w-4xl">
-            <p className="section-kicker">Pepper wiki</p>
+            <p className="section-kicker">📚 Pepper wiki</p>
             <h1 className="display-font mt-4 text-5xl uppercase leading-[0.9] text-[var(--color-cream)] sm:text-7xl">
               A compact field guide for peppers, sauce styles, and smarter pairings.
             </h1>
@@ -36,12 +37,29 @@ function WikiPage() {
             </a>
           </div>
         </div>
+
+        <div className="mt-8 grid gap-4 lg:grid-cols-2">
+          <article className="overflow-hidden rounded-[1.8rem] border border-white/10 bg-black/16">
+            <img
+              src={`${baseUrl}images/hero-red-chili.jpg`}
+              alt="Red chili pepper macro used as wiki hero art"
+              className="h-72 w-full object-cover"
+            />
+          </article>
+          <article className="overflow-hidden rounded-[1.8rem] border border-white/10 bg-black/16">
+            <img
+              src={`${baseUrl}images/wiki-habanero.jpg`}
+              alt="Habanero pepper photo used as wiki reference art"
+              className="h-72 w-full object-cover"
+            />
+          </article>
+        </div>
       </section>
 
       <section id="peppers" className="panel rounded-[2rem] p-7 sm:p-9">
         <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
           <div>
-            <p className="section-kicker">Pepper field guide</p>
+            <p className="section-kicker">🌶️ Pepper field guide</p>
             <h2 className="display-font mt-3 text-4xl uppercase leading-none text-[var(--color-cream)] sm:text-6xl">
               Heat should be legible before it is dramatic.
             </h2>
@@ -85,7 +103,7 @@ function WikiPage() {
 
       <section id="families" className="grid gap-6 xl:grid-cols-[0.82fr_1.18fr]">
         <article className="panel rounded-[2rem] p-7 sm:p-9">
-          <p className="section-kicker">Sauce playbook</p>
+          <p className="section-kicker">🍽️ Sauce playbook</p>
           <h2 className="display-font mt-3 text-4xl uppercase leading-none text-[var(--color-cream)] sm:text-6xl">
             A small taxonomy keeps the whole catalog readable.
           </h2>
@@ -112,7 +130,7 @@ function WikiPage() {
       <section className="panel rounded-[2rem] p-7 sm:p-9">
         <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
           <div>
-            <p className="section-kicker">House examples</p>
+            <p className="section-kicker">🫙 House examples</p>
             <h2 className="display-font mt-3 text-4xl uppercase leading-none text-[var(--color-cream)] sm:text-6xl">
               Reference bottles help explain the range.
             </h2>
@@ -149,7 +167,7 @@ function WikiPage() {
 
       <section id="pairings" className="grid gap-6 lg:grid-cols-2">
         <article className="panel rounded-[2rem] p-7 sm:p-8">
-          <p className="section-kicker">Pairing rules</p>
+          <p className="section-kicker">✨ Pairing rules</p>
           <div className="mt-5 space-y-4">
             {pairingRules.map((rule) => (
               <div key={rule} className="rounded-[1.4rem] border border-white/10 bg-black/15 p-4">
@@ -160,7 +178,7 @@ function WikiPage() {
         </article>
 
         <article className="panel rounded-[2rem] p-7 sm:p-8">
-          <p className="section-kicker">Safety checklist</p>
+          <p className="section-kicker">⚠️ Safety checklist</p>
           <div className="mt-5 space-y-4">
             {safetyChecklist.map((item) => (
               <div key={item} className="rounded-[1.4rem] border border-white/10 bg-black/15 p-4">
@@ -169,6 +187,42 @@ function WikiPage() {
             ))}
           </div>
         </article>
+      </section>
+
+      <section className="panel rounded-[2rem] p-7 sm:p-8">
+        <p className="section-kicker">🖼️ Image credits</p>
+        <div className="mt-5 grid gap-4 lg:grid-cols-3">
+          <a
+            href="https://commons.wikimedia.org/wiki/File:Red_Chili_Pepper.jpg"
+            target="_blank"
+            rel="noreferrer"
+            className="rounded-[1.4rem] border border-white/10 bg-black/15 p-4 text-sm leading-7 text-[var(--color-text-soft)]"
+          >
+            Hero red chili photo
+            <br />
+            Wikimedia Commons, public domain
+          </a>
+          <a
+            href="https://commons.wikimedia.org/wiki/File:Habanero_pepper.jpg"
+            target="_blank"
+            rel="noreferrer"
+            className="rounded-[1.4rem] border border-white/10 bg-black/15 p-4 text-sm leading-7 text-[var(--color-text-soft)]"
+          >
+            Habanero reference photo
+            <br />
+            Wikimedia Commons, public domain
+          </a>
+          <a
+            href="https://commons.wikimedia.org/wiki/File:Hot_sauce.jpg"
+            target="_blank"
+            rel="noreferrer"
+            className="rounded-[1.4rem] border border-white/10 bg-black/15 p-4 text-sm leading-7 text-[var(--color-text-soft)]"
+          >
+            Hot sauce still life
+            <br />
+            DracoEssentialis, CC BY 3.0
+          </a>
+        </div>
       </section>
 
       <Footer />

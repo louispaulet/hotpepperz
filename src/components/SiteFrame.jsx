@@ -42,7 +42,7 @@ function SiteFrame({ children }) {
               </nav>
 
               <Link to="/lab" className="primary-button">
-                Start a Blend
+                🌶️ Start a Blend
               </Link>
             </div>
           </div>

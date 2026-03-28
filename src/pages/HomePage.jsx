@@ -3,6 +3,7 @@ import Footer from '../components/Footer'
 import { houseSauces, labSteps, peppers, sauceFamilies } from '../data/catalog'
 
 const numberFormatter = new Intl.NumberFormat('en-US')
+const baseUrl = import.meta.env.BASE_URL
 
 function formatShu(value) {
   return `${numberFormatter.format(value)} SHU`
@@ -27,7 +28,7 @@ function HeroSection() {
     <section className="grid gap-6 xl:grid-cols-[1.15fr_0.85fr]">
       <div className="panel overflow-hidden rounded-[2rem] p-7 sm:p-10 lg:p-12">
         <div className="inline-flex rounded-full border border-white/12 bg-white/6 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-text-muted)]">
-          Trend-led packaging, smarter flavor UX
+          🌶️ Trend-led packaging, smarter flavor UX
         </div>
 
         <div className="mt-7 max-w-4xl space-y-5">
@@ -57,44 +58,58 @@ function HeroSection() {
         </dl>
       </div>
 
-      <div className="grid gap-6">
-        <article className="panel rounded-[2rem] p-7">
-          <p className="section-kicker">Inside the redesigned experience</p>
-          <div className="mt-4 grid gap-4">
-            <SignalLine label="Better flow" copy="Home, lab, and wiki now each have a clear job." />
-            <SignalLine
-              label="Better education"
-              copy="Pepper heat, pairings, and sauce families are explained instead of implied."
+        <div className="grid gap-6">
+          <article className="panel overflow-hidden rounded-[2rem]">
+            <img
+              src={`${baseUrl}images/hero-red-chili.jpg`}
+              alt="Close-up red chili pepper used as a hero illustration"
+              className="h-64 w-full object-cover"
             />
-            <SignalLine
-              label="Better lab UX"
-              copy="The builder now reads like a formulation workspace, not a raw control panel."
-            />
-          </div>
-        </article>
+            <div className="p-7">
+              <p className="section-kicker">📸 Editorial mood</p>
+              <div className="mt-4 grid gap-4">
+                <SignalLine label="Better flow" copy="Home, lab, and wiki now each have a clear job." />
+                <SignalLine
+                  label="Better education"
+                  copy="Pepper heat, pairings, and sauce families are explained instead of implied."
+                />
+                <SignalLine
+                  label="Better lab UX"
+                  copy="The builder now reads like a formulation workspace, not a raw control panel."
+                />
+              </div>
+            </div>
+          </article>
 
-        <article className="panel rounded-[2rem] p-7">
-          <div className="flex items-start justify-between gap-4">
-            <div>
-              <p className="section-kicker">Shelf highlight</p>
+          <article className="panel overflow-hidden rounded-[2rem]">
+            <img
+              src={`${baseUrl}images/hot-sauce-still-life.jpg`}
+              alt="Hot sauce bottle still-life illustration"
+              className="h-56 w-full object-cover object-left"
+            />
+            <div className="p-7">
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <p className="section-kicker">🔥 Shelf highlight</p>
               <h2 className="mt-3 text-3xl font-semibold text-[var(--color-cream)]">
                 {houseSauces[1].name}
               </h2>
-            </div>
+              </div>
             <span className="rounded-full border border-white/12 px-3 py-1 text-xs uppercase tracking-[0.24em] text-[var(--color-text-muted)]">
               {houseSauces[1].heat}
             </span>
-          </div>
-          <p className="mt-4 text-sm uppercase tracking-[0.16em] text-[var(--color-text-muted)]">
-            {houseSauces[1].profile}
-          </p>
-          <p className="mt-4 text-base leading-7 text-[var(--color-text-soft)]">
-            {houseSauces[1].story}
-          </p>
-          <p className="mt-5 text-sm text-[var(--color-text-soft)]">
-            Best on: {houseSauces[1].bestOn}
-          </p>
-        </article>
+            </div>
+            <p className="mt-4 text-sm uppercase tracking-[0.16em] text-[var(--color-text-muted)]">
+              {houseSauces[1].profile}
+            </p>
+            <p className="mt-4 text-base leading-7 text-[var(--color-text-soft)]">
+              {houseSauces[1].story}
+            </p>
+            <p className="mt-5 text-sm text-[var(--color-text-soft)]">
+              Best on: {houseSauces[1].bestOn}
+            </p>
+            </div>
+          </article>
       </div>
     </section>
   )
@@ -148,7 +163,7 @@ function ExperienceStrip() {
     <section className="grid gap-4 lg:grid-cols-3">
       {cards.map((card) => (
         <article key={card.title} className="panel rounded-[1.8rem] p-6">
-          <p className="section-kicker">Experience</p>
+          <p className="section-kicker">✨ Experience</p>
           <h2 className="mt-4 text-2xl font-semibold text-[var(--color-cream)]">{card.title}</h2>
           <p className="mt-4 text-sm leading-7 text-[var(--color-text-soft)]">{card.copy}</p>
           <Link to={card.link} className="mt-6 inline-flex text-sm font-semibold text-[var(--color-saffron)]">
@@ -165,7 +180,7 @@ function SignatureShelf() {
     <section className="panel rounded-[2rem] p-7 sm:p-9">
       <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
         <div>
-          <p className="section-kicker">Signature shelf</p>
+          <p className="section-kicker">🫙 Signature shelf</p>
           <h2 className="display-font mt-3 text-4xl uppercase leading-none text-[var(--color-cream)] sm:text-6xl">
             Reference bottles with distinct jobs.
           </h2>
@@ -208,7 +223,7 @@ function PepperAtlasPreview() {
     <section className="panel rounded-[2rem] p-7 sm:p-9">
       <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
         <div>
-          <p className="section-kicker">Pepper atlas</p>
+          <p className="section-kicker">📚 Pepper atlas</p>
           <h2 className="display-font mt-3 text-4xl uppercase leading-none text-[var(--color-cream)] sm:text-6xl">
             Heat data only matters when the flavor story is visible too.
           </h2>
@@ -218,7 +233,16 @@ function PepperAtlasPreview() {
         </Link>
       </div>
 
-      <div className="mt-8 grid gap-4 lg:grid-cols-3">
+      <div className="mt-8 grid gap-4 xl:grid-cols-[0.9fr_1.1fr]">
+        <article className="overflow-hidden rounded-[1.8rem] border border-white/10 bg-black/16">
+          <img
+            src={`${baseUrl}images/wiki-habanero.jpg`}
+            alt="Habanero pepper close-up used in the pepper atlas section"
+            className="h-full min-h-80 w-full object-cover"
+          />
+        </article>
+
+        <div className="grid gap-4 lg:grid-cols-2">
         {peppers.map((pepper) => (
           <article
             key={pepper.id}
@@ -242,6 +266,7 @@ function PepperAtlasPreview() {
             <p className="mt-4 text-sm leading-7 text-[var(--color-text-soft)]">{pepper.story}</p>
           </article>
         ))}
+        </div>
       </div>
     </section>
   )
@@ -251,7 +276,7 @@ function SauceFamiliesSection() {
   return (
     <section className="grid gap-4 xl:grid-cols-[0.9fr_1.1fr]">
       <article className="panel rounded-[2rem] p-7 sm:p-9">
-        <p className="section-kicker">Sauce families</p>
+        <p className="section-kicker">🍽️ Sauce families</p>
         <h2 className="display-font mt-3 text-4xl uppercase leading-none text-[var(--color-cream)] sm:text-6xl">
           Better IA starts by naming the patterns.
         </h2>
@@ -282,7 +307,7 @@ function ProcessSection() {
     <section className="panel rounded-[2rem] p-7 sm:p-9">
       <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
         <div>
-          <p className="section-kicker">Lab flow</p>
+          <p className="section-kicker">🧪 Lab flow</p>
           <h2 className="display-font mt-3 text-4xl uppercase leading-none text-[var(--color-cream)] sm:text-6xl">
             The builder now works like a recipe review, not a guessing game.
           </h2>

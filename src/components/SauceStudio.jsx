@@ -418,7 +418,7 @@ function SauceStudio() {
     <section className="panel rounded-[2rem] p-5 sm:p-6 lg:p-8">
       <div className="flex flex-col gap-5 border-b border-white/8 pb-6 lg:flex-row lg:items-end lg:justify-between">
         <div className="max-w-3xl">
-          <p className="section-kicker">Formulation workspace</p>
+          <p className="section-kicker">🧪 Formulation workspace</p>
           <h2 className="display-font mt-3 text-4xl uppercase leading-none text-[var(--color-cream)] sm:text-6xl">
             Build the sauce like a recipe review, not a slot machine.
           </h2>
@@ -430,10 +430,10 @@ function SauceStudio() {
 
         <div className="flex flex-wrap gap-3">
           <button type="button" onClick={handleRandomize} className="secondary-button">
-            Randomize Recipe
+            🎲 Randomize Recipe
           </button>
           <button type="button" onClick={handleReset} className="secondary-button">
-            Reset
+            Reset ↺
           </button>
         </div>
       </div>
@@ -471,7 +471,7 @@ function SauceStudio() {
           <section className="rounded-[1.8rem] border border-white/8 bg-black/14 p-5 sm:p-6">
             <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
               <div>
-                <p className="section-kicker">Step 1</p>
+              <p className="section-kicker">🌶️ Step 1</p>
                 <h3 className="mt-2 text-2xl font-semibold text-[var(--color-cream)]">
                   Choose your pepper architecture
                 </h3>
@@ -525,7 +525,7 @@ function SauceStudio() {
           <section className="rounded-[1.8rem] border border-white/8 bg-black/14 p-5 sm:p-6">
             <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
               <div>
-                <p className="section-kicker">Step 2</p>
+                <p className="section-kicker">🥭 Step 2</p>
                 <h3 className="mt-2 text-2xl font-semibold text-[var(--color-cream)]">
                   Add accents for sweetness, acid, smoke, or body
                 </h3>
@@ -569,7 +569,7 @@ function SauceStudio() {
 
           <section className="grid gap-6 lg:grid-cols-[1fr_1fr]">
             <div className="rounded-[1.8rem] border border-white/8 bg-black/14 p-5 sm:p-6">
-              <p className="section-kicker">Step 3</p>
+              <p className="section-kicker">🔥 Step 3</p>
               <h3 className="mt-2 text-2xl font-semibold text-[var(--color-cream)]">
                 Tune the heat narrative
               </h3>
@@ -594,7 +594,7 @@ function SauceStudio() {
             </div>
 
             <div className="rounded-[1.8rem] border border-white/8 bg-black/14 p-5 sm:p-6">
-              <p className="section-kicker">Art direction</p>
+              <p className="section-kicker">🎨 Art direction</p>
               <h3 className="mt-2 text-2xl font-semibold text-[var(--color-cream)]">
                 Choose the label language
               </h3>
@@ -638,7 +638,7 @@ function SauceStudio() {
           <section className="rounded-[1.8rem] border border-white/8 bg-black/14 p-5 sm:p-6">
             <div className="flex items-start justify-between gap-4">
               <div>
-                <p className="section-kicker">Live dossier</p>
+                <p className="section-kicker">📋 Live dossier</p>
                 <h3 className="mt-3 text-3xl font-semibold text-[var(--color-cream)]">{generatedName}</h3>
               </div>
               <span className="rounded-full border border-white/10 px-3 py-1 text-[0.65rem] uppercase tracking-[0.24em] text-[var(--color-text-muted)]">
@@ -712,7 +712,7 @@ function SauceStudio() {
                 disabled={isGeneratingName}
                 className="primary-button disabled:cursor-wait disabled:opacity-70"
               >
-                {isGeneratingName ? 'Generating...' : 'Generate Concept'}
+                {isGeneratingName ? 'Generating...' : '✨ Generate Concept'}
               </button>
               <button
                 type="button"
@@ -720,7 +720,7 @@ function SauceStudio() {
                 disabled={isGeneratingLabel}
                 className="secondary-button disabled:cursor-wait disabled:opacity-70"
               >
-                {isGeneratingLabel ? 'Rendering...' : 'Refresh Label'}
+                {isGeneratingLabel ? 'Rendering...' : '🖼️ Refresh Label'}
               </button>
             </div>
 
@@ -732,7 +732,7 @@ function SauceStudio() {
           <section className="rounded-[1.8rem] border border-white/8 bg-[linear-gradient(180deg,rgba(17,15,12,0.94),rgba(40,18,14,0.88))] p-5 sm:p-6">
             <div className="mb-5 flex items-center justify-between gap-3">
               <div>
-                <p className="section-kicker">Bottle preview</p>
+                <p className="section-kicker">🫙 Bottle preview</p>
                 <p className="mt-2 text-sm text-[var(--color-text-soft)]">{styleDirection}</p>
               </div>
               <p className="mono-font text-xs uppercase tracking-[0.18em] text-[var(--color-text-muted)]">

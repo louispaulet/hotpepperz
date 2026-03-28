@@ -3,11 +3,13 @@ import SauceStudio from '../components/SauceStudio'
 import { labSteps, pairingRules } from '../data/catalog'
 
 function LabPage() {
+  const baseUrl = import.meta.env.BASE_URL
+
   return (
     <div className="space-y-8 lg:space-y-10">
       <section className="grid gap-6 xl:grid-cols-[1.08fr_0.92fr]">
         <article className="panel rounded-[2rem] p-7 sm:p-10">
-          <p className="section-kicker">Hot sauce lab</p>
+          <p className="section-kicker">🧪 Hot sauce lab</p>
           <h1 className="display-font mt-4 text-5xl uppercase leading-[0.9] text-[var(--color-cream)] sm:text-7xl">
             Formulate the bottle before you brand the bottle.
           </h1>
@@ -17,14 +19,21 @@ function LabPage() {
           </p>
         </article>
 
-        <article className="panel rounded-[2rem] p-7 sm:p-8">
-          <p className="section-kicker">Review before generating</p>
+        <article className="panel overflow-hidden rounded-[2rem]">
+          <img
+            src={`${baseUrl}images/hot-sauce-still-life.jpg`}
+            alt="Hot sauce still-life used as lab illustration"
+            className="h-56 w-full object-cover object-left"
+          />
+          <div className="p-7 sm:p-8">
+          <p className="section-kicker">🔥 Review before generating</p>
           <div className="mt-5 space-y-4">
             {pairingRules.slice(0, 3).map((rule) => (
               <div key={rule} className="rounded-[1.4rem] border border-white/10 bg-black/15 p-4">
                 <p className="text-sm leading-7 text-[var(--color-text-soft)]">{rule}</p>
               </div>
             ))}
+          </div>
           </div>
         </article>
       </section>
