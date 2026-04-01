@@ -698,17 +698,6 @@ function ActiveStepPanel({
       title={panel.title}
       copy={panel.copy}
       aside={panel.aside}
-      headerActions={
-        <StepHeaderActions
-          canGoPrev={canGoPrev}
-          canGoNext={canGoNext}
-          canAdvanceCurrentStep={canAdvanceCurrentStep}
-          onPrev={onPrev}
-          onNext={onNext}
-          nextLabel={panel.nextLabel}
-          showNext={panel.showNext}
-        />
-      }
     >
       <InlineLiveResultCard
         generatedName={generatedName}
@@ -726,6 +715,16 @@ function ActiveStepPanel({
       />
 
       {panel.content}
+
+      <StepProgressActions
+        canGoPrev={canGoPrev}
+        canGoNext={canGoNext}
+        canAdvanceCurrentStep={canAdvanceCurrentStep}
+        onPrev={onPrev}
+        onNext={onNext}
+        nextLabel={panel.nextLabel}
+        showNext={panel.showNext}
+      />
 
       <ConceptDetailsPanel
         bottleReferences={bottleReferences}
@@ -769,17 +768,33 @@ function PepperGrid({ peppers, selectedPepperIds, onPepperToggle }) {
                 : undefined,
             }}
           >
-            <div className="flex items-start justify-between gap-3">
-              <div>
-                <p className="text-base font-semibold text-[var(--color-cream)]">{pepper.name}</p>
-                <p className="mt-1 text-[0.62rem] uppercase tracking-[0.18em] text-[var(--color-text-muted)]">
-                  {pepper.heatBand}
-                </p>
+            <div className="flex items-start gap-3">
+              <img
+                src={resolveImageSrc(baseUrl, pepper.image)}
+                alt=""
+                className="h-14 w-14 shrink-0 rounded-[1rem] border border-white/8 object-cover"
+                style={{ objectPosition: pepper.imagePosition }}
+              />
+              <div className="min-w-0 flex-1">
+                <div className="flex items-start justify-between gap-3">
+                  <div className="min-w-0">
+                    <p className="text-base font-semibold text-[var(--color-cream)]">{pepper.name}</p>
+                    <p className="mt-1 text-[0.62rem] uppercase tracking-[0.18em] text-[var(--color-text-muted)]">
+                      {pepper.heatBand}
+                    </p>
+                  </div>
+                  <span
+                    className="mt-1 h-3 w-3 shrink-0 rounded-full"
+                    style={{ backgroundColor: pepper.tone }}
+                  />
+                </div>
+                <p className="mt-3 text-sm text-[var(--color-text)]">{formatShu(pepper.shuMax)}</p>
+                <p className="mt-2 text-sm leading-6 text-[var(--color-text-soft)]">{pepper.story}</p>
               </div>
-              <span className="mt-1 h-3 w-3 rounded-full shrink-0" style={{ backgroundColor: pepper.tone }} />
             </div>
-            <p className="mt-3 text-sm text-[var(--color-text)]">{formatShu(pepper.shuMax)}</p>
-            <p className="mt-2 text-sm leading-6 text-[var(--color-text-soft)]">{pepper.story}</p>
+            <p className="mt-3 text-[0.68rem] uppercase tracking-[0.18em] text-[var(--color-text-muted)]">
+              {pepper.region}
+            </p>
           </button>
         )
       })}
@@ -882,20 +897,19 @@ function StyleChooser({ labelStyles, labelStyleId, setLabelStyleId }) {
   )
 }
 
-function StepPanel({ stepNumber, title, copy, aside, headerActions, children }) {
+function StepPanel({ stepNumber, title, copy, aside, children }) {
   return (
     <section className="rounded-[1.8rem] border border-white/8 bg-black/14 p-5 sm:p-6">
-      <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+      <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
         <div className="min-w-0">
           <p className="section-kicker">Step {stepNumber}</p>
           <h3 className="mt-2 text-2xl font-semibold text-[var(--color-cream)]">{title}</h3>
           <p className="mt-2 text-sm leading-7 text-[var(--color-text-soft)]">{copy}</p>
         </div>
-        <div className="flex flex-col gap-3 lg:min-w-[18rem] lg:items-end">
+        <div className="lg:min-w-[12rem] lg:text-right">
           {aside ? (
             <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-text-muted)]">{aside}</p>
           ) : null}
-          {headerActions}
         </div>
       </div>
       <div className="mt-5 space-y-5">{children}</div>
@@ -903,7 +917,7 @@ function StepPanel({ stepNumber, title, copy, aside, headerActions, children }) 
   )
 }
 
-function StepHeaderActions({
+function StepProgressActions({
   canGoPrev,
   canGoNext,
   canAdvanceCurrentStep,
@@ -913,29 +927,30 @@ function StepHeaderActions({
   showNext,
 }) {
   return (
-    <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-      <button
-        type="button"
-        onClick={onPrev}
-        disabled={!canGoPrev}
-        className="secondary-button disabled:cursor-not-allowed disabled:opacity-50"
-      >
-        Back
-      </button>
-      {showNext ? (
-        <button
-          type="button"
-          onClick={onNext}
-          disabled={!canGoNext || !canAdvanceCurrentStep}
-          className="primary-button disabled:cursor-not-allowed disabled:opacity-50"
-        >
-          {nextLabel}
-        </button>
-      ) : (
-        <span className="rounded-full border border-white/10 px-4 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-[var(--color-text-muted)]">
-          Final step
-        </span>
-      )}
+    <div className="flex flex-col gap-4 border-t border-white/8 pt-4 sm:flex-row sm:items-center sm:justify-between">
+      <p className="text-sm leading-7 text-[var(--color-text-soft)]">
+        {showNext
+          ? 'Ready for the next move? Continue once this step feels right.'
+          : 'Recipe setup is done. Generate the concept above when the build feels right.'}
+      </p>
+
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+        {canGoPrev ? (
+          <button type="button" onClick={onPrev} className="secondary-button">
+            Back
+          </button>
+        ) : null}
+        {showNext ? (
+          <button
+            type="button"
+            onClick={onNext}
+            disabled={!canGoNext || !canAdvanceCurrentStep}
+            className="secondary-button disabled:cursor-not-allowed disabled:opacity-50"
+          >
+            {nextLabel}
+          </button>
+        ) : null}
+      </div>
     </div>
   )
 }

@@ -13,7 +13,7 @@ Use Chrome MCP to verify the lab before shipping any layout or interaction chang
 1. Open `/lab`.
 2. Confirm the configurator begins in the first viewport.
 3. Confirm there is no right-side live-result rail on desktop.
-4. Confirm the active step header, progression controls, and inline live-result card appear in the same reading flow.
+4. Confirm the active step header and inline live-result card appear before the step progression controls.
 5. Confirm there is no large empty desktop column on step 4.
 6. Confirm there are no console errors on load.
 
@@ -23,13 +23,14 @@ Use Chrome MCP to verify the lab before shipping any layout or interaction chang
 
 1. Select a pepper and confirm the inline result card updates immediately.
 2. Deselect a pepper and confirm the inline result card updates immediately.
-3. Confirm the `Continue to accents` action remains visible before the pepper list.
+3. Confirm the pepper selector uses compact image thumbnails rather than text-only cards.
+4. Confirm the `Continue to accents` action appears after the active step content, not above the generation action.
 
 ### Step 2: Accents
 
 1. Add an accent and confirm chips and result status update immediately.
 2. Remove an accent and confirm the card updates immediately.
-3. Confirm the `Continue to heat` action remains visible before the accent list.
+3. Confirm the `Continue to heat` action stays below the active step content.
 
 ### Step 3: Heat
 
@@ -61,9 +62,9 @@ Use Chrome MCP to verify the lab before shipping any layout or interaction chang
 
 ## Secondary Content
 
-1. Expand the reference board below the builder.
-2. Expand the lab notes below the builder.
-3. Confirm both remain secondary and do not disturb the main builder layout.
+1. Expand the single optional references panel below the builder.
+2. Confirm visual prompts and step notes both live inside that one panel.
+3. Confirm the lab no longer ends with two separate giant disclosure blocks.
 
 ## Navigation Checks
 
@@ -76,6 +77,7 @@ Use Chrome MCP to verify the lab before shipping any layout or interaction chang
 
 - The lab opens on the configurator, not on a large editorial hero.
 - The primary CTA is visually tied to the selections that drive it.
+- Step progression does not appear above the concept-generation action.
 - Live result information is not duplicated across multiple competing desktop regions.
 - The inline result card updates immediately after pepper, accent, heat, and style changes.
 - Secondary concept details stay collapsed by default.
