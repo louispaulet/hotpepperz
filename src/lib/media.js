@@ -79,11 +79,15 @@ export const editorialImages = {
     image: 'images/aji-amarillo-sauce.png',
     alt: 'Generated Aji Amarillo hot sauce bottle render with bright yellow peppers on the label',
     position: 'center center',
+    presentation: 'product',
+    backdrop: 'radial-gradient(circle at top, #fff9ea 0%, #f8d47e 42%, #8b4421 100%)',
   },
   trinidadScorpionBottle: {
     image: 'images/trinidad-scorpion-sauce.png',
     alt: 'Generated Trinidad Scorpion hot sauce bottle render with fiery black-and-red label art',
     position: 'center center',
+    presentation: 'product',
+    backdrop: 'radial-gradient(circle at top, #fff5e8 0%, #ff9a54 28%, #4b1008 100%)',
   },
 }
 

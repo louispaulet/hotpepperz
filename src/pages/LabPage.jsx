@@ -1,5 +1,6 @@
 import Footer from '../components/Footer'
 import SauceStudio from '../components/SauceStudio'
+import VisualImage from '../components/VisualImage'
 import { labSteps, pairingRules } from '../data/catalog'
 import { editorialImages, labGallery, resolveImageSrc } from '../lib/media'
 
@@ -115,11 +116,11 @@ function ReferenceBoard() {
       <div className="mt-8 grid gap-4 lg:grid-cols-4">
         {referenceCards.map((item) => (
           <article key={item.title} className="panel overflow-hidden rounded-[1.8rem]">
-            <img
+            <VisualImage
               src={resolveImageSrc(baseUrl, item.visual.image)}
               alt={item.visual.alt}
-              className="h-48 w-full object-cover"
-              style={{ objectPosition: item.visual.position }}
+              item={item.visual}
+              className="h-52 w-full"
             />
             <div className="p-6">
               <p className="section-kicker">Reference image</p>

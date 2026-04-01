@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import Footer from '../components/Footer'
+import VisualImage from '../components/VisualImage'
 import { houseSauces, labSteps, peppers, sauceFamilies } from '../data/catalog'
 import { editorialImages, homepageGallery, resolveImageSrc } from '../lib/media'
 
@@ -62,7 +63,7 @@ const pathwayCards = [
     copy: 'Bigger image moments, cleaner pacing, and a brand world that feels closer to a food magazine than a demo shell.',
     link: '/',
     cta: 'See the overview',
-    visual: editorialImages.ajiAmarilloBottle,
+    visual: editorialImages.bottleLineup,
   },
   {
     title: 'Hands-on formulation',
@@ -76,7 +77,7 @@ const pathwayCards = [
     copy: 'Use the wiki like a compact buying guide, with clearer flavor clues and stronger pepper portraits.',
     link: '/wiki',
     cta: 'Browse the guide',
-    visual: editorialImages.trinidadScorpionBottle,
+    visual: editorialImages.wikiHabanero,
   },
 ]
 
@@ -181,26 +182,26 @@ function SignalLine({ label, copy }) {
 function ExperienceStrip() {
   return (
     <section className="grid gap-4 lg:grid-cols-3">
-      {pathwayCards.map((card) => (
-        <article key={card.title} className="panel overflow-hidden rounded-[1.9rem]">
-          <img
-            src={resolveImageSrc(baseUrl, card.visual.image)}
-            alt={card.visual.alt}
-            className="h-52 w-full object-cover"
-            style={{ objectPosition: card.visual.position }}
-          />
-          <div className="p-6">
-            <p className="section-kicker">Experience</p>
-            <h2 className="mt-4 text-2xl font-semibold text-[var(--color-cream)]">{card.title}</h2>
-            <p className="mt-4 text-sm leading-7 text-[var(--color-text-soft)]">{card.copy}</p>
-            <Link
-              to={card.link}
-              className="mt-6 inline-flex text-sm font-semibold uppercase tracking-[0.16em] text-[var(--color-saffron)]"
-            >
-              {card.cta}
-            </Link>
-          </div>
-        </article>
+        {pathwayCards.map((card) => (
+          <article key={card.title} className="panel overflow-hidden rounded-[1.9rem]">
+            <VisualImage
+              src={resolveImageSrc(baseUrl, card.visual.image)}
+              alt={card.visual.alt}
+              item={card.visual}
+              className="h-52 w-full"
+            />
+            <div className="p-6">
+              <p className="section-kicker">Experience</p>
+              <h2 className="mt-4 text-2xl font-semibold text-[var(--color-cream)]">{card.title}</h2>
+              <p className="mt-4 text-sm leading-7 text-[var(--color-text-soft)]">{card.copy}</p>
+              <Link
+                to={card.link}
+                className="mt-6 inline-flex text-sm font-semibold uppercase tracking-[0.16em] text-[var(--color-saffron)]"
+              >
+                {card.cta}
+              </Link>
+            </div>
+          </article>
       ))}
     </section>
   )
@@ -262,6 +263,7 @@ function SignatureShelf() {
       <div className="mt-8 grid gap-4 xl:grid-cols-4">
         {houseSauces.map((sauce) => {
           const visual = houseSauceVisuals[sauce.name]
+          const productVisual = visual.presentation === 'product'
 
           return (
             <article
@@ -271,11 +273,12 @@ function SignatureShelf() {
                 backgroundImage: `linear-gradient(160deg, ${sauce.tone}26, rgba(12, 12, 12, 0.08))`,
               }}
             >
-              <img
+              <VisualImage
                 src={resolveImageSrc(baseUrl, visual.image)}
                 alt={visual.alt}
-                className="h-48 w-full object-cover"
-                style={{ objectPosition: visual.position }}
+                item={visual}
+                className={`w-full ${productVisual ? 'h-72' : 'h-56'}`}
+                imgClassName={productVisual ? 'scale-[1.08]' : ''}
               />
               <div className="p-5">
                 <div className="flex items-center justify-between gap-3">
@@ -381,11 +384,11 @@ function SauceFamiliesSection() {
 
           return (
             <article key={family.name} className="panel overflow-hidden rounded-[1.8rem]">
-              <img
+              <VisualImage
                 src={resolveImageSrc(baseUrl, visual.image)}
                 alt={visual.alt}
-                className="h-40 w-full object-cover"
-                style={{ objectPosition: visual.position }}
+                item={visual}
+                className={`w-full ${visual.presentation === 'product' ? 'h-56' : 'h-44'}`}
               />
               <div className="p-6">
                 <h3 className="text-2xl font-semibold text-[var(--color-cream)]">{family.name}</h3>

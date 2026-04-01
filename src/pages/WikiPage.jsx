@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import Footer from '../components/Footer'
+import VisualImage from '../components/VisualImage'
 import { houseSauces, pairingRules, peppers, safetyChecklist, sauceFamilies } from '../data/catalog'
 import { editorialImages, featuredImageCredits, resolveImageSrc, wikiGallery } from '../lib/media'
 
@@ -222,12 +223,13 @@ function FamilyPlaybook() {
         </p>
         <div className="mt-6 grid gap-3 sm:grid-cols-2">
           {featuredBottlePair.map((item) => (
-            <img
+            <VisualImage
               key={item.image}
               src={resolveImageSrc(baseUrl, item.image)}
               alt={item.alt}
-              className="h-56 w-full rounded-[1.6rem] object-cover"
-              style={{ objectPosition: item.position }}
+              item={item}
+              className="h-72 w-full rounded-[1.6rem] overflow-hidden"
+              imgClassName="scale-[1.04]"
             />
           ))}
         </div>
@@ -239,11 +241,11 @@ function FamilyPlaybook() {
 
           return (
             <article key={family.name} className="panel overflow-hidden rounded-[1.8rem]">
-              <img
+              <VisualImage
                 src={resolveImageSrc(baseUrl, visual.image)}
                 alt={visual.alt}
-                className="h-40 w-full object-cover"
-                style={{ objectPosition: visual.position }}
+                item={visual}
+                className="h-44 w-full"
               />
               <div className="p-6">
                 <h3 className="text-2xl font-semibold text-[var(--color-cream)]">{family.name}</h3>
@@ -279,6 +281,7 @@ function HouseExamples() {
       <div className="mt-8 grid gap-4 xl:grid-cols-4">
         {houseSauces.map((sauce) => {
           const visual = houseSauceVisuals[sauce.name]
+          const productVisual = visual.presentation === 'product'
 
           return (
             <article
@@ -288,11 +291,12 @@ function HouseExamples() {
                 backgroundImage: `linear-gradient(155deg, ${sauce.tone}22, rgba(10, 10, 10, 0.06))`,
               }}
             >
-              <img
+              <VisualImage
                 src={resolveImageSrc(baseUrl, visual.image)}
                 alt={visual.alt}
-                className="h-44 w-full object-cover"
-                style={{ objectPosition: visual.position }}
+                item={visual}
+                className={`w-full ${productVisual ? 'h-72' : 'h-56'}`}
+                imgClassName={productVisual ? 'scale-[1.08]' : ''}
               />
               <div className="p-5">
                 <div className="flex items-center justify-between gap-3">
