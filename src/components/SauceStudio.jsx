@@ -258,6 +258,7 @@ function SauceStudio() {
   const [isGeneratingName, setIsGeneratingName] = useState(false)
   const [isGeneratingLabel, setIsGeneratingLabel] = useState(false)
   const [labelSeed, setLabelSeed] = useState(buildDefaultLabelSeed())
+  const [activeStep, setActiveStep] = useState(1)
 
   const selectedPeppers = peppers.filter((pepper) => selectedPepperIds.includes(pepper.id))
   const selectedAccents = accents.filter((accent) => selectedAccentIds.includes(accent.id))
@@ -314,11 +315,13 @@ function SauceStudio() {
     setStatus(nextStatus)
     setIsGeneratingLabel(false)
     setIsGeneratingName(false)
+    setActiveStep(1)
   }
 
   async function handleGenerateConcept() {
     if (!hasRecipe) {
       setStatus('Pick at least one pepper before asking the AI to name the sauce.')
+      setActiveStep(1)
       return
     }
 
@@ -362,6 +365,7 @@ function SauceStudio() {
   async function handleGenerateLabel(nextName = generatedName, nextPrompt = labelPrompt) {
     if (!hasRecipe) {
       setStatus('The label prompt needs at least one pepper in the recipe.')
+      setActiveStep(1)
       return
     }
 
@@ -431,8 +435,44 @@ function SauceStudio() {
     )
   }
 
+  const steps = [
+    {
+      id: 1,
+      label: 'Peppers',
+      title: 'Choose your pepper architecture',
+      summary: selectedPeppers.length ? `${selectedPeppers.length}/4 selected` : 'Pick a backbone',
+      complete: selectedPeppers.length > 0,
+    },
+    {
+      id: 2,
+      label: 'Accents',
+      title: 'Add accents for body and finish',
+      summary: selectedAccents.length ? `${selectedAccents.length}/4 selected` : 'Shape sweetness and finish',
+      complete: selectedAccents.length > 0,
+    },
+    {
+      id: 3,
+      label: 'Heat',
+      title: 'Tune the heat narrative',
+      summary: `${heatBias}/10 bias`,
+      complete: true,
+    },
+    {
+      id: 4,
+      label: 'Style',
+      title: 'Choose the label language',
+      summary: labelStyle.name,
+      complete: true,
+    },
+  ]
+
+  const canGoPrev = activeStep > 1
+  const canGoNext = activeStep < steps.length
+  const canAdvanceCurrentStep =
+    activeStep === 1 ? selectedPeppers.length > 0 : activeStep === 2 ? selectedAccents.length > 0 : true
+
   return (
-    <section className="panel viewport-panel rounded-[2rem] p-5 sm:p-6 lg:min-h-[calc(100svh-14rem)] lg:p-8">
+    <section className="panel viewport-panel rounded-[2rem] p-5 pb-28 sm:p-6 sm:pb-32 lg:p-8 lg:pb-8">
       <div className="flex flex-col gap-5 border-b border-white/8 pb-6 lg:flex-row lg:items-end lg:justify-between">
         <div className="max-w-3xl">
           <p className="section-kicker">Formulation workspace</p>
@@ -440,8 +480,8 @@ function SauceStudio() {
             Build the sauce in one focused workstation.
           </h2>
           <p className="mt-4 text-sm leading-7 text-[var(--color-text-soft)] sm:text-base">
-            Pick peppers, add accents, tune the heat, and review the dossier without losing the top
-            or bottom of the screen.
+            The lab now behaves like a guided configurator: one clear step, one visible impact, one
+            obvious next move.
           </p>
         </div>
 
@@ -455,350 +495,557 @@ function SauceStudio() {
         </div>
       </div>
 
-      <div className="mt-6 grid gap-6 xl:min-h-0 xl:flex-1 xl:grid-cols-[minmax(0,1.2fr)_24rem] 2xl:grid-cols-[minmax(0,1.18fr)_27rem]">
-        <div className="space-y-6">
-          <section className="grid gap-3 md:grid-cols-2 2xl:grid-cols-4">
-            <WorkflowCard
-              step="Step 1"
-              title="Choose peppers"
-              detail={selectedPeppers.length ? `${selectedPeppers.length} active` : 'Pick a backbone'}
+      <div className="mt-6 xl:grid xl:grid-cols-[minmax(0,1.15fr)_23rem] xl:gap-6 2xl:grid-cols-[minmax(0,1.12fr)_25rem]">
+        <div className="min-w-0">
+          <LabStepperHeader steps={steps} activeStep={activeStep} onStepChange={setActiveStep} />
+
+          <CurrentBuildStrip
+            peppers={selectedPeppers.map((pepper) => pepper.name)}
+            accents={selectedAccents.map((accent) => accent.name)}
+            heatLabel={heatLabel}
+          />
+
+          <div className="mt-6 xl:hidden space-y-4">
+            <CompactLiveSummary
+              generatedName={generatedName}
+              heatLabel={heatLabel}
+              averageScoville={averageScoville}
+              labelStyleName={labelStyle.name}
+              status={status}
             />
-            <WorkflowCard
-              step="Step 2"
-              title="Add accents"
-              detail={selectedAccents.length ? `${selectedAccents.length} selected` : 'Shape sweetness and finish'}
-            />
-            <WorkflowCard step="Step 3" title="Tune heat" detail={`${heatBias}/10 bias`} />
-            <WorkflowCard step="Step 4" title="Pick style" detail={labelStyle.name} />
-          </section>
 
-          <BuilderStep
-            step="Step 1"
-            title="Choose your pepper architecture"
-            copy="These are compact on purpose: you should be able to compare heat, look, and personality without losing the live result."
-            aside={`${selectedPeppers.length}/4 selected`}
-          >
-            <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-              {peppers.map((pepper) => {
-                const active = selectedPepperIds.includes(pepper.id)
-
-                return (
-                  <button
-                    key={pepper.id}
-                    type="button"
-                    onClick={() => onPepperToggle(pepper.id)}
-                    aria-pressed={active}
-                    className={`rounded-[1.5rem] border p-3 text-left transition ${
-                      active
-                        ? 'border-white/18 bg-white/8 shadow-[0_16px_44px_rgba(0,0,0,0.24)]'
-                        : 'border-white/8 bg-black/16 hover:border-white/16 hover:bg-white/6'
-                    }`}
-                    style={{
-                      backgroundImage: active
-                        ? `linear-gradient(155deg, ${pepper.tone}24, rgba(255,255,255,0.03))`
-                        : undefined,
-                    }}
-                  >
-                    <img
-                      src={resolveImageSrc(baseUrl, pepper.image)}
-                      alt={pepper.name}
-                      className="h-24 w-full rounded-[1rem] object-cover"
-                      style={{ objectPosition: pepper.imagePosition }}
-                    />
-                    <div className="mt-3 flex items-start justify-between gap-3">
-                      <div>
-                        <p className="text-lg font-semibold text-[var(--color-cream)]">{pepper.name}</p>
-                        <p className="mt-1 text-[0.68rem] uppercase tracking-[0.2em] text-[var(--color-text-muted)]">
-                          {pepper.heatBand}
-                        </p>
-                      </div>
-                      <span className="mt-1 h-3 w-3 rounded-full" style={{ backgroundColor: pepper.tone }} />
-                    </div>
-                    <p className="mt-3 text-sm text-[var(--color-text)]">{formatShu(pepper.shuMax)}</p>
-                    <p className="mt-3 text-sm leading-6 text-[var(--color-text-soft)]">{pepper.story}</p>
-                  </button>
-                )
-              })}
-            </div>
-
-            <SelectionStrip
-              label="Current pepper stack"
-              items={selectedPeppers.map((pepper) => pepper.name)}
-              emptyLabel="No peppers yet"
-            />
-          </BuilderStep>
-
-          <BuilderStep
-            step="Step 2"
-            title="Add accents for body and finish"
-            copy="Accents are fast to scan because they should behave like seasoning decisions, not a second catalog."
-            aside={`${selectedAccents.length}/4 selected`}
-          >
-            <div className="flex flex-wrap gap-3">
-              {accents.map((accent) => {
-                const active = selectedAccentIds.includes(accent.id)
-
-                return (
-                  <button
-                    key={accent.id}
-                    type="button"
-                    onClick={() => onAccentToggle(accent.id)}
-                    aria-pressed={active}
-                    className={`rounded-full border px-4 py-3 text-left transition ${
-                      active
-                        ? 'border-white/18 bg-white/8 text-[var(--color-cream)]'
-                        : 'border-white/8 bg-black/16 text-[var(--color-text-soft)] hover:border-white/16 hover:bg-white/6'
-                    }`}
-                    style={{
-                      boxShadow: active ? `inset 0 0 0 1px ${accent.tone}40` : undefined,
-                    }}
-                  >
-                    <span className="font-semibold">{accent.name}</span>
-                    <span className="ml-2 text-xs uppercase tracking-[0.18em] text-[var(--color-text-muted)]">
-                      {accent.role}
-                    </span>
-                  </button>
-                )
-              })}
-            </div>
-
-            <SelectionStrip
-              label="Current accents"
-              items={selectedAccents.map((accent) => accent.name)}
-              emptyLabel="No accents yet"
-            />
-          </BuilderStep>
-
-          <div className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
-            <BuilderStep
-              step="Step 3"
-              title="Tune the heat narrative"
-              copy="This should immediately change the reading of the sauce, so the live preview stays visible in the sidebar while you drag."
+            <StepPanel
+              stepNumber={1}
+              title="Choose your pepper architecture"
+              copy="Compare the pepper roles quickly, then move on once the backbone feels right."
+              aside={`${selectedPeppers.length}/4 selected`}
             >
-              <div className="rounded-[1.5rem] border border-white/8 bg-black/16 p-4">
-                <div className="mb-3 flex items-center justify-between text-sm text-[var(--color-text-soft)]">
-                  <span>Low-key</span>
-                  <span>{heatBias}/10</span>
-                  <span>Theatrical</span>
-                </div>
-                <input
-                  type="range"
-                  min="1"
-                  max="10"
-                  value={heatBias}
-                  onChange={(event) => setHeatBias(Number(event.target.value))}
-                  className="slider-track h-2 w-full cursor-pointer appearance-none rounded-full bg-white/14"
-                />
-                <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                  <div className="rounded-[1.2rem] border border-white/8 bg-black/18 p-4">
-                    <p className="text-xs uppercase tracking-[0.22em] text-[var(--color-text-muted)]">Heat read</p>
-                    <p className="mt-2 text-xl font-semibold text-[var(--color-cream)]">{heatLabel}</p>
-                  </div>
-                  <div className="rounded-[1.2rem] border border-white/8 bg-black/18 p-4">
-                    <p className="text-xs uppercase tracking-[0.22em] text-[var(--color-text-muted)]">Average SHU</p>
-                    <p className="mt-2 text-xl font-semibold text-[var(--color-cream)]">
-                      {averageScoville ? formatShu(averageScoville) : 'No peppers yet'}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </BuilderStep>
-
-            <BuilderStep
-              step="Step 4"
-              title="Choose the label language"
-              copy="Style options stay short and visual so the choice reads like direction, not paperwork."
-            >
-              <div className="space-y-3">
-                {labelStyles.map((style) => {
-                  const active = style.id === labelStyleId
-
-                  return (
-                    <button
-                      key={style.id}
-                      type="button"
-                      onClick={() => setLabelStyleId(style.id)}
-                      className={`w-full rounded-[1.3rem] border p-4 text-left transition ${
-                        active
-                          ? 'border-white/18 bg-white/8'
-                          : 'border-white/8 bg-black/16 hover:border-white/16 hover:bg-white/6'
-                      }`}
-                    >
-                      <div className="flex items-start justify-between gap-4">
-                        <div>
-                          <p className="text-base font-semibold text-[var(--color-cream)]">{style.name}</p>
-                          <p className="mt-2 text-sm leading-7 text-[var(--color-text-soft)]">
-                            {style.mood}
-                          </p>
-                        </div>
-                        {active ? (
-                          <span className="rounded-full border border-white/10 px-3 py-1 text-[0.65rem] uppercase tracking-[0.24em] text-[var(--color-text-muted)]">
-                            Active
-                          </span>
-                        ) : null}
-                      </div>
-                    </button>
-                  )
-                })}
-              </div>
-            </BuilderStep>
-          </div>
-        </div>
-
-        <aside className="space-y-6 xl:self-start">
-          <section className="rounded-[1.8rem] border border-white/8 bg-black/14 p-5 sm:p-6 xl:sticky xl:top-28">
-            <div className="flex items-start justify-between gap-4">
-              <div>
-                <p className="section-kicker">Live result</p>
-                <h3 className="mt-3 text-3xl font-semibold text-[var(--color-cream)]">{generatedName}</h3>
-              </div>
-              <span className="rounded-full border border-white/10 px-3 py-1 text-[0.65rem] uppercase tracking-[0.24em] text-[var(--color-text-muted)]">
-                {heatLabel}
-              </span>
-            </div>
-
-            <p className="mt-4 text-base leading-8 text-[var(--color-text-soft)]">{generatedBlurb}</p>
-
-            <div className="mt-5 flex flex-col gap-3">
-              <button
-                type="button"
-                onClick={handleGenerateConcept}
-                disabled={isGeneratingName}
-                className="primary-button w-full disabled:cursor-wait disabled:opacity-70"
-              >
-                {isGeneratingName ? 'Generating...' : 'Generate Concept'}
-              </button>
-              <button
-                type="button"
-                onClick={() => handleGenerateLabel()}
-                disabled={isGeneratingLabel}
-                className="secondary-button w-full disabled:cursor-wait disabled:opacity-70"
-              >
-                {isGeneratingLabel ? 'Rendering...' : 'Refresh Label'}
-              </button>
-            </div>
-
-            <p className="mt-5 rounded-[1.2rem] border border-white/8 bg-black/14 px-4 py-3 text-sm leading-7 text-[var(--color-text-soft)]">
-              {status}
-            </p>
-
-            <p className="mt-5 rounded-[1.3rem] border border-white/8 bg-black/16 px-4 py-4 text-sm leading-7 text-[var(--color-text)]">
-              {recipeArchetype}
-            </p>
-          </section>
-
-          <section className="rounded-[1.8rem] border border-white/8 bg-[linear-gradient(180deg,rgba(17,15,12,0.94),rgba(40,18,14,0.88))] p-5 sm:p-6">
-            <div className="flex items-center justify-between gap-3">
-              <div>
-                <p className="section-kicker">Bottle preview</p>
-                <p className="mt-2 text-sm text-[var(--color-text-soft)]">{styleDirection}</p>
-              </div>
-              <p className="mono-font text-xs uppercase tracking-[0.18em] text-[var(--color-text-muted)]">
-                Seed {labelSeed}
-              </p>
-            </div>
-
-            <div className="mt-5 grid grid-cols-2 gap-3">
-              {bottleReferences.map((item) => (
-                <figure
-                  key={item.key}
-                  className="overflow-hidden rounded-[1.2rem] border border-white/8 bg-black/18"
-                >
-                  <img src={item.src} alt={item.alt} className="h-24 w-full object-cover" />
-                  <figcaption className="px-3 py-2 text-[0.68rem] uppercase tracking-[0.22em] text-[var(--color-text-muted)]">
-                    {item.label}
-                  </figcaption>
-                </figure>
-              ))}
-            </div>
-
-            <div className="mt-5">
-              <div className="bottle-shell mx-auto">
-                {labelImage ? (
-                  <img
-                    src={labelImage}
-                    alt={`AI-generated label for ${generatedName}`}
-                    className="h-full w-full rounded-[1.7rem] object-cover"
-                    onLoad={() => {
-                      setIsGeneratingLabel(false)
-                      setStatus('Label rendered. Review the packaging direction or reroll the art.')
-                    }}
-                    onError={() => {
-                      setLabelImage('')
-                      setIsGeneratingLabel(false)
-                      setStatus('The label endpoint did not return art. Try rerolling or check the key.')
-                    }}
-                  />
-                ) : (
-                  <div className="flex h-full items-center justify-center rounded-[1.7rem] border border-dashed border-white/14 bg-black/18 px-8 text-center text-sm leading-7 text-[var(--color-text-soft)]">
-                    Generate a concept to cast artwork onto the bottle.
-                  </div>
-                )}
-              </div>
-            </div>
-
-            <div className="mt-5 space-y-4">
-              <div className="grid gap-3 sm:grid-cols-2">
-                <MetricCard
-                  label="Average Scoville"
-                  value={averageScoville ? formatShu(averageScoville) : 'No peppers yet'}
-                />
-                <MetricCard label="Label direction" value={labelStyle.name} subvalue={labelStyle.mood} />
-              </div>
-
-              <div className="space-y-4">
-                {recipeSignals.map((signal) => (
-                  <SignalBar key={signal.label} label={signal.label} value={signal.value} />
-                ))}
-              </div>
-
+              <PepperGrid
+                peppers={peppers}
+                selectedPepperIds={selectedPepperIds}
+                onPepperToggle={onPepperToggle}
+              />
               <SelectionStrip
-                label="Peppers in play"
+                label="Current pepper stack"
                 items={selectedPeppers.map((pepper) => pepper.name)}
                 emptyLabel="No peppers yet"
               />
+            </StepPanel>
+
+            <CompactLiveSummary
+              generatedName={generatedName}
+              heatLabel={heatLabel}
+              averageScoville={averageScoville}
+              labelStyleName={labelStyle.name}
+              status={recipeArchetype}
+            />
+
+            <StepPanel
+              stepNumber={2}
+              title="Add accents for body and finish"
+              copy="Accents should read like fast seasoning decisions, not a second shopping trip."
+              aside={`${selectedAccents.length}/4 selected`}
+            >
+              <AccentChooser
+                accents={accents}
+                selectedAccentIds={selectedAccentIds}
+                onAccentToggle={onAccentToggle}
+              />
               <SelectionStrip
-                label="Accents in play"
+                label="Current accents"
                 items={selectedAccents.map((accent) => accent.name)}
                 emptyLabel="No accents yet"
               />
+            </StepPanel>
 
-              <InfoCard label="Suggested uses" value={servingSuggestions.join(' / ')} />
-              <InfoCard
-                label="Flavor line"
-                value={flavorLine || 'Select peppers and accents to shape the profile.'}
+            <StepPanel
+              stepNumber={3}
+              title="Tune the heat narrative"
+              copy="This slider should immediately change the read of the bottle and the confidence of the pitch."
+            >
+              <HeatTuner
+                heatBias={heatBias}
+                setHeatBias={setHeatBias}
+                heatLabel={heatLabel}
+                averageScoville={averageScoville}
               />
-              <InfoCard
-                label="Prompt trace"
-                value={
-                  labelPrompt ||
-                  'The current recipe will be distilled into a label illustration prompt.'
-                }
+            </StepPanel>
+
+            <StepPanel
+              stepNumber={4}
+              title="Choose the label language"
+              copy="Keep this short and directional so the style reads like a decision, not admin."
+            >
+              <StyleChooser
+                labelStyles={labelStyles}
+                labelStyleId={labelStyleId}
+                setLabelStyleId={setLabelStyleId}
               />
-            </div>
-          </section>
+            </StepPanel>
+          </div>
+
+          <div className="mt-6 hidden xl:block">
+            <ActiveStepPanel
+              activeStep={activeStep}
+              selectedPeppers={selectedPeppers}
+              selectedPepperIds={selectedPepperIds}
+              onPepperToggle={onPepperToggle}
+              selectedAccents={selectedAccents}
+              selectedAccentIds={selectedAccentIds}
+              onAccentToggle={onAccentToggle}
+              heatBias={heatBias}
+              setHeatBias={setHeatBias}
+              heatLabel={heatLabel}
+              averageScoville={averageScoville}
+              labelStyles={labelStyles}
+              labelStyleId={labelStyleId}
+              setLabelStyleId={setLabelStyleId}
+              canGoPrev={canGoPrev}
+              canGoNext={canGoNext}
+              canAdvanceCurrentStep={canAdvanceCurrentStep}
+              onPrev={() => setActiveStep((current) => Math.max(1, current - 1))}
+              onNext={() => setActiveStep((current) => Math.min(4, current + 1))}
+            />
+          </div>
+        </div>
+
+        <aside className="mt-6 space-y-6 xl:mt-0 xl:self-start">
+          <LabSummaryRail
+            generatedName={generatedName}
+            generatedBlurb={generatedBlurb}
+            heatLabel={heatLabel}
+            averageScoville={averageScoville}
+            labelStyleName={labelStyle.name}
+            selectedPeppers={selectedPeppers.map((pepper) => pepper.name)}
+            selectedAccents={selectedAccents.map((accent) => accent.name)}
+            recipeSignals={recipeSignals}
+            status={status}
+            recipeArchetype={recipeArchetype}
+            handleGenerateConcept={handleGenerateConcept}
+            handleGenerateLabel={() => handleGenerateLabel()}
+            isGeneratingName={isGeneratingName}
+            isGeneratingLabel={isGeneratingLabel}
+          />
+
+          <LabSecondaryDetail
+            bottleReferences={bottleReferences}
+            styleDirection={styleDirection}
+            labelSeed={labelSeed}
+            labelImage={labelImage}
+            generatedName={generatedName}
+            setLabelImage={setLabelImage}
+            setIsGeneratingLabel={setIsGeneratingLabel}
+            setStatus={setStatus}
+            servingSuggestions={servingSuggestions}
+            flavorLine={flavorLine}
+            labelPrompt={labelPrompt}
+          />
         </aside>
+      </div>
+
+      <div className="fixed bottom-4 left-4 right-4 z-40 xl:hidden">
+        <div className="panel rounded-[1.6rem] px-4 py-4">
+          <div className="flex items-center justify-between gap-3">
+            <div className="min-w-0">
+              <p className="section-kicker">Live result</p>
+              <p className="mt-2 truncate text-lg font-semibold text-[var(--color-cream)]">
+                {generatedName}
+              </p>
+            </div>
+            <span className="rounded-full border border-white/10 px-3 py-1 text-[0.65rem] uppercase tracking-[0.24em] text-[var(--color-text-muted)]">
+              {heatLabel}
+            </span>
+          </div>
+          <button
+            type="button"
+            onClick={handleGenerateConcept}
+            disabled={isGeneratingName}
+            className="primary-button mt-4 w-full disabled:cursor-wait disabled:opacity-70"
+          >
+            {isGeneratingName ? 'Generating...' : 'Generate Concept'}
+          </button>
+        </div>
       </div>
     </section>
   )
 }
 
-function WorkflowCard({ step, title, detail }) {
+function LabStepperHeader({ steps, activeStep, onStepChange }) {
   return (
-    <article className="rounded-[1.4rem] border border-white/8 bg-black/16 px-4 py-4">
-      <p className="section-kicker">{step}</p>
-      <p className="mt-3 text-lg font-semibold text-[var(--color-cream)]">{title}</p>
-      <p className="mt-2 text-sm text-[var(--color-text-soft)]">{detail}</p>
-    </article>
+    <section className="rounded-[1.8rem] border border-white/8 bg-black/14 p-4 sm:p-5">
+      <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+        {steps.map((step) => {
+          const isActive = step.id === activeStep
+          const isDone = step.complete && !isActive
+
+          return (
+            <button
+              key={step.id}
+              type="button"
+              onClick={() => onStepChange(step.id)}
+              className={`rounded-[1.4rem] border px-4 py-4 text-left transition ${
+                isActive
+                  ? 'border-[rgba(255,208,138,0.28)] bg-[linear-gradient(135deg,rgba(247,177,74,0.16),rgba(240,91,52,0.12))]'
+                  : isDone
+                    ? 'border-white/12 bg-white/6'
+                    : 'border-white/8 bg-black/16 hover:border-white/16 hover:bg-white/6'
+              }`}
+            >
+              <div className="flex items-center justify-between gap-3">
+                <p className="section-kicker">Step {step.id}</p>
+                <span className="rounded-full border border-white/10 px-2.5 py-1 text-[0.62rem] uppercase tracking-[0.2em] text-[var(--color-text-muted)]">
+                  {isActive ? 'Current' : isDone ? 'Ready' : 'Open'}
+                </span>
+              </div>
+              <p className="mt-3 text-lg font-semibold text-[var(--color-cream)]">{step.label}</p>
+              <p className="mt-2 text-sm text-[var(--color-text-soft)]">{step.summary}</p>
+            </button>
+          )
+        })}
+      </div>
+    </section>
   )
 }
 
-function BuilderStep({ step, title, copy, aside, children }) {
+function CurrentBuildStrip({ peppers, accents, heatLabel }) {
+  return (
+    <section className="mt-4 rounded-[1.6rem] border border-white/8 bg-black/14 px-4 py-4 sm:px-5">
+      <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
+        <div>
+          <p className="section-kicker">Current build</p>
+          <div className="mt-3 flex flex-wrap gap-2">
+            {peppers.map((pepper) => (
+              <span
+                key={pepper}
+                className="rounded-full border border-white/10 px-3 py-2 text-xs uppercase tracking-[0.18em] text-[var(--color-text-muted)]"
+              >
+                {pepper}
+              </span>
+            ))}
+            {accents.map((accent) => (
+              <span
+                key={accent}
+                className="rounded-full border border-white/10 px-3 py-2 text-xs uppercase tracking-[0.18em] text-[var(--color-text-muted)]"
+              >
+                {accent}
+              </span>
+            ))}
+            {!peppers.length && !accents.length ? (
+              <span className="text-sm text-[var(--color-text-soft)]">
+                Start by choosing a pepper and a few accents.
+              </span>
+            ) : null}
+          </div>
+        </div>
+        <div className="rounded-[1.3rem] border border-white/8 bg-black/16 px-4 py-3">
+          <p className="text-xs uppercase tracking-[0.2em] text-[var(--color-text-muted)]">Heat read</p>
+          <p className="mt-2 text-lg font-semibold text-[var(--color-cream)]">{heatLabel}</p>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function CompactLiveSummary({ generatedName, heatLabel, averageScoville, labelStyleName, status }) {
+  return (
+    <section className="rounded-[1.6rem] border border-white/8 bg-black/14 p-4 sm:p-5">
+      <div className="flex items-start justify-between gap-3">
+        <div className="min-w-0">
+          <p className="section-kicker">Live result</p>
+          <p className="mt-3 truncate text-2xl font-semibold text-[var(--color-cream)]">{generatedName}</p>
+        </div>
+        <span className="rounded-full border border-white/10 px-3 py-1 text-[0.65rem] uppercase tracking-[0.2em] text-[var(--color-text-muted)]">
+          {heatLabel}
+        </span>
+      </div>
+      <div className="mt-4 grid gap-3 sm:grid-cols-2">
+        <MetricCard
+          label="Average Scoville"
+          value={averageScoville ? formatShu(averageScoville) : 'No peppers yet'}
+        />
+        <MetricCard label="Label direction" value={labelStyleName} />
+      </div>
+      <p className="mt-4 text-sm leading-7 text-[var(--color-text-soft)]">{status}</p>
+    </section>
+  )
+}
+
+function ActiveStepPanel({
+  activeStep,
+  selectedPeppers,
+  selectedPepperIds,
+  onPepperToggle,
+  selectedAccents,
+  selectedAccentIds,
+  onAccentToggle,
+  heatBias,
+  setHeatBias,
+  heatLabel,
+  averageScoville,
+  labelStyles,
+  labelStyleId,
+  setLabelStyleId,
+  canGoPrev,
+  canGoNext,
+  canAdvanceCurrentStep,
+  onPrev,
+  onNext,
+}) {
+  if (activeStep === 1) {
+    return (
+      <StepPanel
+        stepNumber={1}
+        title="Choose your pepper architecture"
+        copy="Pepper comparison is denser on purpose, so the live impact panel can stay visible while you make the core decision."
+        aside={`${selectedPeppers.length}/4 selected`}
+      >
+        <PepperGrid
+          peppers={peppers}
+          selectedPepperIds={selectedPepperIds}
+          onPepperToggle={onPepperToggle}
+        />
+        <SelectionStrip
+          label="Current pepper stack"
+          items={selectedPeppers.map((pepper) => pepper.name)}
+          emptyLabel="No peppers yet"
+        />
+        <StepNavigation
+          canGoPrev={canGoPrev}
+          canGoNext={canGoNext}
+          canAdvanceCurrentStep={canAdvanceCurrentStep}
+          onPrev={onPrev}
+          onNext={onNext}
+          nextLabel="Continue to accents"
+        />
+      </StepPanel>
+    )
+  }
+
+  if (activeStep === 2) {
+    return (
+      <StepPanel
+        stepNumber={2}
+        title="Add accents for body and finish"
+        copy="These should feel like quick flavor adjustments. Pick a few supporting notes and keep moving."
+        aside={`${selectedAccents.length}/4 selected`}
+      >
+        <AccentChooser
+          accents={accents}
+          selectedAccentIds={selectedAccentIds}
+          onAccentToggle={onAccentToggle}
+        />
+        <SelectionStrip
+          label="Current accents"
+          items={selectedAccents.map((accent) => accent.name)}
+          emptyLabel="No accents yet"
+        />
+        <StepNavigation
+          canGoPrev={canGoPrev}
+          canGoNext={canGoNext}
+          canAdvanceCurrentStep={canAdvanceCurrentStep}
+          onPrev={onPrev}
+          onNext={onNext}
+          nextLabel="Continue to heat"
+        />
+      </StepPanel>
+    )
+  }
+
+  if (activeStep === 3) {
+    return (
+      <StepPanel
+        stepNumber={3}
+        title="Tune the heat narrative"
+        copy="This slider changes how intense and theatrical the bottle feels. Watch the live summary as you move it."
+      >
+        <HeatTuner
+          heatBias={heatBias}
+          setHeatBias={setHeatBias}
+          heatLabel={heatLabel}
+          averageScoville={averageScoville}
+        />
+        <StepNavigation
+          canGoPrev={canGoPrev}
+          canGoNext={canGoNext}
+          canAdvanceCurrentStep={canAdvanceCurrentStep}
+          onPrev={onPrev}
+          onNext={onNext}
+          nextLabel="Continue to style"
+        />
+      </StepPanel>
+    )
+  }
+
+  return (
+    <StepPanel
+      stepNumber={4}
+      title="Choose the label language"
+      copy="Keep this directional. The summary rail will carry the consequences while you pick the visual tone."
+    >
+      <StyleChooser
+        labelStyles={labelStyles}
+        labelStyleId={labelStyleId}
+        setLabelStyleId={setLabelStyleId}
+      />
+      <StepNavigation
+        canGoPrev={canGoPrev}
+        canGoNext={canGoNext}
+        canAdvanceCurrentStep={canAdvanceCurrentStep}
+        onPrev={onPrev}
+        onNext={onNext}
+        nextLabel="Ready to generate"
+      />
+    </StepPanel>
+  )
+}
+
+function PepperGrid({ peppers, selectedPepperIds, onPepperToggle }) {
+  return (
+    <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+      {peppers.map((pepper) => {
+        const active = selectedPepperIds.includes(pepper.id)
+
+        return (
+          <button
+            key={pepper.id}
+            type="button"
+            onClick={() => onPepperToggle(pepper.id)}
+            aria-pressed={active}
+            className={`rounded-[1.5rem] border p-3 text-left transition ${
+              active
+                ? 'border-white/18 bg-white/8 shadow-[0_16px_44px_rgba(0,0,0,0.24)]'
+                : 'border-white/8 bg-black/16 hover:border-white/16 hover:bg-white/6'
+            }`}
+            style={{
+              backgroundImage: active
+                ? `linear-gradient(155deg, ${pepper.tone}24, rgba(255,255,255,0.03))`
+                : undefined,
+            }}
+          >
+            <img
+              src={resolveImageSrc(baseUrl, pepper.image)}
+              alt={pepper.name}
+              className="h-24 w-full rounded-[1rem] object-cover"
+              style={{ objectPosition: pepper.imagePosition }}
+            />
+            <div className="mt-3 flex items-start justify-between gap-3">
+              <div>
+                <p className="text-lg font-semibold text-[var(--color-cream)]">{pepper.name}</p>
+                <p className="mt-1 text-[0.68rem] uppercase tracking-[0.2em] text-[var(--color-text-muted)]">
+                  {pepper.heatBand}
+                </p>
+              </div>
+              <span className="mt-1 h-3 w-3 rounded-full" style={{ backgroundColor: pepper.tone }} />
+            </div>
+            <p className="mt-3 text-sm text-[var(--color-text)]">{formatShu(pepper.shuMax)}</p>
+            <p className="mt-2 text-sm leading-6 text-[var(--color-text-soft)]">{pepper.story}</p>
+          </button>
+        )
+      })}
+    </div>
+  )
+}
+
+function AccentChooser({ accents, selectedAccentIds, onAccentToggle }) {
+  return (
+    <div className="flex flex-wrap gap-3">
+      {accents.map((accent) => {
+        const active = selectedAccentIds.includes(accent.id)
+
+        return (
+          <button
+            key={accent.id}
+            type="button"
+            onClick={() => onAccentToggle(accent.id)}
+            aria-pressed={active}
+            className={`rounded-full border px-4 py-3 text-left transition ${
+              active
+                ? 'border-white/18 bg-white/8 text-[var(--color-cream)]'
+                : 'border-white/8 bg-black/16 text-[var(--color-text-soft)] hover:border-white/16 hover:bg-white/6'
+            }`}
+            style={{
+              boxShadow: active ? `inset 0 0 0 1px ${accent.tone}40` : undefined,
+            }}
+          >
+            <span className="font-semibold">{accent.name}</span>
+            <span className="ml-2 text-xs uppercase tracking-[0.18em] text-[var(--color-text-muted)]">
+              {accent.role}
+            </span>
+          </button>
+        )
+      })}
+    </div>
+  )
+}
+
+function HeatTuner({ heatBias, setHeatBias, heatLabel, averageScoville }) {
+  return (
+    <div className="rounded-[1.5rem] border border-white/8 bg-black/16 p-4">
+      <div className="mb-3 flex items-center justify-between text-sm text-[var(--color-text-soft)]">
+        <span>Low-key</span>
+        <span>{heatBias}/10</span>
+        <span>Theatrical</span>
+      </div>
+      <input
+        type="range"
+        min="1"
+        max="10"
+        value={heatBias}
+        onChange={(event) => setHeatBias(Number(event.target.value))}
+        className="slider-track h-2 w-full cursor-pointer appearance-none rounded-full bg-white/14"
+      />
+      <div className="mt-4 grid gap-3 sm:grid-cols-2">
+        <MetricCard label="Heat read" value={heatLabel} />
+        <MetricCard
+          label="Average SHU"
+          value={averageScoville ? formatShu(averageScoville) : 'No peppers yet'}
+        />
+      </div>
+    </div>
+  )
+}
+
+function StyleChooser({ labelStyles, labelStyleId, setLabelStyleId }) {
+  return (
+    <div className="space-y-3">
+      {labelStyles.map((style) => {
+        const active = style.id === labelStyleId
+
+        return (
+          <button
+            key={style.id}
+            type="button"
+            onClick={() => setLabelStyleId(style.id)}
+            className={`w-full rounded-[1.3rem] border p-4 text-left transition ${
+              active
+                ? 'border-white/18 bg-white/8'
+                : 'border-white/8 bg-black/16 hover:border-white/16 hover:bg-white/6'
+            }`}
+          >
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <p className="text-base font-semibold text-[var(--color-cream)]">{style.name}</p>
+                <p className="mt-2 text-sm leading-7 text-[var(--color-text-soft)]">{style.mood}</p>
+              </div>
+              {active ? (
+                <span className="rounded-full border border-white/10 px-3 py-1 text-[0.65rem] uppercase tracking-[0.24em] text-[var(--color-text-muted)]">
+                  Active
+                </span>
+              ) : null}
+            </div>
+          </button>
+        )
+      })}
+    </div>
+  )
+}
+
+function StepPanel({ stepNumber, title, copy, aside, children }) {
   return (
     <section className="rounded-[1.8rem] border border-white/8 bg-black/14 p-5 sm:p-6">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <p className="section-kicker">{step}</p>
+          <p className="section-kicker">Step {stepNumber}</p>
           <h3 className="mt-2 text-2xl font-semibold text-[var(--color-cream)]">{title}</h3>
           <p className="mt-2 text-sm leading-7 text-[var(--color-text-soft)]">{copy}</p>
         </div>
@@ -806,7 +1053,196 @@ function BuilderStep({ step, title, copy, aside, children }) {
           <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-text-muted)]">{aside}</p>
         ) : null}
       </div>
-      <div className="mt-5">{children}</div>
+      <div className="mt-5 space-y-5">{children}</div>
+    </section>
+  )
+}
+
+function StepNavigation({ canGoPrev, canGoNext, canAdvanceCurrentStep, onPrev, onNext, nextLabel }) {
+  return (
+    <div className="flex flex-col gap-3 border-t border-white/8 pt-5 sm:flex-row sm:items-center sm:justify-between">
+      <button
+        type="button"
+        onClick={onPrev}
+        disabled={!canGoPrev}
+        className="secondary-button disabled:cursor-not-allowed disabled:opacity-50"
+      >
+        Back
+      </button>
+      <button
+        type="button"
+        onClick={onNext}
+        disabled={!canGoNext || !canAdvanceCurrentStep}
+        className="primary-button disabled:cursor-not-allowed disabled:opacity-50"
+      >
+        {canGoNext ? nextLabel : 'Review summary'}
+      </button>
+    </div>
+  )
+}
+
+function LabSummaryRail({
+  generatedName,
+  generatedBlurb,
+  heatLabel,
+  averageScoville,
+  labelStyleName,
+  selectedPeppers,
+  selectedAccents,
+  recipeSignals,
+  status,
+  recipeArchetype,
+  handleGenerateConcept,
+  handleGenerateLabel,
+  isGeneratingName,
+  isGeneratingLabel,
+}) {
+  return (
+    <section className="hidden rounded-[1.8rem] border border-white/8 bg-black/14 p-5 sm:p-6 xl:sticky xl:top-28 xl:block">
+      <div className="flex items-start justify-between gap-4">
+        <div className="min-w-0">
+          <p className="section-kicker">Live result</p>
+          <h3 className="mt-3 text-3xl font-semibold text-[var(--color-cream)]">{generatedName}</h3>
+        </div>
+        <span className="rounded-full border border-white/10 px-3 py-1 text-[0.65rem] uppercase tracking-[0.24em] text-[var(--color-text-muted)]">
+          {heatLabel}
+        </span>
+      </div>
+
+      <p className="mt-4 text-base leading-8 text-[var(--color-text-soft)]">{generatedBlurb}</p>
+
+      <div className="mt-5 flex flex-col gap-3">
+        <button
+          type="button"
+          onClick={handleGenerateConcept}
+          disabled={isGeneratingName}
+          className="primary-button w-full disabled:cursor-wait disabled:opacity-70"
+        >
+          {isGeneratingName ? 'Generating...' : 'Generate Concept'}
+        </button>
+        <button
+          type="button"
+          onClick={handleGenerateLabel}
+          disabled={isGeneratingLabel}
+          className="secondary-button w-full disabled:cursor-wait disabled:opacity-70"
+        >
+          {isGeneratingLabel ? 'Rendering...' : 'Refresh Label'}
+        </button>
+      </div>
+
+      <div className="mt-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-1 2xl:grid-cols-2">
+        <MetricCard
+          label="Average Scoville"
+          value={averageScoville ? formatShu(averageScoville) : 'No peppers yet'}
+        />
+        <MetricCard label="Label direction" value={labelStyleName} />
+      </div>
+
+      <div className="mt-5 space-y-4">
+        {recipeSignals.map((signal) => (
+          <SignalBar key={signal.label} label={signal.label} value={signal.value} compact />
+        ))}
+      </div>
+
+      <div className="mt-5 space-y-3">
+        <SelectionStrip
+          label="Peppers in play"
+          items={selectedPeppers}
+          emptyLabel="No peppers yet"
+        />
+        <SelectionStrip
+          label="Accents in play"
+          items={selectedAccents}
+          emptyLabel="No accents yet"
+        />
+      </div>
+
+      <p className="mt-5 rounded-[1.2rem] border border-white/8 bg-black/14 px-4 py-3 text-sm leading-7 text-[var(--color-text-soft)]">
+        {status}
+      </p>
+
+      <p className="mt-5 rounded-[1.3rem] border border-white/8 bg-black/16 px-4 py-4 text-sm leading-7 text-[var(--color-text)]">
+        {recipeArchetype}
+      </p>
+    </section>
+  )
+}
+
+function LabSecondaryDetail({
+  bottleReferences,
+  styleDirection,
+  labelSeed,
+  labelImage,
+  generatedName,
+  setLabelImage,
+  setIsGeneratingLabel,
+  setStatus,
+  servingSuggestions,
+  flavorLine,
+  labelPrompt,
+}) {
+  return (
+    <section className="rounded-[1.8rem] border border-white/8 bg-[linear-gradient(180deg,rgba(17,15,12,0.94),rgba(40,18,14,0.88))] p-5 sm:p-6">
+      <div className="flex items-center justify-between gap-3">
+        <div>
+          <p className="section-kicker">Bottle preview</p>
+          <p className="mt-2 text-sm text-[var(--color-text-soft)]">{styleDirection}</p>
+        </div>
+        <p className="mono-font text-xs uppercase tracking-[0.18em] text-[var(--color-text-muted)]">
+          Seed {labelSeed}
+        </p>
+      </div>
+
+      <div className="mt-5 grid grid-cols-2 gap-3">
+        {bottleReferences.map((item) => (
+          <figure
+            key={item.key}
+            className="overflow-hidden rounded-[1.2rem] border border-white/8 bg-black/18"
+          >
+            <img src={item.src} alt={item.alt} className="h-24 w-full object-cover" />
+            <figcaption className="px-3 py-2 text-[0.68rem] uppercase tracking-[0.22em] text-[var(--color-text-muted)]">
+              {item.label}
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+
+      <div className="mt-5">
+        <div className="bottle-shell mx-auto">
+          {labelImage ? (
+            <img
+              src={labelImage}
+              alt={`AI-generated label for ${generatedName}`}
+              className="h-full w-full rounded-[1.7rem] object-cover"
+              onLoad={() => {
+                setIsGeneratingLabel(false)
+                setStatus('Label rendered. Review the packaging direction or reroll the art.')
+              }}
+              onError={() => {
+                setLabelImage('')
+                setIsGeneratingLabel(false)
+                setStatus('The label endpoint did not return art. Try rerolling or check the key.')
+              }}
+            />
+          ) : (
+            <div className="flex h-full items-center justify-center rounded-[1.7rem] border border-dashed border-white/14 bg-black/18 px-8 text-center text-sm leading-7 text-[var(--color-text-soft)]">
+              Generate a concept to cast artwork onto the bottle.
+            </div>
+          )}
+        </div>
+      </div>
+
+      <div className="mt-5 space-y-4">
+        <InfoCard label="Suggested uses" value={servingSuggestions.join(' / ')} />
+        <InfoCard
+          label="Flavor line"
+          value={flavorLine || 'Select peppers and accents to shape the profile.'}
+        />
+        <InfoCard
+          label="Prompt trace"
+          value={labelPrompt || 'The current recipe will be distilled into a label illustration prompt.'}
+        />
+      </div>
     </section>
   )
 }
@@ -843,10 +1279,10 @@ function MetricCard({ label, value, subvalue }) {
   )
 }
 
-function SignalBar({ label, value }) {
+function SignalBar({ label, value, compact = false }) {
   return (
     <div>
-      <div className="mb-2 flex items-center justify-between text-sm text-[var(--color-text-soft)]">
+      <div className={`mb-2 flex items-center justify-between ${compact ? 'text-xs' : 'text-sm'} text-[var(--color-text-soft)]`}>
         <span>{label}</span>
         <span>{value}/10</span>
       </div>

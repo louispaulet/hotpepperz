@@ -102,7 +102,7 @@ function HeroSection() {
 
 function ReferenceSection() {
   return (
-    <section className="viewport-section grid gap-4 xl:grid-cols-[1fr_1fr]">
+    <section className="grid gap-4 xl:grid-cols-[1fr_1fr]">
       <ReferenceBoard />
       <LabNotes />
     </section>
@@ -111,21 +111,23 @@ function ReferenceSection() {
 
 function ReferenceBoard() {
   return (
-    <section className="panel viewport-panel rounded-[2rem] p-7 sm:p-9">
-      <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-        <div>
-          <p className="section-kicker">Reference board</p>
-          <h2 className="display-font mt-3 text-4xl uppercase leading-none text-[var(--color-cream)] sm:text-5xl">
-            The builder is surrounded by the right visual prompts.
-          </h2>
+    <details className="panel rounded-[2rem] p-7 sm:p-9">
+      <summary className="cursor-pointer list-none">
+        <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <p className="section-kicker">Secondary reference board</p>
+            <h2 className="display-font mt-3 text-4xl uppercase leading-none text-[var(--color-cream)] sm:text-5xl">
+              Open this after the builder if you want visual prompts.
+            </h2>
+          </div>
+          <p className="max-w-xl text-sm leading-7 text-[var(--color-text-soft)] sm:text-base">
+            Ingredient abundance, texture, fermentation, and bottle targets stay available, but
+            they no longer compete with the configurator itself.
+          </p>
         </div>
-        <p className="max-w-xl text-sm leading-7 text-[var(--color-text-soft)] sm:text-base">
-          Ingredient abundance, texture, fermentation, and bottle targets each keep one role in the
-          screen instead of crowding the main tool.
-        </p>
-      </div>
+      </summary>
 
-      <div className="viewport-scroll mt-8 grid gap-4 lg:grid-cols-2">
+      <div className="mt-8 grid gap-4 lg:grid-cols-2">
         {referenceCards.map((item) => (
           <article key={item.title} className="panel overflow-hidden rounded-[1.8rem]">
             <VisualImage
@@ -142,21 +144,23 @@ function ReferenceBoard() {
           </article>
         ))}
       </div>
-    </section>
+    </details>
   )
 }
 
 function LabNotes() {
   return (
-    <section className="panel viewport-panel rounded-[2rem] p-7 sm:p-9">
-      <div>
-        <p className="section-kicker">Lab notes</p>
-        <h2 className="display-font mt-3 text-4xl uppercase leading-none text-[var(--color-cream)] sm:text-5xl">
-          The recipe logic stays visible beside the inspiration.
-        </h2>
-      </div>
+    <details className="panel rounded-[2rem] p-7 sm:p-9">
+      <summary className="cursor-pointer list-none">
+        <div>
+          <p className="section-kicker">Secondary lab notes</p>
+          <h2 className="display-font mt-3 text-4xl uppercase leading-none text-[var(--color-cream)] sm:text-5xl">
+            Open this if you want the editorial read behind each step.
+          </h2>
+        </div>
+      </summary>
 
-      <div className="viewport-scroll mt-8 grid gap-4 lg:grid-cols-1">
+      <div className="mt-8 grid gap-4 lg:grid-cols-1">
         {labSteps.map((step, index) => (
           <article key={step.title} className="panel overflow-hidden rounded-[1.8rem]">
             <img
@@ -175,7 +179,7 @@ function LabNotes() {
           </article>
         ))}
       </div>
-    </section>
+    </details>
   )
 }
 
