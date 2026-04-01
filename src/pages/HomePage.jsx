@@ -25,7 +25,7 @@ const houseSauceVisuals = {
     ...editorialImages.habaneroPlant,
   },
   'After Midnight': {
-    ...editorialImages.trinidadScorpionBottle,
+    ...editorialImages.pepperStillLife,
   },
   'Signal Bloom': {
     ...editorialImages.ajiAmarilloBottle,
@@ -46,7 +46,7 @@ const familyVisuals = {
     ...editorialImages.fermentedJar,
   },
   'Collector Superhots': {
-    ...editorialImages.nagaCluster,
+    ...editorialImages.trinidadScorpionBottle,
   },
 }
 

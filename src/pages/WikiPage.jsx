@@ -14,7 +14,7 @@ const familyVisuals = {
   },
   'Tropical Heat': editorialImages.habaneroPlant,
   'Dark Smoke': editorialImages.fermentedJar,
-  'Collector Superhots': editorialImages.nagaCluster,
+  'Collector Superhots': editorialImages.trinidadScorpionBottle,
 }
 
 const houseSauceVisuals = {
@@ -24,7 +24,7 @@ const houseSauceVisuals = {
     position: 'center center',
   },
   'Lantern Choir': editorialImages.habaneroPlant,
-  'After Midnight': editorialImages.trinidadScorpionBottle,
+  'After Midnight': editorialImages.pepperStillLife,
   'Signal Bloom': editorialImages.ajiAmarilloBottle,
 }
 
