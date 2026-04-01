@@ -75,6 +75,7 @@ http://localhost:5173/hotpepperz/#/
 ```
 
 The app uses `HashRouter`, so the `#/` path segment is expected both locally and on GitHub Pages.
+The dev server is pinned to port `5173`; if that port is already in use, Vite now exits instead of silently picking `5174`, `5175`, and so on.
 
 ## Common commands
 
@@ -99,6 +100,7 @@ npm run deploy
 Command summary:
 
 - `make up` / `npm run dev -- --host`: start the local dev server
+- If port `5173` is busy, the command fails so you can stop the old server instead of launching another copy on a different localhost port
 - `make test` / `npm run test`: run ESLint and a production build
 - `make build` / `npm run build`: create the production build in `dist/`
 - `make deploy` / `npm run deploy`: build the app and publish `dist/` through `gh-pages`
@@ -151,6 +153,7 @@ npm run deploy
 ## Project notes
 
 - `vite.config.js` uses `base: '/hotpepperz/'`.
+- `vite.config.js` pins the dev server to port `5173` with `strictPort`.
 - Routing is handled by `HashRouter`.
 - `gh-pages` publishes the `dist/` directory.
 - This repo is intentionally frontend-only and demo-oriented.
