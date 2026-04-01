@@ -63,14 +63,14 @@ function WikiPage() {
 
 function HeroSection() {
   return (
-    <section className="viewport-section panel viewport-panel overflow-hidden rounded-[2.2rem] p-7 sm:p-10">
+    <section className="viewport-section panel viewport-panel viewport-scroll overflow-x-hidden lg:h-[calc(100svh-9.6rem)] lg:max-h-[calc(100svh-9.6rem)] rounded-[2.2rem] p-6 sm:p-8 xl:p-9">
       <div className="flex flex-col gap-6 xl:flex-row xl:items-end xl:justify-between">
         <div className="max-w-4xl">
           <p className="section-kicker">Pepper wiki</p>
-          <h1 className="display-font mt-4 max-w-5xl text-5xl uppercase leading-[0.9] text-[var(--color-cream)] sm:text-6xl lg:text-[4.45rem]">
+          <h1 className="display-font viewport-hero-title mt-4 max-w-5xl uppercase leading-[0.9] text-[var(--color-cream)]">
             The wiki now reads in screen-sized field-guide chapters.
           </h1>
-          <p className="mt-4 max-w-2xl text-base leading-7 text-[var(--color-text-soft)] sm:text-lg">
+          <p className="viewport-hero-copy mt-4 max-w-2xl text-base leading-7 text-[var(--color-text-soft)] sm:text-lg">
             Pepper portraits, family lanes, and safety notes stay visible in bounded panels so you
             can reference the information without the page feeling massive.
           </p>
@@ -89,7 +89,7 @@ function HeroSection() {
         </div>
       </div>
 
-      <div className="mt-8 grid min-h-0 gap-4 lg:flex-1 lg:grid-cols-[1.1fr_0.9fr]">
+      <div className="viewport-scroll mt-8 grid min-h-0 gap-4 lg:flex-1 lg:grid-cols-[1.1fr_0.9fr]">
         <GalleryWall />
         <article className="rounded-[1.8rem] border border-white/10 bg-black/16 p-5 sm:p-6">
           <p className="section-kicker">Reading lens</p>

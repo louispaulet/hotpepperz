@@ -51,48 +51,50 @@ function LabPage() {
 function HeroSection() {
   return (
     <section className="viewport-section grid gap-4 xl:grid-cols-[1.02fr_0.98fr]">
-      <article className="panel viewport-panel overflow-hidden rounded-[2.2rem] p-7 sm:p-10">
-        <p className="section-kicker">Hot sauce lab</p>
-        <h1 className="display-font mt-4 max-w-4xl text-5xl uppercase leading-[0.9] text-[var(--color-cream)] sm:text-6xl lg:text-[4.45rem]">
-          The custom blend lab now fits like a workstation, not a poster wall.
-        </h1>
-        <p className="mt-4 max-w-2xl text-base leading-7 text-[var(--color-text-soft)] sm:text-lg">
-          The route opens with one clear brief, then drops into the builder itself. Supporting
-          images and rules still exist, but they no longer bury the thing you came to use.
-        </p>
+      <article className="panel viewport-panel viewport-scroll viewport-hero-card h-full min-h-0 overflow-x-hidden rounded-[2.2rem] p-6 sm:p-8 xl:p-9">
+        <div>
+          <p className="section-kicker">Hot sauce lab</p>
+          <h1 className="display-font viewport-hero-title mt-4 max-w-4xl uppercase leading-[0.9] text-[var(--color-cream)]">
+            The custom blend lab now fits like a workstation, not a poster wall.
+          </h1>
+          <p className="viewport-hero-copy mt-4 max-w-2xl text-base leading-7 text-[var(--color-text-soft)] sm:text-lg">
+            The route opens with one clear brief, then drops into the builder itself. Supporting
+            images and rules still exist, but they no longer bury the thing you came to use.
+          </p>
 
-        <div className="mt-6 grid gap-3 sm:grid-cols-4">
-          {labGallery.slice(0, 4).map((item) => (
-            <figure
-              key={item.image}
-              className="overflow-hidden rounded-[1.4rem] border border-white/10 bg-black/18"
-            >
-              <img
-                src={resolveImageSrc(baseUrl, item.image)}
-                alt={item.alt}
-                className="h-24 w-full object-cover"
-                style={{ objectPosition: item.position }}
-              />
-            </figure>
-          ))}
-        </div>
-
-        <div className="soft-divider mt-6 pt-6">
-          <p className="section-kicker">Review before generating</p>
-          <div className="mt-5 space-y-4">
-            {pairingRules.slice(0, 3).map((rule) => (
-              <div key={rule} className="rounded-[1.4rem] border border-white/10 bg-black/15 p-4">
-                <p className="text-sm leading-7 text-[var(--color-text-soft)]">{rule}</p>
-              </div>
+          <div className="mt-5 grid gap-3 sm:grid-cols-4">
+            {labGallery.slice(0, 4).map((item) => (
+              <figure
+                key={item.image}
+                className="overflow-hidden rounded-[1.4rem] border border-white/10 bg-black/18"
+              >
+                <img
+                  src={resolveImageSrc(baseUrl, item.image)}
+                  alt={item.alt}
+                  className="h-20 w-full object-cover sm:h-24"
+                  style={{ objectPosition: item.position }}
+                />
+              </figure>
             ))}
+          </div>
+
+          <div className="soft-divider mt-5 pt-5">
+            <p className="section-kicker">Review before generating</p>
+            <div className="mt-4 space-y-3">
+              {pairingRules.slice(0, 3).map((rule) => (
+                <div key={rule} className="rounded-[1.4rem] border border-white/10 bg-black/15 p-4">
+                  <p className="text-sm leading-7 text-[var(--color-text-soft)]">{rule}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </article>
 
-      <div className="grid min-h-0 gap-4 sm:grid-cols-2">
-        <LargeVisual item={editorialImages.bottleLineup} className="sm:row-span-2 min-h-[18rem] sm:min-h-[32rem]" />
-        <LargeVisual item={editorialImages.marketCrate} className="min-h-[15rem]" />
-        <LargeVisual item={editorialImages.fermentedJar} className="min-h-[15rem]" />
+      <div className="grid h-full min-h-0 gap-4 sm:grid-cols-2">
+        <LargeVisual item={editorialImages.bottleLineup} className="min-h-[16rem] sm:row-span-2 sm:min-h-[24rem]" />
+        <LargeVisual item={editorialImages.marketCrate} className="min-h-[12rem]" />
+        <LargeVisual item={editorialImages.fermentedJar} className="min-h-[12rem]" />
       </div>
     </section>
   )

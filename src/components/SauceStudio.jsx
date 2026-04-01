@@ -432,8 +432,8 @@ function SauceStudio() {
   }
 
   return (
-    <section className="panel viewport-panel rounded-[2rem] p-5 sm:p-6 lg:min-h-[calc(100svh-14rem)] lg:p-8">
-      <div className="flex flex-col gap-5 border-b border-white/8 pb-6 lg:flex-row lg:items-end lg:justify-between">
+    <section className="panel viewport-panel h-full overflow-hidden rounded-[2rem] p-5 sm:p-6 lg:p-8">
+      <div className="flex flex-col gap-4 border-b border-white/8 pb-5 lg:flex-row lg:items-end lg:justify-between">
         <div className="max-w-3xl">
           <p className="section-kicker">Formulation workspace</p>
           <h2 className="display-font mt-3 text-4xl uppercase leading-none text-[var(--color-cream)] sm:text-5xl">
@@ -455,7 +455,7 @@ function SauceStudio() {
         </div>
       </div>
 
-      <div className="mt-6 grid gap-6 xl:min-h-0 xl:flex-1 xl:grid-cols-[1.06fr_0.94fr]">
+      <div className="mt-5 grid gap-5 xl:min-h-0 xl:flex-1 xl:grid-cols-[1.06fr_0.94fr]">
         <div className="grid gap-6 xl:min-h-0 xl:grid-rows-[minmax(0,1.25fr)_minmax(0,0.8fr)]">
           <section className="rounded-[1.8rem] border border-white/8 bg-black/14 p-5 sm:p-6 xl:flex xl:min-h-0 xl:flex-col">
             <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">

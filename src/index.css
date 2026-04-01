@@ -273,9 +273,7 @@ body,
 }
 
 .viewport-section {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  min-height: 0;
 }
 
 .viewport-panel {
@@ -284,6 +282,14 @@ body,
 
 .viewport-scroll {
   min-height: 0;
+}
+
+.viewport-hero-title {
+  font-size: clamp(3rem, 4.2vw, 4.45rem);
+}
+
+.viewport-hero-copy {
+  max-width: 42rem;
 }
 
 .viewport-scroll::-webkit-scrollbar {
@@ -310,8 +316,20 @@ body,
   }
 
   .viewport-section {
-    min-height: calc(100svh - 9rem);
+    min-height: calc(100svh - 9.5rem);
+    height: calc(100svh - 9.5rem);
     scroll-snap-align: start;
+    overflow: hidden;
+  }
+
+  .viewport-section > * {
+    min-height: 0;
+  }
+
+  .viewport-section > article,
+  .viewport-section > div,
+  .viewport-section > section {
+    height: 100%;
   }
 
   .viewport-panel {
@@ -322,6 +340,29 @@ body,
 
   .viewport-scroll {
     overflow-y: auto;
+    scrollbar-gutter: stable;
+    padding-right: 0.35rem;
+  }
+}
+
+@media (min-width: 1024px) and (max-height: 820px) {
+  .section-kicker {
+    font-size: 0.66rem;
+    letter-spacing: 0.24em;
+  }
+
+  .viewport-section {
+    min-height: calc(100svh - 9.6rem);
+    height: calc(100svh - 9.6rem);
+  }
+
+  .viewport-hero-title {
+    font-size: clamp(2.7rem, 3.7vw, 3.9rem);
+  }
+
+  .viewport-hero-copy {
+    font-size: 0.98rem;
+    line-height: 1.65;
   }
 }
 

@@ -94,18 +94,18 @@ function HomePage() {
 function HeroSection() {
   return (
     <section className="viewport-section grid gap-4 xl:grid-cols-[1.08fr_0.92fr]">
-      <article className="panel viewport-panel overflow-hidden rounded-[2.2rem] p-7 sm:p-10 lg:p-12">
+      <article className="panel viewport-panel viewport-scroll viewport-hero-card h-full min-h-0 overflow-x-hidden rounded-[2.2rem] p-6 sm:p-8 xl:p-9">
         <div className="relative z-10">
           <p className="section-kicker">Small-batch heat, better art direction</p>
-          <h1 className="display-font mt-5 max-w-4xl text-5xl uppercase leading-[0.9] text-[var(--color-cream)] sm:text-6xl lg:text-[4.35rem]">
+          <h1 className="display-font viewport-hero-title mt-4 max-w-4xl uppercase leading-[0.9] text-[var(--color-cream)]">
             The homepage now lands in full-screen chapters instead of spilling down the page.
           </h1>
-          <p className="mt-5 max-w-2xl text-base leading-7 text-[var(--color-text-soft)] sm:text-lg">
+          <p className="viewport-hero-copy mt-4 text-base leading-7 text-[var(--color-text-soft)] sm:text-lg">
             HotPepperz keeps the same editorial mood, but the pacing is tighter so every section
             reads like a complete screen with a clear next move.
           </p>
 
-          <div className="mt-6 flex flex-wrap gap-3">
+          <div className="mt-5 flex flex-wrap gap-3">
             <Link to="/lab" className="primary-button">
               Build a Bottle
             </Link>
@@ -114,15 +114,15 @@ function HeroSection() {
             </Link>
           </div>
 
-          <dl className="mt-8 grid gap-4 md:grid-cols-3">
+          <dl className="mt-6 grid gap-3 md:grid-cols-3">
             <StatCard value="4" label="Homepage chapters" />
             <StatCard value="1" label="Focused viewport per stop" />
             <StatCard value="0" label="Massive entry overflow" />
           </dl>
 
-          <div className="soft-divider mt-6 pt-6">
+          <div className="soft-divider mt-5 pt-5">
             <p className="section-kicker">What changed</p>
-            <div className="mt-4 grid gap-3 sm:grid-cols-3">
+            <div className="mt-3 grid gap-3 sm:grid-cols-3">
               <SignalLine label="Clearer pacing" copy="The route is chunked into full-screen moments instead of one endless stack." />
               <SignalLine label="Bounded content" copy="Dense grids now scroll inside their panels on desktop instead of pushing the whole page down." />
               <SignalLine label="Faster scanning" copy="Each screen answers one question at a time: where to go, what exists, and how to build." />
@@ -131,14 +131,14 @@ function HeroSection() {
         </div>
       </article>
 
-      <article className="grid min-h-0 gap-4 rounded-[2.2rem]">
+      <article className="grid h-full min-h-0 gap-4 rounded-[2.2rem]">
         <div className="grid h-full gap-4 sm:grid-cols-[1.15fr_0.85fr]">
-          <MediaFrame item={heroGallery[0]} className="min-h-[20rem] sm:min-h-[30rem]" />
+          <MediaFrame item={heroGallery[0]} className="min-h-[18rem] sm:min-h-[24rem]" />
           <div className="grid gap-4">
-            <MediaFrame item={heroGallery[1]} className="min-h-[14rem]" />
+            <MediaFrame item={heroGallery[1]} className="min-h-[12rem]" />
             <div className="grid gap-4 sm:grid-cols-2">
               {heroGallery.slice(2).map((item) => (
-                <MediaFrame key={item.label} item={item} className="min-h-[10rem]" compact />
+                <MediaFrame key={item.label} item={item} className="min-h-[8.5rem]" compact />
               ))}
             </div>
           </div>
@@ -423,7 +423,7 @@ function SauceFamiliesSection() {
 
 function ProcessPreview() {
   return (
-    <section className="panel rounded-[2rem] p-6 sm:p-8">
+    <section className="panel viewport-panel rounded-[2rem] p-6 sm:p-8">
       <p className="section-kicker">Working method</p>
       <h2 className="display-font mt-3 text-4xl uppercase leading-none text-[var(--color-cream)] sm:text-5xl">
         The sauce story stays readable from first pick to final label.
@@ -432,7 +432,7 @@ function ProcessPreview() {
         We trimmed the route into clearer decision points so the builder no longer disappears below
         giant supporting panels.
       </p>
-      <div className="mt-6 grid gap-4 sm:grid-cols-3">
+      <div className="viewport-scroll mt-6 grid gap-4 sm:grid-cols-3">
         {labSteps.map((step, index) => (
           <article key={step.title} className="rounded-[1.6rem] border border-white/10 bg-black/16 p-5">
             <p className="mono-font text-xs uppercase tracking-[0.28em] text-[var(--color-text-muted)]">
