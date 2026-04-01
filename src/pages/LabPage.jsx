@@ -16,32 +16,33 @@ const referenceCards = [
   {
     visual: editorialImages.marketCrate,
     title: 'Ingredient energy',
-    copy: 'Wide market imagery helps the page feel abundant and ingredient-led before any controls appear.',
+    copy: 'Start with abundance and ingredient context before the controls ask for decisions.',
   },
   {
     visual: editorialImages.habaneroMacro,
     title: 'Texture references',
-    copy: 'Macros are used sparingly to punctuate the layout and keep the brighter sections premium.',
+    copy: 'Close crops keep the page tactile without stealing too much vertical space.',
   },
   {
     visual: editorialImages.fermentedJar,
     title: 'Fermentation cues',
-    copy: 'Showing process imagery gives the formulation route credibility and a bit of workshop grit.',
+    copy: 'Process imagery keeps the recipe builder grounded in something believable.',
   },
   {
     visual: editorialImages.ajiAmarilloBottle,
-    title: 'Generated bottle direction',
-    copy: 'Custom bottle renders make the lab feel closer to a real concept studio and show what a finished shelf piece could look like.',
+    title: 'Packaging target',
+    copy: 'Bottle references show what the final concept is trying to become.',
   },
 ]
 
 function LabPage() {
   return (
-    <div className="space-y-8 lg:space-y-10">
+    <div className="page-sections">
       <HeroSection />
-      <ReferenceBoard />
-      <SauceStudio />
-      <LabNotes />
+      <section className="viewport-section">
+        <SauceStudio />
+      </section>
+      <ReferenceSection />
       <Footer />
     </div>
   )
@@ -49,18 +50,18 @@ function LabPage() {
 
 function HeroSection() {
   return (
-    <section className="grid gap-6 xl:grid-cols-[1.02fr_0.98fr]">
-      <article className="panel overflow-hidden rounded-[2.2rem] p-7 sm:p-10">
+    <section className="viewport-section grid gap-4 xl:grid-cols-[1.02fr_0.98fr]">
+      <article className="panel viewport-panel overflow-hidden rounded-[2.2rem] p-7 sm:p-10">
         <p className="section-kicker">Hot sauce lab</p>
-        <h1 className="display-font mt-4 max-w-4xl text-5xl uppercase leading-[0.9] text-[var(--color-cream)] sm:text-7xl lg:text-[5.8rem]">
-          Build the bottle with more visual references and clearer recipe logic.
+        <h1 className="display-font mt-4 max-w-4xl text-5xl uppercase leading-[0.9] text-[var(--color-cream)] sm:text-6xl lg:text-[4.45rem]">
+          The custom blend lab now fits like a workstation, not a poster wall.
         </h1>
-        <p className="mt-5 max-w-2xl text-lg leading-8 text-[var(--color-text-soft)]">
-          The lab now sits inside a richer moodboard. Instead of a lone control panel, you get
-          process photography, ingredient cues, and packaging context framing the builder.
+        <p className="mt-4 max-w-2xl text-base leading-7 text-[var(--color-text-soft)] sm:text-lg">
+          The route opens with one clear brief, then drops into the builder itself. Supporting
+          images and rules still exist, but they no longer bury the thing you came to use.
         </p>
 
-        <div className="mt-8 grid gap-3 sm:grid-cols-4">
+        <div className="mt-6 grid gap-3 sm:grid-cols-4">
           {labGallery.slice(0, 4).map((item) => (
             <figure
               key={item.image}
@@ -69,14 +70,14 @@ function HeroSection() {
               <img
                 src={resolveImageSrc(baseUrl, item.image)}
                 alt={item.alt}
-                className="h-28 w-full object-cover"
+                className="h-24 w-full object-cover"
                 style={{ objectPosition: item.position }}
               />
             </figure>
           ))}
         </div>
 
-        <div className="mt-8 rounded-[1.8rem] border border-white/10 bg-black/18 p-5">
+        <div className="soft-divider mt-6 pt-6">
           <p className="section-kicker">Review before generating</p>
           <div className="mt-5 space-y-4">
             {pairingRules.slice(0, 3).map((rule) => (
@@ -88,39 +89,48 @@ function HeroSection() {
         </div>
       </article>
 
-      <div className="grid gap-4 sm:grid-cols-2">
-        <LargeVisual item={editorialImages.bottleLineup} className="sm:row-span-2 min-h-[18rem] sm:min-h-[34rem]" />
-        <LargeVisual item={editorialImages.marketCrate} className="min-h-[16rem]" />
-        <LargeVisual item={editorialImages.fermentedJar} className="min-h-[16rem]" />
+      <div className="grid min-h-0 gap-4 sm:grid-cols-2">
+        <LargeVisual item={editorialImages.bottleLineup} className="sm:row-span-2 min-h-[18rem] sm:min-h-[32rem]" />
+        <LargeVisual item={editorialImages.marketCrate} className="min-h-[15rem]" />
+        <LargeVisual item={editorialImages.fermentedJar} className="min-h-[15rem]" />
       </div>
+    </section>
+  )
+}
+
+function ReferenceSection() {
+  return (
+    <section className="viewport-section grid gap-4 xl:grid-cols-[1fr_1fr]">
+      <ReferenceBoard />
+      <LabNotes />
     </section>
   )
 }
 
 function ReferenceBoard() {
   return (
-    <section className="panel rounded-[2rem] p-7 sm:p-9">
+    <section className="panel viewport-panel rounded-[2rem] p-7 sm:p-9">
       <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
         <div>
           <p className="section-kicker">Reference board</p>
-          <h2 className="display-font mt-3 text-4xl uppercase leading-none text-[var(--color-cream)] sm:text-6xl">
+          <h2 className="display-font mt-3 text-4xl uppercase leading-none text-[var(--color-cream)] sm:text-5xl">
             The builder is surrounded by the right visual prompts.
           </h2>
         </div>
         <p className="max-w-xl text-sm leading-7 text-[var(--color-text-soft)] sm:text-base">
-          This route now uses more images with distinct jobs: ingredient abundance, tactile detail,
-          fermentation proof, and final shelf context.
+          Ingredient abundance, texture, fermentation, and bottle targets each keep one role in the
+          screen instead of crowding the main tool.
         </p>
       </div>
 
-      <div className="mt-8 grid gap-4 lg:grid-cols-4">
+      <div className="viewport-scroll mt-8 grid gap-4 lg:grid-cols-2">
         {referenceCards.map((item) => (
           <article key={item.title} className="panel overflow-hidden rounded-[1.8rem]">
             <VisualImage
               src={resolveImageSrc(baseUrl, item.visual.image)}
               alt={item.visual.alt}
               item={item.visual}
-              className="h-52 w-full"
+              className="h-40 w-full"
             />
             <div className="p-6">
               <p className="section-kicker">Reference image</p>
@@ -136,24 +146,33 @@ function ReferenceBoard() {
 
 function LabNotes() {
   return (
-    <section className="grid gap-4 lg:grid-cols-3">
-      {labSteps.map((step, index) => (
-        <article key={step.title} className="panel overflow-hidden rounded-[1.8rem]">
-          <img
-            src={resolveImageSrc(baseUrl, noteVisuals[index].image)}
-            alt={noteVisuals[index].alt}
-            className="h-44 w-full object-cover"
-            style={{ objectPosition: noteVisuals[index].position }}
-          />
-          <div className="p-6">
-            <p className="mono-font text-xs uppercase tracking-[0.28em] text-[var(--color-text-muted)]">
-              Lab note 0{index + 1}
-            </p>
-            <h2 className="mt-4 text-2xl font-semibold text-[var(--color-cream)]">{step.title}</h2>
-            <p className="mt-4 text-sm leading-7 text-[var(--color-text-soft)]">{step.copy}</p>
-          </div>
-        </article>
-      ))}
+    <section className="panel viewport-panel rounded-[2rem] p-7 sm:p-9">
+      <div>
+        <p className="section-kicker">Lab notes</p>
+        <h2 className="display-font mt-3 text-4xl uppercase leading-none text-[var(--color-cream)] sm:text-5xl">
+          The recipe logic stays visible beside the inspiration.
+        </h2>
+      </div>
+
+      <div className="viewport-scroll mt-8 grid gap-4 lg:grid-cols-1">
+        {labSteps.map((step, index) => (
+          <article key={step.title} className="panel overflow-hidden rounded-[1.8rem]">
+            <img
+              src={resolveImageSrc(baseUrl, noteVisuals[index].image)}
+              alt={noteVisuals[index].alt}
+              className="h-40 w-full object-cover"
+              style={{ objectPosition: noteVisuals[index].position }}
+            />
+            <div className="p-6">
+              <p className="mono-font text-xs uppercase tracking-[0.28em] text-[var(--color-text-muted)]">
+                Lab note 0{index + 1}
+              </p>
+              <h2 className="mt-4 text-2xl font-semibold text-[var(--color-cream)]">{step.title}</h2>
+              <p className="mt-4 text-sm leading-7 text-[var(--color-text-soft)]">{step.copy}</p>
+            </div>
+          </article>
+        ))}
+      </div>
     </section>
   )
 }

@@ -432,16 +432,16 @@ function SauceStudio() {
   }
 
   return (
-    <section className="panel rounded-[2rem] p-5 sm:p-6 lg:p-8">
+    <section className="panel viewport-panel rounded-[2rem] p-5 sm:p-6 lg:min-h-[calc(100svh-14rem)] lg:p-8">
       <div className="flex flex-col gap-5 border-b border-white/8 pb-6 lg:flex-row lg:items-end lg:justify-between">
         <div className="max-w-3xl">
-          <p className="section-kicker">🧪 Formulation workspace</p>
-          <h2 className="display-font mt-3 text-4xl uppercase leading-none text-[var(--color-cream)] sm:text-6xl">
-            Build the sauce like a recipe review, not a slot machine.
+          <p className="section-kicker">Formulation workspace</p>
+          <h2 className="display-font mt-3 text-4xl uppercase leading-none text-[var(--color-cream)] sm:text-5xl">
+            Build the sauce in one focused workstation.
           </h2>
           <p className="mt-4 text-sm leading-7 text-[var(--color-text-soft)] sm:text-base">
-            Choose up to four peppers and four accents. The dossier on the right updates in real
-            time so users can understand what they are building before they ask AI to package it.
+            Pick peppers, add accents, tune the heat, and review the dossier without losing the top
+            or bottom of the screen.
           </p>
         </div>
 
@@ -455,40 +455,12 @@ function SauceStudio() {
         </div>
       </div>
 
-      <div className="mt-6 grid gap-4 md:grid-cols-3">
-        {[
-          {
-            step: '01',
-            title: 'Choose pepper roles',
-            copy: 'Backbone, spark, or apex heat. Add only what the bottle needs.',
-          },
-          {
-            step: '02',
-            title: 'Balance body and finish',
-            copy: 'Accents should sharpen, sweeten, or deepen the sauce, not blur it.',
-          },
-          {
-            step: '03',
-            title: 'Generate the package',
-            copy: 'Name and label direction come last, once the recipe reads clearly.',
-          },
-        ].map((item) => (
-          <article key={item.step} className="rounded-[1.5rem] border border-white/8 bg-black/14 p-5">
-            <p className="mono-font text-xs uppercase tracking-[0.28em] text-[var(--color-text-muted)]">
-              Step {item.step}
-            </p>
-            <h3 className="mt-4 text-xl font-semibold text-[var(--color-cream)]">{item.title}</h3>
-            <p className="mt-3 text-sm leading-7 text-[var(--color-text-soft)]">{item.copy}</p>
-          </article>
-        ))}
-      </div>
-
-      <div className="mt-6 grid gap-6 xl:grid-cols-[1.06fr_0.94fr]">
-        <div className="space-y-6">
-          <section className="rounded-[1.8rem] border border-white/8 bg-black/14 p-5 sm:p-6">
+      <div className="mt-6 grid gap-6 xl:min-h-0 xl:flex-1 xl:grid-cols-[1.06fr_0.94fr]">
+        <div className="grid gap-6 xl:min-h-0 xl:grid-rows-[minmax(0,1.25fr)_minmax(0,0.8fr)]">
+          <section className="rounded-[1.8rem] border border-white/8 bg-black/14 p-5 sm:p-6 xl:flex xl:min-h-0 xl:flex-col">
             <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
               <div>
-              <p className="section-kicker">🌶️ Step 1</p>
+                <p className="section-kicker">Step 1</p>
                 <h3 className="mt-2 text-2xl font-semibold text-[var(--color-cream)]">
                   Choose your pepper architecture
                 </h3>
@@ -501,7 +473,7 @@ function SauceStudio() {
               </p>
             </div>
 
-            <div className="mt-5 grid gap-3 sm:grid-cols-2">
+            <div className="viewport-scroll mt-5 grid gap-3 sm:grid-cols-2 xl:min-h-0">
               {peppers.map((pepper) => {
                 const active = selectedPepperIds.includes(pepper.id)
 
@@ -537,130 +509,132 @@ function SauceStudio() {
                       <span className="mt-1 h-3 w-3 rounded-full" style={{ backgroundColor: pepper.tone }} />
                     </div>
                     <p className="mt-3 text-sm text-[var(--color-text)]">{formatShu(pepper.shuMax)}</p>
-                    <p className="mt-3 text-sm leading-7 text-[var(--color-text-soft)]">{pepper.story}</p>
+                    <p className="mt-3 text-sm leading-6 text-[var(--color-text-soft)]">{pepper.story}</p>
                   </button>
                 )
               })}
             </div>
           </section>
 
-          <section className="rounded-[1.8rem] border border-white/8 bg-black/14 p-5 sm:p-6">
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-              <div>
-                <p className="section-kicker">🥭 Step 2</p>
-                <h3 className="mt-2 text-2xl font-semibold text-[var(--color-cream)]">
-                  Add accents for sweetness, acid, smoke, or body
-                </h3>
-                <p className="mt-2 text-sm leading-7 text-[var(--color-text-soft)]">
-                  Choose what the sauce needs. Most bottles get muddy before they get interesting.
+          <div className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr] xl:min-h-0">
+            <section className="rounded-[1.8rem] border border-white/8 bg-black/14 p-5 sm:p-6">
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+                <div>
+                  <p className="section-kicker">Step 2</p>
+                  <h3 className="mt-2 text-2xl font-semibold text-[var(--color-cream)]">
+                    Add accents for body and finish
+                  </h3>
+                  <p className="mt-2 text-sm leading-7 text-[var(--color-text-soft)]">
+                    Choose what the sauce needs. Most bottles get muddy before they get interesting.
+                  </p>
+                </div>
+                <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-text-muted)]">
+                  {selectedAccents.length}/4 selected
                 </p>
               </div>
-              <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-text-muted)]">
-                {selectedAccents.length}/4 selected
-              </p>
-            </div>
 
-            <div className="mt-5 flex flex-wrap gap-3">
-              {accents.map((accent) => {
-                const active = selectedAccentIds.includes(accent.id)
-
-                return (
-                  <button
-                    key={accent.id}
-                    type="button"
-                    onClick={() => onAccentToggle(accent.id)}
-                    aria-pressed={active}
-                    className={`rounded-full border px-4 py-3 text-left transition ${
-                      active
-                        ? 'border-white/18 bg-white/8 text-[var(--color-cream)]'
-                        : 'border-white/8 bg-black/16 text-[var(--color-text-soft)] hover:border-white/16 hover:bg-white/6'
-                    }`}
-                    style={{
-                      boxShadow: active ? `inset 0 0 0 1px ${accent.tone}40` : undefined,
-                    }}
-                  >
-                    <span className="font-semibold">{accent.name}</span>
-                    <span className="ml-2 text-xs uppercase tracking-[0.18em] text-[var(--color-text-muted)]">
-                      {accent.role}
-                    </span>
-                  </button>
-                )
-              })}
-            </div>
-          </section>
-
-          <section className="grid gap-6 lg:grid-cols-[1fr_1fr]">
-            <div className="rounded-[1.8rem] border border-white/8 bg-black/14 p-5 sm:p-6">
-              <p className="section-kicker">🔥 Step 3</p>
-              <h3 className="mt-2 text-2xl font-semibold text-[var(--color-cream)]">
-                Tune the heat narrative
-              </h3>
-              <p className="mt-2 text-sm leading-7 text-[var(--color-text-soft)]">
-                This slider adjusts the personality of the final concept as much as the sensation.
-              </p>
-              <div className="mt-6">
-                <div className="mb-3 flex items-center justify-between text-sm text-[var(--color-text-soft)]">
-                  <span>Low-key</span>
-                  <span>{heatBias}/10</span>
-                  <span>Theatrical</span>
-                </div>
-                <input
-                  type="range"
-                  min="1"
-                  max="10"
-                  value={heatBias}
-                  onChange={(event) => setHeatBias(Number(event.target.value))}
-                  className="slider-track h-2 w-full cursor-pointer appearance-none rounded-full bg-white/14"
-                />
-              </div>
-            </div>
-
-            <div className="rounded-[1.8rem] border border-white/8 bg-black/14 p-5 sm:p-6">
-              <p className="section-kicker">🎨 Art direction</p>
-              <h3 className="mt-2 text-2xl font-semibold text-[var(--color-cream)]">
-                Choose the label language
-              </h3>
-              <div className="mt-5 space-y-3">
-                {labelStyles.map((style) => {
-                  const active = style.id === labelStyleId
+              <div className="mt-5 flex flex-wrap gap-3">
+                {accents.map((accent) => {
+                  const active = selectedAccentIds.includes(accent.id)
 
                   return (
                     <button
-                      key={style.id}
+                      key={accent.id}
                       type="button"
-                      onClick={() => setLabelStyleId(style.id)}
-                      className={`w-full rounded-[1.3rem] border p-4 text-left transition ${
+                      onClick={() => onAccentToggle(accent.id)}
+                      aria-pressed={active}
+                      className={`rounded-full border px-4 py-3 text-left transition ${
                         active
-                          ? 'border-white/18 bg-white/8'
-                          : 'border-white/8 bg-black/16 hover:border-white/16 hover:bg-white/6'
+                          ? 'border-white/18 bg-white/8 text-[var(--color-cream)]'
+                          : 'border-white/8 bg-black/16 text-[var(--color-text-soft)] hover:border-white/16 hover:bg-white/6'
                       }`}
+                      style={{
+                        boxShadow: active ? `inset 0 0 0 1px ${accent.tone}40` : undefined,
+                      }}
                     >
-                      <div className="flex items-start justify-between gap-4">
-                        <div>
-                          <p className="text-base font-semibold text-[var(--color-cream)]">{style.name}</p>
-                          <p className="mt-2 text-sm leading-7 text-[var(--color-text-soft)]">
-                            {style.mood}
-                          </p>
-                        </div>
-                        {active ? (
-                          <span className="rounded-full border border-white/10 px-3 py-1 text-[0.65rem] uppercase tracking-[0.24em] text-[var(--color-text-muted)]">
-                            Active
-                          </span>
-                        ) : null}
-                      </div>
+                      <span className="font-semibold">{accent.name}</span>
+                      <span className="ml-2 text-xs uppercase tracking-[0.18em] text-[var(--color-text-muted)]">
+                        {accent.role}
+                      </span>
                     </button>
                   )
                 })}
               </div>
-            </div>
-          </section>
+            </section>
+
+            <section className="grid gap-6 lg:grid-cols-[1fr_1fr] xl:min-h-0">
+              <div className="rounded-[1.8rem] border border-white/8 bg-black/14 p-5 sm:p-6">
+                <p className="section-kicker">Step 3</p>
+                <h3 className="mt-2 text-2xl font-semibold text-[var(--color-cream)]">
+                  Tune the heat narrative
+                </h3>
+                <p className="mt-2 text-sm leading-7 text-[var(--color-text-soft)]">
+                  This slider adjusts the personality of the final concept as much as the sensation.
+                </p>
+                <div className="mt-6">
+                  <div className="mb-3 flex items-center justify-between text-sm text-[var(--color-text-soft)]">
+                    <span>Low-key</span>
+                    <span>{heatBias}/10</span>
+                    <span>Theatrical</span>
+                  </div>
+                  <input
+                    type="range"
+                    min="1"
+                    max="10"
+                    value={heatBias}
+                    onChange={(event) => setHeatBias(Number(event.target.value))}
+                    className="slider-track h-2 w-full cursor-pointer appearance-none rounded-full bg-white/14"
+                  />
+                </div>
+              </div>
+
+              <div className="rounded-[1.8rem] border border-white/8 bg-black/14 p-5 sm:p-6 xl:flex xl:min-h-0 xl:flex-col">
+                <p className="section-kicker">Art direction</p>
+                <h3 className="mt-2 text-2xl font-semibold text-[var(--color-cream)]">
+                  Choose the label language
+                </h3>
+                <div className="viewport-scroll mt-5 space-y-3 xl:min-h-0">
+                  {labelStyles.map((style) => {
+                    const active = style.id === labelStyleId
+
+                    return (
+                      <button
+                        key={style.id}
+                        type="button"
+                        onClick={() => setLabelStyleId(style.id)}
+                        className={`w-full rounded-[1.3rem] border p-4 text-left transition ${
+                          active
+                            ? 'border-white/18 bg-white/8'
+                            : 'border-white/8 bg-black/16 hover:border-white/16 hover:bg-white/6'
+                        }`}
+                      >
+                        <div className="flex items-start justify-between gap-4">
+                          <div>
+                            <p className="text-base font-semibold text-[var(--color-cream)]">{style.name}</p>
+                            <p className="mt-2 text-sm leading-7 text-[var(--color-text-soft)]">
+                              {style.mood}
+                            </p>
+                          </div>
+                          {active ? (
+                            <span className="rounded-full border border-white/10 px-3 py-1 text-[0.65rem] uppercase tracking-[0.24em] text-[var(--color-text-muted)]">
+                              Active
+                            </span>
+                          ) : null}
+                        </div>
+                      </button>
+                    )
+                  })}
+                </div>
+              </div>
+            </section>
+          </div>
         </div>
 
-        <aside className="space-y-6 xl:sticky xl:top-28 xl:self-start">
-          <section className="rounded-[1.8rem] border border-white/8 bg-black/14 p-5 sm:p-6">
+        <aside className="grid gap-6 xl:min-h-0 xl:grid-rows-[minmax(0,1.05fr)_minmax(0,0.95fr)]">
+          <section className="rounded-[1.8rem] border border-white/8 bg-black/14 p-5 sm:p-6 xl:flex xl:min-h-0 xl:flex-col">
             <div className="flex items-start justify-between gap-4">
               <div>
-                <p className="section-kicker">📋 Live dossier</p>
+                <p className="section-kicker">Live dossier</p>
                 <h3 className="mt-3 text-3xl font-semibold text-[var(--color-cream)]">{generatedName}</h3>
               </div>
               <span className="rounded-full border border-white/10 px-3 py-1 text-[0.65rem] uppercase tracking-[0.24em] text-[var(--color-text-muted)]">
@@ -668,111 +642,113 @@ function SauceStudio() {
               </span>
             </div>
 
-            <p className="mt-4 text-base leading-8 text-[var(--color-text-soft)]">{generatedBlurb}</p>
-            <p className="mt-4 rounded-[1.3rem] border border-white/8 bg-black/16 px-4 py-4 text-sm leading-7 text-[var(--color-text)]">
-              {recipeArchetype}
-            </p>
+            <div className="viewport-scroll mt-4 space-y-5 xl:min-h-0">
+              <p className="text-base leading-8 text-[var(--color-text-soft)]">{generatedBlurb}</p>
+              <p className="rounded-[1.3rem] border border-white/8 bg-black/16 px-4 py-4 text-sm leading-7 text-[var(--color-text)]">
+                {recipeArchetype}
+              </p>
 
-            <div className="mt-5 grid gap-3 sm:grid-cols-3">
-              {dossierPeppers.map((pepper) => (
-                <figure
-                  key={pepper.id}
-                  className="overflow-hidden rounded-[1.2rem] border border-white/8 bg-black/18"
-                >
-                  <img
-                    src={resolveImageSrc(baseUrl, pepper.image)}
-                    alt={pepper.name}
-                    className="h-24 w-full object-cover"
-                  />
-                  <figcaption className="px-3 py-2 text-[0.68rem] uppercase tracking-[0.22em] text-[var(--color-text-muted)]">
-                    {pepper.name}
-                  </figcaption>
-                </figure>
-              ))}
-            </div>
-
-            <div className="mt-5 flex flex-wrap gap-2">
-              {selectedPeppers.map((pepper) => (
-                <span
-                  key={pepper.id}
-                  className="rounded-full border border-white/10 px-3 py-2 text-xs uppercase tracking-[0.2em] text-[var(--color-text-muted)]"
-                >
-                  {pepper.name}
-                </span>
-              ))}
-              {selectedAccents.map((accent) => (
-                <span
-                  key={accent.id}
-                  className="rounded-full border border-white/10 px-3 py-2 text-xs uppercase tracking-[0.2em] text-[var(--color-text-muted)]"
-                >
-                  {accent.name}
-                </span>
-              ))}
-            </div>
-
-            <div className="mt-6 grid gap-4 sm:grid-cols-2">
-              <div className="rounded-[1.4rem] border border-white/8 bg-black/16 p-4">
-                <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-text-muted)]">
-                  Average Scoville
-                </p>
-                <p className="mt-2 text-2xl font-semibold text-[var(--color-cream)]">
-                  {averageScoville ? formatShu(averageScoville) : 'No peppers yet'}
-                </p>
-              </div>
-              <div className="rounded-[1.4rem] border border-white/8 bg-black/16 p-4">
-                <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-text-muted)]">
-                  Label direction
-                </p>
-                <p className="mt-2 text-lg font-semibold text-[var(--color-cream)]">{labelStyle.name}</p>
-                <p className="mt-2 text-sm text-[var(--color-text-soft)]">{labelStyle.mood}</p>
-              </div>
-            </div>
-
-            <div className="mt-6 space-y-4">
-              {recipeSignals.map((signal) => (
-                <div key={signal.label}>
-                  <div className="mb-2 flex items-center justify-between text-sm text-[var(--color-text-soft)]">
-                    <span>{signal.label}</span>
-                    <span>{signal.value}/10</span>
-                  </div>
-                  <div className="h-2 overflow-hidden rounded-full bg-white/10">
-                    <div
-                      className="h-full rounded-full bg-[linear-gradient(90deg,var(--color-saffron),var(--color-flame))]"
-                      style={{ width: `${signal.value * 10}%` }}
+              <div className="grid gap-3 sm:grid-cols-3">
+                {dossierPeppers.map((pepper) => (
+                  <figure
+                    key={pepper.id}
+                    className="overflow-hidden rounded-[1.2rem] border border-white/8 bg-black/18"
+                  >
+                    <img
+                      src={resolveImageSrc(baseUrl, pepper.image)}
+                      alt={pepper.name}
+                      className="h-20 w-full object-cover"
                     />
-                  </div>
+                    <figcaption className="px-3 py-2 text-[0.68rem] uppercase tracking-[0.22em] text-[var(--color-text-muted)]">
+                      {pepper.name}
+                    </figcaption>
+                  </figure>
+                ))}
+              </div>
+
+              <div className="flex flex-wrap gap-2">
+                {selectedPeppers.map((pepper) => (
+                  <span
+                    key={pepper.id}
+                    className="rounded-full border border-white/10 px-3 py-2 text-xs uppercase tracking-[0.2em] text-[var(--color-text-muted)]"
+                  >
+                    {pepper.name}
+                  </span>
+                ))}
+                {selectedAccents.map((accent) => (
+                  <span
+                    key={accent.id}
+                    className="rounded-full border border-white/10 px-3 py-2 text-xs uppercase tracking-[0.2em] text-[var(--color-text-muted)]"
+                  >
+                    {accent.name}
+                  </span>
+                ))}
+              </div>
+
+              <div className="grid gap-4 sm:grid-cols-2">
+                <div className="rounded-[1.4rem] border border-white/8 bg-black/16 p-4">
+                  <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-text-muted)]">
+                    Average Scoville
+                  </p>
+                  <p className="mt-2 text-2xl font-semibold text-[var(--color-cream)]">
+                    {averageScoville ? formatShu(averageScoville) : 'No peppers yet'}
+                  </p>
                 </div>
-              ))}
-            </div>
+                <div className="rounded-[1.4rem] border border-white/8 bg-black/16 p-4">
+                  <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-text-muted)]">
+                    Label direction
+                  </p>
+                  <p className="mt-2 text-lg font-semibold text-[var(--color-cream)]">{labelStyle.name}</p>
+                  <p className="mt-2 text-sm text-[var(--color-text-soft)]">{labelStyle.mood}</p>
+                </div>
+              </div>
 
-            <div className="mt-6 flex flex-wrap gap-3">
-              <button
-                type="button"
-                onClick={handleGenerateConcept}
-                disabled={isGeneratingName}
-                className="primary-button disabled:cursor-wait disabled:opacity-70"
-              >
-                {isGeneratingName ? 'Generating...' : '✨ Generate Concept'}
-              </button>
-              <button
-                type="button"
-                onClick={() => handleGenerateLabel()}
-                disabled={isGeneratingLabel}
-                className="secondary-button disabled:cursor-wait disabled:opacity-70"
-              >
-                {isGeneratingLabel ? 'Rendering...' : '🖼️ Refresh Label'}
-              </button>
-            </div>
+              <div className="space-y-4">
+                {recipeSignals.map((signal) => (
+                  <div key={signal.label}>
+                    <div className="mb-2 flex items-center justify-between text-sm text-[var(--color-text-soft)]">
+                      <span>{signal.label}</span>
+                      <span>{signal.value}/10</span>
+                    </div>
+                    <div className="h-2 overflow-hidden rounded-full bg-white/10">
+                      <div
+                        className="h-full rounded-full bg-[linear-gradient(90deg,var(--color-saffron),var(--color-flame))]"
+                        style={{ width: `${signal.value * 10}%` }}
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
 
-            <p className="mt-4 rounded-[1.2rem] border border-white/8 bg-black/14 px-4 py-3 text-sm leading-7 text-[var(--color-text-soft)]">
-              {status}
-            </p>
+              <div className="flex flex-wrap gap-3">
+                <button
+                  type="button"
+                  onClick={handleGenerateConcept}
+                  disabled={isGeneratingName}
+                  className="primary-button disabled:cursor-wait disabled:opacity-70"
+                >
+                  {isGeneratingName ? 'Generating...' : 'Generate Concept'}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleGenerateLabel()}
+                  disabled={isGeneratingLabel}
+                  className="secondary-button disabled:cursor-wait disabled:opacity-70"
+                >
+                  {isGeneratingLabel ? 'Rendering...' : 'Refresh Label'}
+                </button>
+              </div>
+
+              <p className="rounded-[1.2rem] border border-white/8 bg-black/14 px-4 py-3 text-sm leading-7 text-[var(--color-text-soft)]">
+                {status}
+              </p>
+            </div>
           </section>
 
-          <section className="rounded-[1.8rem] border border-white/8 bg-[linear-gradient(180deg,rgba(17,15,12,0.94),rgba(40,18,14,0.88))] p-5 sm:p-6">
+          <section className="rounded-[1.8rem] border border-white/8 bg-[linear-gradient(180deg,rgba(17,15,12,0.94),rgba(40,18,14,0.88))] p-5 sm:p-6 xl:flex xl:min-h-0 xl:flex-col">
             <div className="mb-5 flex items-center justify-between gap-3">
               <div>
-                <p className="section-kicker">🫙 Bottle preview</p>
+                <p className="section-kicker">Bottle preview</p>
                 <p className="mt-2 text-sm text-[var(--color-text-soft)]">{styleDirection}</p>
               </div>
               <p className="mono-font text-xs uppercase tracking-[0.18em] text-[var(--color-text-muted)]">
@@ -780,7 +756,7 @@ function SauceStudio() {
               </p>
             </div>
 
-            <div className="mb-5 grid gap-3 grid-cols-2">
+            <div className="mb-5 grid grid-cols-2 gap-3">
               {bottleReferences.map((item) => (
                 <figure
                   key={item.key}
@@ -794,61 +770,63 @@ function SauceStudio() {
               ))}
             </div>
 
-            <div className="bottle-shell mx-auto">
-              {labelImage ? (
-                <img
-                  src={labelImage}
-                  alt={`AI-generated label for ${generatedName}`}
-                  className="h-full w-full rounded-[1.7rem] object-cover"
-                  onLoad={() => {
-                    setIsGeneratingLabel(false)
-                    setStatus('Label rendered. Review the packaging direction or reroll the art.')
-                  }}
-                  onError={() => {
-                    setLabelImage('')
-                    setIsGeneratingLabel(false)
-                    setStatus('The label endpoint did not return art. Try rerolling or check the key.')
-                  }}
-                />
-              ) : (
-                <div className="flex h-full items-center justify-center rounded-[1.7rem] border border-dashed border-white/14 bg-black/18 px-8 text-center text-sm leading-7 text-[var(--color-text-soft)]">
-                  Generate a concept to cast artwork onto the bottle.
-                </div>
-              )}
-            </div>
-
-            <div className="mt-5 rounded-[1.4rem] border border-white/8 bg-black/16 p-4">
-              <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-text-muted)]">
-                Suggested uses
-              </p>
-              <div className="mt-3 flex flex-wrap gap-2">
-                {servingSuggestions.map((item) => (
-                  <span
-                    key={item}
-                    className="rounded-full border border-white/10 px-3 py-2 text-xs uppercase tracking-[0.2em] text-[var(--color-text-muted)]"
-                  >
-                    {item}
-                  </span>
-                ))}
+            <div className="viewport-scroll space-y-5 xl:min-h-0">
+              <div className="bottle-shell mx-auto">
+                {labelImage ? (
+                  <img
+                    src={labelImage}
+                    alt={`AI-generated label for ${generatedName}`}
+                    className="h-full w-full rounded-[1.7rem] object-cover"
+                    onLoad={() => {
+                      setIsGeneratingLabel(false)
+                      setStatus('Label rendered. Review the packaging direction or reroll the art.')
+                    }}
+                    onError={() => {
+                      setLabelImage('')
+                      setIsGeneratingLabel(false)
+                      setStatus('The label endpoint did not return art. Try rerolling or check the key.')
+                    }}
+                  />
+                ) : (
+                  <div className="flex h-full items-center justify-center rounded-[1.7rem] border border-dashed border-white/14 bg-black/18 px-8 text-center text-sm leading-7 text-[var(--color-text-soft)]">
+                    Generate a concept to cast artwork onto the bottle.
+                  </div>
+                )}
               </div>
-            </div>
 
-            <div className="mt-5 rounded-[1.4rem] border border-white/8 bg-black/16 p-4">
-              <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-text-muted)]">
-                Flavor line
-              </p>
-              <p className="mt-2 text-sm leading-7 text-[var(--color-text-soft)]">
-                {flavorLine || 'Select peppers and accents to shape the profile.'}
-              </p>
-            </div>
+              <div className="rounded-[1.4rem] border border-white/8 bg-black/16 p-4">
+                <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-text-muted)]">
+                  Suggested uses
+                </p>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {servingSuggestions.map((item) => (
+                    <span
+                      key={item}
+                      className="rounded-full border border-white/10 px-3 py-2 text-xs uppercase tracking-[0.2em] text-[var(--color-text-muted)]"
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </div>
 
-            <div className="mt-5 rounded-[1.4rem] border border-white/8 bg-black/16 p-4">
-              <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-text-muted)]">
-                Prompt trace
-              </p>
-              <p className="mt-2 text-sm leading-7 text-[var(--color-text-soft)]">
-                {labelPrompt || 'The current recipe will be distilled into a label illustration prompt.'}
-              </p>
+              <div className="rounded-[1.4rem] border border-white/8 bg-black/16 p-4">
+                <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-text-muted)]">
+                  Flavor line
+                </p>
+                <p className="mt-2 text-sm leading-7 text-[var(--color-text-soft)]">
+                  {flavorLine || 'Select peppers and accents to shape the profile.'}
+                </p>
+              </div>
+
+              <div className="rounded-[1.4rem] border border-white/8 bg-black/16 p-4">
+                <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-text-muted)]">
+                  Prompt trace
+                </p>
+                <p className="mt-2 text-sm leading-7 text-[var(--color-text-soft)]">
+                  {labelPrompt || 'The current recipe will be distilled into a label illustration prompt.'}
+                </p>
+              </div>
             </div>
           </section>
         </aside>

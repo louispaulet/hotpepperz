@@ -39,7 +39,7 @@ function App() {
 
       <div className="grain-overlay" />
 
-      <div className="mx-auto flex min-h-screen w-full max-w-[96rem] flex-col px-4 pb-16 pt-5 sm:px-6 lg:px-8">
+      <div className="mx-auto flex min-h-screen w-full max-w-[110rem] flex-col px-4 pb-8 pt-5 sm:px-6 lg:px-8">
         <SiteFrame>
           <Routes>
             <Route path="/" element={<HomePage />} />

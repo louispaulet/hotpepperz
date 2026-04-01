@@ -58,7 +58,7 @@ function SiteFrame({ children }) {
         </div>
       </header>
 
-      <main className="flex-1">{children}</main>
+      <main className="flex flex-1 flex-col min-h-0">{children}</main>
     </>
   )
 }

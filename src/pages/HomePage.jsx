@@ -51,30 +51,24 @@ const familyVisuals = {
   },
 }
 
-const processVisuals = [
-  editorialImages.fermentedJar,
-  editorialImages.habaneroPlant,
-  editorialImages.bottleLineup,
-]
-
 const pathwayCards = [
   {
     title: 'Editorial storefront',
-    copy: 'Bigger image moments, cleaner pacing, and a brand world that feels closer to a food magazine than a demo shell.',
+    copy: 'The landing page now reads in deliberate chapters instead of one giant column.',
     link: '/',
     cta: 'See the overview',
     visual: editorialImages.bottleLineup,
   },
   {
     title: 'Hands-on formulation',
-    copy: 'Build around brightness, body, and danger before jumping to naming or label generation.',
+    copy: 'The lab is staged like a workstation, with the controls and live dossier visible together.',
     link: '/lab',
     cta: 'Open the lab',
     visual: editorialImages.fermentedJar,
   },
   {
     title: 'Pepper reference atlas',
-    copy: 'Use the wiki like a compact buying guide, with clearer flavor clues and stronger pepper portraits.',
+    copy: 'The wiki keeps the field guide, family map, and safety notes in separate full-screen stops.',
     link: '/wiki',
     cta: 'Browse the guide',
     visual: editorialImages.wikiHabanero,
@@ -87,13 +81,10 @@ function formatShu(value) {
 
 function HomePage() {
   return (
-    <div className="space-y-8 lg:space-y-10">
+    <div className="page-sections">
       <HeroSection />
-      <ExperienceStrip />
-      <PantryGallery />
-      <SignatureShelf />
-      <PepperAtlasPreview />
-      <SauceFamiliesSection />
+      <DiscoverSection />
+      <CatalogSection />
       <ProcessSection />
       <Footer />
     </div>
@@ -102,19 +93,19 @@ function HomePage() {
 
 function HeroSection() {
   return (
-    <section className="grid gap-6 xl:grid-cols-[1.08fr_0.92fr]">
-      <article className="panel overflow-hidden rounded-[2.2rem] p-7 sm:p-10 lg:p-12">
+    <section className="viewport-section grid gap-4 xl:grid-cols-[1.08fr_0.92fr]">
+      <article className="panel viewport-panel overflow-hidden rounded-[2.2rem] p-7 sm:p-10 lg:p-12">
         <div className="relative z-10">
           <p className="section-kicker">Small-batch heat, better art direction</p>
-          <h1 className="display-font mt-5 max-w-4xl text-5xl uppercase leading-[0.9] text-[var(--color-cream)] sm:text-7xl lg:text-[5.8rem]">
-            A sharper hot sauce world with richer imagery and less generic fire branding.
+          <h1 className="display-font mt-5 max-w-4xl text-5xl uppercase leading-[0.9] text-[var(--color-cream)] sm:text-6xl lg:text-[4.35rem]">
+            The homepage now lands in full-screen chapters instead of spilling down the page.
           </h1>
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-[var(--color-text-soft)] sm:text-xl">
-            HotPepperz now reads like a premium sauce editorial: bigger photography, better crop
-            choices, more shelf energy, and a clearer path from inspiration to recipe logic.
+          <p className="mt-5 max-w-2xl text-base leading-7 text-[var(--color-text-soft)] sm:text-lg">
+            HotPepperz keeps the same editorial mood, but the pacing is tighter so every section
+            reads like a complete screen with a clear next move.
           </p>
 
-          <div className="mt-8 flex flex-wrap gap-3">
+          <div className="mt-6 flex flex-wrap gap-3">
             <Link to="/lab" className="primary-button">
               Build a Bottle
             </Link>
@@ -123,24 +114,24 @@ function HeroSection() {
             </Link>
           </div>
 
-          <dl className="mt-10 grid gap-4 md:grid-cols-3">
-            <StatCard value="16" label="Visible image moments" />
-            <StatCard value="9" label="Pepper profiles" />
-            <StatCard value="3" label="Routes with stronger art direction" />
+          <dl className="mt-8 grid gap-4 md:grid-cols-3">
+            <StatCard value="4" label="Homepage chapters" />
+            <StatCard value="1" label="Focused viewport per stop" />
+            <StatCard value="0" label="Massive entry overflow" />
           </dl>
 
-          <div className="mt-10 rounded-[1.8rem] border border-white/10 bg-black/18 p-5">
+          <div className="soft-divider mt-6 pt-6">
             <p className="section-kicker">What changed</p>
             <div className="mt-4 grid gap-3 sm:grid-cols-3">
-              <SignalLine label="More variety" copy="Market, bottle, macro, and ferment imagery now each have a distinct job." />
-              <SignalLine label="Better framing" copy="Image positions are tuned so crops feel intentional instead of accidental." />
-              <SignalLine label="More atmosphere" copy="The pages lean into food-editorial rhythm with denser collage layouts." />
+              <SignalLine label="Clearer pacing" copy="The route is chunked into full-screen moments instead of one endless stack." />
+              <SignalLine label="Bounded content" copy="Dense grids now scroll inside their panels on desktop instead of pushing the whole page down." />
+              <SignalLine label="Faster scanning" copy="Each screen answers one question at a time: where to go, what exists, and how to build." />
             </div>
           </div>
         </div>
       </article>
 
-      <article className="grid gap-4 rounded-[2.2rem]">
+      <article className="grid min-h-0 gap-4 rounded-[2.2rem]">
         <div className="grid h-full gap-4 sm:grid-cols-[1.15fr_0.85fr]">
           <MediaFrame item={heroGallery[0]} className="min-h-[20rem] sm:min-h-[30rem]" />
           <div className="grid gap-4">
@@ -153,6 +144,30 @@ function HeroSection() {
           </div>
         </div>
       </article>
+    </section>
+  )
+}
+
+function DiscoverSection() {
+  return (
+    <section className="viewport-section grid gap-4 xl:grid-cols-[1fr_1fr]">
+      <PantryGallery />
+      <ExperienceStrip />
+    </section>
+  )
+}
+
+function CatalogSection() {
+  return (
+    <section className="viewport-section grid gap-4 xl:grid-cols-[1fr_1fr]">
+      <div className="grid min-h-0 gap-4">
+        <SignatureShelf />
+        <ProcessPreview />
+      </div>
+      <div className="grid min-h-0 gap-4">
+        <PepperAtlasPreview />
+        <SauceFamiliesSection />
+      </div>
     </section>
   )
 }
@@ -181,14 +196,22 @@ function SignalLine({ label, copy }) {
 
 function ExperienceStrip() {
   return (
-    <section className="grid gap-4 lg:grid-cols-3">
+    <section className="panel viewport-panel rounded-[2.1rem] p-6 sm:p-8">
+      <div>
+        <p className="section-kicker">Navigate the world</p>
+        <h2 className="display-font mt-3 text-4xl uppercase leading-none text-[var(--color-cream)] sm:text-5xl">
+          Every route gets one screen-sized promise.
+        </h2>
+      </div>
+
+      <div className="viewport-scroll mt-6 grid gap-4 lg:grid-cols-3">
         {pathwayCards.map((card) => (
           <article key={card.title} className="panel overflow-hidden rounded-[1.9rem]">
             <VisualImage
               src={resolveImageSrc(baseUrl, card.visual.image)}
               alt={card.visual.alt}
               item={card.visual}
-              className="h-52 w-full"
+              className="h-44 w-full"
             />
             <div className="p-6">
               <p className="section-kicker">Experience</p>
@@ -202,28 +225,29 @@ function ExperienceStrip() {
               </Link>
             </div>
           </article>
-      ))}
+        ))}
+      </div>
     </section>
   )
 }
 
 function PantryGallery() {
   return (
-    <section className="panel rounded-[2.1rem] p-7 sm:p-9">
+    <section className="panel viewport-panel rounded-[2.1rem] p-7 sm:p-9">
       <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
         <div>
           <p className="section-kicker">Visual pantry</p>
-          <h2 className="display-font mt-3 text-4xl uppercase leading-none text-[var(--color-cream)] sm:text-6xl">
-            More photo density gives the brand a point of view.
+          <h2 className="display-font mt-3 text-4xl uppercase leading-none text-[var(--color-cream)] sm:text-5xl">
+            The images now work as one contained spread.
           </h2>
         </div>
         <p className="max-w-xl text-sm leading-7 text-[var(--color-text-soft)] sm:text-base">
-          Instead of repeating the same bottle shot, the site now mixes produce, packaging,
-          ingredient, and fermentation imagery to make each section feel more specific.
+          Produce, packaging, ingredient, and fermentation imagery each keep a defined place in the
+          layout so the opening view feels deliberate instead of oversized.
         </p>
       </div>
 
-      <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+      <div className="viewport-scroll mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
         {homepageGallery.map((item, index) => (
           <article
             key={`${item.image}-${index}`}
@@ -234,7 +258,7 @@ function PantryGallery() {
             <img
               src={resolveImageSrc(baseUrl, item.image)}
               alt={item.alt}
-              className={`w-full object-cover ${index === 0 ? 'h-full min-h-[23rem]' : 'h-56'}`}
+              className={`w-full object-cover ${index === 0 ? 'h-full min-h-[18rem]' : 'h-40'}`}
               style={{ objectPosition: item.position }}
             />
           </article>
@@ -246,21 +270,21 @@ function PantryGallery() {
 
 function SignatureShelf() {
   return (
-    <section className="panel rounded-[2rem] p-7 sm:p-9">
+    <section className="panel viewport-panel rounded-[2rem] p-6 sm:p-8">
       <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
         <div>
           <p className="section-kicker">Signature shelf</p>
-          <h2 className="display-font mt-3 text-4xl uppercase leading-none text-[var(--color-cream)] sm:text-6xl">
+          <h2 className="display-font mt-3 text-4xl uppercase leading-none text-[var(--color-cream)] sm:text-5xl">
             Reference bottles with sharper personalities.
           </h2>
         </div>
         <p className="max-w-xl text-sm leading-7 text-[var(--color-text-soft)] sm:text-base">
-          The range now feels broader on first glance because every bottle card uses imagery that
-          matches its flavor direction instead of generic red-pepper filler.
+          Bottle cards stay readable in one panel, with just enough supporting copy to telegraph
+          range without turning the screen into a catalog wall.
         </p>
       </div>
 
-      <div className="mt-8 grid gap-4 xl:grid-cols-4">
+      <div className="viewport-scroll mt-6 grid gap-4 xl:grid-cols-2">
         {houseSauces.map((sauce) => {
           const visual = houseSauceVisuals[sauce.name]
           const productVisual = visual.presentation === 'product'
@@ -277,7 +301,7 @@ function SignatureShelf() {
                 src={resolveImageSrc(baseUrl, visual.image)}
                 alt={visual.alt}
                 item={visual}
-                className={`w-full ${productVisual ? 'h-72' : 'h-56'}`}
+                className={`w-full ${productVisual ? 'h-60' : 'h-44'}`}
                 imgClassName={productVisual ? 'scale-[1.08]' : ''}
               />
               <div className="p-5">
@@ -303,12 +327,12 @@ function SignatureShelf() {
 
 function PepperAtlasPreview() {
   return (
-    <section className="panel rounded-[2rem] p-7 sm:p-9">
+    <section className="panel viewport-panel rounded-[2rem] p-6 sm:p-8">
       <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
         <div>
           <p className="section-kicker">Pepper atlas</p>
-          <h2 className="display-font mt-3 text-4xl uppercase leading-none text-[var(--color-cream)] sm:text-6xl">
-            Pepper cards that feel more like a field guide than a spreadsheet.
+          <h2 className="display-font mt-3 text-4xl uppercase leading-none text-[var(--color-cream)] sm:text-5xl">
+            Pepper cards read like a compact field guide.
           </h2>
         </div>
         <Link to="/wiki" className="secondary-button w-full sm:w-auto">
@@ -316,8 +340,8 @@ function PepperAtlasPreview() {
         </Link>
       </div>
 
-      <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-        {peppers.map((pepper) => (
+      <div className="viewport-scroll mt-6 grid gap-4 md:grid-cols-2">
+        {peppers.slice(0, 4).map((pepper) => (
           <article
             key={pepper.id}
             className="overflow-hidden rounded-[1.7rem] border border-white/10 bg-black/16"
@@ -328,7 +352,7 @@ function PepperAtlasPreview() {
             <img
               src={resolveImageSrc(baseUrl, pepper.image)}
               alt={pepper.name}
-              className="h-52 w-full object-cover"
+              className="h-40 w-full object-cover"
               style={{ objectPosition: pepper.imagePosition }}
             />
             <div className="p-5">
@@ -355,30 +379,21 @@ function PepperAtlasPreview() {
 
 function SauceFamiliesSection() {
   return (
-    <section className="grid gap-4 xl:grid-cols-[0.92fr_1.08fr]">
-      <article className="panel rounded-[2rem] p-7 sm:p-9">
-        <p className="section-kicker">Sauce families</p>
-        <h2 className="display-font mt-3 text-4xl uppercase leading-none text-[var(--color-cream)] sm:text-6xl">
-          Familiar flavor lanes make the catalog feel intentional.
-        </h2>
-        <p className="mt-5 text-sm leading-7 text-[var(--color-text-soft)] sm:text-base">
-          The visual language now backs up the information architecture: bright bottles look bright,
-          fruit-forward bottles look lush, and dark blends finally feel moody.
-        </p>
-        <div className="mt-6 grid gap-3 sm:grid-cols-2">
-          {[editorialImages.habaneroPlant, editorialImages.fermentedJar].map((item) => (
-            <img
-              key={item.image}
-              src={resolveImageSrc(baseUrl, item.image)}
-              alt={item.alt}
-              className="h-44 w-full rounded-[1.5rem] object-cover"
-              style={{ objectPosition: item.position }}
-            />
-          ))}
+    <section className="panel viewport-panel rounded-[2rem] p-6 sm:p-8">
+      <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+        <div>
+          <p className="section-kicker">Sauce families</p>
+          <h2 className="display-font mt-3 text-4xl uppercase leading-none text-[var(--color-cream)] sm:text-5xl">
+            Familiar flavor lanes make the catalog easier to scan.
+          </h2>
         </div>
-      </article>
+        <p className="max-w-xl text-sm leading-7 text-[var(--color-text-soft)] sm:text-base">
+          Bright, tropical, smoky, and collector-grade routes now live in one bounded panel so the
+          taxonomy feels helpful instead of sprawling.
+        </p>
+      </div>
 
-      <div className="grid gap-4 md:grid-cols-2">
+      <div className="viewport-scroll mt-6 grid gap-4 md:grid-cols-2">
         {sauceFamilies.map((family) => {
           const visual = familyVisuals[family.name]
 
@@ -388,9 +403,9 @@ function SauceFamiliesSection() {
                 src={resolveImageSrc(baseUrl, visual.image)}
                 alt={visual.alt}
                 item={visual}
-                className={`w-full ${visual.presentation === 'product' ? 'h-56' : 'h-44'}`}
+                className={`w-full ${visual.presentation === 'product' ? 'h-48' : 'h-36'}`}
               />
-              <div className="p-6">
+              <div className="p-5">
                 <h3 className="text-2xl font-semibold text-[var(--color-cream)]">{family.name}</h3>
                 <p className="mt-4 text-sm leading-7 text-[var(--color-text-soft)]">
                   {family.description}
@@ -406,29 +421,58 @@ function SauceFamiliesSection() {
   )
 }
 
+function ProcessPreview() {
+  return (
+    <section className="panel rounded-[2rem] p-6 sm:p-8">
+      <p className="section-kicker">Working method</p>
+      <h2 className="display-font mt-3 text-4xl uppercase leading-none text-[var(--color-cream)] sm:text-5xl">
+        The sauce story stays readable from first pick to final label.
+      </h2>
+      <p className="mt-4 max-w-2xl text-sm leading-7 text-[var(--color-text-soft)] sm:text-base">
+        We trimmed the route into clearer decision points so the builder no longer disappears below
+        giant supporting panels.
+      </p>
+      <div className="mt-6 grid gap-4 sm:grid-cols-3">
+        {labSteps.map((step, index) => (
+          <article key={step.title} className="rounded-[1.6rem] border border-white/10 bg-black/16 p-5">
+            <p className="mono-font text-xs uppercase tracking-[0.28em] text-[var(--color-text-muted)]">
+              Step 0{index + 1}
+            </p>
+            <h3 className="mt-4 text-xl font-semibold text-[var(--color-cream)]">{step.title}</h3>
+            <p className="mt-3 text-sm leading-7 text-[var(--color-text-soft)]">{step.copy}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+  )
+}
+
 function ProcessSection() {
   return (
-    <section className="panel rounded-[2rem] p-7 sm:p-9">
+    <section className="viewport-section panel viewport-panel rounded-[2rem] p-7 sm:p-9">
       <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
         <div>
           <p className="section-kicker">Lab flow</p>
-          <h2 className="display-font mt-3 text-4xl uppercase leading-none text-[var(--color-cream)] sm:text-6xl">
-            The builder is now framed like a creative process, not a raw form.
+          <h2 className="display-font mt-3 text-4xl uppercase leading-none text-[var(--color-cream)] sm:text-5xl">
+            The builder now lands in one focused workstation.
           </h2>
         </div>
+        <Link to="/lab" className="primary-button w-full sm:w-auto">
+          Open the lab
+        </Link>
       </div>
 
-      <div className="mt-8 grid gap-4 lg:grid-cols-3">
+      <div className="viewport-scroll mt-8 grid gap-4 lg:grid-cols-3">
         {labSteps.map((step, index) => (
           <article
             key={step.title}
             className="overflow-hidden rounded-[1.8rem] border border-white/10 bg-black/16"
           >
             <img
-              src={resolveImageSrc(baseUrl, processVisuals[index].image)}
-              alt={processVisuals[index].alt}
-              className="h-44 w-full object-cover"
-              style={{ objectPosition: processVisuals[index].position }}
+              src={resolveImageSrc(baseUrl, homepageGallery[index].image)}
+              alt={homepageGallery[index].alt}
+              className="h-40 w-full object-cover"
+              style={{ objectPosition: homepageGallery[index].position }}
             />
             <div className="p-6">
               <p className="mono-font text-xs uppercase tracking-[0.28em] text-[var(--color-text-muted)]">
@@ -453,10 +497,8 @@ function MediaFrame({ item, className = '', compact = false }) {
         className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
         style={{ objectPosition: item.position }}
       />
-      <figcaption
-        className={`absolute left-4 top-4 rounded-full border border-white/12 bg-black/35 px-3 py-2 text-[0.65rem] font-semibold uppercase tracking-[0.24em] text-[var(--color-cream)] ${compact ? '' : ''}`}
-      >
-        {item.label}
+      <figcaption className="absolute left-4 top-4 rounded-full border border-white/12 bg-black/35 px-3 py-2 text-[0.65rem] font-semibold uppercase tracking-[0.24em] text-[var(--color-cream)]">
+        {compact ? item.label : item.label}
       </figcaption>
     </figure>
   )

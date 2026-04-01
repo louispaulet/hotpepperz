@@ -42,11 +42,6 @@ const rulePanels = [
   },
 ]
 
-const featuredBottlePair = [
-  editorialImages.ajiAmarilloBottle,
-  editorialImages.trinidadScorpionBottle,
-]
-
 function formatShu(value) {
   return `${numberFormatter.format(value)} SHU`
 }
@@ -57,13 +52,10 @@ function scrollToSection(sectionId) {
 
 function WikiPage() {
   return (
-    <div className="space-y-8 lg:space-y-10">
+    <div className="page-sections">
       <HeroSection />
-      <PepperFieldGuide />
-      <FamilyPlaybook />
-      <HouseExamples />
-      <RulePanels />
-      <ImageCredits />
+      <GuideSection />
+      <ReferenceSection />
       <Footer />
     </div>
   )
@@ -71,16 +63,16 @@ function WikiPage() {
 
 function HeroSection() {
   return (
-    <section className="panel overflow-hidden rounded-[2.2rem] p-7 sm:p-10">
+    <section className="viewport-section panel viewport-panel overflow-hidden rounded-[2.2rem] p-7 sm:p-10">
       <div className="flex flex-col gap-6 xl:flex-row xl:items-end xl:justify-between">
         <div className="max-w-4xl">
           <p className="section-kicker">Pepper wiki</p>
-          <h1 className="display-font mt-4 max-w-5xl text-5xl uppercase leading-[0.9] text-[var(--color-cream)] sm:text-7xl lg:text-[5.8rem]">
-            A field guide with stronger photography, clearer categories, and better visual rhythm.
+          <h1 className="display-font mt-4 max-w-5xl text-5xl uppercase leading-[0.9] text-[var(--color-cream)] sm:text-6xl lg:text-[4.45rem]">
+            The wiki now reads in screen-sized field-guide chapters.
           </h1>
-          <p className="mt-5 max-w-2xl text-lg leading-8 text-[var(--color-text-soft)]">
-            The wiki now reads more like a compact editorial atlas. Pepper portraits are larger,
-            families feel distinct, and the page has enough imagery to support the reference text.
+          <p className="mt-4 max-w-2xl text-base leading-7 text-[var(--color-text-soft)] sm:text-lg">
+            Pepper portraits, family lanes, and safety notes stay visible in bounded panels so you
+            can reference the information without the page feeling massive.
           </p>
         </div>
 
@@ -97,7 +89,7 @@ function HeroSection() {
         </div>
       </div>
 
-      <div className="mt-8 grid gap-4 lg:grid-cols-[1.1fr_0.9fr]">
+      <div className="mt-8 grid min-h-0 gap-4 lg:flex-1 lg:grid-cols-[1.1fr_0.9fr]">
         <GalleryWall />
         <article className="rounded-[1.8rem] border border-white/10 bg-black/16 p-5 sm:p-6">
           <p className="section-kicker">Reading lens</p>
@@ -111,7 +103,7 @@ function HeroSection() {
                 key={item.image}
                 src={resolveImageSrc(baseUrl, item.image)}
                 alt={item.alt}
-                className="h-40 w-full rounded-[1.4rem] object-cover"
+                className="h-36 w-full rounded-[1.4rem] object-cover"
                 style={{ objectPosition: item.position }}
               />
             ))}
@@ -124,12 +116,12 @@ function HeroSection() {
 
 function GalleryWall() {
   return (
-    <div className="grid gap-4 sm:grid-cols-2">
+    <div className="grid min-h-0 gap-4 sm:grid-cols-2">
       <article className="overflow-hidden rounded-[1.8rem] border border-white/10 bg-black/16 sm:row-span-2">
         <img
           src={resolveImageSrc(baseUrl, wikiGallery[0].image)}
           alt={wikiGallery[0].alt}
-          className="h-full min-h-[20rem] w-full object-cover"
+          className="h-full min-h-[18rem] w-full object-cover"
           style={{ objectPosition: wikiGallery[0].position }}
         />
       </article>
@@ -141,7 +133,7 @@ function GalleryWall() {
           <img
             src={resolveImageSrc(baseUrl, item.image)}
             alt={item.alt}
-            className="h-40 w-full object-cover"
+            className="h-32 w-full object-cover"
             style={{ objectPosition: item.position }}
           />
         </article>
@@ -150,24 +142,33 @@ function GalleryWall() {
   )
 }
 
+function GuideSection() {
+  return (
+    <section className="viewport-section grid gap-4 xl:grid-cols-[1fr_1fr]">
+      <PepperFieldGuide />
+      <FamilyPlaybook />
+    </section>
+  )
+}
+
 function PepperFieldGuide() {
   return (
-    <section id="peppers" className="panel rounded-[2rem] p-7 sm:p-9">
+    <section id="peppers" className="panel viewport-panel rounded-[2rem] p-7 sm:p-9">
       <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
         <div>
           <p className="section-kicker">Pepper field guide</p>
-          <h2 className="display-font mt-3 text-4xl uppercase leading-none text-[var(--color-cream)] sm:text-6xl">
-            Heat becomes easier to understand when the flavor looks alive.
+          <h2 className="display-font mt-3 text-4xl uppercase leading-none text-[var(--color-cream)] sm:text-5xl">
+            Heat is easier to read when the flavor looks alive.
           </h2>
         </div>
         <p className="max-w-xl text-sm leading-7 text-[var(--color-text-soft)] sm:text-base">
-          Larger crops and better image placement make the cards scan faster. You can read the
-          pepper mood before you read the paragraph.
+          Larger crops and better image placement make the cards scan faster without requiring the
+          whole route to become a giant wall of content.
         </p>
       </div>
 
-      <div className="mt-8 grid gap-4 lg:grid-cols-2">
-        {peppers.map((pepper) => (
+      <div className="viewport-scroll mt-8 grid gap-4 lg:grid-cols-1">
+        {peppers.slice(0, 5).map((pepper) => (
           <article
             key={pepper.id}
             className="overflow-hidden rounded-[1.8rem] border border-white/10 bg-black/16"
@@ -175,11 +176,11 @@ function PepperFieldGuide() {
               backgroundImage: `linear-gradient(135deg, ${pepper.tone}26, rgba(10, 10, 10, 0.08))`,
             }}
           >
-            <div className="grid h-full gap-0 md:grid-cols-[0.95fr_1.05fr]">
+            <div className="grid h-full gap-0 md:grid-cols-[0.9fr_1.1fr]">
               <img
                 src={resolveImageSrc(baseUrl, pepper.image)}
                 alt={pepper.name}
-                className="h-72 w-full object-cover md:h-full"
+                className="h-56 w-full object-cover md:h-full"
                 style={{ objectPosition: pepper.imagePosition }}
               />
               <div className="p-5 sm:p-6">
@@ -197,9 +198,6 @@ function PepperFieldGuide() {
                 </p>
                 <p className="mt-4 text-sm leading-7 text-[var(--color-text-soft)]">{pepper.story}</p>
                 <p className="mt-4 text-sm text-[var(--color-text)]">Best for: {pepper.bestFor}</p>
-                <p className="mt-3 text-sm text-[var(--color-text-soft)]">
-                  Pair with: {pepper.pairings.join(', ')}
-                </p>
               </div>
             </div>
           </article>
@@ -211,31 +209,20 @@ function PepperFieldGuide() {
 
 function FamilyPlaybook() {
   return (
-    <section id="families" className="grid gap-6 xl:grid-cols-[0.82fr_1.18fr]">
-      <article className="panel rounded-[2rem] p-7 sm:p-9">
-        <p className="section-kicker">Sauce playbook</p>
-        <h2 className="display-font mt-3 text-4xl uppercase leading-none text-[var(--color-cream)] sm:text-6xl">
-          A tighter taxonomy makes the whole catalog easier to browse.
-        </h2>
-        <p className="mt-5 text-sm leading-7 text-[var(--color-text-soft)] sm:text-base">
-          The visuals support the categories now, so bright green blends and smoky bottles no
-          longer feel like cousins wearing the same outfit.
-        </p>
-        <div className="mt-6 grid gap-3 sm:grid-cols-2">
-          {featuredBottlePair.map((item) => (
-            <VisualImage
-              key={item.image}
-              src={resolveImageSrc(baseUrl, item.image)}
-              alt={item.alt}
-              item={item}
-              className="h-72 w-full rounded-[1.6rem] overflow-hidden"
-              imgClassName="scale-[1.04]"
-            />
-          ))}
+    <section id="families" className="panel viewport-panel rounded-[2rem] p-7 sm:p-9">
+      <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+        <div>
+          <p className="section-kicker">Sauce playbook</p>
+          <h2 className="display-font mt-3 text-4xl uppercase leading-none text-[var(--color-cream)] sm:text-5xl">
+            A tighter taxonomy makes the catalog easier to browse.
+          </h2>
         </div>
-      </article>
+        <Link to="/lab" className="primary-button w-full sm:w-auto">
+          Build your own
+        </Link>
+      </div>
 
-      <div className="grid gap-4 md:grid-cols-2">
+      <div className="viewport-scroll mt-8 grid gap-4 md:grid-cols-2">
         {sauceFamilies.map((family) => {
           const visual = familyVisuals[family.name]
 
@@ -245,7 +232,7 @@ function FamilyPlaybook() {
                 src={resolveImageSrc(baseUrl, visual.image)}
                 alt={visual.alt}
                 item={visual}
-                className="h-44 w-full"
+                className="h-40 w-full"
               />
               <div className="p-6">
                 <h3 className="text-2xl font-semibold text-[var(--color-cream)]">{family.name}</h3>
@@ -258,30 +245,9 @@ function FamilyPlaybook() {
             </article>
           )
         })}
-      </div>
-    </section>
-  )
-}
 
-function HouseExamples() {
-  return (
-    <section className="panel rounded-[2rem] p-7 sm:p-9">
-      <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-        <div>
-          <p className="section-kicker">House examples</p>
-          <h2 className="display-font mt-3 text-4xl uppercase leading-none text-[var(--color-cream)] sm:text-6xl">
-            Reference bottles help users feel the range immediately.
-          </h2>
-        </div>
-        <Link to="/lab" className="primary-button w-full sm:w-auto">
-          Build your own
-        </Link>
-      </div>
-
-      <div className="mt-8 grid gap-4 xl:grid-cols-4">
-        {houseSauces.map((sauce) => {
+        {houseSauces.slice(0, 2).map((sauce) => {
           const visual = houseSauceVisuals[sauce.name]
-          const productVisual = visual.presentation === 'product'
 
           return (
             <article
@@ -295,8 +261,7 @@ function HouseExamples() {
                 src={resolveImageSrc(baseUrl, visual.image)}
                 alt={visual.alt}
                 item={visual}
-                className={`w-full ${productVisual ? 'h-72' : 'h-56'}`}
-                imgClassName={productVisual ? 'scale-[1.08]' : ''}
+                className="h-40 w-full"
               />
               <div className="p-5">
                 <div className="flex items-center justify-between gap-3">
@@ -309,7 +274,6 @@ function HouseExamples() {
                   {sauce.profile}
                 </p>
                 <p className="mt-4 text-sm leading-7 text-[var(--color-text-soft)]">{sauce.story}</p>
-                <p className="mt-4 text-sm text-[var(--color-text)]">Best on: {sauce.bestOn}</p>
               </div>
             </article>
           )
@@ -319,38 +283,62 @@ function HouseExamples() {
   )
 }
 
+function ReferenceSection() {
+  return (
+    <section className="viewport-section grid gap-4 xl:grid-cols-[1fr_1fr]">
+      <RulePanels />
+      <ImageCredits />
+    </section>
+  )
+}
+
 function RulePanels() {
   return (
-    <section id="pairings" className="grid gap-6 lg:grid-cols-2">
-      {rulePanels.map((panel) => (
-        <article key={panel.title} className="panel overflow-hidden rounded-[2rem]">
-          <img
-            src={resolveImageSrc(baseUrl, panel.visual.image)}
-            alt={panel.visual.alt}
-            className="h-52 w-full object-cover"
-            style={{ objectPosition: panel.visual.position }}
-          />
-          <div className="p-7 sm:p-8">
-            <p className="section-kicker">{panel.title}</p>
-            <div className="mt-5 space-y-4">
-              {panel.items.map((item) => (
-                <div key={item} className="rounded-[1.4rem] border border-white/10 bg-black/15 p-4">
-                  <p className="text-sm leading-7 text-[var(--color-text-soft)]">{item}</p>
-                </div>
-              ))}
+    <section id="pairings" className="panel viewport-panel rounded-[2rem] p-7 sm:p-8">
+      <div>
+        <p className="section-kicker">Rules of use</p>
+        <h2 className="display-font mt-3 text-4xl uppercase leading-none text-[var(--color-cream)] sm:text-5xl">
+          Pairing and safety notes stay visible on one screen.
+        </h2>
+      </div>
+
+      <div className="viewport-scroll mt-6 grid gap-6 lg:grid-cols-2">
+        {rulePanels.map((panel) => (
+          <article key={panel.title} className="panel overflow-hidden rounded-[2rem]">
+            <img
+              src={resolveImageSrc(baseUrl, panel.visual.image)}
+              alt={panel.visual.alt}
+              className="h-44 w-full object-cover"
+              style={{ objectPosition: panel.visual.position }}
+            />
+            <div className="p-7 sm:p-8">
+              <p className="section-kicker">{panel.title}</p>
+              <div className="mt-5 space-y-4">
+                {panel.items.map((item) => (
+                  <div key={item} className="rounded-[1.4rem] border border-white/10 bg-black/15 p-4">
+                    <p className="text-sm leading-7 text-[var(--color-text-soft)]">{item}</p>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
-        </article>
-      ))}
+          </article>
+        ))}
+      </div>
     </section>
   )
 }
 
 function ImageCredits() {
   return (
-    <section className="panel rounded-[2rem] p-7 sm:p-8">
-      <p className="section-kicker">Image credits</p>
-      <div className="mt-5 grid gap-4 lg:grid-cols-3">
+    <section className="panel viewport-panel rounded-[2rem] p-7 sm:p-8">
+      <div>
+        <p className="section-kicker">Image credits</p>
+        <h2 className="display-font mt-3 text-4xl uppercase leading-none text-[var(--color-cream)] sm:text-5xl">
+          Sources are easier to check without dropping below the fold forever.
+        </h2>
+      </div>
+
+      <div className="viewport-scroll mt-6 grid gap-4">
         {featuredImageCredits.map((credit) => (
           <a
             key={credit.href}
