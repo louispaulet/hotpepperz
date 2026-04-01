@@ -61,7 +61,7 @@ const pathwayCards = [
   },
   {
     title: 'Hands-on formulation',
-    copy: 'The lab is staged like a workstation, with the controls and live dossier visible together.',
+    copy: 'The lab now opens as a guided builder, with the active step and live result kept in one reading flow.',
     link: '/lab',
     cta: 'Open the lab',
     visual: editorialImages.fermentedJar,
@@ -124,7 +124,10 @@ function HeroSection() {
             <p className="section-kicker">What changed</p>
             <div className="mt-3 grid gap-3 sm:grid-cols-3">
               <SignalLine label="Clearer pacing" copy="The route is chunked into full-screen moments instead of one endless stack." />
-              <SignalLine label="Bounded content" copy="Dense grids now scroll inside their panels on desktop instead of pushing the whole page down." />
+              <SignalLine
+                label="Bounded content"
+                copy="Dense content now stays in clearer chapters and collapsed secondary panels instead of fighting the main flow."
+              />
               <SignalLine label="Faster scanning" copy="Each screen answers one question at a time: where to go, what exists, and how to build." />
             </div>
           </div>
@@ -454,7 +457,7 @@ function ProcessSection() {
         <div>
           <p className="section-kicker">Lab flow</p>
           <h2 className="display-font mt-3 text-4xl uppercase leading-none text-[var(--color-cream)] sm:text-5xl">
-            The builder now lands in one focused workstation.
+            The builder now opens as one focused configurator.
           </h2>
         </div>
         <Link to="/lab" className="primary-button w-full sm:w-auto">

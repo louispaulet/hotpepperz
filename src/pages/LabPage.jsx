@@ -2,7 +2,7 @@ import Footer from '../components/Footer'
 import SauceStudio from '../components/SauceStudio'
 import VisualImage from '../components/VisualImage'
 import { labSteps, pairingRules } from '../data/catalog'
-import { editorialImages, labGallery, resolveImageSrc } from '../lib/media'
+import { editorialImages, resolveImageSrc } from '../lib/media'
 
 const baseUrl = import.meta.env.BASE_URL
 
@@ -38,8 +38,8 @@ const referenceCards = [
 function LabPage() {
   return (
     <div className="page-sections">
-      <HeroSection />
-      <section className="viewport-section">
+      <section className="grid gap-4">
+        <IntroSection />
         <SauceStudio />
       </section>
       <ReferenceSection />
@@ -48,53 +48,25 @@ function LabPage() {
   )
 }
 
-function HeroSection() {
+function IntroSection() {
   return (
-    <section className="viewport-section grid gap-4 xl:grid-cols-[1.02fr_0.98fr]">
-      <article className="panel viewport-panel overflow-hidden rounded-[2.2rem] p-6 sm:p-8 xl:p-9">
-        <div>
+    <section className="panel rounded-[2rem] p-5 sm:p-6 lg:p-7">
+      <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+        <div className="max-w-3xl">
           <p className="section-kicker">Hot sauce lab</p>
-          <h1 className="display-font viewport-hero-title mt-4 max-w-4xl uppercase leading-[0.9] text-[var(--color-cream)]">
-            The custom blend lab now fits like a workstation, not a poster wall.
+          <h1 className="display-font mt-2 text-4xl uppercase leading-none text-[var(--color-cream)] sm:text-5xl">
+            Build the blend, see the effect, generate the concept.
           </h1>
-          <p className="viewport-hero-copy mt-4 max-w-2xl text-base leading-7 text-[var(--color-text-soft)] sm:text-lg">
-            The route opens with one clear brief, then drops into the builder itself. Supporting
-            images and rules still exist, but they no longer bury the thing you came to use.
+          <p className="mt-3 max-w-2xl text-sm leading-7 text-[var(--color-text-soft)] sm:text-base">
+            The lab opens directly on the configurator now, so the active step, the live result,
+            and the main action stay in one reading flow.
           </p>
-
-          <div className="mt-5 grid gap-3 sm:grid-cols-4">
-            {labGallery.slice(0, 4).map((item) => (
-              <figure
-                key={item.image}
-                className="overflow-hidden rounded-[1.4rem] border border-white/10 bg-black/18"
-              >
-                <img
-                  src={resolveImageSrc(baseUrl, item.image)}
-                  alt={item.alt}
-                  className="h-20 w-full object-cover sm:h-24"
-                  style={{ objectPosition: item.position }}
-                />
-              </figure>
-            ))}
-          </div>
-
-          <div className="soft-divider mt-5 pt-5">
-            <p className="section-kicker">Review before generating</p>
-            <div className="mt-4 space-y-3">
-              {pairingRules.slice(0, 3).map((rule) => (
-                <div key={rule} className="rounded-[1.4rem] border border-white/10 bg-black/15 p-4">
-                  <p className="text-sm leading-7 text-[var(--color-text-soft)]">{rule}</p>
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
-      </article>
 
-      <div className="grid min-h-0 gap-4 sm:grid-cols-2">
-        <LargeVisual item={editorialImages.bottleLineup} className="min-h-[16rem] sm:row-span-2 sm:min-h-[24rem]" />
-        <LargeVisual item={editorialImages.marketCrate} className="min-h-[12rem]" />
-        <LargeVisual item={editorialImages.fermentedJar} className="min-h-[12rem]" />
+        <div className="rounded-[1.5rem] border border-white/8 bg-black/16 p-4 lg:max-w-md">
+          <p className="section-kicker">Quick note</p>
+          <p className="mt-2 text-sm leading-7 text-[var(--color-text-soft)]">{pairingRules[0]}</p>
+        </div>
       </div>
     </section>
   )
@@ -180,19 +152,6 @@ function LabNotes() {
         ))}
       </div>
     </details>
-  )
-}
-
-function LargeVisual({ item, className = '' }) {
-  return (
-    <article className={`panel overflow-hidden rounded-[2rem] ${className}`}>
-      <img
-        src={resolveImageSrc(baseUrl, item.image)}
-        alt={item.alt}
-        className="h-full w-full object-cover"
-        style={{ objectPosition: item.position }}
-      />
-    </article>
   )
 }
 
