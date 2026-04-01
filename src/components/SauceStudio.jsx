@@ -798,6 +798,17 @@ function ActiveStepPanel({
         title="Choose your pepper architecture"
         copy="Pepper comparison is denser on purpose, so the live impact panel can stay visible while you make the core decision."
         aside={`${selectedPeppers.length}/4 selected`}
+        headerActions={
+          <StepNavigation
+            canGoPrev={canGoPrev}
+            canGoNext={canGoNext}
+            canAdvanceCurrentStep={canAdvanceCurrentStep}
+            onPrev={onPrev}
+            onNext={onNext}
+            nextLabel="Continue to accents"
+            className="hidden xl:flex xl:border-t-0 xl:pt-0"
+          />
+        }
       >
         <PepperGrid
           peppers={peppers}
@@ -816,6 +827,7 @@ function ActiveStepPanel({
           onPrev={onPrev}
           onNext={onNext}
           nextLabel="Continue to accents"
+          className="xl:hidden"
         />
       </StepPanel>
     )
@@ -828,6 +840,17 @@ function ActiveStepPanel({
         title="Add accents for body and finish"
         copy="These should feel like quick flavor adjustments. Pick a few supporting notes and keep moving."
         aside={`${selectedAccents.length}/4 selected`}
+        headerActions={
+          <StepNavigation
+            canGoPrev={canGoPrev}
+            canGoNext={canGoNext}
+            canAdvanceCurrentStep={canAdvanceCurrentStep}
+            onPrev={onPrev}
+            onNext={onNext}
+            nextLabel="Continue to heat"
+            className="hidden xl:flex xl:border-t-0 xl:pt-0"
+          />
+        }
       >
         <AccentChooser
           accents={accents}
@@ -846,6 +869,7 @@ function ActiveStepPanel({
           onPrev={onPrev}
           onNext={onNext}
           nextLabel="Continue to heat"
+          className="xl:hidden"
         />
       </StepPanel>
     )
@@ -857,6 +881,17 @@ function ActiveStepPanel({
         stepNumber={3}
         title="Tune the heat narrative"
         copy="This slider changes how intense and theatrical the bottle feels. Watch the live summary as you move it."
+        headerActions={
+          <StepNavigation
+            canGoPrev={canGoPrev}
+            canGoNext={canGoNext}
+            canAdvanceCurrentStep={canAdvanceCurrentStep}
+            onPrev={onPrev}
+            onNext={onNext}
+            nextLabel="Continue to style"
+            className="hidden xl:flex xl:border-t-0 xl:pt-0"
+          />
+        }
       >
         <HeatTuner
           heatBias={heatBias}
@@ -871,6 +906,7 @@ function ActiveStepPanel({
           onPrev={onPrev}
           onNext={onNext}
           nextLabel="Continue to style"
+          className="xl:hidden"
         />
       </StepPanel>
     )
@@ -881,6 +917,17 @@ function ActiveStepPanel({
       stepNumber={4}
       title="Choose the label language"
       copy="Keep this directional. The summary rail will carry the consequences while you pick the visual tone."
+      headerActions={
+        <StepNavigation
+          canGoPrev={canGoPrev}
+          canGoNext={canGoNext}
+          canAdvanceCurrentStep={canAdvanceCurrentStep}
+          onPrev={onPrev}
+          onNext={onNext}
+          nextLabel="Ready to generate"
+          className="hidden xl:flex xl:border-t-0 xl:pt-0"
+        />
+      }
     >
       <StyleChooser
         labelStyles={labelStyles}
@@ -894,6 +941,7 @@ function ActiveStepPanel({
         onPrev={onPrev}
         onNext={onNext}
         nextLabel="Ready to generate"
+        className="xl:hidden"
       />
     </StepPanel>
   )
@@ -911,7 +959,7 @@ function PepperGrid({ peppers, selectedPepperIds, onPepperToggle }) {
             type="button"
             onClick={() => onPepperToggle(pepper.id)}
             aria-pressed={active}
-            className={`rounded-[1.5rem] border p-3 text-left transition ${
+            className={`rounded-[1.35rem] border p-3 text-left transition ${
               active
                 ? 'border-white/18 bg-white/8 shadow-[0_16px_44px_rgba(0,0,0,0.24)]'
                 : 'border-white/8 bg-black/16 hover:border-white/16 hover:bg-white/6'
@@ -925,20 +973,20 @@ function PepperGrid({ peppers, selectedPepperIds, onPepperToggle }) {
             <img
               src={resolveImageSrc(baseUrl, pepper.image)}
               alt={pepper.name}
-              className="h-24 w-full rounded-[1rem] object-cover"
+              className="h-18 w-full rounded-[0.95rem] object-cover sm:h-20"
               style={{ objectPosition: pepper.imagePosition }}
             />
-            <div className="mt-3 flex items-start justify-between gap-3">
+            <div className="mt-2.5 flex items-start justify-between gap-3">
               <div>
-                <p className="text-lg font-semibold text-[var(--color-cream)]">{pepper.name}</p>
-                <p className="mt-1 text-[0.68rem] uppercase tracking-[0.2em] text-[var(--color-text-muted)]">
+                <p className="text-base font-semibold text-[var(--color-cream)]">{pepper.name}</p>
+                <p className="mt-1 text-[0.62rem] uppercase tracking-[0.18em] text-[var(--color-text-muted)]">
                   {pepper.heatBand}
                 </p>
               </div>
               <span className="mt-1 h-3 w-3 rounded-full" style={{ backgroundColor: pepper.tone }} />
             </div>
-            <p className="mt-3 text-sm text-[var(--color-text)]">{formatShu(pepper.shuMax)}</p>
-            <p className="mt-2 text-sm leading-6 text-[var(--color-text-soft)]">{pepper.story}</p>
+            <p className="mt-2 text-sm text-[var(--color-text)]">{formatShu(pepper.shuMax)}</p>
+            <p className="mt-1.5 text-sm leading-5 text-[var(--color-text-soft)]">{pepper.story}</p>
           </button>
         )
       })}
@@ -1040,27 +1088,38 @@ function StyleChooser({ labelStyles, labelStyleId, setLabelStyleId }) {
   )
 }
 
-function StepPanel({ stepNumber, title, copy, aside, children }) {
+function StepPanel({ stepNumber, title, copy, aside, headerActions, children }) {
   return (
     <section className="rounded-[1.8rem] border border-white/8 bg-black/14 p-5 sm:p-6">
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-        <div>
+      <div className="flex flex-col gap-4 xl:flex-row xl:items-start xl:justify-between">
+        <div className="min-w-0">
           <p className="section-kicker">Step {stepNumber}</p>
           <h3 className="mt-2 text-2xl font-semibold text-[var(--color-cream)]">{title}</h3>
           <p className="mt-2 text-sm leading-7 text-[var(--color-text-soft)]">{copy}</p>
         </div>
-        {aside ? (
-          <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-text-muted)]">{aside}</p>
-        ) : null}
+        <div className="flex flex-col gap-3 xl:min-w-[20rem] xl:items-end">
+          {aside ? (
+            <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-text-muted)]">{aside}</p>
+          ) : null}
+          {headerActions}
+        </div>
       </div>
       <div className="mt-5 space-y-5">{children}</div>
     </section>
   )
 }
 
-function StepNavigation({ canGoPrev, canGoNext, canAdvanceCurrentStep, onPrev, onNext, nextLabel }) {
+function StepNavigation({
+  canGoPrev,
+  canGoNext,
+  canAdvanceCurrentStep,
+  onPrev,
+  onNext,
+  nextLabel,
+  className = '',
+}) {
   return (
-    <div className="flex flex-col gap-3 border-t border-white/8 pt-5 sm:flex-row sm:items-center sm:justify-between">
+    <div className={`flex flex-col gap-3 border-t border-white/8 pt-5 sm:flex-row sm:items-center sm:justify-between ${className}`}>
       <button
         type="button"
         onClick={onPrev}
