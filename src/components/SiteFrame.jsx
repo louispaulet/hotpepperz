@@ -12,10 +12,19 @@ function SiteFrame({ children }) {
   return (
     <>
       <header className="sticky top-4 z-30 mb-8">
-        <div className="panel rounded-[1.8rem] px-4 py-4 sm:px-6">
+        <div className="panel rounded-[2rem] px-4 py-4 sm:px-6">
+          <div className="mb-4 flex items-center justify-between gap-4 border-b border-white/8 pb-4">
+            <p className="mono-font text-[0.68rem] uppercase tracking-[0.32em] text-[var(--color-text-muted)]">
+              Editorial hot sauce studio
+            </p>
+            <p className="mono-font text-[0.68rem] uppercase tracking-[0.32em] text-[var(--color-text-muted)]">
+              Small batch heat atlas
+            </p>
+          </div>
+
           <div className="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
             <Link to="/" className="flex items-center gap-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-[1rem] border border-white/12 bg-[linear-gradient(160deg,rgba(255,188,104,0.18),rgba(255,92,46,0.14))] text-lg font-black text-[var(--color-cream)]">
+              <div className="flex h-12 w-12 items-center justify-center rounded-[1rem] border border-white/12 bg-[linear-gradient(160deg,rgba(255,188,104,0.28),rgba(255,92,46,0.22))] text-lg font-black text-[var(--color-cream)]">
                 HZ
               </div>
               <div>
@@ -42,7 +51,7 @@ function SiteFrame({ children }) {
               </nav>
 
               <Link to="/lab" className="primary-button">
-                🌶️ Start a Blend
+                Start a Blend
               </Link>
             </div>
           </div>

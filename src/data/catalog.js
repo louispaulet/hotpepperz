@@ -13,6 +13,7 @@ export const peppers = [
     bestFor: 'Breakfast sauces, taco drizzles, bright green ferments.',
     tone: '#7db84d',
     image: 'images/jalapeno-peppers.jpg',
+    imagePosition: 'center 58%',
     story: 'A crisp garden pepper that gives body and freshness without turning the bottle into a dare.',
   },
   {
@@ -27,6 +28,7 @@ export const peppers = [
     bestFor: 'Daily-driver sauces that need lift, bite, and quick brightness.',
     tone: '#67b646',
     image: 'images/serrano-peppers.jpg',
+    imagePosition: 'center center',
     story: 'Lean, focused heat with a citrusy edge that keeps blends sharp and agile.',
   },
   {
@@ -41,6 +43,7 @@ export const peppers = [
     bestFor: 'Straight-ahead table sauces and wings-focused bottles.',
     tone: '#db5c30',
     image: 'images/cayenne.jpg',
+    imagePosition: 'center 42%',
     story: 'The familiar backbone of old-school hot sauce, reliable when you want bite without theatrics.',
   },
   {
@@ -55,6 +58,7 @@ export const peppers = [
     bestFor: 'Bright yellow sauces with fruit depth and a polished finish.',
     tone: '#f4a61b',
     image: 'images/aji-amarillo.jpg',
+    imagePosition: 'center center',
     story: 'A golden-fruit pepper that makes a sauce feel layered, cheerful, and surprisingly elegant.',
   },
   {
@@ -69,6 +73,7 @@ export const peppers = [
     bestFor: 'Tropical sauces, glossy glazes, and fruit-led high-heat blends.',
     tone: '#ff8f3f',
     image: editorialImages.habaneroMacro.image,
+    imagePosition: editorialImages.habaneroMacro.position,
     story: 'Sweet blaze with immediate presence. It announces itself fast and lingers with confidence.',
   },
   {
@@ -83,6 +88,7 @@ export const peppers = [
     bestFor: 'Island-inspired sauces with fragrance and rounded sweetness.',
     tone: '#ffbb59',
     image: 'https://commons.wikimedia.org/wiki/Special:Redirect/file/20200826%20Scotch%20Bonnet%20Pflanze%2001.jpg',
+    imagePosition: 'center 30%',
     story: 'Caribbean swagger in pepper form. Floral, rich, and velvety right before the hit lands.',
   },
   {
@@ -97,6 +103,7 @@ export const peppers = [
     bestFor: 'Dark, delayed-burn bottles with real drama.',
     tone: '#cd4a33',
     image: editorialImages.nagaCluster.image,
+    imagePosition: editorialImages.nagaCluster.position,
     story: 'The heat arrives late and keeps climbing. Useful when the sauce should feel cinematic, not merely hot.',
   },
   {
@@ -111,6 +118,7 @@ export const peppers = [
     bestFor: 'Laser-cut heat spikes in otherwise balanced blends.',
     tone: '#b72c14',
     image: 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Trinidad%20scorpion%20moruga%20yellow.jpg',
+    imagePosition: 'center 42%',
     story: 'Fast, pointed intensity. It makes a recipe feel technically dangerous rather than broadly smoky.',
   },
   {
@@ -125,6 +133,7 @@ export const peppers = [
     bestFor: 'Collector bottles, challenge sauces, and tiny controlled additions.',
     tone: '#7e130a',
     image: 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Carolina%20Reaper%20pepper%20pods.jpg',
+    imagePosition: 'center 46%',
     story: 'The final-boss pepper. A little creates tension. Too much becomes the entire story.',
   },
 ]

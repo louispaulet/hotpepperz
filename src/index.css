@@ -18,11 +18,14 @@
   --color-text-muted: rgba(244, 234, 214, 0.52);
   --color-saffron: #f7b14a;
   --color-flame: #f05b34;
+  --color-ember: #de4328;
+  --color-gold: #ffd08a;
   --color-ink: #1d140d;
   background:
-    radial-gradient(circle at top, rgba(247, 177, 74, 0.13), transparent 32%),
-    radial-gradient(circle at 85% 18%, rgba(240, 91, 52, 0.14), transparent 28%),
-    linear-gradient(180deg, #17120f 0%, #0f0c0a 50%, #090807 100%);
+    radial-gradient(circle at 10% 0%, rgba(247, 177, 74, 0.16), transparent 24%),
+    radial-gradient(circle at 85% 12%, rgba(240, 91, 52, 0.16), transparent 22%),
+    radial-gradient(circle at 50% 100%, rgba(222, 67, 40, 0.1), transparent 28%),
+    linear-gradient(180deg, #1a1310 0%, #120d0b 48%, #080706 100%);
   color: var(--color-text);
 }
 
@@ -39,9 +42,10 @@ body {
   min-width: 320px;
   min-height: 100vh;
   background:
-    radial-gradient(circle at top, rgba(247, 177, 74, 0.13), transparent 32%),
-    radial-gradient(circle at 85% 18%, rgba(240, 91, 52, 0.14), transparent 28%),
-    linear-gradient(180deg, #17120f 0%, #0f0c0a 50%, #090807 100%);
+    radial-gradient(circle at 10% 0%, rgba(247, 177, 74, 0.16), transparent 24%),
+    radial-gradient(circle at 85% 12%, rgba(240, 91, 52, 0.16), transparent 22%),
+    radial-gradient(circle at 50% 100%, rgba(222, 67, 40, 0.1), transparent 28%),
+    linear-gradient(180deg, #1a1310 0%, #120d0b 48%, #080706 100%);
 }
 
 a {
@@ -74,7 +78,17 @@ select {
     linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
   background-size: 64px 64px;
   mask-image: radial-gradient(circle at center, black, transparent 92%);
-  opacity: 0.35;
+  opacity: 0.18;
+}
+
+.site-lines {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(120deg, transparent 0%, rgba(255, 208, 138, 0.08) 48%, transparent 52%),
+    linear-gradient(120deg, transparent 0%, rgba(222, 67, 40, 0.06) 68%, transparent 72%);
+  opacity: 0.45;
+  mask-image: radial-gradient(circle at center, black, transparent 88%);
 }
 
 .ambient-photo {
@@ -83,25 +97,34 @@ select {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  filter: blur(10px) saturate(0.9);
+  filter: blur(12px) saturate(0.95);
   mix-blend-mode: screen;
-  opacity: 0.18;
+  opacity: 0.22;
 }
 
 .ambient-photo-left {
-  top: 8rem;
-  left: -10rem;
-  height: 38rem;
+  top: 7rem;
+  left: -9rem;
+  height: 34rem;
   width: 28rem;
   transform: rotate(-10deg);
 }
 
 .ambient-photo-right {
-  right: -8rem;
-  bottom: 4rem;
-  height: 34rem;
-  width: 32rem;
+  right: -7rem;
+  bottom: 2rem;
+  height: 30rem;
+  width: 28rem;
   transform: rotate(9deg);
+}
+
+.ambient-photo-center {
+  top: 30%;
+  left: 50%;
+  height: 24rem;
+  width: 44rem;
+  transform: translateX(-50%) rotate(-4deg);
+  opacity: 0.1;
 }
 
 .hero-glow {
@@ -136,6 +159,15 @@ select {
   background: radial-gradient(circle, rgba(255, 196, 102, 0.18), transparent 70%);
 }
 
+.hero-glow-top {
+  left: 40%;
+  top: -12rem;
+  height: 18rem;
+  width: 36rem;
+  transform: translateX(-50%);
+  background: radial-gradient(circle, rgba(255, 208, 138, 0.18), transparent 70%);
+}
+
 .grain-overlay {
   pointer-events: none;
   position: fixed;
@@ -162,10 +194,10 @@ select {
   position: relative;
   border: 1px solid var(--color-border);
   background:
-    linear-gradient(180deg, rgba(32, 27, 21, 0.85), rgba(15, 13, 11, 0.82)),
+    linear-gradient(180deg, rgba(33, 24, 18, 0.88), rgba(15, 12, 10, 0.84)),
     var(--color-panel);
   box-shadow:
-    0 24px 90px rgba(0, 0, 0, 0.28),
+    0 30px 90px rgba(0, 0, 0, 0.34),
     inset 0 1px 0 rgba(255, 248, 233, 0.04);
   backdrop-filter: blur(18px);
 }
@@ -212,8 +244,8 @@ select {
 .primary-button {
   border: 1px solid rgba(255, 215, 156, 0.26);
   color: var(--color-ink);
-  background: linear-gradient(135deg, #f6c66e, #f05b34 68%);
-  box-shadow: 0 16px 34px rgba(240, 91, 52, 0.2);
+  background: linear-gradient(135deg, #ffd08a, #f05b34 68%);
+  box-shadow: 0 16px 34px rgba(240, 91, 52, 0.28);
 }
 
 .secondary-button {
@@ -225,6 +257,7 @@ select {
 .primary-button:hover,
 .secondary-button:hover {
   transform: translateY(-1px);
+  filter: brightness(1.02);
 }
 
 .primary-button:focus-visible,
