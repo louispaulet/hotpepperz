@@ -50,6 +50,10 @@ function formatShu(value) {
   return `${numberFormatter.format(value)} SHU`
 }
 
+function scrollToSection(sectionId) {
+  document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+}
+
 function WikiPage() {
   return (
     <div className="space-y-8 lg:space-y-10">
@@ -80,15 +84,15 @@ function HeroSection() {
         </div>
 
         <div className="flex flex-wrap gap-3">
-          <a href="#peppers" className="secondary-button">
+          <button type="button" onClick={() => scrollToSection('peppers')} className="secondary-button">
             Peppers
-          </a>
-          <a href="#families" className="secondary-button">
+          </button>
+          <button type="button" onClick={() => scrollToSection('families')} className="secondary-button">
             Sauce Families
-          </a>
-          <a href="#pairings" className="secondary-button">
+          </button>
+          <button type="button" onClick={() => scrollToSection('pairings')} className="secondary-button">
             Pairing Rules
-          </a>
+          </button>
         </div>
       </div>
 
