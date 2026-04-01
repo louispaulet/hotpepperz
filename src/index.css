@@ -317,31 +317,12 @@ body,
 
   .viewport-section {
     min-height: calc(100svh - 9.5rem);
-    height: calc(100svh - 9.5rem);
     scroll-snap-align: start;
-    overflow: hidden;
-  }
-
-  .viewport-section > * {
-    min-height: 0;
-  }
-
-  .viewport-section > article,
-  .viewport-section > div,
-  .viewport-section > section {
-    height: 100%;
   }
 
   .viewport-panel {
     display: flex;
-    flex: 1;
     flex-direction: column;
-  }
-
-  .viewport-scroll {
-    overflow-y: auto;
-    scrollbar-gutter: stable;
-    padding-right: 0.35rem;
   }
 }
 
@@ -353,7 +334,6 @@ body,
 
   .viewport-section {
     min-height: calc(100svh - 9.6rem);
-    height: calc(100svh - 9.6rem);
   }
 
   .viewport-hero-title {

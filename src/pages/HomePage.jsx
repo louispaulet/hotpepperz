@@ -94,7 +94,7 @@ function HomePage() {
 function HeroSection() {
   return (
     <section className="viewport-section grid gap-4 xl:grid-cols-[1.08fr_0.92fr]">
-      <article className="panel viewport-panel viewport-scroll viewport-hero-card h-full min-h-0 overflow-x-hidden rounded-[2.2rem] p-6 sm:p-8 xl:p-9">
+      <article className="panel viewport-panel overflow-hidden rounded-[2.2rem] p-6 sm:p-8 xl:p-9">
         <div className="relative z-10">
           <p className="section-kicker">Small-batch heat, better art direction</p>
           <h1 className="display-font viewport-hero-title mt-4 max-w-4xl uppercase leading-[0.9] text-[var(--color-cream)]">
@@ -131,8 +131,8 @@ function HeroSection() {
         </div>
       </article>
 
-      <article className="grid h-full min-h-0 gap-4 rounded-[2.2rem]">
-        <div className="grid h-full gap-4 sm:grid-cols-[1.15fr_0.85fr]">
+      <article className="grid min-h-0 gap-4 rounded-[2.2rem]">
+        <div className="grid gap-4 sm:grid-cols-[1.15fr_0.85fr]">
           <MediaFrame item={heroGallery[0]} className="min-h-[18rem] sm:min-h-[24rem]" />
           <div className="grid gap-4">
             <MediaFrame item={heroGallery[1]} className="min-h-[12rem]" />
@@ -270,7 +270,7 @@ function PantryGallery() {
 
 function SignatureShelf() {
   return (
-    <section className="panel viewport-panel rounded-[2rem] p-6 sm:p-8">
+    <section className="panel rounded-[2rem] p-6 sm:p-8">
       <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
         <div>
           <p className="section-kicker">Signature shelf</p>
@@ -432,7 +432,7 @@ function ProcessPreview() {
         We trimmed the route into clearer decision points so the builder no longer disappears below
         giant supporting panels.
       </p>
-      <div className="viewport-scroll mt-6 grid gap-4 sm:grid-cols-3">
+      <div className="mt-6 grid gap-4 sm:grid-cols-3">
         {labSteps.map((step, index) => (
           <article key={step.title} className="rounded-[1.6rem] border border-white/10 bg-black/16 p-5">
             <p className="mono-font text-xs uppercase tracking-[0.28em] text-[var(--color-text-muted)]">

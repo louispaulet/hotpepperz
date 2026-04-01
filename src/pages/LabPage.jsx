@@ -51,7 +51,7 @@ function LabPage() {
 function HeroSection() {
   return (
     <section className="viewport-section grid gap-4 xl:grid-cols-[1.02fr_0.98fr]">
-      <article className="panel viewport-panel viewport-scroll viewport-hero-card h-full min-h-0 overflow-x-hidden rounded-[2.2rem] p-6 sm:p-8 xl:p-9">
+      <article className="panel viewport-panel overflow-hidden rounded-[2.2rem] p-6 sm:p-8 xl:p-9">
         <div>
           <p className="section-kicker">Hot sauce lab</p>
           <h1 className="display-font viewport-hero-title mt-4 max-w-4xl uppercase leading-[0.9] text-[var(--color-cream)]">
@@ -91,7 +91,7 @@ function HeroSection() {
         </div>
       </article>
 
-      <div className="grid h-full min-h-0 gap-4 sm:grid-cols-2">
+      <div className="grid min-h-0 gap-4 sm:grid-cols-2">
         <LargeVisual item={editorialImages.bottleLineup} className="min-h-[16rem] sm:row-span-2 sm:min-h-[24rem]" />
         <LargeVisual item={editorialImages.marketCrate} className="min-h-[12rem]" />
         <LargeVisual item={editorialImages.fermentedJar} className="min-h-[12rem]" />
