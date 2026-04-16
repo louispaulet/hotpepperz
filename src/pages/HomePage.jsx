@@ -18,7 +18,7 @@ const heroGallery = [
 const houseSauceVisuals = {
   'Market Ember No. 3': {
     ...editorialImages.marketCrate,
-    image: 'images/serrano-peppers.jpg',
+    image: 'images/serrano-peppers.png',
     alt: 'Fresh serrano peppers for Market Ember No. 3',
     position: 'center center',
   },
@@ -36,7 +36,7 @@ const houseSauceVisuals = {
 const familyVisuals = {
   'Bright Citrus': {
     ...editorialImages.marketCrate,
-    image: 'images/jalapeno-peppers.jpg',
+    image: 'images/jalapeno-peppers.png',
     alt: 'Jalapeno peppers representing bright citrus sauces',
     position: 'center 58%',
   },

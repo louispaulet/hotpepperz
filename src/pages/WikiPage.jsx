@@ -9,7 +9,7 @@ const baseUrl = import.meta.env.BASE_URL
 
 const familyVisuals = {
   'Bright Citrus': {
-    image: 'images/jalapeno-peppers.jpg',
+    image: 'images/jalapeno-peppers.png',
     alt: 'Jalapeno peppers for bright citrus sauces',
     position: 'center 58%',
   },
@@ -20,7 +20,7 @@ const familyVisuals = {
 
 const houseSauceVisuals = {
   'Market Ember No. 3': {
-    image: 'images/serrano-peppers.jpg',
+    image: 'images/serrano-peppers.png',
     alt: 'Serrano peppers supporting Market Ember No. 3',
     position: 'center center',
   },
@@ -340,17 +340,28 @@ function ImageCredits() {
 
       <div className="viewport-scroll mt-6 grid gap-4">
         {featuredImageCredits.map((credit) => (
-          <a
-            key={credit.href}
-            href={credit.href}
-            target="_blank"
-            rel="noreferrer"
-            className="rounded-[1.4rem] border border-white/10 bg-black/15 p-4 text-sm leading-7 text-[var(--color-text-soft)]"
-          >
-            {credit.label}
-            <br />
-            {credit.meta}
-          </a>
+          credit.href ? (
+            <a
+              key={credit.href}
+              href={credit.href}
+              target="_blank"
+              rel="noreferrer"
+              className="rounded-[1.4rem] border border-white/10 bg-black/15 p-4 text-sm leading-7 text-[var(--color-text-soft)]"
+            >
+              {credit.label}
+              <br />
+              {credit.meta}
+            </a>
+          ) : (
+            <div
+              key={`${credit.label}-${credit.meta}`}
+              className="rounded-[1.4rem] border border-white/10 bg-black/15 p-4 text-sm leading-7 text-[var(--color-text-soft)]"
+            >
+              {credit.label}
+              <br />
+              {credit.meta}
+            </div>
+          )
         ))}
       </div>
     </section>
