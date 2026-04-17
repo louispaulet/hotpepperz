@@ -85,130 +85,130 @@ export const editorialImages = {
 export const pepperImageAssociations = {
   'birds-eye-chili': {
     portraitVisual: {
-      image: editorialImages.heroChili.image,
-      alt: 'Single vivid red chili used as the Bird’s Eye chili portrait image',
+      image: 'images/peppers/birds-eye-chili-portrait.png',
+      alt: "Premium portrait of Bird's Eye chili peppers with small slender red pods",
       position: 'center center',
       prompt:
-        "existing house raster image reused for Bird's Eye chili portrait",
+        "Premium editorial food photography of Bird's Eye chili peppers, clearly identifiable small slender Thai-style red chilies, single-variety focus on a clean softly lit studio backdrop, tactile glossy skin detail, restrained high-end culinary styling, warm cream highlights, realistic color, no text, no hands, no props, composition suitable for a modern pepper encyclopedia portrait PNG",
     },
     landscapeVisual: {
-      image: editorialImages.marketCrate.image,
-      alt: 'Overflowing market pepper display reused as a vivid Bird’s Eye chili landscape backdrop',
-      position: editorialImages.marketCrate.position,
+      image: 'images/landscapes/birds-eye-chili-landscape.png',
+      alt: "Editorial growing landscape for Bird's Eye chili in mainland Southeast Asia",
+      position: 'center center',
       prompt:
-        'existing house raster image reused as Bird’s Eye chili backdrop',
+        "Editorial agricultural travel photography of a Bird's Eye chili growing landscape in mainland Southeast Asia, believable humid tropical pepper fields with small chili plants, lush green growth, monsoon-season atmosphere, distant hills and rice-country character, warm natural light, realistic premium field-guide style, wide composition with negative space for text overlays, no people, no text, no diagrams, no map graphics",
     },
   },
   'piri-piri': {
     portraitVisual: {
-      image: 'images/cayenne.png',
-      alt: 'Slender red pepper image reused as the Piri Piri portrait',
-      position: 'center 42%',
+      image: 'images/peppers/piri-piri-portrait.png',
+      alt: 'Premium portrait of Piri Piri peppers with slender red African bird peppers',
+      position: 'center center',
       prompt:
-        'existing house raster image reused for Piri Piri portrait',
+        'Premium editorial food photography of Piri Piri peppers, clearly identifiable small slender red African bird peppers, single-variety focus on a clean softly lit studio backdrop, tactile glossy skin detail, restrained high-end culinary styling, warm cream highlights, realistic color, no text, no hands, no props, composition suitable for a modern pepper encyclopedia portrait PNG',
     },
     landscapeVisual: {
-      image: editorialImages.habaneroPlant.image,
-      alt: 'Pepper plant image reused as a natural growing backdrop for Piri Piri',
-      position: editorialImages.habaneroPlant.position,
+      image: 'images/landscapes/piri-piri-landscape.png',
+      alt: 'Editorial coastal growing landscape for Piri Piri in Mozambique or Angola',
+      position: 'center center',
       prompt:
-        'existing house raster image reused as Piri Piri growing backdrop',
+        'Editorial agricultural travel photography of a Piri Piri growing landscape in coastal Mozambique or Angola, believable warm coastal pepper farm with small red peppers, dry-season grasses, distant ocean light and low hills, realistic premium field-guide style, wide composition with negative space for text overlays, no people, no text, no diagrams, no map graphics',
     },
   },
   rocoto: {
     portraitVisual: {
-      image: editorialImages.pepperStillLife.image,
-      alt: 'Dramatic pepper still life reused as the Rocoto portrait visual',
-      position: editorialImages.pepperStillLife.position,
-      prompt:
-        'existing house raster image reused for Rocoto portrait',
-    },
-    landscapeVisual: {
-      image: 'images/landscapes/rocoto-landscape.svg',
-      alt: 'Andean terrace landscape showing cool highland pepper cultivation',
+      image: 'images/peppers/rocoto-portrait.png',
+      alt: 'Premium portrait of rocoto peppers with thick glossy red fruit',
       position: 'center center',
       prompt:
-        'Andean terrace pepper landscape, high-altitude farms, mountain light, editorial atlas illustration',
+        'Premium editorial food photography of rocoto peppers, clearly identifiable thick-walled glossy red rocoto peppers with apple-like shape, single-variety focus on a clean softly lit studio backdrop, tactile skin detail, restrained high-end culinary styling, warm cream highlights, realistic color, no text, no hands, no props, composition suitable for a modern pepper encyclopedia portrait PNG',
+    },
+    landscapeVisual: {
+      image: 'images/landscapes/rocoto-landscape.png',
+      alt: 'Editorial Andean growing landscape for rocoto in Peru or Bolivia',
+      position: 'center center',
+      prompt:
+        'Editorial agricultural travel photography of a rocoto growing landscape in the Andean highlands of Peru or Bolivia, believable cool high-altitude pepper farm with thick-walled rocoto plants, mountain terraces, strong sun, cool air, dramatic valley backdrop, realistic premium field-guide style, wide composition with negative space for text overlays, no people, no text, no diagrams, no map graphics',
     },
   },
   'chile-de-arbol': {
     portraitVisual: {
-      image: 'images/cayenne.png',
-      alt: 'Slender red pepper image reused as the Chile de Arbol portrait',
-      position: 'center 42%',
+      image: 'images/peppers/chile-de-arbol-portrait.png',
+      alt: 'Premium portrait of Chile de Arbol peppers with slender Mexican pods',
+      position: 'center center',
       prompt:
-        'existing house raster image reused for Chile de Arbol portrait',
+        'Premium editorial food photography of Chile de Arbol peppers, clearly identifiable slender dried-red and fresh-red Mexican chile de arbol pods, single-variety focus on a clean softly lit studio backdrop, tactile skin detail, restrained high-end culinary styling, warm cream highlights, realistic color, no text, no hands, no props, composition suitable for a modern pepper encyclopedia portrait PNG',
     },
     landscapeVisual: {
-      image: editorialImages.marketCrate.image,
-      alt: 'Market pepper scene reused as the Chile de Arbol backdrop',
-      position: editorialImages.marketCrate.position,
+      image: 'images/landscapes/chile-de-arbol-landscape.png',
+      alt: 'Editorial Mexican growing landscape for Chile de Arbol',
+      position: 'center center',
       prompt:
-        'existing house raster image reused as Chile de Arbol backdrop',
+        'Editorial agricultural travel photography of a Chile de Arbol growing landscape in Mexico, believable sunny semi-arid chili farm with slender red chile de arbol plants, dry valley light, cultivated rows, low hills and rural Mexican agricultural atmosphere, realistic premium field-guide style, wide composition with negative space for text overlays, no people, no text, no diagrams, no map graphics',
     },
   },
   'madame-jeanette': {
     portraitVisual: {
-      image: 'images/scotch-bonnet.png',
-      alt: 'Scotch bonnet image reused as the Madame Jeanette portrait',
-      position: 'center 30%',
+      image: 'images/peppers/madame-jeanette-portrait.png',
+      alt: 'Premium portrait of Madame Jeanette peppers with wrinkled yellow-orange lantern shapes',
+      position: 'center center',
       prompt:
-        'existing house raster image reused for Madame Jeanette portrait',
+        'Premium editorial food photography of Madame Jeanette peppers, clearly identifiable wrinkled lantern-shaped yellow-orange Surinamese peppers, single-variety focus on a clean softly lit studio backdrop, tactile skin detail, restrained high-end culinary styling, warm cream highlights, realistic color, no text, no hands, no props, composition suitable for a modern pepper encyclopedia portrait PNG',
     },
     landscapeVisual: {
-      image: editorialImages.habaneroPlant.image,
-      alt: 'Natural pepper plant image reused as the Madame Jeanette growing backdrop',
-      position: editorialImages.habaneroPlant.position,
+      image: 'images/landscapes/madame-jeanette-landscape.png',
+      alt: 'Editorial Surinamese growing landscape for Madame Jeanette peppers',
+      position: 'center center',
       prompt:
-        'existing house raster image reused as Madame Jeanette growing backdrop',
+        'Editorial agricultural travel photography of a Madame Jeanette growing landscape in Suriname, believable humid tropical pepper farm with yellow-orange lantern peppers, lush lowland vegetation, river-basin atmosphere, soft warm equatorial light, realistic premium field-guide style, wide composition with negative space for text overlays, no people, no text, no diagrams, no map graphics',
     },
   },
   datil: {
     portraitVisual: {
-      image: 'images/aji-amarillo.png',
-      alt: 'Yellow pepper image reused as the Datil portrait',
+      image: 'images/peppers/datil-portrait.png',
+      alt: 'Premium portrait of Datil peppers with slender yellow-orange Florida pods',
       position: 'center center',
       prompt:
-        'existing house raster image reused for Datil portrait',
+        'Premium editorial food photography of Datil peppers, clearly identifiable slender yellow-orange datil peppers from Florida, single-variety focus on a clean softly lit studio backdrop, tactile glossy skin detail, restrained high-end culinary styling, warm cream highlights, realistic color, no text, no hands, no props, composition suitable for a modern pepper encyclopedia portrait PNG',
     },
     landscapeVisual: {
-      image: editorialImages.habaneroPlant.image,
-      alt: 'Pepper plant image reused as the Datil growing backdrop',
-      position: editorialImages.habaneroPlant.position,
+      image: 'images/landscapes/datil-landscape.png',
+      alt: 'Editorial Florida growing landscape for Datil peppers near St. Augustine',
+      position: 'center center',
       prompt:
-        'existing house raster image reused as Datil growing backdrop',
+        'Editorial agricultural travel photography of a Datil growing landscape near St. Augustine, Florida, believable humid subtropical pepper farm with yellow-orange datil peppers, sandy soils, coastal flatland atmosphere, palmettos and long summer light, realistic premium field-guide style, wide composition with negative space for text overlays, no people, no text, no diagrams, no map graphics',
     },
   },
   cheongyang: {
     portraitVisual: {
-      image: 'images/serrano-peppers.png',
-      alt: 'Serrano pepper image reused as the Cheongyang portrait',
+      image: 'images/peppers/cheongyang-portrait.png',
+      alt: 'Premium portrait of Cheongyang peppers with slim green Korean chilies and a few red ones',
       position: 'center center',
       prompt:
-        'existing house raster image reused for Cheongyang portrait',
+        'Premium editorial food photography of Cheongyang peppers, clearly identifiable slim Korean green chilies with a few ripening red ones, single-variety focus on a clean softly lit studio backdrop, tactile skin detail, restrained high-end culinary styling, warm cream highlights, realistic color, no text, no hands, no props, composition suitable for a modern pepper encyclopedia portrait PNG',
     },
     landscapeVisual: {
-      image: editorialImages.marketCrate.image,
-      alt: 'Market pepper image reused as the Cheongyang backdrop',
-      position: editorialImages.marketCrate.position,
+      image: 'images/landscapes/cheongyang-landscape.png',
+      alt: 'Editorial South Korean growing landscape for Cheongyang peppers',
+      position: 'center center',
       prompt:
-        'existing house raster image reused as Cheongyang backdrop',
+        'Editorial agricultural travel photography of a Cheongyang pepper growing landscape in South Korea, believable temperate Korean farm with slim green peppers and a few red ripening peppers, mountain backdrop, monsoon-season summer light, neat agricultural rows, realistic premium field-guide style, wide composition with negative space for text overlays, no people, no text, no diagrams, no map graphics',
     },
   },
   fatalii: {
     portraitVisual: {
-      image: 'images/aji-amarillo.png',
-      alt: 'Yellow pepper image reused as the Fatalii portrait',
+      image: 'images/peppers/fatalii-portrait.png',
+      alt: 'Premium portrait of Fatalii peppers with elongated pale yellow African pods',
       position: 'center center',
       prompt:
-        'existing house raster image reused for Fatalii portrait',
+        'Premium editorial food photography of Fatalii peppers, clearly identifiable elongated pale yellow African hot peppers with distinct wrinkled taper, single-variety focus on a clean softly lit studio backdrop, tactile skin detail, restrained high-end culinary styling, warm cream highlights, realistic color, no text, no hands, no props, composition suitable for a modern pepper encyclopedia portrait PNG',
     },
     landscapeVisual: {
-      image: editorialImages.habaneroPlant.image,
-      alt: 'Pepper plant image reused as the Fatalii growing backdrop',
-      position: editorialImages.habaneroPlant.position,
+      image: 'images/landscapes/fatalii-landscape.png',
+      alt: 'Editorial African growing landscape for Fatalii peppers',
+      position: 'center center',
       prompt:
-        'existing house raster image reused as Fatalii growing backdrop',
+        'Editorial agricultural travel photography of a Fatalii pepper growing landscape in central or southern Africa, believable warm savanna pepper farm with pale yellow fatalii peppers, strong sun, dry intervals, broad sky and cultivated rows, realistic premium field-guide style, wide composition with negative space for text overlays, no people, no text, no diagrams, no map graphics',
     },
   },
 }
