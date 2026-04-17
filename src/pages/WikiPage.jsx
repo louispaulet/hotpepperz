@@ -41,7 +41,7 @@ function HeroSection() {
             <h1 className="display-font mt-4 text-6xl uppercase leading-[0.88] text-[var(--color-cream)]">
               A real atlas of peppers, recipes, legends, and places to eat.
             </h1>
-            <p className="mt-4 max-w-3xl text-sm leading-7 text-[var(--color-text-soft)] sm:text-base">
+            <p className="hero-copy mt-4 max-w-3xl text-sm leading-7 text-[var(--color-text-soft)] sm:text-base">
               The field guide is no longer a compact side section. It now acts as a route-driven
               encyclopedia with reusable visual associations, supporting index pages, restaurant
               spotlights, and bilingual legal documents in the wider site shell.
@@ -100,7 +100,7 @@ function PepperIndexSection() {
               <div className="p-5">
                 <p className="section-kicker">{pepper.origin}</p>
                 <h2 className="mt-3 text-2xl font-semibold text-[var(--color-cream)]">{pepper.name}</h2>
-                <p className="mt-3 text-sm leading-7 text-[var(--color-text-soft)]">{pepper.summary}</p>
+                <p className="card-copy mt-3 text-sm leading-7 text-[var(--color-text-soft)]">{pepper.summary}</p>
               </div>
             </Link>
           )
@@ -138,7 +138,7 @@ function RecipeIndexSection() {
               <div className="p-5">
                 <p className="section-kicker">{recipe.kind}</p>
                 <h2 className="mt-3 text-2xl font-semibold text-[var(--color-cream)]">{recipe.title}</h2>
-                <p className="mt-3 text-sm leading-7 text-[var(--color-text-soft)]">{recipe.summary}</p>
+                <p className="card-copy mt-3 text-sm leading-7 text-[var(--color-text-soft)]">{recipe.summary}</p>
               </div>
             </Link>
           )
@@ -184,7 +184,7 @@ function RestaurantIndexSection() {
                 <div className="mt-5">
                   <p className="section-kicker">{restaurant.recognition}</p>
                   <h2 className="mt-3 text-2xl font-semibold text-[var(--color-cream)]">{restaurant.name}</h2>
-                  <p className="mt-3 text-sm leading-7 text-[var(--color-text-soft)]">{restaurant.city}</p>
+                  <p className="card-copy mt-3 text-sm leading-7 text-[var(--color-text-soft)]">{restaurant.city}</p>
                 </div>
               </div>
             </Link>
@@ -206,7 +206,7 @@ function LegendIndexSection() {
         <h2 className="display-font mt-3 text-5xl uppercase leading-none text-[var(--color-cream)]">
           The pepper routes.
         </h2>
-        <p className="mt-4 text-sm leading-7 text-[var(--color-text-soft)]">{legend.summary}</p>
+        <p className="section-copy mt-4 text-sm leading-7 text-[var(--color-text-soft)]">{legend.summary}</p>
         <Link to={`/wiki/legends/${legend.slug}`} className="mt-6 inline-flex text-sm font-semibold uppercase tracking-[0.16em] text-[var(--color-saffron)]">
           Read the history page
         </Link>
@@ -221,7 +221,7 @@ function LegendIndexSection() {
         />
         <div className="p-6">
           <p className="section-kicker">History and migration</p>
-          <p className="mt-4 text-sm leading-7 text-[var(--color-text-soft)]">
+          <p className="card-copy mt-4 text-sm leading-7 text-[var(--color-text-soft)]">
             The encyclopedia now includes a legend page that links the peppers back to trade, migration,
             and the many landscapes where they became local.
           </p>

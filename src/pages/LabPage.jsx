@@ -61,7 +61,7 @@ function IntroSection() {
           <h1 className="display-font mt-2 text-4xl uppercase leading-none text-[var(--color-cream)] sm:text-5xl">
             Build a bottle the way a careful sauce maker thinks.
           </h1>
-          <p className="mt-3 max-w-2xl text-sm leading-7 text-[var(--color-text-soft)] sm:text-base">
+          <p className="hero-copy mt-3 max-w-2xl text-sm leading-7 text-[var(--color-text-soft)] sm:text-base">
             Choose the peppers, balance the seasoning, and decide how much fire the final bottle
             should carry. The aim is not novelty heat. The aim is a sauce with structure.
           </p>
@@ -69,7 +69,7 @@ function IntroSection() {
 
         <div className="rounded-[1.5rem] border border-white/8 bg-black/16 p-4 lg:max-w-md">
           <p className="section-kicker">Bench reminder</p>
-          <p className="mt-2 text-sm leading-7 text-[var(--color-text-soft)]">{pairingRules[0]}</p>
+          <p className="section-copy mt-2 text-sm leading-7 text-[var(--color-text-soft)]">{pairingRules[0]}</p>
         </div>
       </div>
     </section>
@@ -87,7 +87,7 @@ function OptionalReferenceSection() {
               Open for ingredient reminders, process notes, and bottling cues.
             </h2>
           </div>
-          <p className="max-w-2xl text-sm leading-7 text-[var(--color-text-soft)] sm:text-base">
+          <p className="section-copy max-w-2xl text-sm leading-7 text-[var(--color-text-soft)] sm:text-base">
             This section keeps the slower reading nearby without getting in the way of the actual
             build. Think of it as the margin notes from the workshop bench.
           </p>
@@ -98,7 +98,7 @@ function OptionalReferenceSection() {
         <section className="space-y-4">
           <div>
             <p className="section-kicker">Ingredient cues</p>
-            <p className="mt-2 text-sm leading-7 text-[var(--color-text-soft)]">
+            <p className="section-copy mt-2 text-sm leading-7 text-[var(--color-text-soft)]">
               Use these visual notes to think about freshness, texture, fermentation, and the
               bottle you want to end up holding.
             </p>
@@ -115,7 +115,7 @@ function OptionalReferenceSection() {
                 <div className="p-6">
                   <p className="section-kicker">Workshop cue</p>
                   <h2 className="mt-4 text-2xl font-semibold text-[var(--color-cream)]">{item.title}</h2>
-                  <p className="mt-4 text-sm leading-7 text-[var(--color-text-soft)]">{item.copy}</p>
+                  <p className="card-copy mt-4 text-sm leading-7 text-[var(--color-text-soft)]">{item.copy}</p>
                 </div>
               </article>
             ))}
@@ -125,7 +125,7 @@ function OptionalReferenceSection() {
         <section className="space-y-4">
           <div>
             <p className="section-kicker">Process notes</p>
-            <p className="mt-2 text-sm leading-7 text-[var(--color-text-soft)]">
+            <p className="section-copy mt-2 text-sm leading-7 text-[var(--color-text-soft)]">
               These three steps mirror the order many good sauces reveal themselves: pepper choice,
               balance, then maturity and finish.
             </p>
@@ -144,7 +144,7 @@ function OptionalReferenceSection() {
                     Note 0{index + 1}
                   </p>
                   <h2 className="mt-4 text-2xl font-semibold text-[var(--color-cream)]">{step.title}</h2>
-                  <p className="mt-4 text-sm leading-7 text-[var(--color-text-soft)]">{step.copy}</p>
+                  <p className="card-copy mt-4 text-sm leading-7 text-[var(--color-text-soft)]">{step.copy}</p>
                 </div>
               </article>
             ))}

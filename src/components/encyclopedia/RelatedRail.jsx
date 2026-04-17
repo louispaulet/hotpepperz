@@ -24,7 +24,9 @@ function RelatedRail({ title, items, variant = 'default' }) {
             <div className="p-5">
               <p className="section-kicker">{item.kind}</p>
               <h2 className="mt-3 text-2xl font-semibold text-[var(--color-cream)]">{item.title}</h2>
-              <p className="mt-3 text-sm leading-7 text-[var(--color-text-soft)]">{item.copy}</p>
+              <p className="card-copy mt-3 text-sm leading-7 text-[var(--color-text-soft)]">
+                {item.copy}
+              </p>
             </div>
           </Link>
         ))}

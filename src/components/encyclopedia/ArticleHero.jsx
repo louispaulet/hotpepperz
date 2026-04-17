@@ -34,7 +34,7 @@ function ArticleHero({
             <h1 className="display-font mt-4 text-5xl uppercase leading-[0.88] text-[var(--color-cream)] sm:text-6xl">
               {title}
             </h1>
-            <p className="mt-4 max-w-3xl text-sm leading-7 text-[var(--color-text-soft)] sm:text-base">
+            <p className="article-subtitle mt-4 max-w-3xl text-sm leading-7 text-[var(--color-text-soft)] sm:text-base">
               {subtitle}
             </p>
             {chips.length > 0 ? (

@@ -571,7 +571,7 @@ function LabStepperHeader({ steps, activeStep, onStepChange }) {
                 </span>
               </div>
               <p className="mt-2 text-base font-semibold text-[var(--color-cream)]">{step.label}</p>
-              <p className="mt-1 text-sm text-[var(--color-text-soft)]">{step.summary}</p>
+              <p className="step-summary mt-1 text-sm text-[var(--color-text-soft)]">{step.summary}</p>
             </button>
           )
         })}
@@ -789,7 +789,7 @@ function PepperGrid({ peppers, selectedPepperIds, onPepperToggle }) {
                   />
                 </div>
                 <p className="mt-3 text-sm text-[var(--color-text)]">{formatShu(pepper.shuMax)}</p>
-                <p className="mt-2 text-sm leading-6 text-[var(--color-text-soft)]">{pepper.story}</p>
+                <p className="option-story mt-2 text-sm leading-6 text-[var(--color-text-soft)]">{pepper.story}</p>
               </div>
             </div>
             <p className="mt-3 text-[0.68rem] uppercase tracking-[0.18em] text-[var(--color-text-muted)]">
@@ -882,7 +882,7 @@ function StyleChooser({ labelStyles, labelStyleId, setLabelStyleId }) {
             <div className="flex items-start justify-between gap-4">
               <div>
                 <p className="text-base font-semibold text-[var(--color-cream)]">{style.name}</p>
-                <p className="mt-2 text-sm leading-7 text-[var(--color-text-soft)]">{style.mood}</p>
+                <p className="card-copy mt-2 text-sm leading-7 text-[var(--color-text-soft)]">{style.mood}</p>
               </div>
               {active ? (
                 <span className="rounded-full border border-white/10 px-3 py-1 text-[0.65rem] uppercase tracking-[0.24em] text-[var(--color-text-muted)]">
@@ -904,7 +904,7 @@ function StepPanel({ stepNumber, title, copy, aside, children }) {
         <div className="min-w-0">
           <p className="section-kicker">Step {stepNumber}</p>
           <h3 className="mt-2 text-2xl font-semibold text-[var(--color-cream)]">{title}</h3>
-          <p className="mt-2 text-sm leading-7 text-[var(--color-text-soft)]">{copy}</p>
+          <p className="step-copy mt-2 text-sm leading-7 text-[var(--color-text-soft)]">{copy}</p>
         </div>
         <div className="lg:min-w-[12rem] lg:text-right">
           {aside ? (
@@ -985,7 +985,7 @@ function InlineLiveResultCard({
             </span>
           </div>
 
-          <p className="mt-3 text-sm leading-7 text-[var(--color-text-soft)] sm:text-base">
+          <p className="live-blurb mt-3 text-sm leading-7 text-[var(--color-text-soft)] sm:text-base">
             {generatedBlurb}
           </p>
 
@@ -1005,7 +1005,7 @@ function InlineLiveResultCard({
       </div>
 
       <div className="mt-4 flex flex-col gap-4 border-t border-white/8 pt-4 xl:flex-row xl:items-start xl:justify-between">
-        <p className="max-w-2xl text-sm leading-7 text-[var(--color-text-soft)]">{status}</p>
+        <p className="live-status max-w-2xl text-sm leading-7 text-[var(--color-text-soft)]">{status}</p>
 
         <div className="flex flex-col gap-3 sm:flex-row">
           <button

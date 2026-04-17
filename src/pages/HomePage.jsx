@@ -51,7 +51,7 @@ function HeroSection({ featuredPeppers }) {
         <h1 className="display-font mt-4 max-w-4xl text-6xl uppercase leading-[0.88] text-[var(--color-cream)]">
           New peppers, new landscapes, and a much larger atlas of heat.
         </h1>
-        <p className="mt-4 max-w-3xl text-sm leading-7 text-[var(--color-text-soft)] sm:text-base">
+        <p className="hero-copy mt-4 max-w-3xl text-sm leading-7 text-[var(--color-text-soft)] sm:text-base">
           HotPepperz now reads more like an editorial encyclopedia: pepper pages, recipe studies,
           legends, restaurant spotlights, and France-facing legal drafts, all connected by reusable
           pepper-to-landscape associations.
@@ -79,7 +79,7 @@ function HeroSection({ featuredPeppers }) {
           <h2 className="mt-3 text-3xl font-semibold text-[var(--color-cream)]">
             Each pepper now carries its own portrait and origin landscape.
           </h2>
-          <p className="mt-4 text-sm leading-7 text-[var(--color-text-soft)]">
+          <p className="section-copy mt-4 text-sm leading-7 text-[var(--color-text-soft)]">
             Those image pairs are reused throughout the site so the encyclopedia, recipe stories,
             restaurant pages, and home sections all share the same visual logic.
           </p>
@@ -104,7 +104,7 @@ function HeroSection({ featuredPeppers }) {
                 <div className="p-5">
                   <p className="section-kicker">{pepper.origin}</p>
                   <h3 className="mt-3 text-2xl font-semibold text-[var(--color-cream)]">{pepper.name}</h3>
-                  <p className="mt-3 text-sm leading-7 text-[var(--color-text-soft)]">{pepper.summary}</p>
+                  <p className="card-copy mt-3 text-sm leading-7 text-[var(--color-text-soft)]">{pepper.summary}</p>
                 </div>
               </Link>
             )
@@ -123,7 +123,7 @@ function FeaturedOriginsSection({ peppers }) {
         <h2 className="display-font mt-3 text-5xl uppercase leading-none text-[var(--color-cream)]">
           Landscapes behind the fruit.
         </h2>
-        <p className="mt-4 max-w-2xl text-sm leading-7 text-[var(--color-text-soft)]">
+        <p className="section-copy mt-4 max-w-2xl text-sm leading-7 text-[var(--color-text-soft)]">
           From humid Southeast Asian fields to Andean terraces and Surinamese lowlands, the
           encyclopedia now ties peppers to the climates that shaped them.
         </p>
@@ -151,7 +151,7 @@ function FeaturedOriginsSection({ peppers }) {
               <div className="p-5">
                 <p className="section-kicker">{pepper.climate}</p>
                 <h3 className="mt-3 text-2xl font-semibold text-[var(--color-cream)]">{pepper.name}</h3>
-                <p className="mt-3 text-sm leading-7 text-[var(--color-text-soft)]">{pepper.origin}</p>
+                <p className="card-copy mt-3 text-sm leading-7 text-[var(--color-text-soft)]">{pepper.origin}</p>
               </div>
             </Link>
           )
@@ -169,7 +169,7 @@ function PairingsSection({ recipes }) {
         <h2 className="display-font mt-3 text-5xl uppercase leading-none text-[var(--color-cream)]">
           Recipes, associations, and useful legends.
         </h2>
-        <p className="mt-4 max-w-2xl text-sm leading-7 text-[var(--color-text-soft)]">
+        <p className="section-copy mt-4 max-w-2xl text-sm leading-7 text-[var(--color-text-soft)]">
           We added pairing studies, recipe notebooks, and a migration legend so the site can explain
           not just what a pepper is, but what it likes to do once it reaches the pan.
         </p>
@@ -198,7 +198,7 @@ function PairingsSection({ recipes }) {
                 <div className="p-6">
                   <p className="section-kicker">{recipe.kind}</p>
                   <h3 className="mt-3 text-2xl font-semibold text-[var(--color-cream)]">{recipe.title}</h3>
-                  <p className="mt-4 text-sm leading-7 text-[var(--color-text-soft)]">{recipe.summary}</p>
+                  <p className="card-copy mt-4 text-sm leading-7 text-[var(--color-text-soft)]">{recipe.summary}</p>
                 </div>
               </div>
             </Link>
@@ -254,7 +254,7 @@ function RestaurantSection({ restaurants }) {
                   <div className="mt-5">
                     <p className="section-kicker">{restaurant.recognition}</p>
                     <h3 className="mt-3 text-2xl font-semibold text-[var(--color-cream)]">{restaurant.name}</h3>
-                    <p className="mt-3 text-sm leading-7 text-[var(--color-text-soft)]">{restaurant.city}</p>
+                    <p className="card-copy mt-3 text-sm leading-7 text-[var(--color-text-soft)]">{restaurant.city}</p>
                   </div>
                 </div>
               </Link>
@@ -276,7 +276,7 @@ function LegendSection({ legend }) {
         <h2 className="display-font mt-3 text-5xl uppercase leading-none text-[var(--color-cream)]">
           The pepper routes.
         </h2>
-        <p className="mt-4 text-sm leading-7 text-[var(--color-text-soft)]">{legend.summary}</p>
+        <p className="section-copy mt-4 text-sm leading-7 text-[var(--color-text-soft)]">{legend.summary}</p>
         <Link to={`/wiki/legends/${legend.slug}`} className="mt-6 inline-flex text-sm font-semibold uppercase tracking-[0.16em] text-[var(--color-saffron)]">
           Read the migration story
         </Link>
@@ -291,7 +291,7 @@ function LegendSection({ legend }) {
         />
         <div className="p-6">
           <p className="section-kicker">New legal area</p>
-          <p className="mt-4 text-sm leading-7 text-[var(--color-text-soft)]">
+          <p className="card-copy mt-4 text-sm leading-7 text-[var(--color-text-soft)]">
             The footer now also exposes bilingual France-oriented legal draft pages: legal notice,
             terms of use, and privacy policy in both French and English.
           </p>

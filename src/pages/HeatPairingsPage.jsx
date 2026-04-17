@@ -15,7 +15,7 @@ function HeatPairingsPage() {
         <h1 className="display-font mt-4 text-5xl uppercase leading-[0.9] text-[var(--color-cream)] sm:text-6xl">
           Where peppers meet ingredients.
         </h1>
-        <p className="mt-4 max-w-4xl text-sm leading-7 text-[var(--color-text-soft)] sm:text-base">
+        <p className="hero-copy mt-4 max-w-4xl text-sm leading-7 text-[var(--color-text-soft)] sm:text-base">
           This index gathers both pairing studies and recipe notebooks. The aim is not just to name a
           pepper, but to show what it likes to sit beside on the plate.
         </p>
@@ -40,7 +40,7 @@ function HeatPairingsPage() {
               <div className="p-6">
                 <p className="section-kicker">{recipe.kind}</p>
                 <h2 className="mt-3 text-3xl font-semibold text-[var(--color-cream)]">{recipe.title}</h2>
-                <p className="mt-4 text-sm leading-7 text-[var(--color-text-soft)]">{recipe.summary}</p>
+                <p className="card-copy mt-4 text-sm leading-7 text-[var(--color-text-soft)]">{recipe.summary}</p>
               </div>
             </Link>
           )

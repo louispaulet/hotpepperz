@@ -13,7 +13,7 @@ function OriginsAtlasPage() {
         <h1 className="display-font mt-4 text-5xl uppercase leading-[0.9] text-[var(--color-cream)] sm:text-6xl">
           Landscapes behind the heat.
         </h1>
-        <p className="mt-4 max-w-4xl text-sm leading-7 text-[var(--color-text-soft)] sm:text-base">
+        <p className="hero-copy mt-4 max-w-4xl text-sm leading-7 text-[var(--color-text-soft)] sm:text-base">
           This index page ties each featured pepper to a typical growing environment. The same
           association is reused across the encyclopedia, so landscape and pepper always travel
           together as a single editorial unit.
@@ -43,7 +43,7 @@ function OriginsAtlasPage() {
                   <div>
                     <p className="section-kicker">{pepper.origin}</p>
                     <h2 className="mt-3 text-3xl font-semibold text-[var(--color-cream)]">{pepper.name}</h2>
-                    <p className="mt-3 text-sm leading-7 text-[var(--color-text-soft)]">{pepper.climate}</p>
+                    <p className="card-copy mt-3 text-sm leading-7 text-[var(--color-text-soft)]">{pepper.climate}</p>
                   </div>
                   <img
                     src={resolveImageSrc(baseUrl, media.portraitVisual.image)}
