@@ -85,43 +85,43 @@ export const editorialImages = {
 export const pepperImageAssociations = {
   'birds-eye-chili': {
     portraitVisual: {
-      image: 'images/peppers/birds-eye-chili-portrait.svg',
-      alt: "Botanical illustration of Bird's Eye chili peppers in a crisp editorial style",
+      image: editorialImages.heroChili.image,
+      alt: 'Single vivid red chili used as the Bird’s Eye chili portrait image',
       position: 'center center',
       prompt:
-        "botanical editorial illustration of bird's eye chili peppers, clean cream paper background, premium food encyclopedia style",
+        "existing house raster image reused for Bird's Eye chili portrait",
     },
     landscapeVisual: {
-      image: 'images/landscapes/birds-eye-chili-landscape.svg',
-      alt: 'Tropical Southeast Asian pepper-growing landscape with rice fields and humid hills',
-      position: 'center center',
+      image: editorialImages.marketCrate.image,
+      alt: 'Overflowing market pepper display reused as a vivid Bird’s Eye chili landscape backdrop',
+      position: editorialImages.marketCrate.position,
       prompt:
-        'illustrated Southeast Asian pepper growing landscape, rice fields, humid tropical hills, premium editorial atlas style',
+        'existing house raster image reused as Bird’s Eye chili backdrop',
     },
   },
   'piri-piri': {
     portraitVisual: {
-      image: 'images/peppers/piri-piri-portrait.svg',
-      alt: 'Illustrated Piri Piri pepper study with slender red pods',
-      position: 'center center',
+      image: 'images/cayenne.png',
+      alt: 'Slender red pepper image reused as the Piri Piri portrait',
+      position: 'center 42%',
       prompt:
-        'editorial illustration of piri piri peppers, slender red pods, botanical premium encyclopedia style',
+        'existing house raster image reused for Piri Piri portrait',
     },
     landscapeVisual: {
-      image: 'images/landscapes/piri-piri-landscape.svg',
-      alt: 'Warm coastal African landscape with pepper plants, dry grass, and ocean light',
-      position: 'center center',
+      image: editorialImages.habaneroPlant.image,
+      alt: 'Pepper plant image reused as a natural growing backdrop for Piri Piri',
+      position: editorialImages.habaneroPlant.position,
       prompt:
-        'coastal African growing landscape for peppers, warm light, dry grass, ocean horizon, editorial atlas style',
+        'existing house raster image reused as Piri Piri growing backdrop',
     },
   },
   rocoto: {
     portraitVisual: {
-      image: 'images/peppers/rocoto-portrait.svg',
-      alt: 'Editorial rocoto pepper illustration with glossy thick-walled pods',
-      position: 'center center',
+      image: editorialImages.pepperStillLife.image,
+      alt: 'Dramatic pepper still life reused as the Rocoto portrait visual',
+      position: editorialImages.pepperStillLife.position,
       prompt:
-        'rocoto pepper editorial illustration, glossy thick-walled red peppers, premium encyclopedia style',
+        'existing house raster image reused for Rocoto portrait',
     },
     landscapeVisual: {
       image: 'images/landscapes/rocoto-landscape.svg',
@@ -133,82 +133,82 @@ export const pepperImageAssociations = {
   },
   'chile-de-arbol': {
     portraitVisual: {
-      image: 'images/peppers/chile-de-arbol-portrait.svg',
-      alt: 'Botanical-style illustration of dried and fresh chile de arbol pods',
-      position: 'center center',
+      image: 'images/cayenne.png',
+      alt: 'Slender red pepper image reused as the Chile de Arbol portrait',
+      position: 'center 42%',
       prompt:
-        'chile de arbol botanical illustration, dried and fresh pods, premium encyclopedia style',
+        'existing house raster image reused for Chile de Arbol portrait',
     },
     landscapeVisual: {
-      image: 'images/landscapes/chile-de-arbol-landscape.svg',
-      alt: 'Semi-arid Mexican farming landscape suited to chile de arbol cultivation',
-      position: 'center center',
+      image: editorialImages.marketCrate.image,
+      alt: 'Market pepper scene reused as the Chile de Arbol backdrop',
+      position: editorialImages.marketCrate.position,
       prompt:
-        'semi-arid Mexican chili farm landscape, dry hills and cultivated rows, editorial atlas style',
+        'existing house raster image reused as Chile de Arbol backdrop',
     },
   },
   'madame-jeanette': {
     portraitVisual: {
-      image: 'images/peppers/madame-jeanette-portrait.svg',
-      alt: 'Illustration of Madame Jeanette peppers with lantern-shaped yellow-orange fruit',
-      position: 'center center',
+      image: 'images/scotch-bonnet.png',
+      alt: 'Scotch bonnet image reused as the Madame Jeanette portrait',
+      position: 'center 30%',
       prompt:
-        'Madame Jeanette pepper illustration, lantern shaped yellow-orange fruits, editorial encyclopedia style',
+        'existing house raster image reused for Madame Jeanette portrait',
     },
     landscapeVisual: {
-      image: 'images/landscapes/madame-jeanette-landscape.svg',
-      alt: 'Lush Surinamese lowland landscape with tropical pepper cultivation',
-      position: 'center center',
+      image: editorialImages.habaneroPlant.image,
+      alt: 'Natural pepper plant image reused as the Madame Jeanette growing backdrop',
+      position: editorialImages.habaneroPlant.position,
       prompt:
-        'lush Suriname tropical pepper landscape, river lowlands, humid greenery, editorial atlas style',
+        'existing house raster image reused as Madame Jeanette growing backdrop',
     },
   },
   datil: {
     portraitVisual: {
-      image: 'images/peppers/datil-portrait.svg',
-      alt: 'Illustrated Datil peppers in yellow-orange tones with slender curved shape',
+      image: 'images/aji-amarillo.png',
+      alt: 'Yellow pepper image reused as the Datil portrait',
       position: 'center center',
       prompt:
-        'Datil pepper illustration, yellow-orange pods, refined botanical food encyclopedia style',
+        'existing house raster image reused for Datil portrait',
     },
     landscapeVisual: {
-      image: 'images/landscapes/datil-landscape.svg',
-      alt: 'Subtropical Florida coastal growing landscape with datil pepper plants',
-      position: 'center center',
+      image: editorialImages.habaneroPlant.image,
+      alt: 'Pepper plant image reused as the Datil growing backdrop',
+      position: editorialImages.habaneroPlant.position,
       prompt:
-        'Florida coastal pepper landscape, subtropical fields and palms, editorial atlas illustration',
+        'existing house raster image reused as Datil growing backdrop',
     },
   },
   cheongyang: {
     portraitVisual: {
-      image: 'images/peppers/cheongyang-portrait.svg',
-      alt: 'Clean editorial illustration of slim green and red Cheongyang peppers',
+      image: 'images/serrano-peppers.png',
+      alt: 'Serrano pepper image reused as the Cheongyang portrait',
       position: 'center center',
       prompt:
-        'Cheongyang pepper illustration, slim green and red peppers, refined food encyclopedia style',
+        'existing house raster image reused for Cheongyang portrait',
     },
     landscapeVisual: {
-      image: 'images/landscapes/cheongyang-landscape.svg',
-      alt: 'Korean agricultural landscape with pepper rows and mountain backdrop',
-      position: 'center center',
+      image: editorialImages.marketCrate.image,
+      alt: 'Market pepper image reused as the Cheongyang backdrop',
+      position: editorialImages.marketCrate.position,
       prompt:
-        'Korean pepper field landscape, mountain backdrop, temperate agriculture, editorial atlas style',
+        'existing house raster image reused as Cheongyang backdrop',
     },
   },
   fatalii: {
     portraitVisual: {
-      image: 'images/peppers/fatalii-portrait.svg',
-      alt: 'Editorial illustration of pale yellow Fatalii peppers with elongated shape',
+      image: 'images/aji-amarillo.png',
+      alt: 'Yellow pepper image reused as the Fatalii portrait',
       position: 'center center',
       prompt:
-        'Fatalii pepper illustration, pale yellow elongated peppers, premium botanical encyclopedia style',
+        'existing house raster image reused for Fatalii portrait',
     },
     landscapeVisual: {
-      image: 'images/landscapes/fatalii-landscape.svg',
-      alt: 'Sunlit African savanna landscape with cultivated pepper beds',
-      position: 'center center',
+      image: editorialImages.habaneroPlant.image,
+      alt: 'Pepper plant image reused as the Fatalii growing backdrop',
+      position: editorialImages.habaneroPlant.position,
       prompt:
-        'African savanna pepper landscape, warm sun, cultivated rows, editorial atlas style',
+        'existing house raster image reused as Fatalii growing backdrop',
     },
   },
 }
