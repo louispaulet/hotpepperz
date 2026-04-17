@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">Madame Jeanette landscape</title>
+  <desc id="desc">Stylized Surinamese tropical pepper landscape.</desc>
+  <defs>
+    <linearGradient id="sky" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#f6d290"/>
+      <stop offset="52%" stop-color="#e6ebcc"/>
+      <stop offset="100%" stop-color="#a8c68d"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#sky)"/>
+  <path d="M0 332 C166 278 354 286 504 336 C676 392 888 396 1200 328 V800 H0Z" fill="#6e9b62"/>
+  <path d="M0 478 C220 448 442 464 626 532 C806 599 1006 608 1200 566 V800 H0Z" fill="#5b8453"/>
+  <path d="M0 608 C252 592 462 609 676 672 C878 731 1066 732 1200 708 V800 H0Z" fill="#46653f"/>
+  <rect x="0" y="430" width="1200" height="60" fill="#7ab5a0" opacity=".55"/>
+  <path d="M116 624 l18-118 l24 0 l13 118" fill="#344e34"/>
+  <circle cx="144" cy="492" r="52" fill="#65915b"/>
+  <circle cx="193" cy="520" r="40" fill="#5d8854"/>
+</svg>

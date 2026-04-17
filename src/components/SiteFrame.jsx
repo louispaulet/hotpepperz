@@ -15,10 +15,10 @@ function SiteFrame({ children }) {
         <div className="panel rounded-[1.8rem] px-4 py-3 sm:px-5 xl:px-6">
           <div className="mb-3 flex items-center justify-between gap-4 border-b border-white/8 pb-3">
             <p className="mono-font text-[0.68rem] uppercase tracking-[0.32em] text-[var(--color-text-muted)]">
-              Pepper journal and sauce workshop
+              Pepper journal, encyclopedia, and sauce workshop
             </p>
             <p className="mono-font text-[0.68rem] uppercase tracking-[0.32em] text-[var(--color-text-muted)]">
-              Field notes for serious heat
+              Landscapes behind serious heat
             </p>
           </div>
 
@@ -32,7 +32,7 @@ function SiteFrame({ children }) {
                   HotPepperz
                 </p>
                 <p className="mt-1 text-xs uppercase tracking-[0.28em] text-[var(--color-text-muted)]">
-                  Craft hot sauce journal
+                  Craft hot sauce encyclopedia
                 </p>
               </div>
             </Link>
@@ -42,23 +42,26 @@ function SiteFrame({ children }) {
                 <NavLink to="/" className={navClass} end>
                   Journal
                 </NavLink>
+                <NavLink to="/wiki" className={navClass}>
+                  Encyclopedia
+                </NavLink>
+                <NavLink to="/wiki/origins" className={navClass}>
+                  Origins
+                </NavLink>
                 <NavLink to="/lab" className={navClass}>
                   Workshop
                 </NavLink>
-                <NavLink to="/wiki" className={navClass}>
-                  Field Guide
-                </NavLink>
               </nav>
 
-              <Link to="/lab" className="primary-button">
-                Start a Sauce
+              <Link to="/wiki" className="primary-button">
+                Explore Heat
               </Link>
             </div>
           </div>
         </div>
       </header>
 
-      <main className="flex flex-1 flex-col min-h-0">{children}</main>
+      <main className="flex min-h-0 flex-1 flex-col">{children}</main>
     </>
   )
 }

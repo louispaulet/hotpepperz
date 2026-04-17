@@ -82,6 +82,137 @@ export const editorialImages = {
   },
 }
 
+export const pepperImageAssociations = {
+  'birds-eye-chili': {
+    portraitVisual: {
+      image: 'images/peppers/birds-eye-chili-portrait.svg',
+      alt: "Botanical illustration of Bird's Eye chili peppers in a crisp editorial style",
+      position: 'center center',
+      prompt:
+        "botanical editorial illustration of bird's eye chili peppers, clean cream paper background, premium food encyclopedia style",
+    },
+    landscapeVisual: {
+      image: 'images/landscapes/birds-eye-chili-landscape.svg',
+      alt: 'Tropical Southeast Asian pepper-growing landscape with rice fields and humid hills',
+      position: 'center center',
+      prompt:
+        'illustrated Southeast Asian pepper growing landscape, rice fields, humid tropical hills, premium editorial atlas style',
+    },
+  },
+  'piri-piri': {
+    portraitVisual: {
+      image: 'images/peppers/piri-piri-portrait.svg',
+      alt: 'Illustrated Piri Piri pepper study with slender red pods',
+      position: 'center center',
+      prompt:
+        'editorial illustration of piri piri peppers, slender red pods, botanical premium encyclopedia style',
+    },
+    landscapeVisual: {
+      image: 'images/landscapes/piri-piri-landscape.svg',
+      alt: 'Warm coastal African landscape with pepper plants, dry grass, and ocean light',
+      position: 'center center',
+      prompt:
+        'coastal African growing landscape for peppers, warm light, dry grass, ocean horizon, editorial atlas style',
+    },
+  },
+  rocoto: {
+    portraitVisual: {
+      image: 'images/peppers/rocoto-portrait.svg',
+      alt: 'Editorial rocoto pepper illustration with glossy thick-walled pods',
+      position: 'center center',
+      prompt:
+        'rocoto pepper editorial illustration, glossy thick-walled red peppers, premium encyclopedia style',
+    },
+    landscapeVisual: {
+      image: 'images/landscapes/rocoto-landscape.svg',
+      alt: 'Andean terrace landscape showing cool highland pepper cultivation',
+      position: 'center center',
+      prompt:
+        'Andean terrace pepper landscape, high-altitude farms, mountain light, editorial atlas illustration',
+    },
+  },
+  'chile-de-arbol': {
+    portraitVisual: {
+      image: 'images/peppers/chile-de-arbol-portrait.svg',
+      alt: 'Botanical-style illustration of dried and fresh chile de arbol pods',
+      position: 'center center',
+      prompt:
+        'chile de arbol botanical illustration, dried and fresh pods, premium encyclopedia style',
+    },
+    landscapeVisual: {
+      image: 'images/landscapes/chile-de-arbol-landscape.svg',
+      alt: 'Semi-arid Mexican farming landscape suited to chile de arbol cultivation',
+      position: 'center center',
+      prompt:
+        'semi-arid Mexican chili farm landscape, dry hills and cultivated rows, editorial atlas style',
+    },
+  },
+  'madame-jeanette': {
+    portraitVisual: {
+      image: 'images/peppers/madame-jeanette-portrait.svg',
+      alt: 'Illustration of Madame Jeanette peppers with lantern-shaped yellow-orange fruit',
+      position: 'center center',
+      prompt:
+        'Madame Jeanette pepper illustration, lantern shaped yellow-orange fruits, editorial encyclopedia style',
+    },
+    landscapeVisual: {
+      image: 'images/landscapes/madame-jeanette-landscape.svg',
+      alt: 'Lush Surinamese lowland landscape with tropical pepper cultivation',
+      position: 'center center',
+      prompt:
+        'lush Suriname tropical pepper landscape, river lowlands, humid greenery, editorial atlas style',
+    },
+  },
+  datil: {
+    portraitVisual: {
+      image: 'images/peppers/datil-portrait.svg',
+      alt: 'Illustrated Datil peppers in yellow-orange tones with slender curved shape',
+      position: 'center center',
+      prompt:
+        'Datil pepper illustration, yellow-orange pods, refined botanical food encyclopedia style',
+    },
+    landscapeVisual: {
+      image: 'images/landscapes/datil-landscape.svg',
+      alt: 'Subtropical Florida coastal growing landscape with datil pepper plants',
+      position: 'center center',
+      prompt:
+        'Florida coastal pepper landscape, subtropical fields and palms, editorial atlas illustration',
+    },
+  },
+  cheongyang: {
+    portraitVisual: {
+      image: 'images/peppers/cheongyang-portrait.svg',
+      alt: 'Clean editorial illustration of slim green and red Cheongyang peppers',
+      position: 'center center',
+      prompt:
+        'Cheongyang pepper illustration, slim green and red peppers, refined food encyclopedia style',
+    },
+    landscapeVisual: {
+      image: 'images/landscapes/cheongyang-landscape.svg',
+      alt: 'Korean agricultural landscape with pepper rows and mountain backdrop',
+      position: 'center center',
+      prompt:
+        'Korean pepper field landscape, mountain backdrop, temperate agriculture, editorial atlas style',
+    },
+  },
+  fatalii: {
+    portraitVisual: {
+      image: 'images/peppers/fatalii-portrait.svg',
+      alt: 'Editorial illustration of pale yellow Fatalii peppers with elongated shape',
+      position: 'center center',
+      prompt:
+        'Fatalii pepper illustration, pale yellow elongated peppers, premium botanical encyclopedia style',
+    },
+    landscapeVisual: {
+      image: 'images/landscapes/fatalii-landscape.svg',
+      alt: 'Sunlit African savanna landscape with cultivated pepper beds',
+      position: 'center center',
+      prompt:
+        'African savanna pepper landscape, warm sun, cultivated rows, editorial atlas style',
+    },
+  },
+}
+
 export const featuredImageCredits = Object.values(editorialImages)
   .filter((image) => image.featuredCredit)
   .map((image) => ({
@@ -117,6 +248,10 @@ export const wikiGallery = [
   editorialImages.habaneroPlant,
   editorialImages.bottleLineup,
 ]
+
+export function getPepperAssociation(slug) {
+  return pepperImageAssociations[slug]
+}
 
 export function resolveImageSrc(baseUrl, image) {
   return image.startsWith('http') ? image : `${baseUrl}${image}`

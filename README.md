@@ -1,6 +1,6 @@
 # HotPepperz
 
-HotPepperz is a frontend-only Vite + React + Tailwind site for a fictional specialty hot sauce brand. The project now leans into an editorial food-design direction: a richer homepage, a formulation lab, and a compact pepper wiki, all built as a static app for GitHub Pages.
+HotPepperz is a frontend-only Vite + React + Tailwind site for a fictional specialty hot sauce brand. The project now leans into an editorial food-design direction: a richer homepage, a formulation lab, and a route-driven pepper encyclopedia with recipes, legends, restaurants, and legal pages, all built as a static app for GitHub Pages.
 
 The site also includes an interactive sauce builder that can generate naming/copy with Groq and label art with Pollinations when API keys are provided.
 
@@ -9,10 +9,11 @@ The site also includes an interactive sauce builder that can generate naming/cop
 - presents HotPepperz as an image-led specialty sauce brand
 - includes a homepage with denser editorial layouts and bottle-driven storytelling
 - includes a lab route for building a sauce recipe and generating a concept
-- includes a wiki route for pepper education, sauce families, and pairing rules
+- includes a route-driven encyclopedia with pepper detail pages, pairings, recipe notebooks, legends, restaurant spotlights, and supporting atlas pages
 - derives heat and flavor signals in real time from selected peppers and accents
 - generates sauce names and blurbs with Groq
 - generates label artwork with Pollinations
+- includes France-facing bilingual legal draft pages for legal notice, terms of use, and privacy policy
 - ships as a pure frontend demo with no backend
 
 ## Stack
@@ -107,12 +108,21 @@ Command summary:
 
 ## Project structure
 
-- `src/pages/HomePage.jsx`: editorial landing page with sauce storytelling and image-heavy layouts
+- `src/pages/HomePage.jsx`: editorial landing page that now previews the expanded encyclopedia
 - `src/pages/LabPage.jsx`: formulation route and creative references around the builder
-- `src/pages/WikiPage.jsx`: pepper field guide, sauce family taxonomy, and pairing guidance
+- `src/pages/WikiPage.jsx`: encyclopedia hub for peppers, recipes, legends, and restaurants
+- `src/pages/PepperDetailPage.jsx`: dynamic pepper profile pages at `/wiki/peppers/:slug`
+- `src/pages/RecipeDetailPage.jsx`: dynamic pairing and recipe pages at `/wiki/recipes/:slug`
+- `src/pages/RestaurantDetailPage.jsx`: dynamic restaurant spotlights at `/wiki/restaurants/:slug`
+- `src/pages/LegendDetailPage.jsx`: dynamic legend/history pages at `/wiki/legends/:slug`
+- `src/pages/OriginsAtlasPage.jsx`: supporting index page for pepper origins and growth landscapes
+- `src/pages/HeatPairingsPage.jsx`: supporting index page for pairings and uses
+- `src/pages/LegalPage.jsx`: legal document renderer used by the bilingual legal routes
 - `src/components/SauceStudio.jsx`: interactive sauce builder and AI generation flow
-- `src/data/catalog.js`: peppers, accents, house sauces, sauce families, and lab content
-- `src/lib/media.js`: shared image catalog and image metadata
+- `src/data/`: split content modules for studio data, peppers, recipes, restaurants, legends, and legal copy
+- `src/components/encyclopedia/`: reusable encyclopedia sections such as article heroes, fact grids, related rails, and source lists
+- `src/lib/media.js`: shared image catalog plus pepper-to-landscape visual associations and prompt metadata
+- `public/images/peppers/` and `public/images/landscapes/`: local SVG assets for the new encyclopedia image set
 
 ## Operation notes
 
@@ -121,6 +131,8 @@ Command summary:
 - The app falls back to local naming/copy behavior if Groq generation fails.
 - Pollinations generation requires a valid publishable key and a supported model.
 - The site includes custom local bottle renders in `public/images/` for featured sauce moments.
+- The encyclopedia uses reusable local portrait and landscape image associations for each featured pepper.
+- Legal pages are compliance-oriented editorial drafts only and should be reviewed before production launch.
 
 ## Validation
 

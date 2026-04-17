@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" role="img" aria-labelledby="title desc">
+  <title id="title">Chile de Arbol portrait</title>
+  <desc id="desc">Stylized editorial illustration of chile de arbol peppers.</desc>
+  <rect width="800" height="800" fill="#f8ecd9"/>
+  <circle cx="150" cy="140" r="88" fill="#efbd62" opacity=".3"/>
+  <path d="M430 232 C428 310 417 392 402 514" fill="none" stroke="#5d7a40" stroke-width="16" stroke-linecap="round"/>
+  <path d="M430 246 C456 223 488 214 520 218" fill="none" stroke="#6b8e49" stroke-width="10" stroke-linecap="round"/>
+  <g fill="#b93420">
+    <path d="M405 256 C379 316 360 412 372 503 C383 589 452 620 496 567 C527 528 521 439 488 336 C474 292 448 251 405 256Z"/>
+    <path d="M318 290 C291 343 270 429 279 505 C288 579 344 609 386 565 C418 530 417 453 390 359 C377 313 360 280 318 290Z"/>
+    <path d="M495 283 C532 321 556 394 557 470 C559 541 516 587 471 565 C435 548 423 493 432 420 C440 358 460 305 495 283Z"/>
+  </g>
+  <g fill="#8d5a3c" opacity=".55">
+    <ellipse cx="302" cy="463" rx="15" ry="98" transform="rotate(-12 302 463)"/>
+    <ellipse cx="452" cy="421" rx="14" ry="112" transform="rotate(9 452 421)"/>
+  </g>
+</svg>

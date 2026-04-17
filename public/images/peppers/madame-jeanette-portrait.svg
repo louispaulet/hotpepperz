@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" role="img" aria-labelledby="title desc">
+  <title id="title">Madame Jeanette portrait</title>
+  <desc id="desc">Stylized editorial illustration of Madame Jeanette peppers.</desc>
+  <rect width="800" height="800" fill="#fbefdc"/>
+  <circle cx="640" cy="645" r="115" fill="#ef8b2f" opacity=".16"/>
+  <path d="M400 250 C404 326 399 398 391 494" fill="none" stroke="#58783d" stroke-width="18" stroke-linecap="round"/>
+  <path d="M400 265 C371 231 323 225 286 247" fill="none" stroke="#70934d" stroke-width="12" stroke-linecap="round"/>
+  <g fill="#f4ad39">
+    <path d="M260 334 C219 389 215 472 262 540 C307 605 402 615 470 572 C540 528 556 424 503 346 C456 277 313 263 260 334Z"/>
+    <path d="M405 350 C381 375 379 414 399 451 C425 498 482 511 526 479 C567 450 579 401 554 359 C525 311 452 301 405 350Z" opacity=".55"/>
+  </g>
+  <ellipse cx="354" cy="408" rx="84" ry="126" fill="#f9c767" opacity=".35" transform="rotate(-12 354 408)"/>
+</svg>

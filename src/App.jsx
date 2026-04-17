@@ -2,6 +2,13 @@ import { Route, Routes } from 'react-router-dom'
 import HomePage from './pages/HomePage'
 import LabPage from './pages/LabPage'
 import WikiPage from './pages/WikiPage'
+import PepperDetailPage from './pages/PepperDetailPage'
+import RecipeDetailPage from './pages/RecipeDetailPage'
+import RestaurantDetailPage from './pages/RestaurantDetailPage'
+import LegendDetailPage from './pages/LegendDetailPage'
+import LegalPage from './pages/LegalPage'
+import OriginsAtlasPage from './pages/OriginsAtlasPage'
+import HeatPairingsPage from './pages/HeatPairingsPage'
 import SiteFrame from './components/SiteFrame'
 import { editorialImages } from './lib/media'
 
@@ -45,6 +52,13 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/lab" element={<LabPage />} />
             <Route path="/wiki" element={<WikiPage />} />
+            <Route path="/wiki/origins" element={<OriginsAtlasPage />} />
+            <Route path="/wiki/heat-pairings" element={<HeatPairingsPage />} />
+            <Route path="/wiki/peppers/:slug" element={<PepperDetailPage />} />
+            <Route path="/wiki/recipes/:slug" element={<RecipeDetailPage />} />
+            <Route path="/wiki/restaurants/:slug" element={<RestaurantDetailPage />} />
+            <Route path="/wiki/legends/:slug" element={<LegendDetailPage />} />
+            <Route path="/legal/:slug" element={<LegalPage />} />
           </Routes>
         </SiteFrame>
       </div>
