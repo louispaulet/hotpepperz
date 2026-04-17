@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">Bird's Eye Chili landscape</title>
+  <desc id="desc">Stylized Southeast Asian pepper-growing landscape.</desc>
+  <defs>
+    <linearGradient id="sky" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#f5c97d"/>
+      <stop offset="55%" stop-color="#f2dfb8"/>
+      <stop offset="100%" stop-color="#c7d799"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#sky)"/>
+  <path d="M0 398 C170 310 320 300 480 350 C620 394 776 388 942 320 C1030 286 1114 286 1200 318 V800 H0Z" fill="#87b06a"/>
+  <path d="M0 510 C195 462 364 465 540 523 C688 572 901 571 1200 500 V800 H0Z" fill="#6f9657"/>
+  <path d="M0 610 C150 586 346 594 537 653 C726 711 953 713 1200 654 V800 H0Z" fill="#587942"/>
+  <path d="M0 454 H1200" stroke="#f6efd6" stroke-width="8" opacity=".35"/>
+  <path d="M0 566 H1200" stroke="#f6efd6" stroke-width="8" opacity=".25"/>
+  <path d="M780 250 C850 160 950 136 1030 188 C1092 226 1112 289 1095 350 C1030 352 942 340 872 316 C836 304 804 283 780 250Z" fill="#9cb07a"/>
+  <path d="M150 620 l18-104 l28 0 l16 104" fill="#485937"/>
+  <circle cx="184" cy="504" r="44" fill="#7aa468"/>
+  <circle cx="145" cy="530" r="34" fill="#739d61"/>
+</svg>
