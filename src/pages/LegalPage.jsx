@@ -10,8 +10,8 @@ function LegalPage({ slug: explicitSlug }) {
   if (!page) return <Navigate to="/" replace />
 
   return (
-    <div className="page-sections">
-      <section className="panel rounded-[2.2rem] p-6 sm:p-8 xl:p-9">
+    <div className="page-sections legal-page">
+      <section className="panel legal-hero rounded-[2.2rem] p-6 sm:p-8 xl:p-9">
         <p className="section-kicker">Legal</p>
         <h1 className="display-font mt-4 text-5xl uppercase leading-[0.9] text-[var(--color-cream)] sm:text-6xl">
           {page.title}
@@ -21,9 +21,9 @@ function LegalPage({ slug: explicitSlug }) {
         </p>
       </section>
 
-      <section className="viewport-section grid gap-4">
+      <section className="viewport-section legal-stack grid gap-4">
         {page.sections.map((section) => (
-          <article key={section.heading} className="panel rounded-[2rem] p-6 sm:p-8">
+          <article key={section.heading} className="panel legal-card rounded-[2rem] p-6 sm:p-8">
             <p className="section-kicker">{page.language}</p>
             <h2 className="mt-3 text-3xl font-semibold text-[var(--color-cream)]">{section.heading}</h2>
             {section.items ? (
@@ -47,7 +47,7 @@ function LegalPage({ slug: explicitSlug }) {
           </article>
         ))}
 
-        <article className="panel rounded-[2rem] p-6 sm:p-8">
+        <article className="panel legal-card legal-card--note rounded-[2rem] p-6 sm:p-8">
           <p className="section-kicker">Compliance note</p>
           <p className="mt-4 text-sm leading-7 text-[var(--color-text-soft)]">
             This text is provided as a compliance-oriented editorial draft for a France-facing site.

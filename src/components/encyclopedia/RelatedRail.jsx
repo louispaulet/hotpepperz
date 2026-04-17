@@ -4,15 +4,15 @@ import { resolveImageSrc } from '../../lib/media'
 
 const baseUrl = import.meta.env.BASE_URL
 
-function RelatedRail({ title, items }) {
+function RelatedRail({ title, items, variant = 'default' }) {
   if (!items.length) return null
 
   return (
-    <section className="panel rounded-[2rem] p-6 sm:p-8">
+    <section className={`panel related-rail related-rail--${variant} rounded-[2rem] p-6 sm:p-8`}>
       <p className="section-kicker">{title}</p>
       <div className="mt-5 grid gap-4 lg:grid-cols-3">
         {items.map((item) => (
-          <Link key={item.href} to={item.href} className="panel overflow-hidden rounded-[1.8rem]">
+          <Link key={item.href} to={item.href} className="panel related-card overflow-hidden rounded-[1.8rem]">
             {item.visual ? (
               <VisualImage
                 src={resolveImageSrc(baseUrl, item.visual.image)}

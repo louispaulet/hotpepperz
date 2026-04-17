@@ -52,7 +52,7 @@ function RestaurantDetailPage() {
     .filter(Boolean)
 
   return (
-    <div className="page-sections">
+    <div className="page-sections detail-page detail-page--restaurant">
       <ArticleHero
         kicker="Restaurant spotlight"
         title={restaurant.name}
@@ -60,6 +60,7 @@ function RestaurantDetailPage() {
         landscape={media.landscapeVisual}
         portrait={media.portraitVisual}
         chips={[restaurant.city, restaurant.recognition, restaurant.cuisine]}
+        variant="restaurant"
       >
         <div className="rounded-[1.6rem] border border-white/10 bg-black/24 p-4 text-sm leading-7 text-[var(--color-text-soft)]">
           {restaurant.whyItMatters}
@@ -68,6 +69,7 @@ function RestaurantDetailPage() {
 
       <section className="viewport-section grid gap-4">
         <FactGrid
+          variant="restaurant"
           facts={[
             { label: 'City', value: restaurant.city },
             { label: 'Recognition', value: restaurant.recognition },
@@ -76,7 +78,7 @@ function RestaurantDetailPage() {
           ]}
         />
 
-        <section className="panel rounded-[2rem] p-6 sm:p-8">
+        <section className="panel detail-section-card detail-section-card--restaurant rounded-[2rem] p-6 sm:p-8">
           <p className="section-kicker">Why it belongs here</p>
           <p className="mt-4 text-sm leading-7 text-[var(--color-text-soft)]">
             This encyclopedia is not only about peppers as ingredients; it is also about where those
@@ -86,8 +88,8 @@ function RestaurantDetailPage() {
           </p>
         </section>
 
-        <RelatedRail title="Pepper and menu context" items={relatedItems} />
-        <SourceList sources={restaurant.sourceLinks} />
+        <RelatedRail title="Pepper and menu context" items={relatedItems} variant="restaurant" />
+        <SourceList sources={restaurant.sourceLinks} variant="restaurant" />
       </section>
 
       <Footer />

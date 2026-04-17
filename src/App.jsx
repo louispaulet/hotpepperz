@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, useLocation } from 'react-router-dom'
 import HomePage from './pages/HomePage'
 import LabPage from './pages/LabPage'
 import WikiPage from './pages/WikiPage'
@@ -11,12 +11,24 @@ import OriginsAtlasPage from './pages/OriginsAtlasPage'
 import HeatPairingsPage from './pages/HeatPairingsPage'
 import SiteFrame from './components/SiteFrame'
 import { editorialImages } from './lib/media'
+import { getPageTheme } from './lib/pageThemes'
 
 function App() {
   const baseUrl = import.meta.env.BASE_URL
+  const location = useLocation()
+  const pageTheme = getPageTheme(location.pathname)
+  const ambientMedia = {
+    left: editorialImages[pageTheme.backgroundPhotos.left],
+    right: editorialImages[pageTheme.backgroundPhotos.right],
+    center: editorialImages[pageTheme.backgroundPhotos.center],
+  }
 
   return (
-    <div className="site-shell text-stone-100">
+    <div
+      className="site-shell text-stone-100"
+      data-page-family={pageTheme.family}
+      data-page-type={pageTheme.type}
+    >
       <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
         <div className="hero-glow hero-glow-left" />
         <div className="hero-glow hero-glow-right" />
@@ -25,19 +37,19 @@ function App() {
         <div
           className="ambient-photo ambient-photo-left"
           style={{
-            backgroundImage: `linear-gradient(180deg, rgba(9, 8, 7, 0.22), rgba(9, 8, 7, 0.96)), url(${baseUrl}${editorialImages.marketCrate.image})`,
+            backgroundImage: `linear-gradient(180deg, rgba(9, 8, 7, 0.22), rgba(9, 8, 7, 0.96)), url(${baseUrl}${ambientMedia.left.image})`,
           }}
         />
         <div
           className="ambient-photo ambient-photo-right"
           style={{
-            backgroundImage: `linear-gradient(180deg, rgba(11, 8, 7, 0.16), rgba(11, 8, 7, 0.94)), url(${baseUrl}${editorialImages.habaneroPlant.image})`,
+            backgroundImage: `linear-gradient(180deg, rgba(11, 8, 7, 0.16), rgba(11, 8, 7, 0.94)), url(${baseUrl}${ambientMedia.right.image})`,
           }}
         />
         <div
           className="ambient-photo ambient-photo-center"
           style={{
-            backgroundImage: `linear-gradient(180deg, rgba(11, 8, 7, 0.14), rgba(11, 8, 7, 0.94)), url(${baseUrl}${editorialImages.fermentedJar.image})`,
+            backgroundImage: `linear-gradient(180deg, rgba(11, 8, 7, 0.14), rgba(11, 8, 7, 0.94)), url(${baseUrl}${ambientMedia.center.image})`,
           }}
         />
         <div className="site-grid" />
@@ -47,7 +59,7 @@ function App() {
       <div className="grain-overlay" />
 
       <div className="mx-auto flex min-h-screen w-full max-w-[110rem] flex-col px-3 pb-5 pt-3 sm:px-5 lg:px-6 xl:pb-6 xl:pt-4">
-        <SiteFrame>
+        <SiteFrame theme={pageTheme}>
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/lab" element={<LabPage />} />

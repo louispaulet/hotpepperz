@@ -9,8 +9,8 @@ const baseUrl = import.meta.env.BASE_URL
 
 function HeatPairingsPage() {
   return (
-    <div className="page-sections">
-      <section className="panel rounded-[2.2rem] p-6 sm:p-8 xl:p-9">
+    <div className="page-sections pairings-page">
+      <section className="panel pairings-hero rounded-[2.2rem] p-6 sm:p-8 xl:p-9">
         <p className="section-kicker">Heat, Pairings, and Uses</p>
         <h1 className="display-font mt-4 text-5xl uppercase leading-[0.9] text-[var(--color-cream)] sm:text-6xl">
           Where peppers meet ingredients.
@@ -26,7 +26,11 @@ function HeatPairingsPage() {
           const media = getPepperAssociation(recipe.leadPepperSlugs[0])
 
           return (
-            <Link key={recipe.slug} to={`/wiki/recipes/${recipe.slug}`} className="panel overflow-hidden rounded-[2rem]">
+            <Link
+              key={recipe.slug}
+              to={`/wiki/recipes/${recipe.slug}`}
+              className="panel pairings-card overflow-hidden rounded-[2rem]"
+            >
               <VisualImage
                 src={resolveImageSrc(baseUrl, media.landscapeVisual.image)}
                 alt={media.landscapeVisual.alt}

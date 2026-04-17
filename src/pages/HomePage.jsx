@@ -19,7 +19,7 @@ function HomePage() {
   const legend = legends[0]
 
   return (
-    <div className="page-sections">
+    <div className="page-sections journal-page">
       <HeroSection featuredPeppers={featuredPeppers} />
       <FeaturedOriginsSection peppers={featuredPeppers} />
       <PairingsSection recipes={featuredRecipes} />
@@ -35,9 +35,9 @@ function HeroSection({ featuredPeppers }) {
   const media = getPepperAssociation(heroPepper.slug)
 
   return (
-    <section className="viewport-section grid gap-4 xl:grid-cols-[1.06fr_0.94fr]">
+    <section className="viewport-section journal-landing grid gap-4 xl:grid-cols-[1.06fr_0.94fr]">
       <article
-        className="panel overflow-hidden rounded-[2.2rem] px-6 py-7 sm:px-8 sm:py-9 xl:px-9"
+        className="panel journal-hero overflow-hidden rounded-[2.2rem] px-6 py-7 sm:px-8 sm:py-9 xl:px-9"
         style={{
           backgroundImage: `linear-gradient(180deg, rgba(10,8,7,0.18), rgba(10,8,7,0.9)), url(${resolveImageSrc(
             baseUrl,
@@ -74,7 +74,7 @@ function HeroSection({ featuredPeppers }) {
       </article>
 
       <article className="grid gap-4">
-        <div className="panel rounded-[2.2rem] p-5 sm:p-6">
+        <div className="panel journal-note-card rounded-[2.2rem] p-5 sm:p-6">
           <p className="section-kicker">Association system</p>
           <h2 className="mt-3 text-3xl font-semibold text-[var(--color-cream)]">
             Each pepper now carries its own portrait and origin landscape.
@@ -90,7 +90,11 @@ function HeroSection({ featuredPeppers }) {
             const item = getPepperAssociation(pepper.slug)
 
             return (
-              <Link key={pepper.slug} to={`/wiki/peppers/${pepper.slug}`} className="panel overflow-hidden rounded-[1.9rem]">
+              <Link
+                key={pepper.slug}
+                to={`/wiki/peppers/${pepper.slug}`}
+                className="panel journal-card journal-card--pepper overflow-hidden rounded-[1.9rem]"
+              >
                 <VisualImage
                   src={resolveImageSrc(baseUrl, item.portraitVisual.image)}
                   alt={item.portraitVisual.alt}
@@ -113,8 +117,8 @@ function HeroSection({ featuredPeppers }) {
 
 function FeaturedOriginsSection({ peppers }) {
   return (
-    <section className="viewport-section grid gap-4 xl:grid-cols-[1fr_1fr]">
-      <section className="panel rounded-[2rem] p-6 sm:p-8">
+    <section className="viewport-section journal-chapter-grid grid gap-4 xl:grid-cols-[1fr_1fr]">
+      <section className="panel chapter-card chapter-card--origins rounded-[2rem] p-6 sm:p-8">
         <p className="section-kicker">Featured origins</p>
         <h2 className="display-font mt-3 text-5xl uppercase leading-none text-[var(--color-cream)]">
           Landscapes behind the fruit.
@@ -133,7 +137,11 @@ function FeaturedOriginsSection({ peppers }) {
           const media = getPepperAssociation(pepper.slug)
 
           return (
-            <Link key={pepper.slug} to={`/wiki/peppers/${pepper.slug}`} className="panel overflow-hidden rounded-[1.9rem]">
+            <Link
+              key={pepper.slug}
+              to={`/wiki/peppers/${pepper.slug}`}
+              className="panel journal-card journal-card--atlas overflow-hidden rounded-[1.9rem]"
+            >
               <VisualImage
                 src={resolveImageSrc(baseUrl, media.landscapeVisual.image)}
                 alt={media.landscapeVisual.alt}
@@ -155,8 +163,8 @@ function FeaturedOriginsSection({ peppers }) {
 
 function PairingsSection({ recipes }) {
   return (
-    <section className="viewport-section grid gap-4 xl:grid-cols-[1fr_1fr]">
-      <section className="panel rounded-[2rem] p-6 sm:p-8">
+    <section className="viewport-section journal-chapter-grid grid gap-4 xl:grid-cols-[1fr_1fr]">
+      <section className="panel chapter-card chapter-card--pairings rounded-[2rem] p-6 sm:p-8">
         <p className="section-kicker">Pepper and ingredient pairings</p>
         <h2 className="display-font mt-3 text-5xl uppercase leading-none text-[var(--color-cream)]">
           Recipes, associations, and useful legends.
@@ -175,7 +183,11 @@ function PairingsSection({ recipes }) {
           const media = getPepperAssociation(recipe.leadPepperSlugs[0])
 
           return (
-            <Link key={recipe.slug} to={`/wiki/recipes/${recipe.slug}`} className="panel overflow-hidden rounded-[1.9rem]">
+            <Link
+              key={recipe.slug}
+              to={`/wiki/recipes/${recipe.slug}`}
+              className="panel journal-card journal-card--pairings overflow-hidden rounded-[1.9rem]"
+            >
               <div className="grid gap-0 md:grid-cols-[0.95fr_1.05fr]">
                 <VisualImage
                   src={resolveImageSrc(baseUrl, media.landscapeVisual.image)}
@@ -200,7 +212,7 @@ function PairingsSection({ recipes }) {
 function RestaurantSection({ restaurants }) {
   return (
     <section className="viewport-section grid gap-4">
-      <section className="panel rounded-[2rem] p-6 sm:p-8">
+      <section className="panel chapter-card chapter-card--restaurants rounded-[2rem] p-6 sm:p-8">
         <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <p className="section-kicker">Where to taste the heat</p>
@@ -221,7 +233,7 @@ function RestaurantSection({ restaurants }) {
               <Link
                 key={restaurant.slug}
                 to={`/wiki/restaurants/${restaurant.slug}`}
-                className="panel overflow-hidden rounded-[1.8rem]"
+                className="panel journal-card journal-card--restaurant overflow-hidden rounded-[1.8rem]"
               >
                 <div
                   className="relative min-h-[16rem] p-5"
@@ -258,8 +270,8 @@ function LegendSection({ legend }) {
   const media = getPepperAssociation(legend.relatedPepperSlugs[0])
 
   return (
-    <section className="viewport-section grid gap-4 xl:grid-cols-[1.05fr_0.95fr]">
-      <section className="panel rounded-[2rem] p-6 sm:p-8">
+    <section className="viewport-section journal-chapter-grid grid gap-4 xl:grid-cols-[1.05fr_0.95fr]">
+      <section className="panel chapter-card chapter-card--legend rounded-[2rem] p-6 sm:p-8">
         <p className="section-kicker">Legend</p>
         <h2 className="display-font mt-3 text-5xl uppercase leading-none text-[var(--color-cream)]">
           The pepper routes.
@@ -270,7 +282,7 @@ function LegendSection({ legend }) {
         </Link>
       </section>
 
-      <section className="panel overflow-hidden rounded-[2rem]">
+      <section className="panel journal-card journal-card--legend overflow-hidden rounded-[2rem]">
         <VisualImage
           src={resolveImageSrc(baseUrl, media.landscapeVisual.image)}
           alt={media.landscapeVisual.alt}
@@ -291,7 +303,7 @@ function LegendSection({ legend }) {
 
 function StatCard({ value, label }) {
   return (
-    <div className="rounded-[1.5rem] border border-white/10 bg-black/18 px-5 py-5">
+    <div className="journal-stat-card rounded-[1.5rem] border border-white/10 bg-black/18 px-5 py-5">
       <dt className="text-3xl font-semibold text-[var(--color-cream)]">{value}</dt>
       <dd className="mt-2 text-xs uppercase tracking-[0.24em] text-[var(--color-text-muted)]">
         {label}

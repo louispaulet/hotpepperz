@@ -7,8 +7,8 @@ const baseUrl = import.meta.env.BASE_URL
 
 function OriginsAtlasPage() {
   return (
-    <div className="page-sections">
-      <section className="panel rounded-[2.2rem] p-6 sm:p-8 xl:p-9">
+    <div className="page-sections atlas-page">
+      <section className="panel atlas-hero rounded-[2.2rem] p-6 sm:p-8 xl:p-9">
         <p className="section-kicker">Pepper Origins Atlas</p>
         <h1 className="display-font mt-4 text-5xl uppercase leading-[0.9] text-[var(--color-cream)] sm:text-6xl">
           Landscapes behind the heat.
@@ -25,7 +25,11 @@ function OriginsAtlasPage() {
           const media = getPepperAssociation(pepper.slug)
 
           return (
-            <Link key={pepper.slug} to={`/wiki/peppers/${pepper.slug}`} className="panel overflow-hidden rounded-[2rem]">
+            <Link
+              key={pepper.slug}
+              to={`/wiki/peppers/${pepper.slug}`}
+              className="panel atlas-card overflow-hidden rounded-[2rem]"
+            >
               <div
                 className="relative min-h-[18rem] bg-cover bg-center p-6 sm:p-7"
                 style={{

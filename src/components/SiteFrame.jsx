@@ -1,12 +1,10 @@
 import { Link, NavLink } from 'react-router-dom'
 
-function SiteFrame({ children }) {
+function SiteFrame({ children, theme }) {
   const navClass = ({ isActive }) =>
     [
-      'rounded-full px-3.5 py-2 text-xs font-semibold uppercase tracking-[0.24em] transition xl:px-4 xl:py-2.5',
-      isActive
-        ? 'bg-[var(--color-cream)] text-[var(--color-ink)] shadow-[0_10px_24px_rgba(242,228,199,0.18)]'
-        : 'text-[var(--color-text-soft)] hover:bg-white/8 hover:text-[var(--color-text)]',
+      'nav-pill rounded-full px-3.5 py-2 text-xs font-semibold uppercase tracking-[0.24em] transition xl:px-4 xl:py-2.5',
+      isActive ? 'nav-pill-active' : 'nav-pill-idle',
     ].join(' ')
 
   return (
@@ -17,9 +15,12 @@ function SiteFrame({ children }) {
             <p className="mono-font text-[0.68rem] uppercase tracking-[0.32em] text-[var(--color-text-muted)]">
               Pepper journal, encyclopedia, and sauce workshop
             </p>
-            <p className="mono-font text-[0.68rem] uppercase tracking-[0.32em] text-[var(--color-text-muted)]">
-              Landscapes behind serious heat
-            </p>
+            <div className="header-badge-row flex items-center gap-2">
+              <span className="theme-badge">{theme.label}</span>
+              <p className="mono-font text-[0.68rem] uppercase tracking-[0.28em] text-[var(--color-text-muted)]">
+                Route-aware edition
+              </p>
+            </div>
           </div>
 
           <div className="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
@@ -53,10 +54,26 @@ function SiteFrame({ children }) {
                 </NavLink>
               </nav>
 
-              <Link to="/wiki" className="primary-button">
-                Explore Heat
+              <Link to={theme.ctaHref} className="primary-button">
+                {theme.ctaLabel}
               </Link>
             </div>
+          </div>
+
+          <div className="header-context mt-4 grid gap-3 border-t border-white/8 pt-4 lg:grid-cols-[auto_minmax(0,1fr)_auto] lg:items-center">
+            <div>
+              <p className="section-kicker">Current section</p>
+              <p className="mt-2 text-sm font-semibold uppercase tracking-[0.24em] text-[var(--color-cream)]">
+                {theme.label}
+              </p>
+            </div>
+            <div className="min-w-0">
+              <p className="text-sm leading-7 text-[var(--color-text)]">{theme.headerCopy}</p>
+              <p className="mt-1 text-sm leading-7 text-[var(--color-text-muted)]">{theme.headerNote}</p>
+            </div>
+            <Link to={theme.ctaHref} className="context-link">
+              {theme.ctaLabel}
+            </Link>
           </div>
         </div>
       </header>

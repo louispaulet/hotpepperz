@@ -28,7 +28,7 @@ function LegendDetailPage() {
   })
 
   return (
-    <div className="page-sections">
+    <div className="page-sections detail-page detail-page--legend">
       <ArticleHero
         kicker="Legend and history"
         title={legend.title}
@@ -36,12 +36,16 @@ function LegendDetailPage() {
         landscape={media.landscapeVisual}
         portrait={media.portraitVisual}
         chips={['History', 'Migration', 'Pepper culture']}
+        variant="legend"
       />
 
       <section className="viewport-section grid gap-4">
         <section className="grid gap-4 xl:grid-cols-[1fr_1fr_1fr]">
           {legend.sections.map((section) => (
-            <article key={section.title} className="panel rounded-[2rem] p-6 sm:p-8">
+            <article
+              key={section.title}
+              className="panel detail-section-card detail-section-card--legend rounded-[2rem] p-6 sm:p-8"
+            >
               <p className="section-kicker">Field note</p>
               <h2 className="mt-3 text-3xl font-semibold text-[var(--color-cream)]">{section.title}</h2>
               <p className="mt-4 text-sm leading-7 text-[var(--color-text-soft)]">{section.body}</p>
@@ -49,8 +53,8 @@ function LegendDetailPage() {
           ))}
         </section>
 
-        <RelatedRail title="Peppers shaped by the routes" items={relatedItems} />
-        <SourceList sources={legend.sources} />
+        <RelatedRail title="Peppers shaped by the routes" items={relatedItems} variant="legend" />
+        <SourceList sources={legend.sources} variant="legend" />
       </section>
 
       <Footer />

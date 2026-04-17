@@ -41,7 +41,7 @@ const referenceCards = [
 
 function LabPage() {
   return (
-    <div className="page-sections">
+    <div className="page-sections lab-page">
       <section className="grid gap-4">
         <IntroSection />
         <SauceStudio />
@@ -54,7 +54,7 @@ function LabPage() {
 
 function IntroSection() {
   return (
-    <section className="panel rounded-[2rem] p-5 sm:p-6 lg:p-7">
+    <section className="panel lab-intro rounded-[2rem] p-5 sm:p-6 lg:p-7">
       <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
         <div className="max-w-3xl">
           <p className="section-kicker">Sauce workshop</p>
@@ -78,7 +78,7 @@ function IntroSection() {
 
 function OptionalReferenceSection() {
   return (
-    <details className="panel rounded-[2rem] p-5 sm:p-6 lg:p-7">
+    <details className="panel lab-reference-panel rounded-[2rem] p-5 sm:p-6 lg:p-7">
       <summary className="cursor-pointer list-none">
         <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
           <div>
@@ -105,7 +105,7 @@ function OptionalReferenceSection() {
           </div>
           <div className="grid gap-4 lg:grid-cols-2">
             {referenceCards.map((item) => (
-              <article key={item.title} className="panel overflow-hidden rounded-[1.8rem]">
+              <article key={item.title} className="panel lab-reference-card overflow-hidden rounded-[1.8rem]">
                 <VisualImage
                   src={resolveImageSrc(baseUrl, item.visual.image)}
                   alt={item.visual.alt}
@@ -132,7 +132,7 @@ function OptionalReferenceSection() {
           </div>
           <div className="grid gap-4">
             {labSteps.map((step, index) => (
-              <article key={step.title} className="panel overflow-hidden rounded-[1.8rem]">
+              <article key={step.title} className="panel lab-process-card overflow-hidden rounded-[1.8rem]">
                 <img
                   src={resolveImageSrc(baseUrl, noteVisuals[index].image)}
                   alt={noteVisuals[index].alt}

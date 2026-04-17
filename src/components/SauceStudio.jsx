@@ -472,7 +472,7 @@ function SauceStudio() {
     activeStep === 1 ? selectedPeppers.length > 0 : activeStep === 2 ? selectedAccents.length > 0 : true
 
   return (
-    <section className="panel viewport-panel rounded-[2rem] p-5 sm:p-6 lg:p-7">
+    <section className="panel viewport-panel lab-studio rounded-[2rem] p-5 sm:p-6 lg:p-7">
       <div className="flex flex-col gap-4 border-b border-white/8 pb-5 lg:flex-row lg:items-center lg:justify-between">
         <div className="max-w-3xl">
           <p className="section-kicker">Configurator</p>
@@ -543,7 +543,7 @@ function SauceStudio() {
 
 function LabStepperHeader({ steps, activeStep, onStepChange }) {
   return (
-    <section className="mt-5 rounded-[1.7rem] border border-white/8 bg-black/14 p-3 sm:p-4">
+    <section className="lab-stepper mt-5 rounded-[1.7rem] border border-white/8 bg-black/14 p-3 sm:p-4">
       <div className="grid gap-2 md:grid-cols-2 xl:grid-cols-4">
         {steps.map((step) => {
           const isActive = step.id === activeStep
@@ -554,7 +554,7 @@ function LabStepperHeader({ steps, activeStep, onStepChange }) {
               key={step.id}
               type="button"
               onClick={() => onStepChange(step.id)}
-              className={`rounded-[1.25rem] border px-3.5 py-3 text-left transition ${
+              className={`lab-step-tab rounded-[1.25rem] border px-3.5 py-3 text-left transition ${
                 isActive
                   ? 'border-[rgba(255,208,138,0.28)] bg-[linear-gradient(135deg,rgba(247,177,74,0.16),rgba(240,91,52,0.12))]'
                   : isDone
@@ -899,7 +899,7 @@ function StyleChooser({ labelStyles, labelStyleId, setLabelStyleId }) {
 
 function StepPanel({ stepNumber, title, copy, aside, children }) {
   return (
-    <section className="rounded-[1.8rem] border border-white/8 bg-black/14 p-5 sm:p-6">
+    <section className="lab-step-panel rounded-[1.8rem] border border-white/8 bg-black/14 p-5 sm:p-6">
       <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
         <div className="min-w-0">
           <p className="section-kicker">Step {stepNumber}</p>
@@ -970,7 +970,7 @@ function InlineLiveResultCard({
   isGeneratingLabel,
 }) {
   return (
-    <section className="rounded-[1.8rem] border border-[rgba(255,208,138,0.18)] bg-[linear-gradient(180deg,rgba(48,30,20,0.78),rgba(16,12,10,0.86))] p-4 sm:p-5">
+    <section className="lab-live-card rounded-[1.8rem] border border-[rgba(255,208,138,0.18)] bg-[linear-gradient(180deg,rgba(48,30,20,0.78),rgba(16,12,10,0.86))] p-4 sm:p-5">
       <div className="grid gap-4 xl:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">
         <div>
           <div className="flex items-start justify-between gap-4">
@@ -1046,7 +1046,7 @@ function ConceptDetailsPanel({
   recipeArchetype,
 }) {
   return (
-    <details className="rounded-[1.8rem] border border-white/8 bg-black/12 p-4 sm:p-5">
+    <details className="lab-concept-details rounded-[1.8rem] border border-white/8 bg-black/12 p-4 sm:p-5">
       <summary className="cursor-pointer list-none">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>

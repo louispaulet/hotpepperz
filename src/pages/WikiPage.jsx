@@ -8,7 +8,7 @@ const baseUrl = import.meta.env.BASE_URL
 
 function WikiPage() {
   return (
-    <div className="page-sections">
+    <div className="page-sections directory-page">
       <HeroSection />
       <PepperIndexSection />
       <RecipeIndexSection />
@@ -23,7 +23,7 @@ function HeroSection() {
   const heroMedia = getPepperAssociation('birds-eye-chili')
 
   return (
-    <section className="panel overflow-hidden rounded-[2.2rem]">
+    <section className="panel directory-hero overflow-hidden rounded-[2.2rem]">
       <div
         className="relative min-h-[26rem] px-6 py-7 sm:px-8 sm:py-9 xl:px-9"
         style={{
@@ -74,7 +74,7 @@ function HeroSection() {
 
 function PepperIndexSection() {
   return (
-    <section className="viewport-section grid gap-4">
+    <section className="viewport-section directory-section grid gap-4">
       <SectionHeading
         kicker="Pepper profiles"
         title="New portrait and landscape pairs for every featured pepper."
@@ -86,7 +86,11 @@ function PepperIndexSection() {
           const media = getPepperAssociation(pepper.slug)
 
           return (
-            <Link key={pepper.slug} to={`/wiki/peppers/${pepper.slug}`} className="panel overflow-hidden rounded-[1.8rem]">
+            <Link
+              key={pepper.slug}
+              to={`/wiki/peppers/${pepper.slug}`}
+              className="panel directory-card directory-card--pepper overflow-hidden rounded-[1.8rem]"
+            >
               <VisualImage
                 src={resolveImageSrc(baseUrl, media.portraitVisual.image)}
                 alt={media.portraitVisual.alt}
@@ -108,7 +112,7 @@ function PepperIndexSection() {
 
 function RecipeIndexSection() {
   return (
-    <section className="viewport-section grid gap-4">
+    <section className="viewport-section directory-section grid gap-4">
       <SectionHeading
         kicker="Pairings and recipes"
         title="Dedicated pages for ingredient associations and kitchen notebooks."
@@ -120,7 +124,11 @@ function RecipeIndexSection() {
           const media = getPepperAssociation(recipe.leadPepperSlugs[0])
 
           return (
-            <Link key={recipe.slug} to={`/wiki/recipes/${recipe.slug}`} className="panel overflow-hidden rounded-[1.8rem]">
+            <Link
+              key={recipe.slug}
+              to={`/wiki/recipes/${recipe.slug}`}
+              className="panel directory-card directory-card--recipe overflow-hidden rounded-[1.8rem]"
+            >
               <VisualImage
                 src={resolveImageSrc(baseUrl, media.landscapeVisual.image)}
                 alt={media.landscapeVisual.alt}
@@ -142,7 +150,7 @@ function RecipeIndexSection() {
 
 function RestaurantIndexSection() {
   return (
-    <section className="viewport-section grid gap-4">
+    <section className="viewport-section directory-section grid gap-4">
       <SectionHeading
         kicker="Restaurants"
         title="More Michelin and fine-dining references where hot peppers stay central."
@@ -155,7 +163,7 @@ function RestaurantIndexSection() {
             <Link
               key={restaurant.slug}
               to={`/wiki/restaurants/${restaurant.slug}`}
-              className="panel overflow-hidden rounded-[1.8rem]"
+              className="panel directory-card directory-card--restaurant overflow-hidden rounded-[1.8rem]"
             >
               <div
                 className="min-h-[16rem] p-5"
@@ -192,8 +200,8 @@ function LegendIndexSection() {
   const media = getPepperAssociation(legend.relatedPepperSlugs[0])
 
   return (
-    <section className="viewport-section grid gap-4 xl:grid-cols-[0.92fr_1.08fr]">
-      <section className="panel rounded-[2rem] p-6 sm:p-8">
+    <section className="viewport-section directory-section grid gap-4 xl:grid-cols-[0.92fr_1.08fr]">
+      <section className="panel directory-heading directory-heading--legend rounded-[2rem] p-6 sm:p-8">
         <p className="section-kicker">Legend</p>
         <h2 className="display-font mt-3 text-5xl uppercase leading-none text-[var(--color-cream)]">
           The pepper routes.
@@ -204,7 +212,7 @@ function LegendIndexSection() {
         </Link>
       </section>
 
-      <section className="panel overflow-hidden rounded-[2rem]">
+      <section className="panel directory-card directory-card--legend overflow-hidden rounded-[2rem]">
         <VisualImage
           src={resolveImageSrc(baseUrl, media.landscapeVisual.image)}
           alt={media.landscapeVisual.alt}
@@ -225,7 +233,7 @@ function LegendIndexSection() {
 
 function SectionHeading({ kicker, title, ctaHref, ctaLabel }) {
   return (
-    <section className="panel rounded-[2rem] p-6 sm:p-8">
+    <section className="panel directory-heading rounded-[2rem] p-6 sm:p-8">
       <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
         <div>
           <p className="section-kicker">{kicker}</p>
