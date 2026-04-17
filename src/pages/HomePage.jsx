@@ -1,77 +1,88 @@
 import { Link } from 'react-router-dom'
 import Footer from '../components/Footer'
 import VisualImage from '../components/VisualImage'
-import { houseSauces, labSteps, peppers, sauceFamilies } from '../data/catalog'
+import {
+  heatDestinations,
+  houseSauces,
+  labSteps,
+  peppers,
+  pepperTrivia,
+  sauceFamilies,
+  traditionalRecipes,
+} from '../data/catalog'
 import { editorialImages, homepageGallery, resolveImageSrc } from '../lib/media'
 
 const numberFormatter = new Intl.NumberFormat('en-US')
 const baseUrl = import.meta.env.BASE_URL
 
 const heroGallery = [
-  { ...editorialImages.bottleLineup, label: 'Bottle drama' },
+  { ...editorialImages.bottleLineup, label: 'Bottle lineup' },
   { ...editorialImages.habaneroPlant, label: 'Field harvest' },
-  { ...editorialImages.habaneroMacro, label: 'Texture close-up' },
-  { ...editorialImages.fermentedJar, label: 'Ferment detail' },
-  { ...editorialImages.heroChili, label: 'Graphic hero' },
+  { ...editorialImages.habaneroMacro, label: 'Habanero detail' },
+  { ...editorialImages.fermentedJar, label: 'Fermentation bench' },
+  { ...editorialImages.heroChili, label: 'Red chili study' },
 ]
 
 const houseSauceVisuals = {
-  'Market Ember No. 3': {
+  'Mercado Verde': {
     ...editorialImages.marketCrate,
     image: 'images/serrano-peppers.png',
-    alt: 'Fresh serrano peppers for Market Ember No. 3',
+    alt: 'Fresh serrano peppers for Mercado Verde',
     position: 'center center',
   },
-  'Lantern Choir': {
+  'Yucatan Lantern': {
     ...editorialImages.habaneroPlant,
   },
-  'After Midnight': {
+  'Midnight Molino': {
     ...editorialImages.pepperStillLife,
   },
-  'Signal Bloom': {
+  'Coastal Gold': {
     ...editorialImages.ajiAmarilloBottle,
   },
 }
 
 const familyVisuals = {
-  'Bright Citrus': {
+  'Green Table Sauces': {
     ...editorialImages.marketCrate,
     image: 'images/jalapeno-peppers.png',
-    alt: 'Jalapeno peppers representing bright citrus sauces',
+    alt: 'Jalapeno peppers for green table sauces',
     position: 'center 58%',
   },
-  'Tropical Heat': {
+  'Caribbean Fruit-Forward': {
     ...editorialImages.habaneroPlant,
   },
-  'Dark Smoke': {
+  'Dark Roasted Bottles': {
     ...editorialImages.fermentedJar,
   },
-  'Collector Superhots': {
+  'Superhot Reserve': {
     ...editorialImages.trinidadScorpionBottle,
   },
 }
 
 const pathwayCards = [
   {
-    title: 'Editorial storefront',
-    copy: 'The landing page now reads in deliberate chapters instead of one giant column.',
-    link: '/',
-    cta: 'See the overview',
-    visual: editorialImages.bottleLineup,
+    title: 'Pepper knowledge, not pepper cosplay',
+    copy:
+      'The goal here is to treat hot sauce as a craft: agriculture, fermentation, balance, and a healthy respect for capsaicin.',
+    link: '/wiki',
+    cta: 'Read the field guide',
+    visual: editorialImages.wikiHabanero,
   },
   {
-    title: 'Hands-on formulation',
-    copy: 'The lab now opens as a guided builder, with the active step and live result kept in one reading flow.',
+    title: 'A working sauce bench',
+    copy:
+      'The workshop is built around formulation logic: lead pepper, support pepper, acid, body, and the style of bottle you want to make.',
     link: '/lab',
-    cta: 'Open the lab',
+    cta: 'Open the sauce bench',
     visual: editorialImages.fermentedJar,
   },
   {
-    title: 'Pepper reference atlas',
-    copy: 'The wiki keeps the field guide, family map, and safety notes in separate full-screen stops.',
+    title: 'Recipes, stories, and heat trails',
+    copy:
+      'From taquera salsa to Southern Thai spice pilgrimages, the site now reads like a cook’s notebook rather than a mood board.',
     link: '/wiki',
-    cta: 'Browse the guide',
-    visual: editorialImages.wikiHabanero,
+    cta: 'Explore the collection',
+    visual: editorialImages.bottleLineup,
   },
 ]
 
@@ -96,39 +107,47 @@ function HeroSection() {
     <section className="viewport-section grid gap-4 xl:grid-cols-[1.08fr_0.92fr]">
       <article className="panel viewport-panel overflow-hidden rounded-[2.2rem] p-6 sm:p-8 xl:p-9">
         <div className="relative z-10">
-          <p className="section-kicker">Small-batch heat, better art direction</p>
+          <p className="section-kicker">Hot sauce craft, seriously taken</p>
           <h1 className="display-font viewport-hero-title mt-4 max-w-4xl uppercase leading-[0.9] text-[var(--color-cream)]">
-            The homepage now lands in full-screen chapters instead of spilling down the page.
+            A field guide for people who love peppers, respect heat, and care how a sauce is made.
           </h1>
-          <p className="viewport-hero-copy mt-4 text-base leading-7 text-[var(--color-text-soft)] sm:text-lg">
-            HotPepperz keeps the same editorial mood, but the pacing is tighter so every section
-            reads like a complete screen with a clear next move.
+          <p className="viewport-hero-copy mt-4 max-w-3xl text-base leading-7 text-[var(--color-text-soft)] sm:text-lg">
+            HotPepperz is written like a working notebook from a pepper grower and sauce maker:
+            part history, part practical reference, part standing invitation to keep one good bottle
+            close to the stove. Expect serious technique, pepper lore, and the occasional well-earned
+            chili pun. After all, every good sauce deserves a little gravitas and a little jalapen-yo.
           </p>
 
           <div className="mt-5 flex flex-wrap gap-3">
             <Link to="/lab" className="primary-button">
-              Build a Bottle
+              Start a Sauce
             </Link>
             <Link to="/wiki" className="secondary-button">
-              Explore the Atlas
+              Browse the Pepper Guide
             </Link>
           </div>
 
           <dl className="mt-6 grid gap-3 md:grid-cols-3">
-            <StatCard value="4" label="Homepage chapters" />
-            <StatCard value="1" label="Focused viewport per stop" />
-            <StatCard value="0" label="Massive entry overflow" />
+            <StatCard value="9" label="Pepper profiles" />
+            <StatCard value="3" label="Traditional sauce templates" />
+            <StatCard value="6" label="Global heat destinations" />
           </dl>
 
           <div className="soft-divider mt-5 pt-5">
-            <p className="section-kicker">What changed</p>
+            <p className="section-kicker">What matters in the bottle</p>
             <div className="mt-3 grid gap-3 sm:grid-cols-3">
-              <SignalLine label="Clearer pacing" copy="The route is chunked into full-screen moments instead of one endless stack." />
               <SignalLine
-                label="Bounded content"
-                copy="Dense content now stays in clearer chapters and collapsed secondary panels instead of fighting the main flow."
+                label="Balance first"
+                copy="Heat is only half the story. Acid, aroma, texture, and finish decide whether a sauce gets used or ignored."
               />
-              <SignalLine label="Faster scanning" copy="Each screen answers one question at a time: where to go, what exists, and how to build." />
+              <SignalLine
+                label="Pepper character"
+                copy="Aji amarillo smells sunny, habanero smells tropical, and ghost pepper arrives with the subtlety of legal correspondence."
+              />
+              <SignalLine
+                label="Technique over theatrics"
+                copy="Good makers ferment patiently, taste in drops, and know when to let a pepper whisper instead of shout."
+              />
             </div>
           </div>
         </div>
@@ -165,7 +184,7 @@ function CatalogSection() {
     <section className="viewport-section grid gap-4 xl:grid-cols-[1fr_1fr]">
       <div className="grid min-h-0 gap-4">
         <SignatureShelf />
-        <ProcessPreview />
+        <RecipeSection />
       </div>
       <div className="grid min-h-0 gap-4">
         <PepperAtlasPreview />
@@ -201,9 +220,9 @@ function ExperienceStrip() {
   return (
     <section className="panel viewport-panel rounded-[2.1rem] p-6 sm:p-8">
       <div>
-        <p className="section-kicker">Navigate the world</p>
+        <p className="section-kicker">Inside the site</p>
         <h2 className="display-font mt-3 text-4xl uppercase leading-none text-[var(--color-cream)] sm:text-5xl">
-          Every route gets one screen-sized promise.
+          Written for cooks, collectors, and people who keep chili flakes in more than one drawer.
         </h2>
       </div>
 
@@ -217,7 +236,7 @@ function ExperienceStrip() {
               className="h-44 w-full"
             />
             <div className="p-6">
-              <p className="section-kicker">Experience</p>
+              <p className="section-kicker">Reading path</p>
               <h2 className="mt-4 text-2xl font-semibold text-[var(--color-cream)]">{card.title}</h2>
               <p className="mt-4 text-sm leading-7 text-[var(--color-text-soft)]">{card.copy}</p>
               <Link
@@ -239,14 +258,14 @@ function PantryGallery() {
     <section className="panel viewport-panel rounded-[2.1rem] p-7 sm:p-9">
       <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
         <div>
-          <p className="section-kicker">Visual pantry</p>
+          <p className="section-kicker">The pantry view</p>
           <h2 className="display-font mt-3 text-4xl uppercase leading-none text-[var(--color-cream)] sm:text-5xl">
-            The images now work as one contained spread.
+            A serious sauce starts with produce, patience, and clean seasoning.
           </h2>
         </div>
         <p className="max-w-xl text-sm leading-7 text-[var(--color-text-soft)] sm:text-base">
-          Produce, packaging, ingredient, and fermentation imagery each keep a defined place in the
-          layout so the opening view feels deliberate instead of oversized.
+          The best bottles rarely begin with novelty. They begin with good peppers, a clear acid
+          choice, and the discipline to stop adding ingredients once the flavor is already speaking.
         </p>
       </div>
 
@@ -276,14 +295,14 @@ function SignatureShelf() {
     <section className="panel rounded-[2rem] p-6 sm:p-8">
       <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
         <div>
-          <p className="section-kicker">Signature shelf</p>
+          <p className="section-kicker">House bottles</p>
           <h2 className="display-font mt-3 text-4xl uppercase leading-none text-[var(--color-cream)] sm:text-5xl">
-            Reference bottles with sharper personalities.
+            Four styles that show how different peppers tell different stories.
           </h2>
         </div>
         <p className="max-w-xl text-sm leading-7 text-[var(--color-text-soft)] sm:text-base">
-          Bottle cards stay readable in one panel, with just enough supporting copy to telegraph
-          range without turning the screen into a catalog wall.
+          A habanero sauce should not read like a cayenne sauce wearing brighter shoes. Each bottle
+          below is built around a distinct pepper voice, from fast green heat to slower, darker burn.
         </p>
       </div>
 
@@ -333,13 +352,13 @@ function PepperAtlasPreview() {
     <section className="panel viewport-panel rounded-[2rem] p-6 sm:p-8">
       <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
         <div>
-          <p className="section-kicker">Pepper atlas</p>
+          <p className="section-kicker">Pepper field guide</p>
           <h2 className="display-font mt-3 text-4xl uppercase leading-none text-[var(--color-cream)] sm:text-5xl">
-            Pepper cards read like a compact field guide.
+            Read the peppers before you read the Scoville number.
           </h2>
         </div>
         <Link to="/wiki" className="secondary-button w-full sm:w-auto">
-          Open the full wiki
+          Open the full guide
         </Link>
       </div>
 
@@ -387,12 +406,12 @@ function SauceFamiliesSection() {
         <div>
           <p className="section-kicker">Sauce families</p>
           <h2 className="display-font mt-3 text-4xl uppercase leading-none text-[var(--color-cream)] sm:text-5xl">
-            Familiar flavor lanes make the catalog easier to scan.
+            Most memorable bottles belong to a clear culinary tradition.
           </h2>
         </div>
         <p className="max-w-xl text-sm leading-7 text-[var(--color-text-soft)] sm:text-base">
-          Bright, tropical, smoky, and collector-grade routes now live in one bounded panel so the
-          taxonomy feels helpful instead of sprawling.
+          Categories are useful when they help you cook. Think less in terms of novelty branding,
+          more in terms of what the bottle should do at the table.
         </p>
       </div>
 
@@ -424,25 +443,32 @@ function SauceFamiliesSection() {
   )
 }
 
-function ProcessPreview() {
+function RecipeSection() {
   return (
     <section className="panel viewport-panel rounded-[2rem] p-6 sm:p-8">
-      <p className="section-kicker">Working method</p>
+      <p className="section-kicker">Traditional starting points</p>
       <h2 className="display-font mt-3 text-4xl uppercase leading-none text-[var(--color-cream)] sm:text-5xl">
-        The sauce story stays readable from first pick to final label.
+        Three classic approaches worth learning before inventing your own.
       </h2>
       <p className="mt-4 max-w-2xl text-sm leading-7 text-[var(--color-text-soft)] sm:text-base">
-        We trimmed the route into clearer decision points so the builder no longer disappears below
-        giant supporting panels.
+        Every sauce maker eventually puts a personal stamp on the bottle, but the fastest way to
+        improve is to cook a few time-tested traditions first and notice how each culture balances
+        acidity, aroma, and heat.
       </p>
       <div className="mt-6 grid gap-4 sm:grid-cols-3">
-        {labSteps.map((step, index) => (
-          <article key={step.title} className="rounded-[1.6rem] border border-white/10 bg-black/16 p-5">
+        {traditionalRecipes.map((recipe, index) => (
+          <article key={recipe.name} className="rounded-[1.6rem] border border-white/10 bg-black/16 p-5">
             <p className="mono-font text-xs uppercase tracking-[0.28em] text-[var(--color-text-muted)]">
-              Step 0{index + 1}
+              Recipe 0{index + 1}
             </p>
-            <h3 className="mt-4 text-xl font-semibold text-[var(--color-cream)]">{step.title}</h3>
-            <p className="mt-3 text-sm leading-7 text-[var(--color-text-soft)]">{step.copy}</p>
+            <h3 className="mt-4 text-xl font-semibold text-[var(--color-cream)]">{recipe.name}</h3>
+            <p className="mt-3 text-xs uppercase tracking-[0.18em] text-[var(--color-text-muted)]">
+              {recipe.origin}
+            </p>
+            <p className="mt-4 text-sm leading-7 text-[var(--color-text-soft)]">
+              <span className="text-[var(--color-text)]">Base:</span> {recipe.ingredients}
+            </p>
+            <p className="mt-3 text-sm leading-7 text-[var(--color-text-soft)]">{recipe.method}</p>
           </article>
         ))}
       </div>
@@ -452,41 +478,90 @@ function ProcessPreview() {
 
 function ProcessSection() {
   return (
-    <section className="viewport-section panel viewport-panel rounded-[2rem] p-7 sm:p-9">
-      <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-        <div>
-          <p className="section-kicker">Lab flow</p>
-          <h2 className="display-font mt-3 text-4xl uppercase leading-none text-[var(--color-cream)] sm:text-5xl">
-            The builder now opens as one focused configurator.
-          </h2>
+    <section className="viewport-section grid gap-4 xl:grid-cols-[1fr_1fr]">
+      <section className="panel viewport-panel rounded-[2rem] p-7 sm:p-9">
+        <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <p className="section-kicker">Bench notes</p>
+            <h2 className="display-font mt-3 text-4xl uppercase leading-none text-[var(--color-cream)] sm:text-5xl">
+              Sauce making is a sequence of calm decisions.
+            </h2>
+          </div>
+          <Link to="/lab" className="primary-button w-full sm:w-auto">
+            Open the workshop
+          </Link>
         </div>
-        <Link to="/lab" className="primary-button w-full sm:w-auto">
-          Open the lab
-        </Link>
-      </div>
 
-      <div className="viewport-scroll mt-8 grid gap-4 lg:grid-cols-3">
-        {labSteps.map((step, index) => (
-          <article
-            key={step.title}
-            className="overflow-hidden rounded-[1.8rem] border border-white/10 bg-black/16"
-          >
-            <img
-              src={resolveImageSrc(baseUrl, homepageGallery[index].image)}
-              alt={homepageGallery[index].alt}
-              className="h-40 w-full object-cover"
-              style={{ objectPosition: homepageGallery[index].position }}
-            />
-            <div className="p-6">
-              <p className="mono-font text-xs uppercase tracking-[0.28em] text-[var(--color-text-muted)]">
-                Step 0{index + 1}
-              </p>
-              <h3 className="mt-4 text-2xl font-semibold text-[var(--color-cream)]">{step.title}</h3>
-              <p className="mt-4 text-sm leading-7 text-[var(--color-text-soft)]">{step.copy}</p>
-            </div>
-          </article>
-        ))}
-      </div>
+        <div className="viewport-scroll mt-8 grid gap-4 lg:grid-cols-3">
+          {labSteps.map((step, index) => (
+            <article
+              key={step.title}
+              className="overflow-hidden rounded-[1.8rem] border border-white/10 bg-black/16"
+            >
+              <img
+                src={resolveImageSrc(baseUrl, homepageGallery[index].image)}
+                alt={homepageGallery[index].alt}
+                className="h-40 w-full object-cover"
+                style={{ objectPosition: homepageGallery[index].position }}
+              />
+              <div className="p-6">
+                <p className="mono-font text-xs uppercase tracking-[0.28em] text-[var(--color-text-muted)]">
+                  Step 0{index + 1}
+                </p>
+                <h3 className="mt-4 text-2xl font-semibold text-[var(--color-cream)]">{step.title}</h3>
+                <p className="mt-4 text-sm leading-7 text-[var(--color-text-soft)]">{step.copy}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="panel viewport-panel rounded-[2rem] p-7 sm:p-9">
+        <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <p className="section-kicker">Trivia and travel</p>
+            <h2 className="display-font mt-3 text-4xl uppercase leading-none text-[var(--color-cream)] sm:text-5xl">
+              A few facts for the road, plus places where the heat is worth the trip.
+            </h2>
+          </div>
+          <Link to="/wiki" className="secondary-button w-full sm:w-auto">
+            More field notes
+          </Link>
+        </div>
+
+        <div className="mt-8 grid gap-4">
+          <div className="grid gap-4 md:grid-cols-2">
+            {pepperTrivia.slice(0, 2).map((item) => (
+              <article key={item.title} className="rounded-[1.6rem] border border-white/10 bg-black/16 p-5">
+                <p className="section-kicker">Pepper note</p>
+                <h3 className="mt-3 text-xl font-semibold text-[var(--color-cream)]">{item.title}</h3>
+                <p className="mt-3 text-sm leading-7 text-[var(--color-text-soft)]">{item.copy}</p>
+              </article>
+            ))}
+          </div>
+
+          <div className="grid gap-3">
+            {heatDestinations.slice(0, 4).map((destination) => (
+              <a
+                key={destination.name}
+                href={destination.href}
+                target="_blank"
+                rel="noreferrer"
+                className="rounded-[1.5rem] border border-white/10 bg-black/15 p-4 transition hover:border-white/16 hover:bg-white/6"
+              >
+                <div className="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between">
+                  <h3 className="text-lg font-semibold text-[var(--color-cream)]">{destination.name}</h3>
+                  <p className="text-xs uppercase tracking-[0.2em] text-[var(--color-text-muted)]">
+                    {destination.city}
+                  </p>
+                </div>
+                <p className="mt-2 text-sm text-[var(--color-text)]">{destination.dish}</p>
+                <p className="mt-2 text-sm leading-7 text-[var(--color-text-soft)]">{destination.note}</p>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
     </section>
   )
 }

@@ -4,16 +4,16 @@ const POLLINATIONS_ENDPOINT = 'https://gen.pollinations.ai/image'
 const POLLINATIONS_MODEL = import.meta.env.VITE_POLLINATIONS_MODEL || 'flux'
 
 const heatTitles = [
-  'Porch Glow',
-  'Backroom Ember',
-  'Night Market Spark',
-  'Lantern Burst',
-  'Foundry Kiss',
-  'Forge Chorus',
-  'Signal Flare',
-  'Bell Tower Blaze',
-  'Velvet Alarm',
-  'Cathedral of Heat',
+  'Table Glow',
+  'Copper Ember',
+  'Market Spark',
+  'Lantern Heat',
+  'Reserve Burn',
+  'Cellar Flame',
+  'Forge Mark',
+  'Red Ledger',
+  'Last Warning',
+  'Apex Reserve',
 ]
 
 function getBasePrompt({ peppers, accents, heatLabel, labelStyle }) {
@@ -25,14 +25,14 @@ function getBasePrompt({ peppers, accents, heatLabel, labelStyle }) {
     ? accents.map((accent) => `${accent.name} (${accent.notes.join(', ')})`).join(', ')
     : 'no supporting accents'
 
-  return `Create a premium, whimsical hot sauce concept for a fictional artisanal brand.
+  return `Create a serious, premium hot sauce concept for a craft sauce maker.
 Selected peppers: ${pepperSummary}.
 Supporting accents: ${accentSummary}.
 Heat impression: ${heatLabel}.
 Label art direction: ${labelStyle.promptTone}.
 
 Return strict JSON with keys "name", "blurb", and "labelPrompt".
-- "name": 2 to 4 words, memorable, premium, slightly playful, no quotation marks.
+- "name": 2 to 4 words, memorable, premium, grounded, no quotation marks.
 - "blurb": 14 to 22 words describing the flavor and burn.
 - "labelPrompt": one concise image prompt for a bottle label illustration.
 Avoid generic names like Inferno Sauce or Hot Stuff.`.trim()
@@ -75,7 +75,7 @@ export async function generateSauceConcept(recipe) {
         {
           role: 'system',
           content:
-            'You write premium product names for boutique hot sauces and respond only with valid JSON.',
+            'You write premium product names for serious craft hot sauces and respond only with valid JSON.',
         },
         {
           role: 'user',
@@ -113,7 +113,7 @@ export function buildFallbackConcept({ peppers, accents, heatIndex }) {
   return {
     name: `${firstAccent.split(' ')[0]} ${title}`,
     blurb: `${topPepper} leads with ${firstAccent.toLowerCase()} and a small-batch burn that lands warm, vivid, and just unruly enough.`,
-    labelPrompt: `artisan hot sauce bottle label, ${topPepper}, ${firstAccent}, firelight, tactile printmaking, premium craft packaging`,
+    labelPrompt: `serious craft hot sauce bottle label, ${topPepper}, ${firstAccent}, tactile printmaking, premium culinary packaging`,
   }
 }
 

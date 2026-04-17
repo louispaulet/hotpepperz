@@ -53,7 +53,7 @@ function getHeatProfile(selectedPeppers, heatBias) {
     return {
       averageScoville: 0,
       heatIndex: 1,
-      heatLabel: 'Gentle heat',
+      heatLabel: 'Mild table heat',
     }
   }
 
@@ -69,15 +69,15 @@ function getHeatProfile(selectedPeppers, heatBias) {
   )
 
   const labels = [
-    'Gentle heat',
-    'Porch glow',
-    'Weeknight spark',
-    'Table-side flame',
-    'Gathering heat',
-    'Slow-bloom burn',
-    'Forge-ready',
-    'Pulse-raising',
-    'Aftershock',
+    'Mild table heat',
+    'Warm finish',
+    'Steady kitchen heat',
+    'Classic hot sauce heat',
+    'Assertive burn',
+    'Lingering heat',
+    'Serious heat',
+    'Collector heat',
+    'Punishing heat',
     'Apex heat',
   ]
 
@@ -188,18 +188,18 @@ function buildStyleDirection(labelStyle, signals) {
   const map = Object.fromEntries(signals.map((signal) => [signal.label, signal.value]))
 
   if (labelStyle.id === 'apothecary') {
-    return 'Collector-bottle energy with archival detail and strong ritual vibes.'
+    return 'Collector-bottle character with archival detail and a spice-merchant sensibility.'
   }
 
   if (labelStyle.id === 'psychedelic') {
-    return 'Maximal color, loud motion, and a visual promise that the bottle is not playing around.'
+    return 'Vivid color and dramatic motion for bottles that want more swagger without tipping into parody.'
   }
 
   if (map.Smoke >= 5) {
-    return 'A darker packaging direction makes sense here because the flavor profile carries weight and slow-burn drama.'
+    return 'A darker packaging direction suits this recipe because the profile carries weight, bitterness, and a slower burn.'
   }
 
-  return 'Keep the label ingredient-led and legible so the heat feels designed instead of chaotic.'
+  return 'Keep the label ingredient-led and legible so the bottle feels authoritative rather than gimmicky.'
 }
 
 function buildRecipeArchetype(selectedPeppers, selectedAccents, heatLabel, signals) {
@@ -244,16 +244,16 @@ function SauceStudio() {
   const [selectedAccentIds, setSelectedAccentIds] = useState(defaultRecipe.accentIds)
   const [heatBias, setHeatBias] = useState(defaultRecipe.heatBias)
   const [labelStyleId, setLabelStyleId] = useState(defaultRecipe.labelStyleId)
-  const [generatedName, setGeneratedName] = useState('Mango Signal Bloom')
+  const [generatedName, setGeneratedName] = useState('Mango Ledger')
   const [generatedBlurb, setGeneratedBlurb] = useState(
-    'Serrano and habanero rise through ripe mango and lime for a bright, quick-entry burn with a polished finish.',
+    'Serrano and habanero move through ripe mango and lime for a bright opening, a clean mid-palate, and a polished finish.',
   )
   const [labelPrompt, setLabelPrompt] = useState(
-    'editorial hot sauce label with tropical peppers, fruit cues, tactile paper, premium bottle packaging',
+    'serious craft hot sauce label with tropical peppers, fruit cues, tactile paper, premium bottle packaging',
   )
   const [labelImage, setLabelImage] = useState('')
   const [status, setStatus] = useState(
-    'Build a coherent recipe first, then generate the concept once the flavor logic feels right.',
+    'Build a coherent recipe first, then generate the bottle concept once the flavor logic feels sound.',
   )
   const [isGeneratingName, setIsGeneratingName] = useState(false)
   const [isGeneratingLabel, setIsGeneratingLabel] = useState(false)
@@ -352,7 +352,7 @@ function SauceStudio() {
       setGeneratedBlurb(fallback.blurb)
       setLabelPrompt(fallback.labelPrompt)
       setStatus(
-        `Live naming was unavailable, so the lab produced a fallback concept instead. ${
+        `Live naming was unavailable, so the workshop produced a fallback concept instead. ${
           error instanceof Error ? error.message : ''
         }`.trim(),
       )
@@ -439,28 +439,28 @@ function SauceStudio() {
     {
       id: 1,
       label: 'Peppers',
-      title: 'Choose your pepper architecture',
-      summary: selectedPeppers.length ? `${selectedPeppers.length}/4 selected` : 'Pick a backbone',
+      title: 'Choose the pepper base',
+      summary: selectedPeppers.length ? `${selectedPeppers.length}/4 selected` : 'Pick a lead pepper',
       complete: selectedPeppers.length > 0,
     },
     {
       id: 2,
       label: 'Accents',
       title: 'Add accents for body and finish',
-      summary: selectedAccents.length ? `${selectedAccents.length}/4 selected` : 'Shape sweetness and finish',
+      summary: selectedAccents.length ? `${selectedAccents.length}/4 selected` : 'Season the bottle',
       complete: selectedAccents.length > 0,
     },
     {
       id: 3,
       label: 'Heat',
-      title: 'Tune the heat narrative',
+      title: 'Tune the heat level',
       summary: `${heatBias}/10 bias`,
       complete: true,
     },
     {
       id: 4,
       label: 'Style',
-      title: 'Choose the label language',
+      title: 'Choose the label style',
       summary: labelStyle.name,
       complete: true,
     },
@@ -477,14 +477,14 @@ function SauceStudio() {
         <div className="max-w-3xl">
           <p className="section-kicker">Configurator</p>
           <p className="mt-2 max-w-2xl text-sm leading-7 text-[var(--color-text-soft)] sm:text-base">
-            One active step at a time. The live sauce summary stays in the same flow as the choices
-            shaping it, so the builder reads like a tool instead of a split-screen report.
+            One active step at a time. The live sauce summary stays next to the decisions shaping it,
+            so the workshop reads like a practical tool instead of a novelty generator.
           </p>
         </div>
 
         <div className="flex flex-wrap gap-3">
           <button type="button" onClick={handleRandomize} className="secondary-button">
-            Randomize Recipe
+            Randomize Batch
           </button>
           <button type="button" onClick={handleReset} className="secondary-button">
             Reset
@@ -623,9 +623,9 @@ function ActiveStepPanel({
 }) {
   let panel = {
     stepNumber: 1,
-    title: 'Choose your pepper architecture',
+    title: 'Choose the pepper base',
     copy:
-      'Compare the backbone peppers quickly, then move on once the recipe has a clear entry and finish.',
+      'Start with the peppers that define the first bite and the afterburn. A clear backbone is better than a crowded roster.',
     aside: `${selectedPeppers.length}/4 selected`,
     nextLabel: 'Continue to accents',
     showNext: true,
@@ -642,7 +642,7 @@ function ActiveStepPanel({
     panel = {
       stepNumber: 2,
       title: 'Add accents for body and finish',
-      copy: 'Use accents like quick seasoning moves. Keep them concise and let the peppers stay readable.',
+      copy: 'Use accents the way a careful cook seasons a pot: enough to support the peppers, never enough to bury them.',
       aside: `${selectedAccents.length}/4 selected`,
       nextLabel: 'Continue to heat',
       showNext: true,
@@ -659,8 +659,8 @@ function ActiveStepPanel({
   if (activeStep === 3) {
     panel = {
       stepNumber: 3,
-      title: 'Tune the heat narrative',
-      copy: 'Shift the bottle from easy-entry to theatrical. The live result card above should react immediately.',
+      title: 'Tune the heat level',
+      copy: 'Shift the bottle from friendly table use to full warning-label territory. The live summary will update as you go.',
       aside: `${heatBias}/10 bias`,
       nextLabel: 'Continue to style',
       showNext: true,
@@ -678,8 +678,8 @@ function ActiveStepPanel({
   if (activeStep === 4) {
     panel = {
       stepNumber: 4,
-      title: 'Choose the label language',
-      copy: 'Pick the visual lane, then generate the concept from the same card that reflects your recipe choices.',
+      title: 'Choose the label style',
+      copy: 'Pick the packaging direction that matches the recipe. A serious green sauce should not wear the costume of a prank bottle.',
       aside: labelStyleName,
       showNext: false,
       content: (
@@ -838,9 +838,9 @@ function HeatTuner({ heatBias, setHeatBias, heatLabel, averageScoville }) {
   return (
     <div className="rounded-[1.5rem] border border-white/8 bg-black/16 p-4">
       <div className="mb-3 flex items-center justify-between text-sm text-[var(--color-text-soft)]">
-        <span>Low-key</span>
+        <span>Gentle</span>
         <span>{heatBias}/10</span>
-        <span>Theatrical</span>
+        <span>Ferocious</span>
       </div>
       <input
         type="range"
@@ -886,7 +886,7 @@ function StyleChooser({ labelStyles, labelStyleId, setLabelStyleId }) {
               </div>
               {active ? (
                 <span className="rounded-full border border-white/10 px-3 py-1 text-[0.65rem] uppercase tracking-[0.24em] text-[var(--color-text-muted)]">
-                  Active
+                  Selected
                 </span>
               ) : null}
             </div>
@@ -930,8 +930,8 @@ function StepProgressActions({
     <div className="flex flex-col gap-4 border-t border-white/8 pt-4 sm:flex-row sm:items-center sm:justify-between">
       <p className="text-sm leading-7 text-[var(--color-text-soft)]">
         {showNext
-          ? 'Ready for the next move? Continue once this step feels right.'
-          : 'Recipe setup is done. Generate the concept above when the build feels right.'}
+          ? 'Move on once the batch feels coherent.'
+          : 'Recipe setup is done. Generate the bottle concept above when the build feels right.'}
       </p>
 
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
@@ -994,7 +994,7 @@ function InlineLiveResultCard({
               label="Average Scoville"
               value={averageScoville ? formatShu(averageScoville) : 'No peppers yet'}
             />
-            <MetricCard label="Label direction" value={labelStyleName} />
+            <MetricCard label="Label style" value={labelStyleName} />
           </div>
         </div>
 
@@ -1014,7 +1014,7 @@ function InlineLiveResultCard({
             disabled={isGeneratingName}
             className="primary-button disabled:cursor-wait disabled:opacity-70"
           >
-            {isGeneratingName ? 'Generating...' : 'Generate Concept'}
+            {isGeneratingName ? 'Generating...' : 'Generate Bottle Concept'}
           </button>
           <button
             type="button"
@@ -1022,7 +1022,7 @@ function InlineLiveResultCard({
             disabled={isGeneratingLabel}
             className="secondary-button disabled:cursor-wait disabled:opacity-70"
           >
-            {isGeneratingLabel ? 'Rendering...' : 'Refresh Label'}
+            {isGeneratingLabel ? 'Rendering...' : 'Refresh Label Study'}
           </button>
         </div>
       </div>
@@ -1052,12 +1052,12 @@ function ConceptDetailsPanel({
           <div>
             <p className="section-kicker">Concept details</p>
             <p className="mt-2 text-sm leading-7 text-[var(--color-text-soft)]">
-              Preview, prompt trace, bottle references, and serving notes live here once you want
-              the secondary read.
+              Preview, prompt trace, bottle references, and serving notes live here when you want a
+              closer read on the batch.
             </p>
           </div>
           <span className="rounded-full border border-white/10 px-3 py-1 text-[0.65rem] uppercase tracking-[0.2em] text-[var(--color-text-muted)]">
-            Secondary view
+            Expanded notes
           </span>
         </div>
       </summary>
@@ -1094,7 +1094,7 @@ function ConceptDetailsPanel({
                   />
                 ) : (
                   <div className="flex h-full items-center justify-center rounded-[1.7rem] border border-dashed border-white/14 bg-black/18 px-8 text-center text-sm leading-7 text-[var(--color-text-soft)]">
-                    Generate a concept to cast artwork onto the bottle.
+                    Generate a bottle concept to place artwork on the label.
                   </div>
                 )}
               </div>

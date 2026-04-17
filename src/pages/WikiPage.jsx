@@ -1,42 +1,50 @@
 import { Link } from 'react-router-dom'
 import Footer from '../components/Footer'
 import VisualImage from '../components/VisualImage'
-import { houseSauces, pairingRules, peppers, safetyChecklist, sauceFamilies } from '../data/catalog'
-import { editorialImages, featuredImageCredits, resolveImageSrc, wikiGallery } from '../lib/media'
+import {
+  heatDestinations,
+  houseSauces,
+  pairingRules,
+  peppers,
+  pepperTrivia,
+  safetyChecklist,
+  sauceFamilies,
+} from '../data/catalog'
+import { editorialImages, resolveImageSrc, wikiGallery } from '../lib/media'
 
 const numberFormatter = new Intl.NumberFormat('en-US')
 const baseUrl = import.meta.env.BASE_URL
 
 const familyVisuals = {
-  'Bright Citrus': {
+  'Green Table Sauces': {
     image: 'images/jalapeno-peppers.png',
-    alt: 'Jalapeno peppers for bright citrus sauces',
+    alt: 'Jalapeno peppers for green table sauces',
     position: 'center 58%',
   },
-  'Tropical Heat': editorialImages.habaneroPlant,
-  'Dark Smoke': editorialImages.fermentedJar,
-  'Collector Superhots': editorialImages.trinidadScorpionBottle,
+  'Caribbean Fruit-Forward': editorialImages.habaneroPlant,
+  'Dark Roasted Bottles': editorialImages.fermentedJar,
+  'Superhot Reserve': editorialImages.trinidadScorpionBottle,
 }
 
 const houseSauceVisuals = {
-  'Market Ember No. 3': {
+  'Mercado Verde': {
     image: 'images/serrano-peppers.png',
-    alt: 'Serrano peppers supporting Market Ember No. 3',
+    alt: 'Serrano peppers supporting Mercado Verde',
     position: 'center center',
   },
-  'Lantern Choir': editorialImages.habaneroPlant,
-  'After Midnight': editorialImages.pepperStillLife,
-  'Signal Bloom': editorialImages.ajiAmarilloBottle,
+  'Yucatan Lantern': editorialImages.habaneroPlant,
+  'Midnight Molino': editorialImages.pepperStillLife,
+  'Coastal Gold': editorialImages.ajiAmarilloBottle,
 }
 
 const rulePanels = [
   {
-    title: 'Pairing rules',
+    title: 'Pairing principles',
     visual: editorialImages.marketCrate,
     items: pairingRules,
   },
   {
-    title: 'Safety checklist',
+    title: 'Kitchen safety',
     visual: editorialImages.nagaCluster,
     items: safetyChecklist,
   },
@@ -66,25 +74,26 @@ function HeroSection() {
     <section className="viewport-section panel viewport-panel overflow-hidden rounded-[2.2rem] p-6 sm:p-8 xl:p-9">
       <div className="flex flex-col gap-6 xl:flex-row xl:items-end xl:justify-between">
         <div className="max-w-4xl">
-          <p className="section-kicker">Pepper wiki</p>
+          <p className="section-kicker">Pepper reference</p>
           <h1 className="display-font viewport-hero-title mt-4 max-w-5xl uppercase leading-[0.9] text-[var(--color-cream)]">
-            The wiki now reads in screen-sized field-guide chapters.
+            The field guide behind the burn.
           </h1>
-          <p className="viewport-hero-copy mt-4 max-w-2xl text-base leading-7 text-[var(--color-text-soft)] sm:text-lg">
-            Pepper portraits, family lanes, and safety notes stay visible in bounded panels so you
-            can reference the information without the page feeling massive.
+          <p className="viewport-hero-copy mt-4 max-w-3xl text-base leading-7 text-[var(--color-text-soft)] sm:text-lg">
+            Scoville tells you how loudly a pepper can speak. It does not tell you whether the voice
+            is grassy, floral, smoky, or sweet. This guide is for that second question, the one that
+            matters when you are actually cooking.
           </p>
         </div>
 
         <div className="flex flex-wrap gap-3">
           <button type="button" onClick={() => scrollToSection('peppers')} className="secondary-button">
-            Peppers
+            Pepper Profiles
           </button>
           <button type="button" onClick={() => scrollToSection('families')} className="secondary-button">
             Sauce Families
           </button>
           <button type="button" onClick={() => scrollToSection('pairings')} className="secondary-button">
-            Pairing Rules
+            Rules and Safety
           </button>
         </div>
       </div>
@@ -92,10 +101,11 @@ function HeroSection() {
       <div className="mt-8 grid min-h-0 gap-4 lg:flex-1 lg:grid-cols-[1.1fr_0.9fr]">
         <GalleryWall />
         <article className="rounded-[1.8rem] border border-white/10 bg-black/16 p-5 sm:p-6">
-          <p className="section-kicker">Reading lens</p>
+          <p className="section-kicker">Reader's note</p>
           <p className="mt-4 text-sm leading-7 text-[var(--color-text-soft)]">
-            Scoville range only tells part of the story. The better cue is what kind of bottle the
-            pepper wants to become: bright, tropical, smoky, or collector-grade dangerous.
+            A good pepper reference should help you cook, not just impress your friends with a high
+            number. Habanero may be hotter than cayenne, but cayenne often tastes more familiar in a
+            vinegar sauce. Scotch bonnet can perfume a pot long before it punishes it.
           </p>
           <div className="mt-6 grid gap-3 sm:grid-cols-2">
             {[editorialImages.wikiHabanero, editorialImages.heroChili].map((item) => (
@@ -156,14 +166,14 @@ function PepperFieldGuide() {
     <section id="peppers" className="panel viewport-panel rounded-[2rem] p-7 sm:p-9">
       <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
         <div>
-          <p className="section-kicker">Pepper field guide</p>
+          <p className="section-kicker">Pepper profiles</p>
           <h2 className="display-font mt-3 text-4xl uppercase leading-none text-[var(--color-cream)] sm:text-5xl">
-            Heat is easier to read when the flavor looks alive.
+            Heat makes the headline. Flavor writes the article.
           </h2>
         </div>
         <p className="max-w-xl text-sm leading-7 text-[var(--color-text-soft)] sm:text-base">
-          Larger crops and better image placement make the cards scan faster without requiring the
-          whole route to become a giant wall of content.
+          The best sauce makers learn to hear peppers as distinct ingredients, not as anonymous fuel.
+          Some arrive citrus-bright, some feel earthy, and some are all ambush.
         </p>
       </div>
 
@@ -214,11 +224,11 @@ function FamilyPlaybook() {
         <div>
           <p className="section-kicker">Sauce playbook</p>
           <h2 className="display-font mt-3 text-4xl uppercase leading-none text-[var(--color-cream)] sm:text-5xl">
-            A tighter taxonomy makes the catalog easier to browse.
+            A bottle becomes more useful when it knows what kind of table it belongs on.
           </h2>
         </div>
         <Link to="/lab" className="primary-button w-full sm:w-auto">
-          Build your own
+          Build from the guide
         </Link>
       </div>
 
@@ -287,7 +297,7 @@ function ReferenceSection() {
   return (
     <section className="viewport-section grid gap-4 xl:grid-cols-[1fr_1fr]">
       <RulePanels />
-      <ImageCredits />
+      <HeatTrailSection />
     </section>
   )
 }
@@ -298,7 +308,7 @@ function RulePanels() {
       <div>
         <p className="section-kicker">Rules of use</p>
         <h2 className="display-font mt-3 text-4xl uppercase leading-none text-[var(--color-cream)] sm:text-5xl">
-          Pairing and safety notes stay visible on one screen.
+          Pairing, safety, and a few truths every chili lover learns eventually.
         </h2>
       </div>
 
@@ -328,40 +338,49 @@ function RulePanels() {
   )
 }
 
-function ImageCredits() {
+function HeatTrailSection() {
   return (
     <section className="panel viewport-panel rounded-[2rem] p-7 sm:p-8">
       <div>
-        <p className="section-kicker">Image credits</p>
+        <p className="section-kicker">Heat trail</p>
         <h2 className="display-font mt-3 text-4xl uppercase leading-none text-[var(--color-cream)] sm:text-5xl">
-          Sources are easier to check without dropping below the fold forever.
+          Restaurants worth remembering when the craving gets serious.
         </h2>
+        <p className="mt-4 max-w-2xl text-sm leading-7 text-[var(--color-text-soft)]">
+          No website about hot peppers should act like the story ends at home. Some lessons have to be
+          learned at the table, ideally with a cold drink nearby and a cook who knows exactly how far
+          to push the fire.
+        </p>
       </div>
 
-      <div className="viewport-scroll mt-6 grid gap-4">
-        {featuredImageCredits.map((credit) => (
-          credit.href ? (
-            <a
-              key={credit.href}
-              href={credit.href}
-              target="_blank"
-              rel="noreferrer"
-              className="rounded-[1.4rem] border border-white/10 bg-black/15 p-4 text-sm leading-7 text-[var(--color-text-soft)]"
-            >
-              {credit.label}
-              <br />
-              {credit.meta}
-            </a>
-          ) : (
-            <div
-              key={`${credit.label}-${credit.meta}`}
-              className="rounded-[1.4rem] border border-white/10 bg-black/15 p-4 text-sm leading-7 text-[var(--color-text-soft)]"
-            >
-              {credit.label}
-              <br />
-              {credit.meta}
+      <div className="mt-6 grid gap-4">
+        {heatDestinations.map((destination) => (
+          <a
+            key={destination.name}
+            href={destination.href}
+            target="_blank"
+            rel="noreferrer"
+            className="rounded-[1.4rem] border border-white/10 bg-black/15 p-4 text-sm leading-7 text-[var(--color-text-soft)] transition hover:border-white/16 hover:bg-white/6"
+          >
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between">
+              <span className="text-lg font-semibold text-[var(--color-cream)]">{destination.name}</span>
+              <span className="text-xs uppercase tracking-[0.2em] text-[var(--color-text-muted)]">
+                {destination.city}
+              </span>
             </div>
-          )
+            <p className="mt-2 text-sm text-[var(--color-text)]">{destination.dish}</p>
+            <p className="mt-2">{destination.note}</p>
+          </a>
+        ))}
+
+        {pepperTrivia.slice(2).map((item) => (
+          <div
+            key={item.title}
+            className="rounded-[1.4rem] border border-white/10 bg-black/15 p-4 text-sm leading-7 text-[var(--color-text-soft)]"
+          >
+            <span className="text-lg font-semibold text-[var(--color-cream)]">{item.title}</span>
+            <p className="mt-2">{item.copy}</p>
+          </div>
         ))}
       </div>
     </section>

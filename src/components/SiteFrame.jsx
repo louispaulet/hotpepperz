@@ -15,10 +15,10 @@ function SiteFrame({ children }) {
         <div className="panel rounded-[1.8rem] px-4 py-3 sm:px-5 xl:px-6">
           <div className="mb-3 flex items-center justify-between gap-4 border-b border-white/8 pb-3">
             <p className="mono-font text-[0.68rem] uppercase tracking-[0.32em] text-[var(--color-text-muted)]">
-              Editorial hot sauce studio
+              Pepper journal and sauce workshop
             </p>
             <p className="mono-font text-[0.68rem] uppercase tracking-[0.32em] text-[var(--color-text-muted)]">
-              Small batch heat atlas
+              Field notes for serious heat
             </p>
           </div>
 
@@ -32,7 +32,7 @@ function SiteFrame({ children }) {
                   HotPepperz
                 </p>
                 <p className="mt-1 text-xs uppercase tracking-[0.28em] text-[var(--color-text-muted)]">
-                  Sauce design atelier
+                  Craft hot sauce journal
                 </p>
               </div>
             </Link>
@@ -40,18 +40,18 @@ function SiteFrame({ children }) {
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
               <nav className="flex flex-wrap gap-2">
                 <NavLink to="/" className={navClass} end>
-                  Home
+                  Journal
                 </NavLink>
                 <NavLink to="/lab" className={navClass}>
-                  Hot Sauce Lab
+                  Workshop
                 </NavLink>
                 <NavLink to="/wiki" className={navClass}>
-                  Pepper Wiki
+                  Field Guide
                 </NavLink>
               </nav>
 
               <Link to="/lab" className="primary-button">
-                Start a Blend
+                Start a Sauce
               </Link>
             </div>
           </div>

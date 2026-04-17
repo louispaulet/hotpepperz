@@ -15,23 +15,27 @@ const noteVisuals = [
 const referenceCards = [
   {
     visual: editorialImages.marketCrate,
-    title: 'Ingredient energy',
-    copy: 'Start with abundance and ingredient context before the controls ask for decisions.',
+    title: 'Choose ripe fruit first',
+    copy:
+      'Great sauce begins in the produce bin. Dense walls, good color, and clean aroma matter more than bragging rights on the label.',
   },
   {
     visual: editorialImages.habaneroMacro,
-    title: 'Texture references',
-    copy: 'Close crops keep the page tactile without stealing too much vertical space.',
+    title: 'Read the flesh',
+    copy:
+      'Thin peppers often feel quicker and sharper. Thicker peppers can bring body, sweetness, and a slower unfolding burn.',
   },
   {
     visual: editorialImages.fermentedJar,
-    title: 'Fermentation cues',
-    copy: 'Process imagery keeps the recipe builder grounded in something believable.',
+    title: 'Respect fermentation',
+    copy:
+      'A ferment can soften raw aggression, deepen savoriness, and make a hot sauce feel settled rather than raw.',
   },
   {
     visual: editorialImages.ajiAmarilloBottle,
-    title: 'Packaging target',
-    copy: 'Bottle references show what the final concept is trying to become.',
+    title: 'Bottle with intention',
+    copy:
+      'Before you name a sauce, know where it belongs: tacos, roast chicken, ceviche accompaniments, or a very careful tasting spoon.',
   },
 ]
 
@@ -53,18 +57,18 @@ function IntroSection() {
     <section className="panel rounded-[2rem] p-5 sm:p-6 lg:p-7">
       <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
         <div className="max-w-3xl">
-          <p className="section-kicker">Hot sauce lab</p>
+          <p className="section-kicker">Sauce workshop</p>
           <h1 className="display-font mt-2 text-4xl uppercase leading-none text-[var(--color-cream)] sm:text-5xl">
-            Build the blend, see the effect, generate the concept.
+            Build a bottle the way a careful sauce maker thinks.
           </h1>
           <p className="mt-3 max-w-2xl text-sm leading-7 text-[var(--color-text-soft)] sm:text-base">
-            The lab opens directly on the configurator now, so the active step, the live result,
-            and the main action stay in one reading flow.
+            Choose the peppers, balance the seasoning, and decide how much fire the final bottle
+            should carry. The aim is not novelty heat. The aim is a sauce with structure.
           </p>
         </div>
 
         <div className="rounded-[1.5rem] border border-white/8 bg-black/16 p-4 lg:max-w-md">
-          <p className="section-kicker">Quick note</p>
+          <p className="section-kicker">Bench reminder</p>
           <p className="mt-2 text-sm leading-7 text-[var(--color-text-soft)]">{pairingRules[0]}</p>
         </div>
       </div>
@@ -78,14 +82,14 @@ function OptionalReferenceSection() {
       <summary className="cursor-pointer list-none">
         <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
           <div>
-            <p className="section-kicker">Optional references</p>
+            <p className="section-kicker">Reference notes</p>
             <h2 className="mt-2 text-2xl font-semibold text-[var(--color-cream)] sm:text-3xl">
-              Open this only if you want visual prompts and step notes.
+              Open for ingredient reminders, process notes, and bottling cues.
             </h2>
           </div>
           <p className="max-w-2xl text-sm leading-7 text-[var(--color-text-soft)] sm:text-base">
-            All of the extra editorial material lives behind one optional panel now, so the lab
-            itself does not end with multiple giant things to click.
+            This section keeps the slower reading nearby without getting in the way of the actual
+            build. Think of it as the margin notes from the workshop bench.
           </p>
         </div>
       </summary>
@@ -93,10 +97,10 @@ function OptionalReferenceSection() {
       <div className="mt-6 grid gap-6 xl:grid-cols-[1.05fr_0.95fr]">
         <section className="space-y-4">
           <div>
-            <p className="section-kicker">Visual prompts</p>
+            <p className="section-kicker">Ingredient cues</p>
             <p className="mt-2 text-sm leading-7 text-[var(--color-text-soft)]">
-              Ingredient abundance, texture, fermentation, and packaging cues stay available here
-              when you want extra inspiration.
+              Use these visual notes to think about freshness, texture, fermentation, and the
+              bottle you want to end up holding.
             </p>
           </div>
           <div className="grid gap-4 lg:grid-cols-2">
@@ -109,7 +113,7 @@ function OptionalReferenceSection() {
                   className="h-40 w-full"
                 />
                 <div className="p-6">
-                  <p className="section-kicker">Reference image</p>
+                  <p className="section-kicker">Workshop cue</p>
                   <h2 className="mt-4 text-2xl font-semibold text-[var(--color-cream)]">{item.title}</h2>
                   <p className="mt-4 text-sm leading-7 text-[var(--color-text-soft)]">{item.copy}</p>
                 </div>
@@ -120,10 +124,10 @@ function OptionalReferenceSection() {
 
         <section className="space-y-4">
           <div>
-            <p className="section-kicker">Step notes</p>
+            <p className="section-kicker">Process notes</p>
             <p className="mt-2 text-sm leading-7 text-[var(--color-text-soft)]">
-              The editorial read behind each step still exists, but it is tucked into the same
-              optional area instead of becoming a second giant control at the bottom of the page.
+              These three steps mirror the order many good sauces reveal themselves: pepper choice,
+              balance, then maturity and finish.
             </p>
           </div>
           <div className="grid gap-4">
@@ -137,7 +141,7 @@ function OptionalReferenceSection() {
                 />
                 <div className="p-6">
                   <p className="mono-font text-xs uppercase tracking-[0.28em] text-[var(--color-text-muted)]">
-                    Lab note 0{index + 1}
+                    Note 0{index + 1}
                   </p>
                   <h2 className="mt-4 text-2xl font-semibold text-[var(--color-cream)]">{step.title}</h2>
                   <p className="mt-4 text-sm leading-7 text-[var(--color-text-soft)]">{step.copy}</p>
