@@ -125,7 +125,7 @@ export const pageThemes = {
     type: 'lab',
     label: 'Sauce Workshop',
     headerCopy: 'A workbench for balancing peppers, accents, heat, and packaging direction.',
-    headerNote: 'Utility-forward styling with stronger contrast keeps the builder feeling like a tool.',
+    headerNote: 'Sharper contrast and bench-style cues keep the workshop focused, practical, and easy to read.',
     ctaHref: '/lab',
     ctaLabel: 'Build a bottle',
     backgroundPhotos: {
