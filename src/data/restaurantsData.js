@@ -1,6 +1,8 @@
 export const restaurants = [
   {
     slug: 'semma',
+    contentType: 'Restaurant spotlight',
+    cardAction: 'Open spotlight',
     name: 'Semma',
     city: 'New York City, United States',
     recognition: 'One MICHELIN Star',
@@ -17,6 +19,8 @@ export const restaurants = [
   },
   {
     slug: 'sorn',
+    contentType: 'Restaurant spotlight',
+    cardAction: 'Open spotlight',
     name: 'Sorn',
     city: 'Bangkok, Thailand',
     recognition: 'Three MICHELIN Stars',
@@ -33,6 +37,8 @@ export const restaurants = [
   },
   {
     slug: 'gaggan-at-louis-vuitton',
+    contentType: 'Restaurant spotlight',
+    cardAction: 'Open spotlight',
     name: 'Gaggan at Louis Vuitton',
     city: 'Bangkok, Thailand',
     recognition: 'Fine dining reference',
@@ -49,6 +55,8 @@ export const restaurants = [
   },
   {
     slug: 'lorea',
+    contentType: 'Restaurant spotlight',
+    cardAction: 'Open spotlight',
     name: 'Lorea',
     city: 'Mexico City, Mexico',
     recognition: 'MICHELIN Guide listed',
@@ -65,6 +73,8 @@ export const restaurants = [
   },
   {
     slug: 'nicos',
+    contentType: 'Restaurant spotlight',
+    cardAction: 'Open spotlight',
     name: 'Nicos',
     city: 'Mexico City, Mexico',
     recognition: 'MICHELIN Guide listed',
@@ -81,6 +91,8 @@ export const restaurants = [
   },
   {
     slug: 'tong-fu-she',
+    contentType: 'Restaurant spotlight',
+    cardAction: 'Open spotlight',
     name: 'Tong Fu She',
     city: 'Chengdu, China',
     recognition: 'MICHELIN Guide listed',
@@ -96,6 +108,8 @@ export const restaurants = [
   },
   {
     slug: 'central',
+    contentType: 'Restaurant spotlight',
+    cardAction: 'Open spotlight',
     name: 'Central',
     city: 'Lima, Peru',
     recognition: 'Fine dining reference',

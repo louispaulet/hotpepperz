@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom'
 import Footer from '../components/Footer'
+import HubPanel from '../components/HubPanel'
+import InteractiveCard from '../components/InteractiveCard'
 import VisualImage from '../components/VisualImage'
 import {
   featuredPepperSlugs,
@@ -27,6 +29,7 @@ function HomePage() {
   return (
     <div className="page-sections journal-page">
       <HeroSection featuredPeppers={featuredPeppers} />
+      <FeaturedPeppersSection peppers={featuredPeppers} />
       <FeaturedOriginsSection peppers={featuredPeppers} />
       <PairingsSection recipes={featuredRecipes} />
       <RestaurantSection restaurants={featuredRestaurants} />
@@ -41,7 +44,7 @@ function HeroSection({ featuredPeppers }) {
   const media = getPepperAssociation(heroPepper.slug)
 
   return (
-    <section className="viewport-section journal-landing grid gap-4 xl:grid-cols-[1.06fr_0.94fr]">
+    <section className="viewport-section journal-landing grid gap-4 xl:grid-cols-[1.08fr_0.92fr]">
       <article
         className="panel journal-hero overflow-hidden rounded-[2.2rem] px-6 py-7 sm:px-8 sm:py-9 xl:px-9"
         style={{
@@ -53,14 +56,14 @@ function HeroSection({ featuredPeppers }) {
           backgroundPosition: media.landscapeVisual.position,
         }}
       >
-        <p className="section-kicker">Hot pepper encyclopedia</p>
+        <p className="section-kicker">Hot pepper journal</p>
         <h1 className="display-font mt-4 max-w-4xl text-6xl uppercase leading-[0.88] text-[var(--color-cream)]">
-          New peppers, new landscapes, and a much larger atlas of heat.
+          Browse peppers, origins, pairings, and legends without guessing where to click next.
         </h1>
-        <p className="hero-copy mt-4 max-w-3xl text-sm leading-7 text-[var(--color-text-soft)] sm:text-base">
-          HotPepperz now reads more like an editorial encyclopedia: pepper pages, recipe studies,
-          legends, restaurant spotlights, and France-facing legal drafts, all connected by reusable
-          pepper-to-landscape associations.
+        <p className="hero-copy mt-4 max-w-3xl text-base leading-8 text-[var(--color-text)]">
+          HotPepperz now works as a route-driven editorial encyclopedia. Start with the pepper
+          profiles, jump into landscape-led origins, move into pairings and notebooks, or follow the
+          broader history of how heat travelled.
         </p>
 
         <div className="mt-6 flex flex-wrap gap-3">
@@ -73,50 +76,101 @@ function HeroSection({ featuredPeppers }) {
         </div>
 
         <dl className="mt-6 grid gap-3 sm:grid-cols-3">
-          <StatCard value="8" label="New pepper pages" />
-          <StatCard value="6" label="Restaurant spotlights" />
-          <StatCard value="6" label="Bilingual legal pages" />
+          <StatCard value="8" label="Pepper profiles" />
+          <StatCard value="6" label="Recipe notebooks and studies" />
+          <StatCard value="6" label="Bilingual legal documents" />
         </dl>
       </article>
 
-      <article className="grid gap-4">
-        <div className="panel journal-note-card rounded-[2.2rem] p-5 sm:p-6">
-          <p className="section-kicker">Association system</p>
-          <h2 className="mt-3 text-3xl font-semibold text-[var(--color-cream)]">
-            Each pepper now carries its own portrait and origin landscape.
-          </h2>
-          <p className="section-copy mt-4 text-sm leading-7 text-[var(--color-text-soft)]">
-            Those image pairs are reused throughout the site so the encyclopedia, recipe stories,
-            restaurant pages, and home sections all share the same visual logic.
-          </p>
-        </div>
+      <section className="grid gap-4">
+        <HubPanel
+          kicker="Featured pepper entries"
+          typeLabel="Tier 2 navigation"
+          title="Every featured pepper now reads like a dossier."
+          description="Pepper pages now lead with origin, heat, climate, pairings, and related reading so the encyclopedia behaves more like a reference system and less like a poster wall."
+          links={featuredPeppers.slice(0, 3).map((pepper) => ({
+            to: `/wiki/peppers/${pepper.slug}`,
+            label: pepper.name,
+          }))}
+          ctaHref="/wiki"
+          ctaLabel="See all pepper profiles"
+          className="journal-note-card"
+        />
 
         <div className="grid gap-4 sm:grid-cols-2">
           {featuredPeppers.map((pepper) => {
             const item = getPepperAssociation(pepper.slug)
 
             return (
-              <Link
+              <InteractiveCard
                 key={pepper.slug}
                 to={`/wiki/peppers/${pepper.slug}`}
                 className="panel journal-card journal-card--pepper overflow-hidden rounded-[1.9rem]"
-              >
-                <VisualImage
-                  src={resolveImageSrc(baseUrl, item.portraitVisual.image)}
-                  alt={item.portraitVisual.alt}
-                  item={item.portraitVisual}
-                  className="h-44 w-full"
-                />
-                <div className="p-5">
-                  <p className="section-kicker">{pepper.origin}</p>
-                  <h3 className="mt-3 text-2xl font-semibold text-[var(--color-cream)]">{pepper.name}</h3>
-                  <p className="card-copy mt-3 text-sm leading-7 text-[var(--color-text-soft)]">{pepper.summary}</p>
-                </div>
-              </Link>
+                typeLabel={pepper.contentType}
+                title={pepper.name}
+                description={pepper.summary}
+                meta={pepper.origin}
+                actionLabel={pepper.cardAction}
+                tone="pepper"
+                media={
+                  <VisualImage
+                    src={resolveImageSrc(baseUrl, item.portraitVisual.image)}
+                    alt={item.portraitVisual.alt}
+                    item={item.portraitVisual}
+                    className="h-44 w-full"
+                  />
+                }
+              />
             )
           })}
         </div>
-      </article>
+      </section>
+    </section>
+  )
+}
+
+function FeaturedPeppersSection({ peppers }) {
+  return (
+    <section className="viewport-section grid gap-4 xl:grid-cols-[0.95fr_1.05fr]">
+      <HubPanel
+        kicker="Start here"
+        typeLabel="Encyclopedia hub"
+        title="A clearer path into the pepper knowledge system."
+        description="Use the encyclopedia when you want structured reference pages, the origins atlas when you want climate and geography, and the workshop when you want practical sauce-making guidance."
+        links={[
+          { to: '/wiki', label: 'Browse all peppers, recipes, and legends' },
+          { to: '/wiki/heat-pairings', label: 'Open pairing studies and recipe notebooks' },
+          { to: '/lab', label: 'Go to the sauce workshop' },
+        ]}
+        ctaHref="/wiki"
+        ctaLabel="Open the directory"
+      />
+      <div className="grid gap-4 lg:grid-cols-2">
+        {peppers.slice(0, 2).map((pepper) => {
+          const media = getPepperAssociation(pepper.slug)
+          return (
+            <InteractiveCard
+              key={pepper.slug}
+              to={`/wiki/peppers/${pepper.slug}`}
+              className="panel journal-card overflow-hidden rounded-[1.9rem]"
+              typeLabel={pepper.contentType}
+              title={pepper.name}
+              description={`${pepper.heatBand}. Best with ${pepper.pairings.join(', ')}.`}
+              meta={pepper.origin}
+              actionLabel="Open dossier"
+              tone="pepper"
+              media={
+                <VisualImage
+                  src={resolveImageSrc(baseUrl, media.portraitVisual.image)}
+                  alt={media.portraitVisual.alt}
+                  item={media.portraitVisual}
+                  className="h-56 w-full"
+                />
+              }
+            />
+          )
+        })}
+      </div>
     </section>
   )
 }
@@ -124,42 +178,44 @@ function HeroSection({ featuredPeppers }) {
 function FeaturedOriginsSection({ peppers }) {
   return (
     <section className="viewport-section journal-chapter-grid grid gap-4 xl:grid-cols-[1fr_1fr]">
-      <section className="panel chapter-card chapter-card--origins rounded-[2rem] p-6 sm:p-8">
-        <p className="section-kicker">Featured origins</p>
-        <h2 className="display-font mt-3 text-5xl uppercase leading-none text-[var(--color-cream)]">
-          Landscapes behind the fruit.
-        </h2>
-        <p className="section-copy mt-4 max-w-2xl text-sm leading-7 text-[var(--color-text-soft)]">
-          From humid Southeast Asian fields to Andean terraces and Surinamese lowlands, the
-          encyclopedia now ties peppers to the climates that shaped them.
-        </p>
-        <Link to="/wiki/origins" className="mt-6 inline-flex text-sm font-semibold uppercase tracking-[0.16em] text-[var(--color-saffron)]">
-          See all origin landscapes
-        </Link>
-      </section>
+      <HubPanel
+        kicker="Featured origins"
+        typeLabel="Atlas hub"
+        title="Landscapes behind the fruit."
+        description="The origins atlas now behaves like a browseable climate-and-region layer. Open the atlas for landscapes, then drop into a pepper profile when you want heat, uses, and related recipes."
+        links={[
+          { to: '/wiki/origins', label: 'Browse all origin landscapes' },
+          { to: '/wiki', label: 'Return to encyclopedia hub' },
+        ]}
+        ctaHref="/wiki/origins"
+        ctaLabel="Explore the atlas"
+        className="chapter-card chapter-card--origins"
+      />
 
       <section className="grid gap-4 sm:grid-cols-2">
         {peppers.map((pepper) => {
           const media = getPepperAssociation(pepper.slug)
 
           return (
-            <Link
+            <InteractiveCard
               key={pepper.slug}
               to={`/wiki/peppers/${pepper.slug}`}
               className="panel journal-card journal-card--atlas overflow-hidden rounded-[1.9rem]"
-            >
-              <VisualImage
-                src={resolveImageSrc(baseUrl, media.landscapeVisual.image)}
-                alt={media.landscapeVisual.alt}
-                item={media.landscapeVisual}
-                className="h-48 w-full"
-              />
-              <div className="p-5">
-                <p className="section-kicker">{pepper.climate}</p>
-                <h3 className="mt-3 text-2xl font-semibold text-[var(--color-cream)]">{pepper.name}</h3>
-                <p className="card-copy mt-3 text-sm leading-7 text-[var(--color-text-soft)]">{pepper.origin}</p>
-              </div>
-            </Link>
+              typeLabel="Origin-linked pepper"
+              title={pepper.name}
+              description={pepper.climate}
+              meta={pepper.origin}
+              actionLabel="Open origin-linked entry"
+              tone="origins"
+              media={
+                <VisualImage
+                  src={resolveImageSrc(baseUrl, media.landscapeVisual.image)}
+                  alt={media.landscapeVisual.alt}
+                  item={media.landscapeVisual}
+                  className="h-48 w-full"
+                />
+              }
+            />
           )
         })}
       </section>
@@ -170,44 +226,47 @@ function FeaturedOriginsSection({ peppers }) {
 function PairingsSection({ recipes }) {
   return (
     <section className="viewport-section journal-chapter-grid grid gap-4 xl:grid-cols-[1fr_1fr]">
-      <section className="panel chapter-card chapter-card--pairings rounded-[2rem] p-6 sm:p-8">
-        <p className="section-kicker">Pepper and ingredient pairings</p>
-        <h2 className="display-font mt-3 text-5xl uppercase leading-none text-[var(--color-cream)]">
-          Recipes, associations, and useful legends.
-        </h2>
-        <p className="section-copy mt-4 max-w-2xl text-sm leading-7 text-[var(--color-text-soft)]">
-          We added pairing studies, recipe notebooks, and a migration legend so the site can explain
-          not just what a pepper is, but what it likes to do once it reaches the pan.
-        </p>
-        <Link to="/wiki/heat-pairings" className="mt-6 inline-flex text-sm font-semibold uppercase tracking-[0.16em] text-[var(--color-saffron)]">
-          Open pairings and uses
-        </Link>
-      </section>
+      <HubPanel
+        kicker="Heat, pairings, and uses"
+        typeLabel="Pairings hub"
+        title="Pairing studies and recipe notebooks now have clearer roles."
+        description="Open pairing studies when you want flavor logic, and recipe notebooks when you want a more practical kitchen read. The index now separates those content types instead of blending them together."
+        links={[
+          { to: '/wiki/heat-pairings', label: 'Browse all pairing and recipe entries' },
+          { to: '/lab', label: 'Switch to the workshop for bottle-building' },
+        ]}
+        ctaHref="/wiki/heat-pairings"
+        ctaLabel="Open pairings and uses"
+        className="chapter-card chapter-card--pairings"
+      />
 
       <section className="grid gap-4">
         {recipes.map((recipe) => {
           const media = getRecipeAssociation(recipe.slug)
 
           return (
-            <Link
+            <InteractiveCard
               key={recipe.slug}
               to={`/wiki/recipes/${recipe.slug}`}
               className="panel journal-card journal-card--pairings overflow-hidden rounded-[1.9rem]"
-            >
-              <div className="grid gap-0 md:grid-cols-[0.95fr_1.05fr]">
-                <VisualImage
-                  src={resolveImageSrc(baseUrl, media.heroVisual.image)}
-                  alt={media.heroVisual.alt}
-                  item={media.heroVisual}
-                  className="h-44 w-full md:h-full"
-                />
-                <div className="p-6">
-                  <p className="section-kicker">{recipe.kind}</p>
-                  <h3 className="mt-3 text-2xl font-semibold text-[var(--color-cream)]">{recipe.title}</h3>
-                  <p className="card-copy mt-4 text-sm leading-7 text-[var(--color-text-soft)]">{recipe.summary}</p>
+              typeLabel={recipe.contentType}
+              title={recipe.title}
+              description={recipe.summary}
+              meta={recipe.leadPepperSlugs.length > 1 ? 'Multiple lead peppers' : 'Single lead pepper'}
+              actionLabel={recipe.cardAction}
+              tone="recipe"
+              media={
+                <div className="grid gap-0 md:grid-cols-[0.95fr_1.05fr]">
+                  <VisualImage
+                    src={resolveImageSrc(baseUrl, media.heroVisual.image)}
+                    alt={media.heroVisual.alt}
+                    item={media.heroVisual}
+                    className="h-44 w-full md:h-full"
+                  />
+                  <div className="hidden md:block bg-[linear-gradient(180deg,rgba(0,0,0,0.16),rgba(0,0,0,0))]" />
                 </div>
-              </div>
-            </Link>
+              }
+            />
           )
         })}
       </section>
@@ -223,8 +282,12 @@ function RestaurantSection({ restaurants }) {
           <div>
             <p className="section-kicker">Where to taste the heat</p>
             <h2 className="display-font mt-3 text-5xl uppercase leading-none text-[var(--color-cream)]">
-              Restaurants and fine dining stops.
+              Restaurant spotlights with clearer destination cues.
             </h2>
+            <p className="mt-4 max-w-3xl text-base leading-8 text-[var(--color-text)]">
+              These cards now behave as explicit spotlights rather than decorative restaurant tiles:
+              city, recognition, and the reason each stop matters sit above a clear open action.
+            </p>
           </div>
           <Link to="/wiki" className="secondary-button w-full sm:w-auto">
             Browse all spotlights
@@ -236,25 +299,25 @@ function RestaurantSection({ restaurants }) {
             const media = getRestaurantAssociation(restaurant.slug)
 
             return (
-              <Link
+              <InteractiveCard
                 key={restaurant.slug}
                 to={`/wiki/restaurants/${restaurant.slug}`}
                 className="panel journal-card journal-card--restaurant overflow-hidden rounded-[1.8rem]"
-              >
-                <div className="relative min-h-[16rem]">
+                typeLabel={restaurant.contentType}
+                title={restaurant.name}
+                description={restaurant.whyItMatters}
+                meta={`${restaurant.city} • ${restaurant.recognition}`}
+                actionLabel={restaurant.cardAction}
+                tone="restaurant"
+                media={
                   <VisualImage
                     src={resolveImageSrc(baseUrl, media.heroVisual.image)}
                     alt={media.heroVisual.alt}
                     item={media.heroVisual}
                     className="h-52 w-full"
                   />
-                  <div className="p-5">
-                    <p className="section-kicker">{restaurant.recognition}</p>
-                    <h3 className="mt-3 text-2xl font-semibold text-[var(--color-cream)]">{restaurant.name}</h3>
-                    <p className="card-copy mt-3 text-sm leading-7 text-[var(--color-text-soft)]">{restaurant.city}</p>
-                  </div>
-                </div>
-              </Link>
+                }
+              />
             )
           })}
         </div>
@@ -267,44 +330,48 @@ function LegendSection({ legend }) {
   const media = getLegendAssociation(legend.slug)
 
   return (
-    <section className="viewport-section journal-chapter-grid grid gap-4 xl:grid-cols-[1.05fr_0.95fr]">
-      <section className="panel chapter-card chapter-card--legend rounded-[2rem] p-6 sm:p-8">
-        <p className="section-kicker">Legend</p>
-        <h2 className="display-font mt-3 text-5xl uppercase leading-none text-[var(--color-cream)]">
-          The pepper routes.
-        </h2>
-        <p className="section-copy mt-4 text-sm leading-7 text-[var(--color-text-soft)]">{legend.summary}</p>
-        <Link to={`/wiki/legends/${legend.slug}`} className="mt-6 inline-flex text-sm font-semibold uppercase tracking-[0.16em] text-[var(--color-saffron)]">
-          Read the migration story
-        </Link>
-      </section>
+    <section className="viewport-section journal-chapter-grid grid gap-4 xl:grid-cols-[0.95fr_1.05fr]">
+      <HubPanel
+        kicker="History and migration"
+        typeLabel="Legend hub"
+        title="The pepper routes."
+        description="The history layer now sits as a dedicated story destination with clear links back to related peppers and routes across the encyclopedia."
+        links={[
+          { to: `/wiki/legends/${legend.slug}`, label: 'Read the migration story' },
+          { to: '/wiki/origins', label: 'Jump from story to origins atlas' },
+        ]}
+        ctaHref={`/wiki/legends/${legend.slug}`}
+        ctaLabel="Open story hub"
+        className="chapter-card chapter-card--legend"
+      />
 
-      <section className="panel journal-card journal-card--legend overflow-hidden rounded-[2rem]">
-        <VisualImage
-          src={resolveImageSrc(baseUrl, media.heroVisual.image)}
-          alt={media.heroVisual.alt}
-          item={media.heroVisual}
-          className="h-56 w-full"
-        />
-        <div className="p-6">
-          <p className="section-kicker">History and migration</p>
-          <p className="card-copy mt-4 text-sm leading-7 text-[var(--color-text-soft)]">
-            A dedicated legend now frames peppers as travelling ingredients shaped by trade, empire,
-            migration, and the landscapes where they became local.
-          </p>
-        </div>
-      </section>
+      <InteractiveCard
+        to={`/wiki/legends/${legend.slug}`}
+        className="panel journal-card journal-card--legend overflow-hidden rounded-[2rem]"
+        typeLabel={legend.contentType}
+        title={legend.title}
+        description={legend.summary}
+        meta="History, migration, and adaptation"
+        actionLabel={legend.cardAction}
+        tone="legend"
+        media={
+          <VisualImage
+            src={resolveImageSrc(baseUrl, media.heroVisual.image)}
+            alt={media.heroVisual.alt}
+            item={media.heroVisual}
+            className="h-56 w-full"
+          />
+        }
+      />
     </section>
   )
 }
 
 function StatCard({ value, label }) {
   return (
-    <div className="journal-stat-card rounded-[1.5rem] border border-white/10 bg-black/18 px-5 py-5">
-      <dt className="text-3xl font-semibold text-[var(--color-cream)]">{value}</dt>
-      <dd className="mt-2 text-xs uppercase tracking-[0.24em] text-[var(--color-text-muted)]">
-        {label}
-      </dd>
+    <div className="journal-stat-card rounded-[1.5rem] border border-white/10 px-4 py-4">
+      <dt className="text-[0.68rem] uppercase tracking-[0.22em] text-[var(--color-text-muted)]">{label}</dt>
+      <dd className="mt-3 text-3xl font-semibold text-[var(--color-cream)]">{value}</dd>
     </div>
   )
 }

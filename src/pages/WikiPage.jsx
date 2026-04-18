@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom'
 import Footer from '../components/Footer'
+import HubPanel from '../components/HubPanel'
+import InteractiveCard from '../components/InteractiveCard'
 import VisualImage from '../components/VisualImage'
 import { pepperProfiles, recipeFeatures, restaurants, legends } from '../data/catalog'
 import {
@@ -45,19 +47,19 @@ function HeroSection() {
           <div className="max-w-4xl">
             <p className="section-kicker">Encyclopedia hub</p>
             <h1 className="display-font mt-4 text-6xl uppercase leading-[0.88] text-[var(--color-cream)]">
-              A real atlas of peppers, recipes, legends, and places to eat.
+              A directory-first atlas with clear routes into profiles, notebooks, spotlights, and legends.
             </h1>
-            <p className="hero-copy mt-4 max-w-3xl text-sm leading-7 text-[var(--color-text-soft)] sm:text-base">
-              The field guide is no longer a compact side section. It now acts as a route-driven
-              encyclopedia with reusable visual associations, supporting index pages, restaurant
-              spotlights, and bilingual legal documents in the wider site shell.
+            <p className="hero-copy mt-4 max-w-3xl text-base leading-8 text-[var(--color-text)]">
+              Use this page as the structured front door to the encyclopedia. Each section below now
+              behaves as a category with explicit type labels, visible actions, and clearer hierarchy
+              instead of one long run of similar-looking cards.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <Link to="/wiki/origins" className="secondary-button">
                 Pepper Origins Atlas
               </Link>
               <Link to="/wiki/heat-pairings" className="secondary-button">
-                Heat, Pairings, and Uses
+                Heat, Pairings, And Uses
               </Link>
             </div>
           </div>
@@ -81,9 +83,15 @@ function HeroSection() {
 function PepperIndexSection() {
   return (
     <section className="viewport-section directory-section grid gap-4">
-      <SectionHeading
+      <HubPanel
         kicker="Pepper profiles"
-        title="New portrait and landscape pairs for every featured pepper."
+        typeLabel="Reference category"
+        title="Pepper dossiers with clearer facts above the fold."
+        description="Profiles now prioritize origin, heat, climate, pairings, and related reading so users can scan the key reference cues quickly."
+        links={[
+          { to: '/wiki/origins', label: 'Browse by origin landscape' },
+          { to: '/wiki/heat-pairings', label: 'Move from peppers to pairings' },
+        ]}
         ctaHref="/wiki/origins"
         ctaLabel="Open origins atlas"
       />
@@ -92,23 +100,25 @@ function PepperIndexSection() {
           const media = getPepperAssociation(pepper.slug)
 
           return (
-            <Link
+            <InteractiveCard
               key={pepper.slug}
               to={`/wiki/peppers/${pepper.slug}`}
               className="panel directory-card directory-card--pepper overflow-hidden rounded-[1.8rem]"
-            >
-              <VisualImage
-                src={resolveImageSrc(baseUrl, media.portraitVisual.image)}
-                alt={media.portraitVisual.alt}
-                item={media.portraitVisual}
-                className="h-48 w-full"
-              />
-              <div className="p-5">
-                <p className="section-kicker">{pepper.origin}</p>
-                <h2 className="mt-3 text-2xl font-semibold text-[var(--color-cream)]">{pepper.name}</h2>
-                <p className="card-copy mt-3 text-sm leading-7 text-[var(--color-text-soft)]">{pepper.summary}</p>
-              </div>
-            </Link>
+              typeLabel={pepper.contentType}
+              title={pepper.name}
+              description={pepper.summary}
+              meta={pepper.origin}
+              actionLabel={pepper.cardAction}
+              tone="pepper"
+              media={
+                <VisualImage
+                  src={resolveImageSrc(baseUrl, media.portraitVisual.image)}
+                  alt={media.portraitVisual.alt}
+                  item={media.portraitVisual}
+                  className="h-48 w-full"
+                />
+              }
+            />
           )
         })}
       </div>
@@ -119,9 +129,15 @@ function PepperIndexSection() {
 function RecipeIndexSection() {
   return (
     <section className="viewport-section directory-section grid gap-4">
-      <SectionHeading
+      <HubPanel
         kicker="Pairings and recipes"
-        title="Dedicated pages for ingredient associations and kitchen notebooks."
+        typeLabel="Kitchen category"
+        title="Pairing studies and recipe notebooks are now explicitly different destinations."
+        description="Studies explain flavor logic. Notebooks stay closer to method and use. The cards now signal which reading mode each entry belongs to."
+        links={[
+          { to: '/wiki/heat-pairings', label: 'Browse the pairings index' },
+          { to: '/lab', label: 'Switch to the sauce workshop' },
+        ]}
         ctaHref="/wiki/heat-pairings"
         ctaLabel="Open pairings index"
       />
@@ -130,23 +146,25 @@ function RecipeIndexSection() {
           const media = getRecipeAssociation(recipe.slug)
 
           return (
-            <Link
+            <InteractiveCard
               key={recipe.slug}
               to={`/wiki/recipes/${recipe.slug}`}
               className="panel directory-card directory-card--recipe overflow-hidden rounded-[1.8rem]"
-            >
-              <VisualImage
-                src={resolveImageSrc(baseUrl, media.heroVisual.image)}
-                alt={media.heroVisual.alt}
-                item={media.heroVisual}
-                className="h-44 w-full"
-              />
-              <div className="p-5">
-                <p className="section-kicker">{recipe.kind}</p>
-                <h2 className="mt-3 text-2xl font-semibold text-[var(--color-cream)]">{recipe.title}</h2>
-                <p className="card-copy mt-3 text-sm leading-7 text-[var(--color-text-soft)]">{recipe.summary}</p>
-              </div>
-            </Link>
+              typeLabel={recipe.contentType}
+              title={recipe.title}
+              description={recipe.summary}
+              meta={recipe.kind}
+              actionLabel={recipe.cardAction}
+              tone="recipe"
+              media={
+                <VisualImage
+                  src={resolveImageSrc(baseUrl, media.heroVisual.image)}
+                  alt={media.heroVisual.alt}
+                  item={media.heroVisual}
+                  className="h-44 w-full"
+                />
+              }
+            />
           )
         })}
       </div>
@@ -157,32 +175,36 @@ function RecipeIndexSection() {
 function RestaurantIndexSection() {
   return (
     <section className="viewport-section directory-section grid gap-4">
-      <SectionHeading
+      <HubPanel
         kicker="Restaurants"
-        title="More Michelin and fine-dining references where hot peppers stay central."
+        typeLabel="Editorial category"
+        title="Restaurant pages now read like spotlights rather than unlabeled image tiles."
+        description="Each spotlight clarifies city, recognition, and why the restaurant matters to pepper culture before sending the user deeper."
       />
       <div className="grid gap-4 lg:grid-cols-3">
         {restaurants.slice(0, 6).map((restaurant) => {
           const media = getRestaurantAssociation(restaurant.slug)
 
           return (
-            <Link
+            <InteractiveCard
               key={restaurant.slug}
               to={`/wiki/restaurants/${restaurant.slug}`}
               className="panel directory-card directory-card--restaurant overflow-hidden rounded-[1.8rem]"
-            >
-              <VisualImage
-                src={resolveImageSrc(baseUrl, media.heroVisual.image)}
-                alt={media.heroVisual.alt}
-                item={media.heroVisual}
-                className="h-44 w-full"
-              />
-              <div className="p-5">
-                <p className="section-kicker">{restaurant.recognition}</p>
-                <h2 className="mt-3 text-2xl font-semibold text-[var(--color-cream)]">{restaurant.name}</h2>
-                <p className="card-copy mt-3 text-sm leading-7 text-[var(--color-text-soft)]">{restaurant.city}</p>
-              </div>
-            </Link>
+              typeLabel={restaurant.contentType}
+              title={restaurant.name}
+              description={restaurant.summary}
+              meta={`${restaurant.city} • ${restaurant.recognition}`}
+              actionLabel={restaurant.cardAction}
+              tone="restaurant"
+              media={
+                <VisualImage
+                  src={resolveImageSrc(baseUrl, media.heroVisual.image)}
+                  alt={media.heroVisual.alt}
+                  item={media.heroVisual}
+                  className="h-44 w-full"
+                />
+              }
+            />
           )
         })}
       </div>
@@ -196,52 +218,38 @@ function LegendIndexSection() {
 
   return (
     <section className="viewport-section directory-section grid gap-4 xl:grid-cols-[0.92fr_1.08fr]">
-      <section className="panel directory-heading directory-heading--legend rounded-[2rem] p-6 sm:p-8">
-        <p className="section-kicker">Legend</p>
-        <h2 className="display-font mt-3 text-5xl uppercase leading-none text-[var(--color-cream)]">
-          The pepper routes.
-        </h2>
-        <p className="section-copy mt-4 text-sm leading-7 text-[var(--color-text-soft)]">{legend.summary}</p>
-        <Link to={`/wiki/legends/${legend.slug}`} className="mt-6 inline-flex text-sm font-semibold uppercase tracking-[0.16em] text-[var(--color-saffron)]">
-          Read the history page
-        </Link>
-      </section>
+      <HubPanel
+        kicker="Legend"
+        typeLabel="Story category"
+        title="The pepper routes."
+        description="The legend now lives as a clear story destination rather than a teaser block. Use it for migration, trade, adaptation, and context across related peppers."
+        links={[
+          { to: `/wiki/legends/${legend.slug}`, label: 'Read the history page' },
+          { to: '/wiki/origins', label: 'Jump from story to atlas' },
+        ]}
+        ctaHref={`/wiki/legends/${legend.slug}`}
+        ctaLabel="Open the legend"
+        className="directory-heading directory-heading--legend"
+      />
 
-      <section className="panel directory-card directory-card--legend overflow-hidden rounded-[2rem]">
-        <VisualImage
-          src={resolveImageSrc(baseUrl, media.heroVisual.image)}
-          alt={media.heroVisual.alt}
-          item={media.heroVisual}
-          className="h-56 w-full"
-        />
-        <div className="p-6">
-          <p className="section-kicker">History and migration</p>
-          <p className="card-copy mt-4 text-sm leading-7 text-[var(--color-text-soft)]">
-            The encyclopedia now includes a legend page that links the peppers back to trade, migration,
-            and the many landscapes where they became local.
-          </p>
-        </div>
-      </section>
-    </section>
-  )
-}
-
-function SectionHeading({ kicker, title, ctaHref, ctaLabel }) {
-  return (
-    <section className="panel directory-heading rounded-[2rem] p-6 sm:p-8">
-      <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-        <div>
-          <p className="section-kicker">{kicker}</p>
-          <h2 className="display-font mt-3 text-5xl uppercase leading-none text-[var(--color-cream)]">
-            {title}
-          </h2>
-        </div>
-        {ctaHref && ctaLabel ? (
-          <Link to={ctaHref} className="secondary-button w-full sm:w-auto">
-            {ctaLabel}
-          </Link>
-        ) : null}
-      </div>
+      <InteractiveCard
+        to={`/wiki/legends/${legend.slug}`}
+        className="panel directory-card directory-card--legend overflow-hidden rounded-[2rem]"
+        typeLabel={legend.contentType}
+        title={legend.title}
+        description={legend.summary}
+        meta="History and migration"
+        actionLabel={legend.cardAction}
+        tone="legend"
+        media={
+          <VisualImage
+            src={resolveImageSrc(baseUrl, media.heroVisual.image)}
+            alt={media.heroVisual.alt}
+            item={media.heroVisual}
+            className="h-56 w-full"
+          />
+        }
+      />
     </section>
   )
 }

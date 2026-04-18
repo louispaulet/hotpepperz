@@ -1,6 +1,8 @@
 export const recipeFeatures = [
   {
     slug: 'habanero-mango',
+    contentType: 'Pairing study',
+    cardAction: 'Read study',
     title: 'Habanero and Mango',
     kind: 'Pairing study',
     leadPepperSlugs: ['madame-jeanette', 'fatalii', 'datil'],
@@ -28,6 +30,8 @@ export const recipeFeatures = [
   },
   {
     slug: 'rocoto-huacatay',
+    contentType: 'Pairing study',
+    cardAction: 'Read study',
     title: 'Rocoto and Huacatay',
     kind: 'Pairing study',
     leadPepperSlugs: ['rocoto'],
@@ -55,6 +59,8 @@ export const recipeFeatures = [
   },
   {
     slug: 'birds-eye-basil-lime',
+    contentType: 'Pairing study',
+    cardAction: 'Read study',
     title: "Bird's Eye Chili, Basil, and Lime",
     kind: 'Pairing study',
     leadPepperSlugs: ['birds-eye-chili'],
@@ -82,6 +88,8 @@ export const recipeFeatures = [
   },
   {
     slug: 'sambal-birdseye',
+    contentType: 'Recipe notebook',
+    cardAction: 'Open notebook',
     title: 'Sambal with Bird’s Eye Chili',
     kind: 'Recipe notebook',
     leadPepperSlugs: ['birds-eye-chili'],
@@ -109,6 +117,8 @@ export const recipeFeatures = [
   },
   {
     slug: 'salsa-macha-arbol',
+    contentType: 'Recipe notebook',
+    cardAction: 'Open notebook',
     title: 'Salsa Macha with Chile de Arbol',
     kind: 'Recipe notebook',
     leadPepperSlugs: ['chile-de-arbol'],
@@ -136,6 +146,8 @@ export const recipeFeatures = [
   },
   {
     slug: 'rocoto-relleno-notebook',
+    contentType: 'Recipe notebook',
+    cardAction: 'Open notebook',
     title: 'Rocoto Relleno Notebook',
     kind: 'Recipe notebook',
     leadPepperSlugs: ['rocoto'],

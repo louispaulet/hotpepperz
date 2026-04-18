@@ -6,6 +6,8 @@ import RelatedRail from '../components/encyclopedia/RelatedRail'
 import SourceList from '../components/encyclopedia/SourceList'
 import { restaurantMap, pepperProfileMap, recipeFeatureMap } from '../data/catalog'
 import { getRecipeAssociation, getRestaurantAssociation, getPepperAssociation } from '../lib/media'
+import { getBreadcrumbs } from '../lib/breadcrumbs'
+import TextLink from '../components/TextLink'
 
 function RestaurantDetailPage() {
   const { slug } = useParams()
@@ -14,6 +16,7 @@ function RestaurantDetailPage() {
   if (!restaurant) return <Navigate to="/wiki" replace />
 
   const media = getRestaurantAssociation(restaurant.slug)
+  const breadcrumbs = getBreadcrumbs(`/wiki/restaurants/${restaurant.slug}`, restaurant)
 
   const relatedItems = restaurant.relatedPepperSlugs
     .map((pepperSlug) => {
@@ -24,9 +27,10 @@ function RestaurantDetailPage() {
       return {
         href: `/wiki/peppers/${pepper.slug}`,
         title: pepper.name,
-        kind: 'Pepper profile',
+        kind: pepper.contentType,
         copy: pepper.summary,
         visual: pepperMedia.portraitVisual,
+        actionLabel: pepper.cardAction,
       }
     })
     .concat(
@@ -42,9 +46,10 @@ function RestaurantDetailPage() {
           return {
             href: `/wiki/recipes/${recipe.slug}`,
             title: recipe.title,
-            kind: recipe.kind,
+            kind: recipe.contentType,
             copy: recipe.summary,
             visual: recipeMedia.heroVisual,
+            actionLabel: recipe.cardAction,
           }
         }),
     )
@@ -59,6 +64,8 @@ function RestaurantDetailPage() {
         landscape={media.heroVisual}
         chips={[restaurant.city, restaurant.recognition, restaurant.cuisine]}
         variant="restaurant"
+        breadcrumbs={breadcrumbs}
+        typeLabel={restaurant.contentType}
       >
         <div className="rounded-[1.6rem] border border-white/10 bg-black/24 p-4 text-sm leading-7 text-[var(--color-text-soft)]">
           {restaurant.whyItMatters}
@@ -84,6 +91,14 @@ function RestaurantDetailPage() {
             how chili heat can stay culturally grounded, technically precise, and memorable in a more
             elevated dining context.
           </p>
+          <div className="mt-6 grid gap-3 md:grid-cols-2">
+            <TextLink to="/wiki">Return to the encyclopedia hub</TextLink>
+            {restaurant.relatedPepperSlugs[0] ? (
+              <TextLink to={`/wiki/peppers/${restaurant.relatedPepperSlugs[0]}`}>
+                Open a linked pepper profile
+              </TextLink>
+            ) : null}
+          </div>
         </section>
 
         <RelatedRail title="Pepper and menu context" items={relatedItems} variant="restaurant" />

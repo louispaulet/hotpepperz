@@ -1,54 +1,94 @@
-import { Link } from 'react-router-dom'
 import Footer from '../components/Footer'
+import HubPanel from '../components/HubPanel'
+import InteractiveCard from '../components/InteractiveCard'
 import { recipeFeatures } from '../data/catalog'
-import { getPepperAssociation } from '../lib/media'
+import { getRecipeAssociation, resolveImageSrc } from '../lib/media'
 import VisualImage from '../components/VisualImage'
-import { resolveImageSrc } from '../lib/media'
 
 const baseUrl = import.meta.env.BASE_URL
 
 function HeatPairingsPage() {
+  const pairingStudies = recipeFeatures.filter((recipe) => recipe.contentType === 'Pairing study')
+  const notebooks = recipeFeatures.filter((recipe) => recipe.contentType === 'Recipe notebook')
+
   return (
     <div className="page-sections pairings-page">
-      <section className="panel pairings-hero rounded-[2.2rem] p-6 sm:p-8 xl:p-9">
-        <p className="section-kicker">Heat, Pairings, and Uses</p>
-        <h1 className="display-font mt-4 text-5xl uppercase leading-[0.9] text-[var(--color-cream)] sm:text-6xl">
-          Where peppers meet ingredients.
-        </h1>
-        <p className="hero-copy mt-4 max-w-4xl text-sm leading-7 text-[var(--color-text-soft)] sm:text-base">
-          This index gathers both pairing studies and recipe notebooks. The aim is not just to name a
-          pepper, but to show what it likes to sit beside on the plate.
-        </p>
+      <section className="viewport-section grid gap-4 xl:grid-cols-[0.92fr_1.08fr]">
+        <HubPanel
+          kicker="Heat, Pairings, And Uses"
+          typeLabel="Pairings route"
+          title="Where peppers meet ingredients."
+          description="This route now separates two reading modes: pairing studies for flavor logic and recipe notebooks for practical kitchen use. That keeps the index useful instead of visually ambiguous."
+          links={[
+            { to: '/wiki', label: 'Return to encyclopedia hub' },
+            { to: '/lab', label: 'Switch to the sauce workshop' },
+          ]}
+          ctaHref="/lab"
+          ctaLabel="Open the workshop"
+          className="pairings-hero"
+        />
+        <section className="grid gap-4">
+          {pairingStudies.slice(0, 2).map((recipe) => (
+            <RecipePreviewCard key={recipe.slug} recipe={recipe} />
+          ))}
+        </section>
       </section>
 
-      <section className="viewport-section grid gap-4 lg:grid-cols-2">
-        {recipeFeatures.map((recipe) => {
-          const media = getPepperAssociation(recipe.leadPepperSlugs[0])
+      <section className="viewport-section grid gap-4">
+        <HubPanel
+          kicker="Pairing studies"
+          typeLabel="Reference grouping"
+          title="Flavor logic first."
+          description="These entries explain why a pepper works with a given ingredient family before moving into kitchen application."
+        />
+        <div className="grid gap-4 lg:grid-cols-2 xl:grid-cols-3">
+          {pairingStudies.map((recipe) => (
+            <RecipePreviewCard key={recipe.slug} recipe={recipe} />
+          ))}
+        </div>
+      </section>
 
-          return (
-            <Link
-              key={recipe.slug}
-              to={`/wiki/recipes/${recipe.slug}`}
-              className="panel pairings-card overflow-hidden rounded-[2rem]"
-            >
-              <VisualImage
-                src={resolveImageSrc(baseUrl, media.landscapeVisual.image)}
-                alt={media.landscapeVisual.alt}
-                item={media.landscapeVisual}
-                className="h-48 w-full"
-              />
-              <div className="p-6">
-                <p className="section-kicker">{recipe.kind}</p>
-                <h2 className="mt-3 text-3xl font-semibold text-[var(--color-cream)]">{recipe.title}</h2>
-                <p className="card-copy mt-4 text-sm leading-7 text-[var(--color-text-soft)]">{recipe.summary}</p>
-              </div>
-            </Link>
-          )
-        })}
+      <section className="viewport-section grid gap-4">
+        <HubPanel
+          kicker="Recipe notebooks"
+          typeLabel="Practical grouping"
+          title="More method-driven kitchen pages."
+          description="Notebooks stay closer to process, serving context, and handling cues while still linking back to the relevant pepper profile."
+        />
+        <div className="grid gap-4 lg:grid-cols-2 xl:grid-cols-3">
+          {notebooks.map((recipe) => (
+            <RecipePreviewCard key={recipe.slug} recipe={recipe} />
+          ))}
+        </div>
       </section>
 
       <Footer />
     </div>
+  )
+}
+
+function RecipePreviewCard({ recipe }) {
+  const media = getRecipeAssociation(recipe.slug)
+
+  return (
+    <InteractiveCard
+      to={`/wiki/recipes/${recipe.slug}`}
+      className="panel pairings-card overflow-hidden rounded-[2rem]"
+      typeLabel={recipe.contentType}
+      title={recipe.title}
+      description={recipe.summary}
+      meta={recipe.kind}
+      actionLabel={recipe.cardAction}
+      tone="recipe"
+      media={
+        <VisualImage
+          src={resolveImageSrc(baseUrl, media.heroVisual.image)}
+          alt={media.heroVisual.alt}
+          item={media.heroVisual}
+          className="h-48 w-full"
+        />
+      }
+    />
   )
 }
 

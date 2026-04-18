@@ -1,6 +1,8 @@
 import Footer from '../components/Footer'
 import SauceStudio from '../components/SauceStudio'
 import VisualImage from '../components/VisualImage'
+import HubPanel from '../components/HubPanel'
+import TextLink from '../components/TextLink'
 import { labSteps, pairingRules } from '../data/catalog'
 import { editorialImages, resolveImageSrc } from '../lib/media'
 
@@ -42,7 +44,7 @@ const referenceCards = [
 function LabPage() {
   return (
     <div className="page-sections lab-page">
-      <section className="grid gap-4">
+      <section className="grid gap-4 xl:grid-cols-[0.9fr_1.1fr]">
         <IntroSection />
         <SauceStudio />
       </section>
@@ -54,25 +56,19 @@ function LabPage() {
 
 function IntroSection() {
   return (
-    <section className="panel lab-intro rounded-[2rem] p-5 sm:p-6 lg:p-7">
-      <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-        <div className="max-w-3xl">
-          <p className="section-kicker">Sauce workshop</p>
-          <h1 className="display-font mt-2 text-4xl uppercase leading-none text-[var(--color-cream)] sm:text-5xl">
-            Build a bottle the way a careful sauce maker thinks.
-          </h1>
-          <p className="hero-copy mt-3 max-w-2xl text-sm leading-7 text-[var(--color-text-soft)] sm:text-base">
-            Choose the peppers, balance the seasoning, and decide how much fire the final bottle
-            should carry. The aim is not novelty heat. The aim is a sauce with structure.
-          </p>
-        </div>
-
-        <div className="rounded-[1.5rem] border border-white/8 bg-black/16 p-4 lg:max-w-md">
-          <p className="section-kicker">Bench reminder</p>
-          <p className="section-copy mt-2 text-sm leading-7 text-[var(--color-text-soft)]">{pairingRules[0]}</p>
-        </div>
-      </div>
-    </section>
+    <HubPanel
+      kicker="Sauce workshop"
+      typeLabel="Task route"
+      title="Build a bottle the way a careful sauce maker thinks."
+      description="This route stays practical: choose peppers, balance structure, decide the role of sweetness, acid, and texture, then shape a bottle direction that feels intentional instead of decorative."
+      links={[
+        { to: '/wiki/heat-pairings', label: 'Open pairings for ingredient logic' },
+        { to: '/wiki', label: 'Return to the encyclopedia hub' },
+      ]}
+      ctaHref="/wiki/heat-pairings"
+      ctaLabel="Read pairing studies"
+      className="lab-intro"
+    />
   )
 }
 
@@ -148,6 +144,14 @@ function OptionalReferenceSection() {
                 </div>
               </article>
             ))}
+          </div>
+          <div className="rounded-[1.6rem] border border-white/8 bg-black/14 p-5">
+            <p className="section-kicker">Bench reminder</p>
+            <p className="mt-3 text-base leading-8 text-[var(--color-text)]">{pairingRules[0]}</p>
+            <div className="mt-4 grid gap-3">
+              <TextLink to="/wiki/heat-pairings">Check a pairing study before you bottle</TextLink>
+              <TextLink to="/wiki/origins">Review climate and origin cues</TextLink>
+            </div>
           </div>
         </section>
       </div>

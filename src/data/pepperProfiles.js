@@ -1,6 +1,8 @@
 export const pepperProfiles = [
   {
     slug: 'birds-eye-chili',
+    contentType: 'Pepper profile',
+    cardAction: 'Open profile',
     name: "Bird's Eye Chili",
     origin: 'Mainland Southeast Asia',
     heat: '50,000 to 100,000 SHU',
@@ -28,6 +30,8 @@ export const pepperProfiles = [
   },
   {
     slug: 'piri-piri',
+    contentType: 'Pepper profile',
+    cardAction: 'Open profile',
     name: 'Piri Piri',
     origin: 'Portuguese-speaking Africa, especially Mozambique and Angola',
     heat: '50,000 to 175,000 SHU',
@@ -55,6 +59,8 @@ export const pepperProfiles = [
   },
   {
     slug: 'rocoto',
+    contentType: 'Pepper profile',
+    cardAction: 'Open profile',
     name: 'Rocoto',
     origin: 'Andean highlands of Peru and Bolivia',
     heat: '30,000 to 100,000 SHU',
@@ -82,6 +88,8 @@ export const pepperProfiles = [
   },
   {
     slug: 'chile-de-arbol',
+    contentType: 'Pepper profile',
+    cardAction: 'Open profile',
     name: 'Chile de Arbol',
     origin: 'Mexico',
     heat: '15,000 to 30,000 SHU',
@@ -109,6 +117,8 @@ export const pepperProfiles = [
   },
   {
     slug: 'madame-jeanette',
+    contentType: 'Pepper profile',
+    cardAction: 'Open profile',
     name: 'Madame Jeanette',
     origin: 'Suriname',
     heat: '100,000 to 350,000 SHU',
@@ -136,6 +146,8 @@ export const pepperProfiles = [
   },
   {
     slug: 'datil',
+    contentType: 'Pepper profile',
+    cardAction: 'Open profile',
     name: 'Datil',
     origin: 'St. Augustine, Florida, with Iberian and Minorcan culinary roots',
     heat: '100,000 to 300,000 SHU',
@@ -163,6 +175,8 @@ export const pepperProfiles = [
   },
   {
     slug: 'cheongyang',
+    contentType: 'Pepper profile',
+    cardAction: 'Open profile',
     name: 'Cheongyang',
     origin: 'South Korea',
     heat: '10,000 to 30,000 SHU',
@@ -190,6 +204,8 @@ export const pepperProfiles = [
   },
   {
     slug: 'fatalii',
+    contentType: 'Pepper profile',
+    cardAction: 'Open profile',
     name: 'Fatalii',
     origin: 'Central and southern Africa',
     heat: '125,000 to 400,000 SHU',

@@ -16,6 +16,8 @@ import {
   getRecipeAssociation,
   getRestaurantAssociation,
 } from '../lib/media'
+import { getBreadcrumbs } from '../lib/breadcrumbs'
+import TextLink from '../components/TextLink'
 
 function PepperDetailPage() {
   const { slug } = useParams()
@@ -24,6 +26,7 @@ function PepperDetailPage() {
   if (!pepper) return <Navigate to="/wiki" replace />
 
   const media = getPepperAssociation(pepper.slug)
+  const breadcrumbs = getBreadcrumbs(`/wiki/peppers/${pepper.slug}`, pepper)
 
   const relatedItems = [
     ...pepper.relatedRecipeSlugs.map((relatedSlug) => {
@@ -35,9 +38,10 @@ function PepperDetailPage() {
       return {
         href: `/wiki/recipes/${recipe.slug}`,
         title: recipe.title,
-        kind: recipe.kind,
+        kind: recipe.contentType,
         copy: recipe.summary,
         visual: leadPepper?.heroVisual,
+        actionLabel: recipe.cardAction,
       }
     }),
     ...pepper.relatedRestaurantSlugs.map((relatedSlug) => {
@@ -49,9 +53,10 @@ function PepperDetailPage() {
       return {
         href: `/wiki/restaurants/${restaurant.slug}`,
         title: restaurant.name,
-        kind: restaurant.recognition,
+        kind: restaurant.contentType,
         copy: restaurant.summary,
         visual: leadPepper?.heroVisual,
+        actionLabel: restaurant.cardAction,
       }
     }),
     ...pepper.relatedLegendSlugs.map((relatedSlug) => {
@@ -63,9 +68,10 @@ function PepperDetailPage() {
       return {
         href: `/wiki/legends/${legend.slug}`,
         title: legend.title,
-        kind: 'Legend',
+        kind: legend.contentType,
         copy: legend.summary,
         visual: leadPepper?.heroVisual,
+        actionLabel: legend.cardAction,
       }
     }),
   ].filter(Boolean)
@@ -80,6 +86,8 @@ function PepperDetailPage() {
         portrait={media.portraitVisual}
         chips={[pepper.origin, pepper.heatBand, pepper.heat]}
         variant="pepper"
+        breadcrumbs={breadcrumbs}
+        typeLabel={pepper.contentType}
       >
         <div className="rounded-[1.6rem] border border-white/10 bg-black/24 p-4 text-sm leading-7 text-[var(--color-text-soft)]">
           {pepper.cultivation}
@@ -113,7 +121,7 @@ function PepperDetailPage() {
           </article>
 
           <article className="panel detail-section-card detail-section-card--pepper rounded-[2rem] p-6 sm:p-8">
-            <p className="section-kicker">Cooking cues</p>
+            <p className="section-kicker">Next steps</p>
             <div className="mt-5 grid gap-3">
               {pepper.flavorNotes.map((note) => (
                 <div
@@ -124,11 +132,15 @@ function PepperDetailPage() {
                 </div>
               ))}
             </div>
-            <p className="mt-6 text-sm leading-7 text-[var(--color-text-soft)]">
-              Reuse note: this pepper keeps its own portrait-and-landscape identity on the profile
-              page, while the linked recipes, restaurants, and legend now carry more specific
-              editorial imagery of their own.
-            </p>
+            <div className="mt-6 grid gap-3">
+              <TextLink to="/wiki/origins">See this pepper through the origins atlas</TextLink>
+              <TextLink to="/wiki/heat-pairings">Browse related pairings and uses</TextLink>
+              {pepper.relatedRecipeSlugs[0] ? (
+                <TextLink to={`/wiki/recipes/${pepper.relatedRecipeSlugs[0]}`}>
+                  Jump to a linked recipe notebook
+                </TextLink>
+              ) : null}
+            </div>
           </article>
         </section>
 

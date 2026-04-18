@@ -6,6 +6,8 @@ import RelatedRail from '../components/encyclopedia/RelatedRail'
 import SourceList from '../components/encyclopedia/SourceList'
 import { recipeFeatureMap, pepperProfileMap, restaurantMap } from '../data/catalog'
 import { getRecipeAssociation, getRestaurantAssociation } from '../lib/media'
+import { getBreadcrumbs } from '../lib/breadcrumbs'
+import TextLink from '../components/TextLink'
 
 function RecipeDetailPage() {
   const { slug } = useParams()
@@ -15,6 +17,7 @@ function RecipeDetailPage() {
 
   const leadPepper = pepperProfileMap[recipe.leadPepperSlugs[0]]
   const media = getRecipeAssociation(recipe.slug)
+  const breadcrumbs = getBreadcrumbs(`/wiki/recipes/${recipe.slug}`, recipe)
 
   const relatedItems = recipe.relatedRestaurantSlugs
     .map((restaurantSlug) => {
@@ -26,9 +29,10 @@ function RecipeDetailPage() {
       return {
         href: `/wiki/restaurants/${restaurant.slug}`,
         title: restaurant.name,
-        kind: restaurant.recognition,
+        kind: restaurant.contentType,
         copy: restaurant.summary,
         visual: relatedMedia?.heroVisual,
+        actionLabel: restaurant.cardAction,
       }
     })
     .filter(Boolean)
@@ -42,6 +46,8 @@ function RecipeDetailPage() {
         landscape={media.heroVisual}
         chips={[leadPepper.name, leadPepper.origin, leadPepper.heatBand]}
         variant="recipe"
+        breadcrumbs={breadcrumbs}
+        typeLabel={recipe.contentType}
       >
         <p className="rounded-[1.6rem] border border-white/10 bg-black/24 p-4 text-sm leading-7 text-[var(--color-text-soft)]">
           {recipe.heroNote}
@@ -83,6 +89,10 @@ function RecipeDetailPage() {
                 {bullet}
               </div>
             ))}
+          </div>
+          <div className="mt-6 grid gap-3 md:grid-cols-2">
+            <TextLink to={`/wiki/peppers/${leadPepper.slug}`}>Open the lead pepper dossier</TextLink>
+            <TextLink to="/wiki/heat-pairings">Return to pairings and notebooks</TextLink>
           </div>
         </section>
 

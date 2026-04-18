@@ -1,5 +1,7 @@
 import VisualImage from '../VisualImage'
 import { resolveImageSrc } from '../../lib/media'
+import Breadcrumbs from '../Breadcrumbs'
+import ContentTypeBadge from '../ContentTypeBadge'
 
 const baseUrl = import.meta.env.BASE_URL
 
@@ -13,6 +15,8 @@ function ArticleHero({
   chips = [],
   children,
   variant = 'default',
+  breadcrumbs = [],
+  typeLabel = null,
 }) {
   return (
     <section className={`panel article-hero article-hero--${variant} overflow-hidden rounded-[2.2rem]`}>
@@ -30,7 +34,11 @@ function ArticleHero({
         <div className="article-hero-overlay absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,205,122,0.2),transparent_36%),radial-gradient(circle_at_bottom_right,rgba(255,96,48,0.14),transparent_32%)]" />
         <div className="relative z-10 grid gap-6 xl:grid-cols-[1.08fr_0.92fr] xl:items-end">
           <div className="max-w-4xl">
-            <p className="section-kicker article-kicker text-[var(--color-gold)]">{kicker}</p>
+            <Breadcrumbs items={breadcrumbs} />
+            <div className="mt-4 flex flex-wrap items-center gap-3">
+              <p className="section-kicker article-kicker text-[var(--color-gold)]">{kicker}</p>
+              {typeLabel ? <ContentTypeBadge tone={variant}>{typeLabel}</ContentTypeBadge> : null}
+            </div>
             <h1 className="display-font mt-4 text-5xl uppercase leading-[0.88] text-[var(--color-cream)] sm:text-6xl">
               {title}
             </h1>

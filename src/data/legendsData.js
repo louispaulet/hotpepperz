@@ -1,6 +1,8 @@
 export const legends = [
   {
     slug: 'pepper-routes',
+    contentType: 'Legend',
+    cardAction: 'Open story',
     title: 'The Pepper Routes',
     subtitle: 'How American chiles crossed oceans and became local in kitchens far from their botanical birthplace',
     summary:

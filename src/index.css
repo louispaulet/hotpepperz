@@ -77,6 +77,11 @@ a {
   text-decoration: none;
 }
 
+a[href],
+button {
+  cursor: pointer;
+}
+
 button,
 input,
 textarea,
@@ -398,6 +403,118 @@ body,
   color: var(--color-text-muted);
 }
 
+.content-type-badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--theme-accent) 24%, rgba(255, 255, 255, 0.14));
+  background: color-mix(in srgb, var(--theme-accent-soft) 60%, rgba(255, 255, 255, 0.04));
+  padding: 0.42rem 0.75rem;
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-text);
+}
+
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  width: fit-content;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-text);
+  transition:
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.text-link:hover {
+  color: var(--color-cream);
+  transform: translateX(1px);
+}
+
+.text-link::after {
+  content: '';
+  display: block;
+  position: absolute;
+  height: 1px;
+  background: currentColor;
+}
+
+.text-link-arrow {
+  color: var(--theme-accent);
+}
+
+.interactive-card {
+  display: block;
+  position: relative;
+  cursor: pointer;
+}
+
+.interactive-card-body {
+  position: relative;
+}
+
+.interactive-card-meta {
+  font-size: 0.76rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.interactive-card-title {
+  text-wrap: balance;
+}
+
+.interactive-card-copy {
+  color: var(--color-text);
+}
+
+.interactive-card-action-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--theme-accent);
+}
+
+.interactive-card-arrow {
+  transition: transform 180ms ease;
+}
+
+.hub-panel .section-copy,
+.hero-copy,
+.header-copy,
+.article-subtitle,
+.card-copy {
+  color: var(--color-text);
+}
+
+.breadcrumb-trail {
+  width: fit-content;
+}
+
+.breadcrumb-link {
+  color: var(--color-text-soft);
+  transition: color 180ms ease;
+}
+
+.breadcrumb-link:hover,
+.breadcrumb-current {
+  color: var(--color-cream);
+}
+
+.breadcrumb-separator {
+  color: var(--color-text-muted);
+}
+
 .primary-button,
 .secondary-button {
   display: inline-flex;
@@ -494,11 +611,14 @@ body,
 }
 
 .nav-pill-idle {
-  color: var(--color-text-soft);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--color-text);
+  background: rgba(255, 255, 255, 0.02);
 }
 
 .nav-pill-idle:hover {
   background: color-mix(in srgb, var(--theme-accent-soft) 44%, rgba(255, 255, 255, 0.03));
+  border-color: color-mix(in srgb, var(--theme-accent) 24%, rgba(255, 255, 255, 0.12));
   color: var(--color-text);
 }
 
@@ -631,7 +751,8 @@ body,
 .related-card:hover,
 .source-link:hover,
 .lab-reference-card:hover,
-.lab-process-card:hover {
+.lab-process-card:hover,
+.interactive-card:hover {
   transform: translateY(-2px);
   border-color: color-mix(in srgb, var(--theme-accent) 24%, rgba(255, 255, 255, 0.08));
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.24);
@@ -726,9 +847,20 @@ body,
 .pairings-card:hover img,
 .directory-card:hover img,
 .journal-card:hover img,
-.related-card:hover img {
+.related-card:hover img,
+.interactive-card:hover img {
   transform: scale(1.03);
   filter: saturate(1.05);
+}
+
+.interactive-card:hover .interactive-card-arrow {
+  transform: translateX(2px);
+}
+
+.hub-panel {
+  box-shadow:
+    0 20px 54px rgba(0, 0, 0, 0.18),
+    inset 0 1px 0 rgba(255, 248, 233, 0.03);
 }
 
 .article-hero {
@@ -875,6 +1007,12 @@ body,
   margin: 0 auto;
 }
 
+.legal-toc {
+  align-self: start;
+  position: sticky;
+  top: 7rem;
+}
+
 .legal-card {
   box-shadow:
     0 22px 54px rgba(0, 0, 0, 0.2),
@@ -883,6 +1021,10 @@ body,
 
 .legal-card .section-kicker {
   color: rgba(231, 205, 171, 0.62);
+}
+
+.legal-paragraph {
+  max-width: 70ch;
 }
 
 .site-shell[data-page-family='legal'] .grain-overlay {
@@ -1129,6 +1271,10 @@ a:focus-visible {
     padding: 0.75rem 1rem;
     font-size: 0.68rem;
     letter-spacing: 0.18em;
+  }
+
+  .legal-toc {
+    position: static;
   }
 
   .journal-hero .display-font,
