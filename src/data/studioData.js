@@ -47,7 +47,7 @@ export const peppers = [
     image: 'images/cayenne.png',
     imagePosition: 'center 42%',
     story:
-      'Many pantry hot sauces owe cayenne a debt. It gives that familiar straight-line burn that says “pass the bottle” rather than “call a witness.”',
+      'Many pantry hot sauces owe cayenne a debt. It gives that familiar straight-line burn that invites another spoonful rather than overwhelming the food.',
   },
   {
     id: 'aji_amarillo',
@@ -111,7 +111,7 @@ export const peppers = [
     image: editorialImages.nagaCluster.image,
     imagePosition: editorialImages.nagaCluster.position,
     story:
-      'Bhut Jolokia gained world attention because its burn does not simply arrive, it builds. The first bite can be a handshake; the next thirty seconds are the lawsuit.',
+      'Bhut Jolokia gained world attention because its burn builds in waves, turning a measured first impression into serious sustained heat.',
   },
   {
     id: 'scorpion',

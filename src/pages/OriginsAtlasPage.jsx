@@ -15,7 +15,7 @@ function OriginsAtlasPage() {
           kicker="Pepper Origins Atlas"
           typeLabel="Atlas route"
           title="Landscapes behind the heat."
-          description="This route now behaves as a landscape-first atlas. Use it to browse climates and growing contexts, then drop into the associated pepper dossier when you want heat, uses, and related reading."
+          description="This atlas starts with landscapes, climates, and growing conditions. Use it to browse origin context, then move into the associated pepper dossier for heat, uses, and related reading."
           links={[
             { to: '/wiki', label: 'Return to the encyclopedia directory' },
             { to: '/wiki/heat-pairings', label: 'Continue into heat pairings and uses' },

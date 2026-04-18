@@ -18,7 +18,7 @@ function HeatPairingsPage() {
           kicker="Heat, Pairings, And Uses"
           typeLabel="Pairings route"
           title="Where peppers meet ingredients."
-          description="This route now separates two reading modes: pairing studies for flavor logic and recipe notebooks for practical kitchen use. That keeps the index useful instead of visually ambiguous."
+          description="This page separates pairing studies from recipe notebooks, so flavor logic and practical kitchen use each have their own space."
           links={[
             { to: '/wiki', label: 'Return to encyclopedia hub' },
             { to: '/lab', label: 'Switch to the sauce workshop' },

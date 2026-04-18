@@ -98,9 +98,9 @@ function LegalPage({ slug: explicitSlug }) {
           <article className="panel legal-card legal-card--note rounded-[2rem] p-6 sm:p-8">
             <p className="section-kicker">Compliance note</p>
             <p className="mt-4 text-base leading-8 text-[var(--color-text)]">
-              This text is provided as a compliance-oriented editorial draft for a France-facing site.
-              It is not legal advice and should be reviewed by a qualified professional before a
-              production launch.
+              This document is a compliance draft for a France-facing editorial site. It is not
+              legal advice and should be reviewed by a qualified professional before a production
+              launch.
             </p>
             <div className="mt-5 grid gap-3">
               {page.references.map((reference) => (

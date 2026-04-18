@@ -679,7 +679,7 @@ function ActiveStepPanel({
     panel = {
       stepNumber: 4,
       title: 'Choose the label style',
-      copy: 'Pick the packaging direction that matches the recipe. A serious green sauce should not wear the costume of a prank bottle.',
+      copy: 'Let the label style match the sauce rather than competing with it.',
       aside: labelStyleName,
       showNext: false,
       content: (

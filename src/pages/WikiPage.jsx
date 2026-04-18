@@ -47,12 +47,11 @@ function HeroSection() {
           <div className="max-w-4xl">
             <p className="section-kicker">Encyclopedia hub</p>
             <h1 className="display-font mt-4 text-6xl uppercase leading-[0.88] text-[var(--color-cream)]">
-              A directory-first atlas with clear routes into profiles, notebooks, spotlights, and legends.
+              An atlas of pepper profiles, notebooks, restaurant spotlights, and legends.
             </h1>
             <p className="hero-copy mt-4 max-w-3xl text-base leading-8 text-[var(--color-text)]">
-              Use this page as the structured front door to the encyclopedia. Each section below now
-              behaves as a category with explicit type labels, visible actions, and clearer hierarchy
-              instead of one long run of similar-looking cards.
+              Use this page to browse the encyclopedia by type: pepper profiles, pairings,
+              restaurants, and legends.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <Link to="/wiki/origins" className="secondary-button">
@@ -132,7 +131,7 @@ function RecipeIndexSection() {
       <HubPanel
         kicker="Pairings and recipes"
         typeLabel="Kitchen category"
-        title="Pairing studies and recipe notebooks are now explicitly different destinations."
+        title="Pairing studies and recipe notebooks serve different kinds of reading."
         description="Studies explain flavor logic. Notebooks stay closer to method and use. The cards now signal which reading mode each entry belongs to."
         links={[
           { to: '/wiki/heat-pairings', label: 'Browse the pairings index' },
@@ -178,7 +177,7 @@ function RestaurantIndexSection() {
       <HubPanel
         kicker="Restaurants"
         typeLabel="Editorial category"
-        title="Restaurant pages now read like spotlights rather than unlabeled image tiles."
+        title="Restaurant pages now read as concise editorial spotlights."
         description="Each spotlight clarifies city, recognition, and why the restaurant matters to pepper culture before sending the user deeper."
       />
       <div className="grid gap-4 lg:grid-cols-3">
@@ -222,7 +221,7 @@ function LegendIndexSection() {
         kicker="Legend"
         typeLabel="Story category"
         title="The pepper routes."
-        description="The legend now lives as a clear story destination rather than a teaser block. Use it for migration, trade, adaptation, and context across related peppers."
+        description="The legend now stands as a full story about migration, trade, and adaptation across related peppers."
         links={[
           { to: `/wiki/legends/${legend.slug}`, label: 'Read the history page' },
           { to: '/wiki/origins', label: 'Jump from story to atlas' },

@@ -84,7 +84,7 @@ export const legalPages = {
     lastUpdated: 'April 18, 2026',
     alternateLanguagePath: '/legal/mentions-legales',
     intro:
-      'This page is a France-oriented compliance draft for an editorial website. It should be reviewed and completed before production publication.',
+      'This page is a France-oriented compliance draft for an editorial website. Review and complete it before publishing the site in production.',
     sections: [
       {
         id: 'publisher-identification',

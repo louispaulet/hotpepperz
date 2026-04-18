@@ -10,8 +10,8 @@ function Footer() {
             HotPepperz
           </p>
           <p className="mt-3 max-w-2xl text-base leading-8 text-[var(--color-text)]">
-            A pepper-first journal that now doubles as an editorial encyclopedia: peppers, recipes,
-            legends, restaurants, and France-oriented legal drafts for the public-facing site shell.
+            A pepper-first journal and editorial encyclopedia: peppers, recipes, legends,
+            restaurants, and France-oriented legal drafts for the public-facing site shell.
           </p>
         </div>
 

@@ -58,12 +58,11 @@ function HeroSection({ featuredPeppers }) {
       >
         <p className="section-kicker">Hot pepper journal</p>
         <h1 className="display-font mt-4 max-w-4xl text-6xl uppercase leading-[0.88] text-[var(--color-cream)]">
-          Browse peppers, origins, pairings, and legends without guessing where to click next.
+          Browse peppers, origins, pairings, and legends in one clear editorial reference.
         </h1>
         <p className="hero-copy mt-4 max-w-3xl text-base leading-8 text-[var(--color-text)]">
-          HotPepperz now works as a route-driven editorial encyclopedia. Start with the pepper
-          profiles, jump into landscape-led origins, move into pairings and notebooks, or follow the
-          broader history of how heat travelled.
+          HotPepperz now reads as an editorial encyclopedia: pepper profiles, origin landscapes,
+          pairing studies, recipe notebooks, and the broader history of how heat travelled.
         </p>
 
         <div className="mt-6 flex flex-wrap gap-3">
@@ -87,7 +86,7 @@ function HeroSection({ featuredPeppers }) {
           kicker="Featured pepper entries"
           typeLabel="Tier 2 navigation"
           title="Every featured pepper now reads like a dossier."
-          description="Pepper pages now lead with origin, heat, climate, pairings, and related reading so the encyclopedia behaves more like a reference system and less like a poster wall."
+          description="Pepper pages lead with origin, heat, climate, pairings, and related reading so they work as quick-reference dossiers."
           links={featuredPeppers.slice(0, 3).map((pepper) => ({
             to: `/wiki/peppers/${pepper.slug}`,
             label: pepper.name,
@@ -135,7 +134,7 @@ function FeaturedPeppersSection({ peppers }) {
       <HubPanel
         kicker="Start here"
         typeLabel="Encyclopedia hub"
-        title="A clearer path into the pepper knowledge system."
+        title="A clearer way into the pepper reference."
         description="Use the encyclopedia when you want structured reference pages, the origins atlas when you want climate and geography, and the workshop when you want practical sauce-making guidance."
         links={[
           { to: '/wiki', label: 'Browse all peppers, recipes, and legends' },
@@ -182,7 +181,7 @@ function FeaturedOriginsSection({ peppers }) {
         kicker="Featured origins"
         typeLabel="Atlas hub"
         title="Landscapes behind the fruit."
-        description="The origins atlas now behaves like a browseable climate-and-region layer. Open the atlas for landscapes, then drop into a pepper profile when you want heat, uses, and related recipes."
+        description="The origins atlas brings peppers back to climate, terrain, and growing region. Open the atlas for landscapes, then move into a pepper profile for heat, uses, and related recipes."
         links={[
           { to: '/wiki/origins', label: 'Browse all origin landscapes' },
           { to: '/wiki', label: 'Return to encyclopedia hub' },
@@ -230,7 +229,7 @@ function PairingsSection({ recipes }) {
         kicker="Heat, pairings, and uses"
         typeLabel="Pairings hub"
         title="Pairing studies and recipe notebooks now have clearer roles."
-        description="Open pairing studies when you want flavor logic, and recipe notebooks when you want a more practical kitchen read. The index now separates those content types instead of blending them together."
+        description="Pairing studies focus on flavor logic, while recipe notebooks stay closer to the kitchen. Open whichever kind of reading you need."
         links={[
           { to: '/wiki/heat-pairings', label: 'Browse all pairing and recipe entries' },
           { to: '/lab', label: 'Switch to the workshop for bottle-building' },
@@ -335,7 +334,7 @@ function LegendSection({ legend }) {
         kicker="History and migration"
         typeLabel="Legend hub"
         title="The pepper routes."
-        description="The history layer now sits as a dedicated story destination with clear links back to related peppers and routes across the encyclopedia."
+        description="The history section gathers migration, trade, and adaptation into one story that connects back to related peppers."
         links={[
           { to: `/wiki/legends/${legend.slug}`, label: 'Read the migration story' },
           { to: '/wiki/origins', label: 'Jump from story to origins atlas' },

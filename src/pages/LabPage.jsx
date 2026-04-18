@@ -60,7 +60,7 @@ function IntroSection() {
       kicker="Sauce workshop"
       typeLabel="Task route"
       title="Build a bottle the way a careful sauce maker thinks."
-      description="This route stays practical: choose peppers, balance structure, decide the role of sweetness, acid, and texture, then shape a bottle direction that feels intentional instead of decorative."
+      description="This workshop stays practical: choose peppers, balance structure, decide the role of sweetness, acid, and texture, then shape a bottle direction that feels intentional instead of decorative."
       links={[
         { to: '/wiki/heat-pairings', label: 'Open pairings for ingredient logic' },
         { to: '/wiki', label: 'Return to the encyclopedia hub' },
