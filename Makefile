@@ -1,4 +1,4 @@
-.PHONY: install up build test deploy
+.PHONY: install up build test deploy screenshot-all
 
 install:
 	npm install
@@ -14,3 +14,6 @@ test:
 
 deploy:
 	npm run deploy
+
+screenshot-all:
+	npm run screenshot:all
