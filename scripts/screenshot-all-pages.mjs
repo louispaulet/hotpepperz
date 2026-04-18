@@ -17,6 +17,7 @@ import { legalPages } from '../src/data/legalContent.js'
 
 const PORT = 5173
 const BASE_URL = `http://localhost:${PORT}`
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
 async function ensureDir(dir) {
   try {
@@ -44,8 +45,7 @@ async function main() {
   })
 
   // 2) Wait for server to be ready by probing the URL
-  const waitForServer = new Promise((resolve) => setTimeout(resolve, 4000))
-  await waitForServer
+  await sleep(4000)
 
   // 3) Prepare routes to capture (dynamically enumerate slugs from data)
   const staticRoutes = ['/', '/lab', '/wiki', '/wiki/origins', '/wiki/heat-pairings']
@@ -83,7 +83,7 @@ async function main() {
     try {
       await page.goto(url, { waitUntil: 'networkidle2', timeout: 60000 })
       // Ensure page fully renders
-      await page.waitForTimeout(500)
+      await sleep(500)
       const filename = slugFromRoute(route) + '.png'
       const outPath = path.resolve(outDir, filename)
       await page.screenshot({ path: outPath, fullPage: true })
