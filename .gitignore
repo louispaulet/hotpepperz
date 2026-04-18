@@ -1,6 +1,7 @@
 # Do not version screenshots
 /screenshots/
 .DS_Store
+/dist/
 
 # Dependencies
 node_modules/
