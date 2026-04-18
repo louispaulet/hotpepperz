@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="118" y1="62" x2="1476" y2="830" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#171318"/>
+      <stop offset=".5" stop-color="#4d2e34"/>
+      <stop offset="1" stop-color="#141013"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" rx="36" fill="url(#bg)"/>
+  <rect x="0" y="0" width="1600" height="332" fill="#19151d"/>
+  <rect x="152" y="132" width="396" height="150" rx="28" fill="#3d2730"/>
+  <rect x="586" y="94" width="430" height="188" rx="28" fill="#61414a"/>
+  <rect x="1056" y="132" width="396" height="150" rx="28" fill="#342128"/>
+  <circle cx="466" cy="580" r="130" fill="#f0dcc9" opacity=".92"/>
+  <circle cx="816" cy="528" r="168" fill="#121012"/>
+  <circle cx="816" cy="528" r="132" fill="#ede4d8"/>
+  <path d="M725 525C753 456 831 419 908 438C986 457 1032 529 1018 599C1003 668 938 710 862 699C785 688 719 645 702 582C698 560 704 544 725 525Z" fill="#c23134"/>
+  <path d="M820 435C872 414 927 412 984 426C955 477 952 540 977 616C926 622 875 612 822 582L820 435Z" fill="#f1a74b"/>
+  <circle cx="1222" cy="516" r="74" fill="#f6d8bf"/>
+  <path d="M1164 516C1188 458 1266 430 1317 457C1367 484 1378 551 1335 604C1291 658 1217 680 1170 650C1122 620 1125 560 1164 516Z" fill="#ff713f"/>
+  <rect x="168" y="732" width="1264" height="84" rx="20" fill="#120f12"/>
+</svg>

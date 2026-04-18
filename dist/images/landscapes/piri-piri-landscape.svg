@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">Piri Piri landscape</title>
+  <desc id="desc">Stylized coastal African pepper-growing landscape.</desc>
+  <defs>
+    <linearGradient id="sky" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#ffd49d"/>
+      <stop offset="52%" stop-color="#f6d8bf"/>
+      <stop offset="100%" stop-color="#aec8c8"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#sky)"/>
+  <rect y="410" width="1200" height="165" fill="#7ec0cf"/>
+  <path d="M0 420 C176 372 355 379 532 430 C682 474 898 473 1200 412 V800 H0Z" fill="#d99b55"/>
+  <path d="M0 532 C197 486 398 492 590 560 C762 621 974 626 1200 576 V800 H0Z" fill="#b97d42"/>
+  <path d="M0 645 C242 610 486 627 702 688 C870 734 1046 736 1200 704 V800 H0Z" fill="#8f5f35"/>
+  <circle cx="987" cy="168" r="70" fill="#ffbf60" opacity=".75"/>
+  <path d="M256 594 l13-90 l24 0 l11 90" fill="#45543a"/>
+  <circle cx="276" cy="493" r="44" fill="#76965b"/>
+  <circle cx="314" cy="516" r="30" fill="#6f8f56"/>
+</svg>

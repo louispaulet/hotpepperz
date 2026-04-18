@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" role="img" aria-labelledby="title desc">
+  <title id="title">Cheongyang portrait</title>
+  <desc id="desc">Stylized editorial illustration of Cheongyang peppers.</desc>
+  <rect width="800" height="800" fill="#f4eddc"/>
+  <circle cx="640" cy="132" r="96" fill="#b8cf81" opacity=".28"/>
+  <path d="M401 240 C403 308 396 396 386 506" fill="none" stroke="#587b3f" stroke-width="18" stroke-linecap="round"/>
+  <path d="M401 252 C365 222 319 217 278 236" fill="none" stroke="#6f934b" stroke-width="12" stroke-linecap="round"/>
+  <g>
+    <path d="M355 274 C322 318 297 389 293 468 C289 544 327 586 373 575 C409 566 427 519 429 448 C431 393 415 326 387 287 C378 274 366 268 355 274Z" fill="#68a441"/>
+    <path d="M444 284 C480 325 506 392 512 464 C518 532 484 573 441 566 C405 560 386 517 382 448 C378 395 393 334 418 299 C425 289 434 283 444 284Z" fill="#cf4530"/>
+    <path d="M286 331 C255 365 236 420 236 481 C236 533 263 564 298 558 C331 551 349 515 354 466 C360 419 349 372 325 341 C315 327 299 323 286 331Z" fill="#7ab14b"/>
+  </g>
+</svg>

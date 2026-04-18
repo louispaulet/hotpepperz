@@ -9,6 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "npm run lint && npm run build",
+    "screenshot:all": "node scripts/screenshot-all-pages.mjs",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },
@@ -29,6 +30,7 @@
     "eslint-plugin-react-refresh": "^0.5.2",
     "globals": "^17.4.0",
     "tailwindcss": "^4.2.2",
-    "vite": "^8.0.1"
+    "vite": "^8.0.1",
+    "puppeteer": "^20.8.0"
   }
 }

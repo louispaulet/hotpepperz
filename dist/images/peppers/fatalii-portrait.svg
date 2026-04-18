@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" role="img" aria-labelledby="title desc">
+  <title id="title">Fatalii portrait</title>
+  <desc id="desc">Stylized editorial illustration of Fatalii peppers.</desc>
+  <rect width="800" height="800" fill="#faf0dd"/>
+  <circle cx="146" cy="136" r="92" fill="#f5d677" opacity=".33"/>
+  <path d="M398 245 C398 321 389 407 381 512" fill="none" stroke="#5c7a40" stroke-width="18" stroke-linecap="round"/>
+  <path d="M398 260 C426 234 463 228 498 242" fill="none" stroke="#6f9348" stroke-width="12" stroke-linecap="round"/>
+  <g fill="#efcf68">
+    <path d="M367 274 C334 314 308 373 298 441 C286 516 326 579 379 591 C413 599 446 580 457 544 C474 488 466 421 445 350 C435 319 412 283 367 274Z"/>
+    <path d="M464 298 C500 333 526 386 537 449 C548 514 520 567 475 574 C442 579 412 559 401 523 C385 473 389 415 412 352 C421 327 437 305 464 298Z"/>
+  </g>
+  <ellipse cx="399" cy="401" rx="18" ry="104" transform="rotate(8 399 401)" fill="#fff1a8" opacity=".76"/>
+</svg>
