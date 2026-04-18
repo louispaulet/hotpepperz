@@ -252,7 +252,7 @@ export const wikiGallery = [
 export const recipeImageAssociations = {
   'habanero-mango': {
     heroVisual: {
-      image: 'images/recipes/habanero-mango.svg',
+      image: 'images/recipes/habanero-mango.png',
       alt: 'Editorial pairing image for habanero and mango with glossy tropical sauce tones',
       position: 'center center',
       prompt:
@@ -261,7 +261,7 @@ export const recipeImageAssociations = {
   },
   'rocoto-huacatay': {
     heroVisual: {
-      image: 'images/recipes/rocoto-huacatay.svg',
+      image: 'images/recipes/rocoto-huacatay.png',
       alt: 'Editorial pairing image for rocoto and huacatay with Andean green-sauce energy',
       position: 'center center',
       prompt:
@@ -270,7 +270,7 @@ export const recipeImageAssociations = {
   },
   'birds-eye-basil-lime': {
     heroVisual: {
-      image: 'images/recipes/birds-eye-basil-lime.svg',
+      image: 'images/recipes/birds-eye-basil-lime.png',
       alt: "Editorial pairing image for Bird's Eye chili, basil, and lime with bright Southeast Asian color",
       position: 'center center',
       prompt:
@@ -279,7 +279,7 @@ export const recipeImageAssociations = {
   },
   'sambal-birdseye': {
     heroVisual: {
-      image: 'images/recipes/sambal-birdseye.svg',
+      image: 'images/recipes/sambal-birdseye.png',
       alt: "Editorial recipe image for sambal with Bird's Eye chili and glossy mortar-pounded texture",
       position: 'center center',
       prompt:
@@ -288,7 +288,7 @@ export const recipeImageAssociations = {
   },
   'salsa-macha-arbol': {
     heroVisual: {
-      image: 'images/recipes/salsa-macha-arbol.svg',
+      image: 'images/recipes/salsa-macha-arbol.png',
       alt: 'Editorial recipe image for salsa macha with chile de arbol, toasted oil, and rich red-brown tones',
       position: 'center center',
       prompt:
@@ -297,7 +297,7 @@ export const recipeImageAssociations = {
   },
   'rocoto-relleno-notebook': {
     heroVisual: {
-      image: 'images/recipes/rocoto-relleno-notebook.svg',
+      image: 'images/recipes/rocoto-relleno-notebook.png',
       alt: 'Editorial recipe image for rocoto relleno with stuffed peppers and warm Andean plating',
       position: 'center center',
       prompt:
@@ -309,7 +309,7 @@ export const recipeImageAssociations = {
 export const restaurantImageAssociations = {
   semma: {
     heroVisual: {
-      image: 'images/restaurants/semma.svg',
+      image: 'images/restaurants/semma.png',
       alt: 'Editorial dining image for Semma with warm brass light and Southern Indian fine-dining energy',
       position: 'center center',
       prompt:
@@ -318,7 +318,7 @@ export const restaurantImageAssociations = {
   },
   sorn: {
     heroVisual: {
-      image: 'images/restaurants/sorn.svg',
+      image: 'images/restaurants/sorn.png',
       alt: 'Editorial dining image for Sorn with elegant Southern Thai heat and golden contemporary light',
       position: 'center center',
       prompt:
@@ -327,7 +327,7 @@ export const restaurantImageAssociations = {
   },
   'gaggan-at-louis-vuitton': {
     heroVisual: {
-      image: 'images/restaurants/gaggan-at-louis-vuitton.svg',
+      image: 'images/restaurants/gaggan-at-louis-vuitton.png',
       alt: 'Editorial dining image for Gaggan at Louis Vuitton with theatrical progressive tasting-menu drama',
       position: 'center center',
       prompt:
@@ -336,7 +336,7 @@ export const restaurantImageAssociations = {
   },
   lorea: {
     heroVisual: {
-      image: 'images/restaurants/lorea.svg',
+      image: 'images/restaurants/lorea.png',
       alt: 'Editorial dining image for Lorea with contemporary Mexican plating and refined urban calm',
       position: 'center center',
       prompt:
@@ -345,7 +345,7 @@ export const restaurantImageAssociations = {
   },
   nicos: {
     heroVisual: {
-      image: 'images/restaurants/nicos.svg',
+      image: 'images/restaurants/nicos.png',
       alt: 'Editorial dining image for Nicos with rooted Mexican warmth, ceramics, and chile-forward depth',
       position: 'center center',
       prompt:
@@ -354,7 +354,7 @@ export const restaurantImageAssociations = {
   },
   'tong-fu-she': {
     heroVisual: {
-      image: 'images/restaurants/tong-fu-she.svg',
+      image: 'images/restaurants/tong-fu-she.png',
       alt: 'Editorial dining image for Tong Fu She with moody Sichuan lacquer, red oil, and aromatic heat',
       position: 'center center',
       prompt:
@@ -363,7 +363,7 @@ export const restaurantImageAssociations = {
   },
   central: {
     heroVisual: {
-      image: 'images/restaurants/central.svg',
+      image: 'images/restaurants/central.png',
       alt: 'Editorial dining image for Central with luminous Peruvian minimalism and ingredient-led altitude',
       position: 'center center',
       prompt:
@@ -375,7 +375,7 @@ export const restaurantImageAssociations = {
 export const legendImageAssociations = {
   'pepper-routes': {
     heroVisual: {
-      image: 'images/legends/pepper-routes.svg',
+      image: 'images/legends/pepper-routes.png',
       alt: 'Editorial migration image for The Pepper Routes with cartographic motion and pepper trade atmospherics',
       position: 'center center',
       prompt:
