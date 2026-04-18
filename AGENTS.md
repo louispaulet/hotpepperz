@@ -13,3 +13,4 @@
 
 - Prefer finishing tasks end-to-end in a single pass when possible: implement, verify, commit, and push.
 - Leave unrelated local files alone unless explicitly asked to clean them up.
+- When adding or updating website copy, content, or other user-facing wording, follow the tone guidance in `tone_of_voice_guidelines.md` and keep the HotPepperz voice consistent with the project's editorial-reference style.
