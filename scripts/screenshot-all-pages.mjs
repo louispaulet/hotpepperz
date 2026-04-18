@@ -6,9 +6,14 @@
 //  - saves PNG screenshots in a non-versioned ./screenshots directory
 //  - shuts down the dev server on completion
 import { spawn } from 'child_process'
-import { mkdir, mkdtemp, writeFile } from 'node:fs/promises'
+import { mkdir } from 'node:fs/promises'
 import { fileURLToPath } from 'node:url'
 import path from 'node:path'
+import { pepperProfiles } from '../src/data/pepperProfiles.js'
+import { recipeFeatures } from '../src/data/recipesData.js'
+import { restaurants } from '../src/data/restaurantsData.js'
+import { legends } from '../src/data/legendsData.js'
+import { legalPages } from '../src/data/legalContent.js'
 
 const PORT = 5173
 const BASE_URL = `http://localhost:${PORT}`
@@ -42,26 +47,14 @@ async function main() {
   const waitForServer = new Promise((resolve) => setTimeout(resolve, 4000))
   await waitForServer
 
-  // 3) Prepare routes to capture
+  // 3) Prepare routes to capture (dynamically enumerate slugs from data)
   const staticRoutes = ['/', '/lab', '/wiki', '/wiki/origins', '/wiki/heat-pairings']
-  // Representative slugs from data catalogs (static, no API calls)
-  const pepperSlugs = [
-    'birds-eye-chili', 'piri-piri', 'rocoto', 'chile-de-arbol', 'madame-jeanette', 'datil', 'cheongyang', 'fatalii'
-  ]
-  const recipeSlugs = [
-    'habanero-mango', 'rocoto-huacatay', 'birds-eye-basil-lime', 'sambal-birdseye', 'salsa-macha-arbol', 'rocoto-relleno-notebook'
-  ]
-  const restaurantSlugs = ['semma', 'sorn', 'gaggan-at-louis-vuitton', 'lorea', 'nicos', 'tong-fu-she', 'central']
-  const legendSlugs = ['pepper-routes']
-  const legalSlugs = ['mentions-legales', 'legal-notice', 'conditions-utilisation', 'terms-of-use', 'privacy-policy', 'politique-confidentialite']
-  const legalRoutes = [
-    '/legal/mentions-legales',
-    '/legal/legal-notice',
-    '/legal/conditions-utilisation',
-    '/legal/terms-of-use',
-    '/legal/privacy-policy',
-    '/legal/politique-confidentialite',
-  ]
+  const pepperSlugs = pepperProfiles.map((p) => p.slug)
+  const recipeSlugs = recipeFeatures.map((r) => r.slug)
+  const restaurantSlugs = restaurants.map((r) => r.slug)
+  const legendSlugs = legends.map((l) => l.slug)
+  const legalSlugs = Object.keys(legalPages)
+  const legalRoutes = legalSlugs.map((slug) => `/legal/${slug}`)
 
   const routes = [
     ...staticRoutes,
