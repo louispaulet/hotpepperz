@@ -1,4 +1,5 @@
 import { Route, Routes, useLocation } from 'react-router-dom'
+import { useEffect } from 'react'
 import HomePage from './pages/HomePage'
 import LabPage from './pages/LabPage'
 import WikiPage from './pages/WikiPage'
@@ -17,6 +18,11 @@ function App() {
   const baseUrl = import.meta.env.BASE_URL
   const location = useLocation()
   const pageTheme = getPageTheme(location.pathname)
+  // Ensure the page starts at the top on route changes
+  useEffect(() => {
+    // Scroll to top when the path or query changes
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+  }, [location.pathname, location.search])
   const ambientMedia = {
     left: editorialImages[pageTheme.backgroundPhotos.left],
     right: editorialImages[pageTheme.backgroundPhotos.right],
