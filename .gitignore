@@ -1,2 +1,5 @@
 # Do not version screenshots
 /screenshots/
+
+# Dependencies
+node_modules/
