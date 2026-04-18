@@ -10,7 +10,12 @@ import {
   restaurantMap,
   legendMap,
 } from '../data/catalog'
-import { getPepperAssociation } from '../lib/media'
+import {
+  getLegendAssociation,
+  getPepperAssociation,
+  getRecipeAssociation,
+  getRestaurantAssociation,
+} from '../lib/media'
 
 function PepperDetailPage() {
   const { slug } = useParams()
@@ -25,42 +30,42 @@ function PepperDetailPage() {
       const recipe = recipeFeatureMap[relatedSlug]
       if (!recipe) return null
 
-      const leadPepper = getPepperAssociation(recipe.leadPepperSlugs[0])
+      const leadPepper = getRecipeAssociation(recipe.slug)
 
       return {
         href: `/wiki/recipes/${recipe.slug}`,
         title: recipe.title,
         kind: recipe.kind,
         copy: recipe.summary,
-        visual: leadPepper?.landscapeVisual ?? leadPepper?.portraitVisual,
+        visual: leadPepper?.heroVisual,
       }
     }),
     ...pepper.relatedRestaurantSlugs.map((relatedSlug) => {
       const restaurant = restaurantMap[relatedSlug]
       if (!restaurant) return null
 
-      const leadPepper = getPepperAssociation(restaurant.relatedPepperSlugs[0])
+      const leadPepper = getRestaurantAssociation(restaurant.slug)
 
       return {
         href: `/wiki/restaurants/${restaurant.slug}`,
         title: restaurant.name,
         kind: restaurant.recognition,
         copy: restaurant.summary,
-        visual: leadPepper?.landscapeVisual ?? leadPepper?.portraitVisual,
+        visual: leadPepper?.heroVisual,
       }
     }),
     ...pepper.relatedLegendSlugs.map((relatedSlug) => {
       const legend = legendMap[relatedSlug]
       if (!legend) return null
 
-      const leadPepper = getPepperAssociation(legend.relatedPepperSlugs[0])
+      const leadPepper = getLegendAssociation(legend.slug)
 
       return {
         href: `/wiki/legends/${legend.slug}`,
         title: legend.title,
         kind: 'Legend',
         copy: legend.summary,
-        visual: leadPepper?.landscapeVisual ?? leadPepper?.portraitVisual,
+        visual: leadPepper?.heroVisual,
       }
     }),
   ].filter(Boolean)
@@ -120,9 +125,9 @@ function PepperDetailPage() {
               ))}
             </div>
             <p className="mt-6 text-sm leading-7 text-[var(--color-text-soft)]">
-              Reuse note: this pepper is paired throughout the encyclopedia with its origin landscape,
-              so the same agricultural context appears on its own page, on related recipe cards, and
-              inside restaurant spotlights.
+              Reuse note: this pepper keeps its own portrait-and-landscape identity on the profile
+              page, while the linked recipes, restaurants, and legend now carry more specific
+              editorial imagery of their own.
             </p>
           </article>
         </section>

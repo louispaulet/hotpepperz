@@ -5,7 +5,7 @@ import FactGrid from '../components/encyclopedia/FactGrid'
 import RelatedRail from '../components/encyclopedia/RelatedRail'
 import SourceList from '../components/encyclopedia/SourceList'
 import { recipeFeatureMap, pepperProfileMap, restaurantMap } from '../data/catalog'
-import { getPepperAssociation } from '../lib/media'
+import { getRecipeAssociation, getRestaurantAssociation } from '../lib/media'
 
 function RecipeDetailPage() {
   const { slug } = useParams()
@@ -14,21 +14,21 @@ function RecipeDetailPage() {
   if (!recipe) return <Navigate to="/wiki" replace />
 
   const leadPepper = pepperProfileMap[recipe.leadPepperSlugs[0]]
-  const media = getPepperAssociation(leadPepper.slug)
+  const media = getRecipeAssociation(recipe.slug)
 
   const relatedItems = recipe.relatedRestaurantSlugs
     .map((restaurantSlug) => {
       const restaurant = restaurantMap[restaurantSlug]
       if (!restaurant) return null
 
-      const relatedMedia = getPepperAssociation(restaurant.relatedPepperSlugs[0])
+      const relatedMedia = getRestaurantAssociation(restaurant.slug)
 
       return {
         href: `/wiki/restaurants/${restaurant.slug}`,
         title: restaurant.name,
         kind: restaurant.recognition,
         copy: restaurant.summary,
-        visual: relatedMedia?.landscapeVisual ?? relatedMedia?.portraitVisual,
+        visual: relatedMedia?.heroVisual,
       }
     })
     .filter(Boolean)
@@ -39,8 +39,7 @@ function RecipeDetailPage() {
         kicker={recipe.kind}
         title={recipe.title}
         subtitle={recipe.summary}
-        landscape={media.landscapeVisual}
-        portrait={media.portraitVisual}
+        landscape={media.heroVisual}
         chips={[leadPepper.name, leadPepper.origin, leadPepper.heatBand]}
         variant="recipe"
       >

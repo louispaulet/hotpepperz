@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="148" y1="72" x2="1488" y2="812" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#17382c"/>
+      <stop offset=".52" stop-color="#30593a"/>
+      <stop offset="1" stop-color="#201512"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" rx="36" fill="url(#bg)"/>
+  <ellipse cx="800" cy="660" rx="510" ry="118" fill="#15110f"/>
+  <ellipse cx="802" cy="544" rx="466" ry="148" fill="#ece0c5"/>
+  <ellipse cx="802" cy="544" rx="412" ry="118" fill="#24452f"/>
+  <g fill="#63a84a">
+    <path d="M612 433C680 404 753 431 772 499C697 512 621 482 612 433Z"/>
+    <path d="M542 530C618 484 708 495 756 566C664 592 575 579 542 530Z"/>
+    <path d="M779 622C844 566 940 552 1032 592C962 656 869 681 779 622Z"/>
+    <path d="M960 443C1030 422 1095 443 1158 510C1081 536 1000 509 960 443Z"/>
+    <path d="M1058 563C1117 531 1197 532 1262 582C1188 622 1109 616 1058 563Z"/>
+  </g>
+  <g fill="#d93c2f">
+    <path d="M631 542C654 497 714 473 750 488C788 503 794 552 771 598C746 648 701 676 663 664C626 652 613 595 631 542Z"/>
+    <path d="M747 470C766 434 808 415 838 426C869 438 875 473 856 511C837 547 798 573 766 564C733 553 729 509 747 470Z"/>
+    <path d="M884 518C909 472 967 445 1007 458C1048 472 1054 524 1030 575C1006 628 960 653 920 640C879 626 865 572 884 518Z"/>
+  </g>
+  <g fill="#9ed55f">
+    <circle cx="1167" cy="422" r="72"/>
+    <circle cx="1194" cy="417" r="54" fill="#e3f27b"/>
+    <path d="M1135 364C1156 344 1186 331 1214 330C1198 355 1186 377 1182 401L1135 364Z" fill="#5f8f37"/>
+  </g>
+  <circle cx="320" cy="172" r="88" fill="#f8ebae" opacity=".14"/>
+  <circle cx="1322" cy="155" r="104" fill="#ffc85a" opacity=".12"/>
+</svg>

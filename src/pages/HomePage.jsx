@@ -8,7 +8,13 @@ import {
   restaurants,
   legends,
 } from '../data/catalog'
-import { getPepperAssociation, resolveImageSrc } from '../lib/media'
+import {
+  getLegendAssociation,
+  getPepperAssociation,
+  getRecipeAssociation,
+  getRestaurantAssociation,
+  resolveImageSrc,
+} from '../lib/media'
 
 const baseUrl = import.meta.env.BASE_URL
 
@@ -180,7 +186,7 @@ function PairingsSection({ recipes }) {
 
       <section className="grid gap-4">
         {recipes.map((recipe) => {
-          const media = getPepperAssociation(recipe.leadPepperSlugs[0])
+          const media = getRecipeAssociation(recipe.slug)
 
           return (
             <Link
@@ -190,9 +196,9 @@ function PairingsSection({ recipes }) {
             >
               <div className="grid gap-0 md:grid-cols-[0.95fr_1.05fr]">
                 <VisualImage
-                  src={resolveImageSrc(baseUrl, media.landscapeVisual.image)}
-                  alt={media.landscapeVisual.alt}
-                  item={media.landscapeVisual}
+                  src={resolveImageSrc(baseUrl, media.heroVisual.image)}
+                  alt={media.heroVisual.alt}
+                  item={media.heroVisual}
                   className="h-44 w-full md:h-full"
                 />
                 <div className="p-6">
@@ -227,7 +233,7 @@ function RestaurantSection({ restaurants }) {
 
         <div className="mt-6 grid gap-4 lg:grid-cols-2 xl:grid-cols-4">
           {restaurants.map((restaurant) => {
-            const media = getPepperAssociation(restaurant.relatedPepperSlugs[0])
+            const media = getRestaurantAssociation(restaurant.slug)
 
             return (
               <Link
@@ -235,23 +241,14 @@ function RestaurantSection({ restaurants }) {
                 to={`/wiki/restaurants/${restaurant.slug}`}
                 className="panel journal-card journal-card--restaurant overflow-hidden rounded-[1.8rem]"
               >
-                <div
-                  className="relative min-h-[16rem] p-5"
-                  style={{
-                    backgroundImage: `linear-gradient(180deg, rgba(10,8,7,0.22), rgba(10,8,7,0.92)), url(${resolveImageSrc(
-                      baseUrl,
-                      media.landscapeVisual.image,
-                    )})`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: media.landscapeVisual.position,
-                  }}
-                >
-                  <img
-                    src={resolveImageSrc(baseUrl, media.portraitVisual.image)}
-                    alt={media.portraitVisual.alt}
-                    className="mx-auto h-28 object-contain drop-shadow-[0_20px_28px_rgba(0,0,0,0.38)]"
+                <div className="relative min-h-[16rem]">
+                  <VisualImage
+                    src={resolveImageSrc(baseUrl, media.heroVisual.image)}
+                    alt={media.heroVisual.alt}
+                    item={media.heroVisual}
+                    className="h-52 w-full"
                   />
-                  <div className="mt-5">
+                  <div className="p-5">
                     <p className="section-kicker">{restaurant.recognition}</p>
                     <h3 className="mt-3 text-2xl font-semibold text-[var(--color-cream)]">{restaurant.name}</h3>
                     <p className="card-copy mt-3 text-sm leading-7 text-[var(--color-text-soft)]">{restaurant.city}</p>
@@ -267,7 +264,7 @@ function RestaurantSection({ restaurants }) {
 }
 
 function LegendSection({ legend }) {
-  const media = getPepperAssociation(legend.relatedPepperSlugs[0])
+  const media = getLegendAssociation(legend.slug)
 
   return (
     <section className="viewport-section journal-chapter-grid grid gap-4 xl:grid-cols-[1.05fr_0.95fr]">
@@ -284,16 +281,16 @@ function LegendSection({ legend }) {
 
       <section className="panel journal-card journal-card--legend overflow-hidden rounded-[2rem]">
         <VisualImage
-          src={resolveImageSrc(baseUrl, media.landscapeVisual.image)}
-          alt={media.landscapeVisual.alt}
-          item={media.landscapeVisual}
+          src={resolveImageSrc(baseUrl, media.heroVisual.image)}
+          alt={media.heroVisual.alt}
+          item={media.heroVisual}
           className="h-56 w-full"
         />
         <div className="p-6">
-          <p className="section-kicker">New legal area</p>
+          <p className="section-kicker">History and migration</p>
           <p className="card-copy mt-4 text-sm leading-7 text-[var(--color-text-soft)]">
-            The footer now also exposes bilingual France-oriented legal draft pages: legal notice,
-            terms of use, and privacy policy in both French and English.
+            A dedicated legend now frames peppers as travelling ingredients shaped by trade, empire,
+            migration, and the landscapes where they became local.
           </p>
         </div>
       </section>

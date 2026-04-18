@@ -5,7 +5,7 @@ import FactGrid from '../components/encyclopedia/FactGrid'
 import RelatedRail from '../components/encyclopedia/RelatedRail'
 import SourceList from '../components/encyclopedia/SourceList'
 import { restaurantMap, pepperProfileMap, recipeFeatureMap } from '../data/catalog'
-import { getPepperAssociation } from '../lib/media'
+import { getRecipeAssociation, getRestaurantAssociation, getPepperAssociation } from '../lib/media'
 
 function RestaurantDetailPage() {
   const { slug } = useParams()
@@ -13,8 +13,7 @@ function RestaurantDetailPage() {
 
   if (!restaurant) return <Navigate to="/wiki" replace />
 
-  const leadPepper = pepperProfileMap[restaurant.relatedPepperSlugs[0]]
-  const media = getPepperAssociation(leadPepper.slug)
+  const media = getRestaurantAssociation(restaurant.slug)
 
   const relatedItems = restaurant.relatedPepperSlugs
     .map((pepperSlug) => {
@@ -38,14 +37,14 @@ function RestaurantDetailPage() {
         )
         .slice(0, 2)
         .map((recipe) => {
-          const recipeMedia = getPepperAssociation(recipe.leadPepperSlugs[0])
+          const recipeMedia = getRecipeAssociation(recipe.slug)
 
           return {
             href: `/wiki/recipes/${recipe.slug}`,
             title: recipe.title,
             kind: recipe.kind,
             copy: recipe.summary,
-            visual: recipeMedia.landscapeVisual,
+            visual: recipeMedia.heroVisual,
           }
         }),
     )
@@ -57,8 +56,7 @@ function RestaurantDetailPage() {
         kicker="Restaurant spotlight"
         title={restaurant.name}
         subtitle={restaurant.summary}
-        landscape={media.landscapeVisual}
-        portrait={media.portraitVisual}
+        landscape={media.heroVisual}
         chips={[restaurant.city, restaurant.recognition, restaurant.cuisine]}
         variant="restaurant"
       >

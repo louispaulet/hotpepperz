@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="128" y1="68" x2="1478" y2="832" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#171113"/>
+      <stop offset=".48" stop-color="#482522"/>
+      <stop offset="1" stop-color="#150f0f"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" rx="36" fill="url(#bg)"/>
+  <rect x="0" y="0" width="1600" height="308" fill="#1c1518"/>
+  <circle cx="364" cy="154" r="76" fill="#e7c37d" opacity=".5"/>
+  <circle cx="1226" cy="154" r="76" fill="#e3b25e" opacity=".4"/>
+  <ellipse cx="796" cy="588" rx="366" ry="140" fill="#151010"/>
+  <ellipse cx="796" cy="570" rx="318" ry="112" fill="#2f2322"/>
+  <path d="M628 558C677 484 787 442 902 458C1016 473 1102 548 1094 628C1087 702 979 744 847 731C714 719 604 653 592 592C588 579 600 567 628 558Z" fill="#8e171a"/>
+  <path d="M704 528C760 493 841 488 948 515C914 566 906 624 924 689C832 684 753 655 685 601L704 528Z" fill="#d84b21"/>
+  <path d="M945 497C998 492 1055 520 1120 582C1060 608 1007 610 958 587L945 497Z" fill="#f08a2d"/>
+  <g fill="#f5c267" opacity=".85">
+    <circle cx="645" cy="630" r="8"/>
+    <circle cx="716" cy="686" r="10"/>
+    <circle cx="1006" cy="625" r="11"/>
+    <circle cx="1088" cy="575" r="8"/>
+  </g>
+</svg>

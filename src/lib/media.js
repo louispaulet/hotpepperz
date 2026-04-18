@@ -249,8 +249,155 @@ export const wikiGallery = [
   editorialImages.bottleLineup,
 ]
 
+export const recipeImageAssociations = {
+  'habanero-mango': {
+    heroVisual: {
+      image: 'images/recipes/habanero-mango.svg',
+      alt: 'Editorial pairing image for habanero and mango with glossy tropical sauce tones',
+      position: 'center center',
+      prompt:
+        'Premium editorial food photography of a habanero and mango hot sauce study, glossy tropical sauce with bright mango flesh, floral high-heat peppers, lime and acid cues, polished culinary styling, vivid gold and orange palette, luxurious but disciplined, no labels, no text, no hands, no white studio background, landscape composition for website card and hero use',
+    },
+  },
+  'rocoto-huacatay': {
+    heroVisual: {
+      image: 'images/recipes/rocoto-huacatay.svg',
+      alt: 'Editorial pairing image for rocoto and huacatay with Andean green-sauce energy',
+      position: 'center center',
+      prompt:
+        'Premium editorial food photography of rocoto and huacatay, Andean green sauce or plated pairing study, thick rocoto character with minty herbal huacatay lift, Peruvian ceramic or stoneware, fresh herbs, mountain-kitchen elegance, natural light, realistic culinary styling, no labels, no text, no hands, no white studio background, landscape composition for website card and hero use',
+    },
+  },
+  'birds-eye-basil-lime': {
+    heroVisual: {
+      image: 'images/recipes/birds-eye-basil-lime.svg',
+      alt: "Editorial pairing image for Bird's Eye chili, basil, and lime with bright Southeast Asian color",
+      position: 'center center',
+      prompt:
+        "Premium editorial food photography of Bird's Eye chili with basil and lime, Southeast Asian pairing study, small vivid red chilies, fresh basil leaves, lime wedges, sharp bright heat, energetic aromatic composition, refined culinary styling, humid luminous atmosphere, no labels, no text, no hands, no white studio background, landscape composition for website card and hero use",
+    },
+  },
+  'sambal-birdseye': {
+    heroVisual: {
+      image: 'images/recipes/sambal-birdseye.svg',
+      alt: "Editorial recipe image for sambal with Bird's Eye chili and glossy mortar-pounded texture",
+      position: 'center center',
+      prompt:
+        "Premium editorial food photography of sambal made with Bird's Eye chili, mortar-pounded chili paste, glossy red texture, garlic, lime, optional shrimp-paste depth, Southeast Asian table context, intense but controlled styling, realistic culinary detail, no labels, no text, no hands, no white studio background, landscape composition for website card and hero use",
+    },
+  },
+  'salsa-macha-arbol': {
+    heroVisual: {
+      image: 'images/recipes/salsa-macha-arbol.svg',
+      alt: 'Editorial recipe image for salsa macha with chile de arbol, toasted oil, and rich red-brown tones',
+      position: 'center center',
+      prompt:
+        'Premium editorial food photography of salsa macha with chile de arbol, dark oil-rich Mexican condiment with toasted red chilies, seeds and nuts, spoonable glossy texture, warm roasted tones, elegant table styling, deep savory heat, realistic culinary detail, no labels, no text, no hands, no white studio background, landscape composition for website card and hero use',
+    },
+  },
+  'rocoto-relleno-notebook': {
+    heroVisual: {
+      image: 'images/recipes/rocoto-relleno-notebook.svg',
+      alt: 'Editorial recipe image for rocoto relleno with stuffed peppers and warm Andean plating',
+      position: 'center center',
+      prompt:
+        'Premium editorial food photography of rocoto relleno, baked stuffed rocoto peppers from the Peruvian highlands, thick-walled red peppers, savory filling, slight cheese or creamy element, rustic-elegant Andean plating, warm natural light, realistic culinary styling, no labels, no text, no hands, no white studio background, landscape composition for website card and hero use',
+    },
+  },
+}
+
+export const restaurantImageAssociations = {
+  semma: {
+    heroVisual: {
+      image: 'images/restaurants/semma.svg',
+      alt: 'Editorial dining image for Semma with warm brass light and Southern Indian fine-dining energy',
+      position: 'center center',
+      prompt:
+        'Premium editorial food-and-interior photography for Semma in New York City, polished Southern Indian fine dining, assertive chili heat presented elegantly, warm brass and dark wood atmosphere, refined plated dishes with vivid red and orange spice accents, Michelin-level pacing and restraint, cinematic low light, luxurious but culturally grounded, no logos, no text, no obvious branding, no white backdrop, wide composition for website hero use',
+    },
+  },
+  sorn: {
+    heroVisual: {
+      image: 'images/restaurants/sorn.svg',
+      alt: 'Editorial dining image for Sorn with elegant Southern Thai heat and golden contemporary light',
+      position: 'center center',
+      prompt:
+        'Premium editorial dining photography for Sorn in Bangkok, Southern Thai fine dining with exhilarating chili-rich intensity, elegant tasting-menu setting, lush Thai ingredients, intricate plating, warm golden light, luxurious contemporary room, aromatic and high-energy but controlled, cinematic realism, no logos, no text, no branding, wide composition for website hero use',
+    },
+  },
+  'gaggan-at-louis-vuitton': {
+    heroVisual: {
+      image: 'images/restaurants/gaggan-at-louis-vuitton.svg',
+      alt: 'Editorial dining image for Gaggan at Louis Vuitton with theatrical progressive tasting-menu drama',
+      position: 'center center',
+      prompt:
+        'Premium editorial restaurant scene inspired by Gaggan at Louis Vuitton in Bangkok, theatrical progressive tasting menu, spice-aware luxury dining, high-design modern interior, playful avant-garde plating with chili-driven drama, glossy materials and fashion-house polish without showing any logo, cinematic light, bold but sophisticated, no text, no branding, wide composition for website hero use',
+    },
+  },
+  lorea: {
+    heroVisual: {
+      image: 'images/restaurants/lorea.svg',
+      alt: 'Editorial dining image for Lorea with contemporary Mexican plating and refined urban calm',
+      position: 'center center',
+      prompt:
+        'Premium editorial restaurant photography for Lorea in Mexico City, contemporary Mexican fine dining, chilies integrated into a modern tasting-menu vocabulary, elegant minimalist table setting, one striking chili-forward plated course, subtle urban sophistication, warm refined lighting, realistic high-end food styling, no logos, no text, no branding, wide composition for website hero use',
+    },
+  },
+  nicos: {
+    heroVisual: {
+      image: 'images/restaurants/nicos.svg',
+      alt: 'Editorial dining image for Nicos with rooted Mexican warmth, ceramics, and chile-forward depth',
+      position: 'center center',
+      prompt:
+        'Premium editorial restaurant photography for Nicos in Mexico City, traditional Mexican cuisine with fine-dining relevance, deeply rooted chile-forward dishes, warm hospitality, ceramic tableware, rich sauces and classic textures, timeless dining room atmosphere, polished but not trendy, realistic culinary photography, no logos, no text, no branding, wide composition for website hero use',
+    },
+  },
+  'tong-fu-she': {
+    heroVisual: {
+      image: 'images/restaurants/tong-fu-she.svg',
+      alt: 'Editorial dining image for Tong Fu She with moody Sichuan lacquer, red oil, and aromatic heat',
+      position: 'center center',
+      prompt:
+        'Premium editorial restaurant photography for Tong Fu She in Chengdu, refined Sichuan dining, layered heat and aroma, lacquered chili-rich dishes, heirloom home-style technique elevated for a Michelin-listed context, moody warm interior, red oil glisten, aromatic depth, cinematic realism, no logos, no text, no branding, wide composition for website hero use',
+    },
+  },
+  central: {
+    heroVisual: {
+      image: 'images/restaurants/central.svg',
+      alt: 'Editorial dining image for Central with luminous Peruvian minimalism and ingredient-led altitude',
+      position: 'center center',
+      prompt:
+        'Premium editorial restaurant photography for Central in Lima, ingredient-led Peruvian fine dining, biodiversity-driven tasting menu, refined contemporary plating with rocoto and Andean context, luminous minimalist interior, sense of altitude and terroir, elegant natural materials, sophisticated but grounded, no logos, no text, no branding, wide composition for website hero use',
+    },
+  },
+}
+
+export const legendImageAssociations = {
+  'pepper-routes': {
+    heroVisual: {
+      image: 'images/legends/pepper-routes.svg',
+      alt: 'Editorial migration image for The Pepper Routes with cartographic motion and pepper trade atmospherics',
+      position: 'center center',
+      prompt:
+        'Premium editorial historical illustration or collage for The Pepper Routes, migration of chili peppers from the Americas across oceans into Africa, Asia, and Europe, atmospheric cartographic feel, trade-route energy, ships, coastlines, peppers, and movement without readable labels, rich warm browns, reds, and parchment tones, sophisticated magazine-feature look, no text, no logos, wide composition for website hero use',
+    },
+  },
+}
+
 export function getPepperAssociation(slug) {
   return pepperImageAssociations[slug]
+}
+
+export function getRecipeAssociation(slug) {
+  return recipeImageAssociations[slug]
+}
+
+export function getRestaurantAssociation(slug) {
+  return restaurantImageAssociations[slug]
+}
+
+export function getLegendAssociation(slug) {
+  return legendImageAssociations[slug]
 }
 
 export function resolveImageSrc(baseUrl, image) {

@@ -8,7 +8,7 @@ function ArticleHero({
   title,
   subtitle,
   landscape,
-  portrait,
+  portrait = null,
   portraitItem,
   chips = [],
   children,
@@ -52,17 +52,19 @@ function ArticleHero({
             {children ? <div className="mt-6 max-w-3xl">{children}</div> : null}
           </div>
 
-          <div className="flex justify-center xl:justify-end">
-            <div className="article-portrait-frame w-full max-w-[22rem] rounded-[2rem] border border-white/12 bg-[linear-gradient(180deg,rgba(10,10,10,0.12),rgba(10,10,10,0.48))] p-4 backdrop-blur-sm">
-              <VisualImage
-                src={resolveImageSrc(baseUrl, portrait.image)}
-                alt={portrait.alt}
-                item={portraitItem ?? portrait}
-                className="h-[20rem] w-full overflow-hidden rounded-[1.6rem]"
-                imgClassName="scale-[1.02]"
-              />
+          {portrait ? (
+            <div className="flex justify-center xl:justify-end">
+              <div className="article-portrait-frame w-full max-w-[22rem] rounded-[2rem] border border-white/12 bg-[linear-gradient(180deg,rgba(10,10,10,0.12),rgba(10,10,10,0.48))] p-4 backdrop-blur-sm">
+                <VisualImage
+                  src={resolveImageSrc(baseUrl, portrait.image)}
+                  alt={portrait.alt}
+                  item={portraitItem ?? portrait}
+                  className="h-[20rem] w-full overflow-hidden rounded-[1.6rem]"
+                  imgClassName="scale-[1.02]"
+                />
+              </div>
             </div>
-          </div>
+          ) : null}
         </div>
       </div>
     </section>

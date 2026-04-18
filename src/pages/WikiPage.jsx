@@ -2,7 +2,13 @@ import { Link } from 'react-router-dom'
 import Footer from '../components/Footer'
 import VisualImage from '../components/VisualImage'
 import { pepperProfiles, recipeFeatures, restaurants, legends } from '../data/catalog'
-import { getPepperAssociation, resolveImageSrc } from '../lib/media'
+import {
+  getLegendAssociation,
+  getPepperAssociation,
+  getRecipeAssociation,
+  getRestaurantAssociation,
+  resolveImageSrc,
+} from '../lib/media'
 
 const baseUrl = import.meta.env.BASE_URL
 
@@ -121,7 +127,7 @@ function RecipeIndexSection() {
       />
       <div className="grid gap-4 lg:grid-cols-3">
         {recipeFeatures.map((recipe) => {
-          const media = getPepperAssociation(recipe.leadPepperSlugs[0])
+          const media = getRecipeAssociation(recipe.slug)
 
           return (
             <Link
@@ -130,9 +136,9 @@ function RecipeIndexSection() {
               className="panel directory-card directory-card--recipe overflow-hidden rounded-[1.8rem]"
             >
               <VisualImage
-                src={resolveImageSrc(baseUrl, media.landscapeVisual.image)}
-                alt={media.landscapeVisual.alt}
-                item={media.landscapeVisual}
+                src={resolveImageSrc(baseUrl, media.heroVisual.image)}
+                alt={media.heroVisual.alt}
+                item={media.heroVisual}
                 className="h-44 w-full"
               />
               <div className="p-5">
@@ -157,7 +163,7 @@ function RestaurantIndexSection() {
       />
       <div className="grid gap-4 lg:grid-cols-3">
         {restaurants.slice(0, 6).map((restaurant) => {
-          const media = getPepperAssociation(restaurant.relatedPepperSlugs[0])
+          const media = getRestaurantAssociation(restaurant.slug)
 
           return (
             <Link
@@ -165,27 +171,16 @@ function RestaurantIndexSection() {
               to={`/wiki/restaurants/${restaurant.slug}`}
               className="panel directory-card directory-card--restaurant overflow-hidden rounded-[1.8rem]"
             >
-              <div
-                className="min-h-[16rem] p-5"
-                style={{
-                  backgroundImage: `linear-gradient(180deg, rgba(10,8,7,0.2), rgba(10,8,7,0.92)), url(${resolveImageSrc(
-                    baseUrl,
-                    media.landscapeVisual.image,
-                  )})`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: media.landscapeVisual.position,
-                }}
-              >
-                <img
-                  src={resolveImageSrc(baseUrl, media.portraitVisual.image)}
-                  alt={media.portraitVisual.alt}
-                  className="mx-auto h-28 object-contain drop-shadow-[0_18px_24px_rgba(0,0,0,0.36)]"
-                />
-                <div className="mt-5">
-                  <p className="section-kicker">{restaurant.recognition}</p>
-                  <h2 className="mt-3 text-2xl font-semibold text-[var(--color-cream)]">{restaurant.name}</h2>
-                  <p className="card-copy mt-3 text-sm leading-7 text-[var(--color-text-soft)]">{restaurant.city}</p>
-                </div>
+              <VisualImage
+                src={resolveImageSrc(baseUrl, media.heroVisual.image)}
+                alt={media.heroVisual.alt}
+                item={media.heroVisual}
+                className="h-44 w-full"
+              />
+              <div className="p-5">
+                <p className="section-kicker">{restaurant.recognition}</p>
+                <h2 className="mt-3 text-2xl font-semibold text-[var(--color-cream)]">{restaurant.name}</h2>
+                <p className="card-copy mt-3 text-sm leading-7 text-[var(--color-text-soft)]">{restaurant.city}</p>
               </div>
             </Link>
           )
@@ -197,7 +192,7 @@ function RestaurantIndexSection() {
 
 function LegendIndexSection() {
   const legend = legends[0]
-  const media = getPepperAssociation(legend.relatedPepperSlugs[0])
+  const media = getLegendAssociation(legend.slug)
 
   return (
     <section className="viewport-section directory-section grid gap-4 xl:grid-cols-[0.92fr_1.08fr]">
@@ -214,9 +209,9 @@ function LegendIndexSection() {
 
       <section className="panel directory-card directory-card--legend overflow-hidden rounded-[2rem]">
         <VisualImage
-          src={resolveImageSrc(baseUrl, media.landscapeVisual.image)}
-          alt={media.landscapeVisual.alt}
-          item={media.landscapeVisual}
+          src={resolveImageSrc(baseUrl, media.heroVisual.image)}
+          alt={media.heroVisual.alt}
+          item={media.heroVisual}
           className="h-56 w-full"
         />
         <div className="p-6">

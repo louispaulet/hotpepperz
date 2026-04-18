@@ -4,7 +4,7 @@ import ArticleHero from '../components/encyclopedia/ArticleHero'
 import RelatedRail from '../components/encyclopedia/RelatedRail'
 import SourceList from '../components/encyclopedia/SourceList'
 import { legendMap, pepperProfileMap } from '../data/catalog'
-import { getPepperAssociation } from '../lib/media'
+import { getLegendAssociation, getPepperAssociation } from '../lib/media'
 
 function LegendDetailPage() {
   const { slug } = useParams()
@@ -12,7 +12,7 @@ function LegendDetailPage() {
 
   if (!legend) return <Navigate to="/wiki" replace />
 
-  const media = getPepperAssociation(legend.relatedPepperSlugs[0])
+  const media = getLegendAssociation(legend.slug)
 
   const relatedItems = legend.relatedPepperSlugs.slice(0, 6).map((pepperSlug) => {
     const pepper = pepperProfileMap[pepperSlug]
@@ -33,8 +33,7 @@ function LegendDetailPage() {
         kicker="Legend and history"
         title={legend.title}
         subtitle={legend.summary}
-        landscape={media.landscapeVisual}
-        portrait={media.portraitVisual}
+        landscape={media.heroVisual}
         chips={['History', 'Migration', 'Pepper culture']}
         variant="legend"
       />
